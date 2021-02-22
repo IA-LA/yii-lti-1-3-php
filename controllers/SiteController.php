@@ -140,8 +140,8 @@ class SiteController extends Controller
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
                 // file is uploaded successfully
-		return $this->renderContent('<p>Archivo subido correctamente</p>');
-		return $this->render('upload', ['model' => $model]);
+		return $this->renderContent('<div><p class="error-summary">Archivo subido correctamente</p></div>');
+		//return $this->render('upload', ['model' => $model]);
 		return;
             }
         }
