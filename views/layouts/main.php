@@ -45,12 +45,13 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             [
-                'label' => 'Dropdown',
+                'label' => 'Activity',
                 'items' => [
-                    ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
+                    ['label' => 'Upload', 'url' => ['/site/upload']],
                     '<li class="divider"></li>',
-                    '<li class="dropdown-header">Dropdown Header</li>',
-                    ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+                    '<li class="dropdown-header">LTI</li>',
+                    ['label' => 'Query', 'url' => ['/site/query']],
+                    ['label' => 'Register', 'url' => ['/site/register']],
                 ],
             ],
             Yii::$app->user->isGuest ? (
