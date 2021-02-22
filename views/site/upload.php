@@ -31,13 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		'id' => 'upload-form',
 	    ]); ?>
 
-	        <?= $form->field($model, 'imageFile')->fileInput() ?>
-
         	<button class="btn btn-lg btn-success">Submit</button>
 
 	        <div class="form-group">
 	            <div class="col-lg-offset-1 col-lg-11">
-                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
+                    <?= $form->field($model, 'imageFile')->fileInput() ?>
+
+                    <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
                  </div>
 
