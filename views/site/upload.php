@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
+/* @var $model app\models\UploadForm */
 
 use yii\helpers\Html;
 /* use yii\widgets\ActiveForm;*/
