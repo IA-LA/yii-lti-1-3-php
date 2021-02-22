@@ -44,6 +44,22 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Activity', 'url' =>
+                ['label' => 'Query', 'url' => ['/site/contact']],
+                ['label' => 'Register', 'url' => ['/site/contact']],
+            ],
+            Yii::$app->user->isGuest ? (
+            ['label' => 'Register', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/register'], 'post')
+                . Html::submitButton(
+                    'Register (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            ),
             Yii::$app->user->isGuest ? (
                 ['label' => 'Upload', 'url' => ['/site/login']]
             ) : (
