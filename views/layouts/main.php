@@ -44,10 +44,12 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Activity', 'url' =>
+            ['label' => 'Activity', 'url' => '#'],
+                '<li class="divider"></li>',
+                '<li class="dropdown-header">Dropdown Header</li>',
+                ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
                 ['label' => 'Query', 'url' => ['/site/contact']],
                 ['label' => 'Register', 'url' => ['/site/contact']],
-            ],
             Yii::$app->user->isGuest ? (
             ['label' => 'Register', 'url' => ['/site/login']]
             ) : (
