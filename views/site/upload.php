@@ -29,14 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
 	    <?php $form = ActiveForm::begin([
 		    'id' => 'upload-form',
-            'class' => 'btn btn-primary',
 	    ]); ?>
 
         	<button class="btn btn-lg btn-success">Submit</button>
 
 	        <div class="form-group">
 	            <div class="col-lg-offset-1 col-lg-11">
-                    <?= $form->field($model, 'imageFile')->fileInput() ?>
+                    <div class="btn btn-lg btn-success"><?= $form->field($model, 'imageFile')->fileInput() ?></div>
                     <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
                  </div>
