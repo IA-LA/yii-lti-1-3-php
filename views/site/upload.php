@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <p>
             Formulario de subida de Econtent complejos desde el CTU.
             <br/>
-	    Se pueden subir comprimidos en formato .zip
+	        Se puede subir un fichero comprimido en formato .zip
         </p>
 
 
@@ -28,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
 
 	    <?php $form = ActiveForm::begin([
-		'id' => 'upload-form',
+		    'id' => 'upload-form',
+            'class' => 'btn btn-primary',
 	    ]); ?>
 
         	<button class="btn btn-lg btn-success">Submit</button>
@@ -36,7 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	        <div class="form-group">
 	            <div class="col-lg-offset-1 col-lg-11">
                     <?= $form->field($model, 'imageFile')->fileInput() ?>
-
                     <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
                  </div>
