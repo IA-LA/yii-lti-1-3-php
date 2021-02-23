@@ -16,6 +16,7 @@ use yii\web\UploadedFile;
 
 /*REGISTER*/
 use app\models\RegisterForm;
+use yii\helpers\ArrayHelper;
 
 /*QUERY*/
 use app\models\QueryForm;
@@ -173,7 +174,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('registerFormSubmitted');
 
-            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . Yii::$app->request->post() . '</p></div>');
+            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . ArrayHelper::htmlEncode(Yii::$app->request->post()) . '</p></div>');
             //return $this->refresh();
         }
         return $this->render('register', [
