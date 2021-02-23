@@ -26,7 +26,7 @@ class RegisterForm extends Model
             // id, url, subject and body are required
             [['id', 'url', 'subject', 'body'], 'required'],
             // email has to be a valid email address
-            ['email', 'email'],
+            ['url', 'url'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
@@ -43,15 +43,15 @@ class RegisterForm extends Model
     }
 
     /**
-     * Sends an email to the specified email address using the information collected by this model.
-     * @param string $email the target email address
+     * Sends an url to the specified url address using the information collected by this model.
+     * @param string $url the target url address
      * @return bool whether the model passes validation
      */
-    public function register($email)
+    public function register($url)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo($email)
+                ->setTo($url)
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo([$this->email => $this->id])
                 ->setSubject($this->subject)
