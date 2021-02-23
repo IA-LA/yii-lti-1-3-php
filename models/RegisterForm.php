@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * ContactForm is the model behind the contact form.
+ * RegisterForm is the model behind the register form.
  */
 class RegisterForm extends Model
 {

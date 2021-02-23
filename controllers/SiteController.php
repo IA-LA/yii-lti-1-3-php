@@ -158,7 +158,6 @@ class SiteController extends Controller
     }
 
     /*REGISTER*/
-
     /**
      * Displays register page.
      *
