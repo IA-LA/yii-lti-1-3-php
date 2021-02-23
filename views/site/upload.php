@@ -27,23 +27,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-lg-5">
 
-	    <?php $form = ActiveForm::begin([
-		    'id' => 'upload-form',
-	    ]); ?>
-
-        	<button class="btn btn-lg btn-success">Submit</button>
-
+    	    <?php $form = ActiveForm::begin([
+	    	    'id' => 'upload-form',
+	        ]); ?>
 	        <div class="form-group">
 	            <div class="col-lg-offset-1 col-lg-11">
                     <div class="btn btn-lg btn-success"><?= $form->field($model, 'imageFile')->fileInput() ?></div>
                     <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
                  </div>
+            <!-- <button class="btn btn-lg btn-success">Submit</button> -->
 
-		<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-		<input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+            <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
+            <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 
-	    <?php ActiveForm::end() ?>
+            <?php ActiveForm::end() ?>
 
         </div>
     </div>
