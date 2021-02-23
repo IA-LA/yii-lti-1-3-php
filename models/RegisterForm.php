@@ -57,7 +57,7 @@ class RegisterForm extends Model
             Yii::$app->mailer->compose()
                 ->setTo($url)
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo([$this->email => $this->id])
+                ->setReplyTo([$this->url => $this->id])
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)
                 ->send();
