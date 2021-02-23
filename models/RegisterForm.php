@@ -26,10 +26,11 @@ class RegisterForm extends Model
             // id, url, subject and body are required
             [['id', 'url', 'subject', 'body'], 'required'],
             // id has to be a valid ID alphanumerical 24 character address
-            ['id', 'length',
+            [['id'], 'length',
                 'is' => 24,
-                'tooLong'=>'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965',
-                'tooShort'=>'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965'],
+                'tooLong' => 'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965',
+                'tooShort' => 'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965'
+            ],
             // url has to be a valid URL address
             ['url', 'url'],
             // verifyCode needs to be entered correctly
