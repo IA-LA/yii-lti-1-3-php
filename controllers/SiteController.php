@@ -17,6 +17,9 @@ use yii\web\UploadedFile;
 /*REGISTER*/
 use app\models\RegisterForm;
 
+/*QUERY*/
+use app\models\QueryForm;
+
 class SiteController extends Controller
 {
 
@@ -173,6 +176,26 @@ class SiteController extends Controller
             return $this->refresh();
         }
         return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
+
+    /*QUERY*/
+    /**
+     * Displays query page.
+     *
+     * @return Response|string
+     */
+    public function actionQuery()
+    {
+        $model = new QueryForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->query(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('registerFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('query', [
             'model' => $model,
         ]);
     }
