@@ -151,9 +151,9 @@ class SiteController extends Controller
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload()) {
                 // file is uploaded successfully
-		return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo subido correctamente</p></div>');
-		//return $this->render('upload', ['model' => $model]);
-		return;
+		        return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo subido correctamente</p></div>');
+		        //return $this->render('upload', ['model' => $model]);
+		        //return;
             }
         }
 
@@ -173,7 +173,8 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('registerFormSubmitted');
 
-            return $this->refresh();
+            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . Yii::$app->request->post() . '</p></div>');
+            //return $this->refresh();
         }
         return $this->render('register', [
             'model' => $model,
