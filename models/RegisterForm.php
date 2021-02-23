@@ -25,7 +25,9 @@ class RegisterForm extends Model
         return [
             // id, url, subject and body are required
             [['id', 'url', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
+            // id has to be a valid ID alphanumerical 16 character address
+            ['id', 'id'],
+            // url has to be a valid URL address
             ['url', 'url'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
