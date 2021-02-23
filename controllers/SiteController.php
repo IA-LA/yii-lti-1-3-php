@@ -14,6 +14,9 @@ use app\models\ContactForm;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
+/*REGISTER*/
+use app\models\RegisterForm;
+
 class SiteController extends Controller
 {
 
@@ -154,4 +157,24 @@ class SiteController extends Controller
         return $this->render('upload', ['model' => $model]);
     }
 
+    /*REGISTER*/
+
+    /**
+     * Displays register page.
+     *
+     * @return Response|string
+     */
+    public function actionRegister()
+    {
+        $model = new RegisterForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('registerFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
 }
