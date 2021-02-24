@@ -17,6 +17,7 @@ use yii\web\UploadedFile;
 /*REGISTER*/
 use app\models\RegisterForm;
 use yii\helpers\ArrayHelper;
+use yii\httpclient\Client;
 
 /*QUERY*/
 use app\models\QueryForm;
@@ -174,10 +175,24 @@ class SiteController extends Controller
         if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('registerFormSubmitted');
 
+            // POST Register
+            $client = new Client();
+
+            $response = $client->createRequest()
+                //->setMethod('POST')
+                ->setMethod('GET')
+                ->setUrl('http://192.168.0.31:49151/servicios/lti/lti13/read/5fc3860a81740b0ef098a983')
+                ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                ->setOptions([
+                    'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                    'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                ])
+                ->send();
             //foreach ($request as $key => $value){
             //    echo "{$key} => {$value} ";
             //}
-            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . print_r($request) . '</p></div>');
+            // Array ( [_csrf] => _jj1OVZYhyxeDkVwF82Lt-ANf6mPzL_xKv5nCNCp7H-4daVqPx3eXm1LGjpNq8Tut3RMnMCex7dQlStFhZC9LQ== [RegisterForm] => Array ( [id] => 012345678901234567890123 [url] => http://127.0.0.1:8000/index.php?r=site%2Fregister [subject] => a [body] => aa [verifyCode] => zuvagi ) [register-button] => )
+            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request, 'RegisterForm.') . print_r($request) . print_r($response) .'</p></div>');
             //return $this->refresh();
         }
         return $this->render('register', [
