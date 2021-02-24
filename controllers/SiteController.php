@@ -171,10 +171,10 @@ class SiteController extends Controller
     {
         $model = new RegisterForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
+        if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('registerFormSubmitted');
 
-            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . ArrayHelper::getValue(Yii::$app->request->post(), 'params') . '</p></div>');
+            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . ArrayHelper::getValue($request, 'params') . '</p></div>');
             //return $this->refresh();
         }
         return $this->render('register', [
