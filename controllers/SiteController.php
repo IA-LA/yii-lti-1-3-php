@@ -177,7 +177,7 @@ class SiteController extends Controller
             //foreach ($request as $key => $value){
             //    echo "{$key} => {$value} ";
             //}
-            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . print_r($request[0]) . '</p></div>');
+            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . print_r($request) . '</p></div>');
             //return $this->refresh();
         }
         return $this->render('register', [
