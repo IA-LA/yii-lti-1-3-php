@@ -184,7 +184,7 @@ class SiteController extends Controller
                 ->setUrl('http://192.168.0.31:49151/servicios/lti/lti13/read/5fc3860a81740b0ef098a983')
                 ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
                 ->setOptions([
-                    'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                    //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                     'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
                 ])
                 ->send();
