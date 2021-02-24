@@ -174,7 +174,7 @@ class SiteController extends Controller
         if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('registerFormSubmitted');
 
-            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . ArrayHelper::getValue($request, 'bodyParams') . '</p></div>');
+            return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">' . ArrayHelper::getValue($request, 'absoluteUrl') . '</p></div>');
             //return $this->refresh();
         }
         return $this->render('register', [
