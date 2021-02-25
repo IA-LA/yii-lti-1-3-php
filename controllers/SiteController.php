@@ -176,6 +176,7 @@ class SiteController extends Controller
         $client = new Client();
 
         $response = $client->createRequest()
+            ->setFormat(Client::FORMAT_JSON)
             //->setMethod('POST')
             ->setMethod('GET')
             ->setUrl('http://192.168.0.31:49151/servicios/lti/lti13/read/5fc3860a81740b0ef098a983')
@@ -195,9 +196,14 @@ class SiteController extends Controller
             // Array ( [_csrf] => _jj1OVZYhyxeDkVwF82Lt-ANf6mPzL_xKv5nCNCp7H-4daVqPx3eXm1LGjpNq8Tut3RMnMCex7dQlStFhZC9LQ== [RegisterForm] => Array ( [id] => 012345678901234567890123 [url] => http://127.0.0.1:8000/index.php?r=site%2Fregister [subject] => a [body] => aa [verifyCode] => zuvagi ) [register-button] => )
             //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . ArrayHelper::getValue($request, 'RegisterForm') . print_r($request) . print_r($response) . '</p></div>');
             //             return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . '<br/>REQUEST:<br/> . print_r($request) . <br/>RESPONSE:<br/> . print_r($response)' . print_r($request) . '</p></div><br/>');
-            $content='<div><p/><p/><p/><p class="alert alert-success"> Registro realizado: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
-            //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
-            $content.='<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
+            if ($response->isOk) {
+                $content = $response->data['result'];
+            }
+            else{
+                $content='<div><p/><p/><p/><p class="alert alert-success"> Registro realizado: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
+                //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
+                $content.='<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
+            }
             return $this->renderContent($content);
 
             //return $this->refresh();
