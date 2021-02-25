@@ -45,10 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'url') ?>
-
-                    <?= $form->field($model, 'subject') ?>
-
                     <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
@@ -56,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                        <?= Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>
