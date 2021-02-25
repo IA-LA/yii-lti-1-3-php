@@ -301,9 +301,10 @@ class SiteController extends Controller
             if ($response->isOk && $response->data['result'] === 'ok') {
                 $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . ' ID: ' . $response->data['data']['launch_parameters']['iss'] . ' URL: ' . $response->data['data']['launch_url'] . '</p></div><br/>';
             } else {
-                $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro realizado: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
+                $content = $url . '/read/' . Yii::$app->request->getBodyParam('id');
+                //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                 //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
-                $content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
+                //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
             }
             return $this->renderContent($content);
         }
