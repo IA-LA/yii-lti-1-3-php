@@ -283,7 +283,7 @@ class SiteController extends Controller
                 ->setFormat(Client::FORMAT_JSON)
                 //->setMethod('POST')
                 ->setMethod('GET')
-                ->setUrl($url . '/read/' . $request->getBodyParam('RegisterForm'))
+                ->setUrl($url . '/read/' . $request->getBodyParam('id'))
                 ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
                 ->setOptions([
                     //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
