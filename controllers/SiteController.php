@@ -301,12 +301,15 @@ class SiteController extends Controller
             if ($response->isOk && $response->data['result'] === 'ok') {
                 $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . ' ID: ' . $response->data['data']['launch_parameters']['iss'] . ' URL: ' . $response->data['data']['launch_url'] . '</p></div><br/>';
             } else {
-                $content = '<div><p/><p/><p/><p class="alert error-summary"> Registro: ' .Yii::$app->request->post('QueryForm...', 'Búsqueda fallida') . '</p></div><br/>';
+                $content = '<div><p/><p/><p/>';
+                $content.= '<p class="alert error-summary"> Registro: ' .Yii::$app->request->post('QueryForm...', 'Búsqueda fallida');
                 //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                 //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
                 $content.= '</br>';
                 $content.= '<button class="btn btn-lg btn-error">Volver</button>';
+                $content.= '<?= Html::a("label", ["/controller/action"], ["class"=>"btn btn-primary"]) ?>';
+                $content.= '</p></div><br/>';
             }
             return $this->renderContent($content);
         }
