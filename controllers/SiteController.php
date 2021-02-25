@@ -309,7 +309,7 @@ class SiteController extends Controller
                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
                 $content.= '<button class="btn btn-info">Volver</button>';
                 $content.= '</br>';
-                $content.= '<?= Html::a(\'label\', [\'/controller/action\'], [\'class\'=\\>\'btn btn-primary\']) ?>';
+                $content.= '<?= Html::a(\'label\', [\'/controller/action\'], [\'class\'=\>\'btn btn-primary\']) ?>';
             }
             return $this->renderContent($content);
         }
