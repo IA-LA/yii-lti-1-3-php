@@ -197,7 +197,7 @@ class SiteController extends Controller
             //             return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . '<br/>REQUEST:<br/> . print_r($request) . <br/>RESPONSE:<br/> . print_r($response)' . print_r($request) . '</p></div><br/>');
             $content='<div><p/><p/><p/><p class="alert alert-success"> Registro realizado: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
             //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
-            $content.='<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($request) . '</p></div><br/>';
+            $content.='<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
             return $this->renderContent($content);
 
             //return $this->refresh();
