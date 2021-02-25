@@ -10,8 +10,8 @@ use yii\base\Model;
  */
 class QueryForm extends Model
 {
-    public $name;
-    public $email;
+    public $id;
+    public $url;
     public $subject;
     public $body;
     public $verifyCode;
@@ -23,10 +23,12 @@ class QueryForm extends Model
     public function rules()
     {
         return [
-            // name, email, subject and body are required
-            [['name', 'email', 'subject', 'body'], 'required'],
-            // email has to be a valid email address
-            ['email', 'email'],
+            // id, url, subject and body are required
+            [['id', 'url', 'subject', 'body'], 'required'],
+            // id has to be a valid ID alphanumerical 24 character address
+            ['id', 'match', 'pattern'=>"/^[a-z,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId alphanumerical 24 character address like this: 5fc3860a81740b0ef098a965'],
+            // url has to be a valid URL address
+            ['url', 'url'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
@@ -43,17 +45,17 @@ class QueryForm extends Model
     }
 
     /**
-     * Sends an email to the specified email address using the information collected by this model.
-     * @param string $email the target email address
+     * Sends an url to the specified url address using the information collected by this model.
+     * @param string $url the target url address
      * @return bool whether the model passes validation
      */
-    public function query($email)
+    public function query($url)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo($email)
+                ->setTo('a@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo([$this->email => $this->name])
+                ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)
                 ->send();
