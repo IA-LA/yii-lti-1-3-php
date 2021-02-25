@@ -172,6 +172,31 @@ class SiteController extends Controller
     {
         $model = new RegisterForm();
 
+        // Información servidor
+        //  https://www.php.net/manual/es/function.header.php
+        ///////////////////////
+        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+            $url = "https://";
+        else
+            $url = "http://";
+        // Append the host(domain name, ip) to the URL.
+            $url.= $_SERVER['HTTP_HOST'];
+
+        // Append the requested resource location to the URL
+        //$url.= $_SERVER['REQUEST_URI'];
+        //echo $_REQUEST['target_link_uri'];
+
+        // Llamadas REST
+        //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
+        //  https://www.php.net/manual/en/context.http.php
+        // Obtiene la configuración de las actividades con una llamada de lectura `GET`
+        // al servidor de SERVICIOS
+        ///////////////////
+        if(strpos($url, '10.201.54.'))
+            $url = "http://10.201.54.31:49151/servicios/lti/lti13/";
+        else
+            $url= "http://192.168.0.31:49151/servicios/lti/lti13/";
+
         // GET/POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
         $client = new Client();
 
