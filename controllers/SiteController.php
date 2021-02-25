@@ -308,6 +308,11 @@ class SiteController extends Controller
                 //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
                 $content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
+                $content.= '<div class="jumbotron">
+                    <h1>Volver</h1>
+                    <p class="lead">Copia las credenciales del registro para futuros acceso a la actividad.</p>
+                    <p><a class="btn btn-lg btn-success" href="http://127.0.0.1:8000/index.php?r=site%2Fquery">Volver</a></p>
+                </div>';
                 $content.= '</br>';
                 $content.= '<?= Html::a(\'label\', [\'/controller/action\'], [\'class\'=\>\'btn btn-primary\']) ?>';
             }
