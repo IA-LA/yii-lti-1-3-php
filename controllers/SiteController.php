@@ -172,22 +172,23 @@ class SiteController extends Controller
     {
         $model = new RegisterForm();
 
-        if ($model->load( $model->register(Yii::$app->params['adminEmail'])) {
+        // GET/POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+        $client = new Client();
+
+        $response = $client->createRequest()
+            //->setMethod('POST')
+            ->setMethod('GET')
+            ->setUrl('http://192.168.0.31:49151/servicios/lti/lti13/read/5fc3860a81740b0ef098a983')
+            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+            ->setOptions([
+                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+            ])
+            ->send();
+
+        if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('registerFormSubmitted');
 
-            // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
-            $client = new Client();
-
-            $response = $client->createRequest()
-                //->setMethod('POST')
-                ->setMethod('GET')
-                ->setUrl('http://192.168.0.31:49151/servicios/lti/lti13/read/5fc3860a81740b0ef098a983')
-                ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
-                ->setOptions([
-                    //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                    'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                ])
-                ->send();
             //foreach ($request as $key => $value){
             //    echo "{$key} => {$value} ";
             //}
