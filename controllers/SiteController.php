@@ -283,7 +283,7 @@ class SiteController extends Controller
                 ->setFormat(Client::FORMAT_JSON)
                 //->setMethod('POST')
                 ->setMethod('GET')
-                ->setUrl($url . '/read/' . Yii::$app->request->bodyParam('id'))//$_POST['QueryForm']['id'])
+                ->setUrl($url . '/read/' . Yii::$app->request->getBodyParam('id'))//$_POST['QueryForm']['id'])
                 ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
                 ->setOptions([
                     //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
