@@ -305,6 +305,8 @@ class SiteController extends Controller
                 //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                 //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
+                $content.= '</br>';
+                $content.= '<button class="btn btn-lg btn-error">Volver</button>';
             }
             return $this->renderContent($content);
         }
