@@ -193,9 +193,9 @@ class SiteController extends Controller
         // al servidor de SERVICIOS
         ///////////////////
         if(strpos($url, '10.201.54.'))
-            $url = "http://10.201.54.31:49151/servicios/lti/lti13/";
+            $url = "http://10.201.54.31:49151/servicios/lti/lti13";
         else
-            $url= "http://192.168.0.31:49151/servicios/lti/lti13/";
+            $url= "http://192.168.0.31:49151/servicios/lti/lti13";
 
         // GET/POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
         $client = new Client();
@@ -204,7 +204,7 @@ class SiteController extends Controller
             ->setFormat(Client::FORMAT_JSON)
             //->setMethod('POST')
             ->setMethod('GET')
-            ->setUrl('http://192.168.0.31:49151/servicios/lti/lti13/read/5fc3860a81740b0ef098a983')
+            ->setUrl($url . '/read/5fc3860a81740b0ef098a983')
             ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
             ->setOptions([
                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
