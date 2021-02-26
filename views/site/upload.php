@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ]); ?>
 	        <div class="form-group">
 	            <div class="col-lg-offset-1 col-lg-11">
-                    <div class="btn btn-lg btn-info"><?= $form->field($model, 'imageFile')->fileInput() ?></div>
+                    <div class="btn btn-lg btn-info"><?= $form->field($model, 'zipFile')->fileInput() ?></div>
                     </div>
                  </div>
 
