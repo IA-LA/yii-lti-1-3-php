@@ -10,7 +10,7 @@ $this->title = Yii::$app->params['yiiapp'];
         <h1>LTI Server</h1>
 
         <?php
-        if (!Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest) {
         ?>
             <p class="lead">Autentifícate con tu usuario para poder acceder al panel de Actividades.</p>
 
