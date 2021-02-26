@@ -12,14 +12,14 @@ $this->title = Yii::$app->params['yiiapp'];
         <?php
         if (Yii::$app->user->isGuest) {
         ?>
-            <p class="lead">Autentifícate para acceder al panel de Actividades.</p>
+            <p class="lead">Autentifícate para acceder al panel de Actividades (Tools).</p>
 
             <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Flogin">Login</a></p>
         <?php
         }
         else{
         ?>
-            <p class="lead">Bienvenido !<?php Yii::$app->user->identity ?>! ya puedes acceder al panel de Actividades (Tools).</p>
+            <p class="lead">Bienvenido !<?php Yii::$app->user->identity ?>! accede al panel de Actividades (Tools).</p>
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
