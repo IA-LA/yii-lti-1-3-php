@@ -22,9 +22,9 @@ class QueryForm extends Model
     {
         return [
             // id, url are required
-            //[['id', 'url'], 'required'],
+            [['id', 'url'], 'required'],
             // id, url Either one field is required
-            ['id', 'either', 'params' => ['other' => 'url']],
+            ['id', 'either', 'skipOnEmpty'=>false, 'params' => ['other' => 'url']],
             // id has to be a valid ID alphanumerical 24 character address
             ['id', 'match', 'pattern'=>"/^[a-z,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId alphanumerical 24 character address like this: 5fc3860a81740b0ef098a965'],
             // url has to be a valid URL address
