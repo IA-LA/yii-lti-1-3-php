@@ -279,7 +279,7 @@ class SiteController extends Controller
             // GET Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
             $client = new Client();
 
-            if(Yii::$app->request->post('QueryForm')['id'] !== '') {
+            if(Yii::$app->request->post('QueryForm')['id'] !== '00000000000000000000000') {
                 $consulta = '/read/coleccion/Lti/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
             }
             else {
