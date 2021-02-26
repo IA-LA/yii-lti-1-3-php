@@ -23,7 +23,7 @@ $this->title = Yii::$app->params['yiiapp'];
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                <button type="submit" class="btn btn-link logout">Logout</button>
+                <button type="submit" class="btn btn-danger">Logout</button>
             </form>
             <!--
             <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>"><button type="submit" class="btn btn-link logout">Logout (admin)</button>
