@@ -310,7 +310,7 @@ class SiteController extends Controller
                 $content = '<div><p/><p/><p/><p class="alert alert-success"> Consulta: ' . $response->data['result'] . '</p>';
                 $content.= '<div class="jumbotron">
                     <h1>Consulta</h1>
-                    <p class="lead">Copia las credenciales de la consulta para el acceso a la actividad.</p>' .
+                    <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                     'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                     'URL: <code>' . $response->data['data']['launch_url'] . '</code><br/>' .
                     '<p/><p/><p/>' .
@@ -320,7 +320,7 @@ class SiteController extends Controller
 
             } else {
                 $content = '<div><p/><p/><p/>';
-                $content.= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('QueryForm...', 'error') . $consulta . '</p>';
+                $content.= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('QueryForm...', 'error') . '</p>';
                 //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                 //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
