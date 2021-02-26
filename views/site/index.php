@@ -19,7 +19,7 @@ $this->title = Yii::$app->params['yiiapp'];
         }
         else{
         ?>
-            <p class="lead">Bienvenido !<?php Yii::$app->user->identity ?>! ya puedes acceder al panel de Actividades.</p>
+            <p class="lead">Bienvenido !<?php Yii::$app->user->identity ?>! ya puedes acceder al panel de Actividades (Tools).</p>
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
