@@ -320,7 +320,7 @@ class SiteController extends Controller
 
             } else {
                 $content = '<div><p/><p/><p/>';
-                $content.= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('QueryForm...', 'error') . '</p>';
+                $content.= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('QueryForm...', 'error') . $consulta . '</p>';
                 //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                 //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
