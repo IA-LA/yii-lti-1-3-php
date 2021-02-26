@@ -9,20 +9,20 @@ $this->title = Yii::$app->params['yiiapp'];
     <div class="jumbotron">
         <h1>LTI Server</h1>
 
-        <?
+        <?php
         if (!Yii::$app->user->isGuest) {
         ?>
             <p class="lead">Autentifícate con tu usuario para poder acceder al panel de Actividades.</p>
 
             <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Flogin">Login</a></p>
-        <?
+        <? php
         }
         else{
         ?>
             <p class="lead">Bienvenido <? Yii::$app->user->identity->username ?> ya puedes acceder al panel de Actividades.</p>
 
             <p><a class="btn btn-lg btn-danger" href="index.php?r=site%2Flogout">Logout</a></p>
-        <?
+        <?php
         }
         ?>
     </div>
