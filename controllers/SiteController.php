@@ -279,11 +279,19 @@ class SiteController extends Controller
             // GET Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
             $client = new Client();
 
+            if(Yii::$app->request->post('QueryForm')['id'] !== '') {
+                $consulta = '/read/coleccion/Lti/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
+            }
+            else {
+                // http://192.168.0.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                $consulta = '/read/coleccion/Lti/url_actividad/' . urlencode(Yii::$app->request->post('QueryForm')['url']);
+            }
+
             $response = $client->createRequest()
                 ->setFormat(Client::FORMAT_JSON)
                 //->setMethod('POST')
                 ->setMethod('GET')
-                ->setUrl($url . '/read/coleccion/Lti/id_actividad/' . Yii::$app->request->post('QueryForm')['id']) //$_POST['QueryForm']['id'])
+                ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
                 ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
                 ->setOptions([
                     //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
