@@ -19,7 +19,7 @@ $this->title = Yii::$app->params['yiiapp'];
         }
         else{
         ?>
-            <p class="lead">Bienvenido "<?php Yii::$app->user->identity->username ?>" ya puedes acceder al panel de Actividades.</p>
+            <p class="lead">Bienvenido "<?php Yii::$app->user->name ?>" ya puedes acceder al panel de Actividades.</p>
 
             <p><a class="btn btn-lg btn-danger" href="index.php?r=site%2Flogout">Logout</a></p>
         <?php
