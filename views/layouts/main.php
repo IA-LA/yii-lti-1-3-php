@@ -55,6 +55,18 @@ AppAsset::register($this);
                 ],
             ],
             Yii::$app->user->isGuest ? (
+            ['label' => 'Query', 'url' => ['/site/login']]
+            ) : (
+                '<li>'
+                . Html::beginForm(['/site/query'], 'post')
+                . Html::submitButton(
+                    'Query (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
+            ),
+            Yii::$app->user->isGuest ? (
             ['label' => 'Register', 'url' => ['/site/login']]
             ) : (
                 '<li>'
