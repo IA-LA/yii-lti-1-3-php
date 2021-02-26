@@ -12,8 +12,6 @@ class QueryForm extends Model
 {
     public $id;
     public $url;
-    public $subject;
-    public $body;
     public $verifyCode;
 
 
@@ -53,11 +51,11 @@ class QueryForm extends Model
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo('a@a.a')
+                ->setTo('query@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
+                ->setSubject('Query')
+                ->setTextBody('Consulta de información de una Actividad')
                 ->send();
 
             return true;

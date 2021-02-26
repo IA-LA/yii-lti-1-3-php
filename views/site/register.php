@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
+            Registra una Actividad con su Identificador y la Url donde está alojada.
             Thank you.
         </p>
 
@@ -46,10 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
                     <?= $form->field($model, 'url') ?>
-
-                    <?= $form->field($model, 'subject') ?>
-
-                    <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
