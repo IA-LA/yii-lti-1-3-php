@@ -12,8 +12,6 @@ class RegisterForm extends Model
 {
     public $id;
     public $url;
-    public $subject;
-    public $body;
     public $verifyCode;
 
 
@@ -24,7 +22,7 @@ class RegisterForm extends Model
     {
         return [
             // id, url, subject and body are required
-            [['id', 'url', 'subject', 'body'], 'required'],
+            [['id', 'url'], 'required'],
             // id has to be a valid ID alphanumerical 24 character address
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965'],
 //            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId alphanumerical 24 character address like this 5fc3860a81740b0ef098a965'],
@@ -55,11 +53,11 @@ class RegisterForm extends Model
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo('a@a.a')
+                ->setTo('register@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject($this->subject)
-                ->setTextBody($this->body)
+                ->setSubject('Register')
+                ->setTextBody('Registro de una Actividad')
                 ->send();
 
             return true;
