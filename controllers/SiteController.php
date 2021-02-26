@@ -310,7 +310,7 @@ class SiteController extends Controller
                 $content = '<div><p/><p/><p/><p class="alert alert-success"> Consulta: ' . $response->data['result'] . '</p>';
                 $content.= '<div class="jumbotron">
                     <h1>Consulta</h1>
-                    <p class="lead">Copia las credenciales del registro para el acceso a la actividad.</p>' .
+                    <p class="lead">Copia las credenciales de la consulta para el acceso a la actividad.</p>' .
                     'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                     'URL: <code>' . $response->data['data']['launch_url'] . '</code><br/>' .
                     '<p/><p/><p/>' .
@@ -327,7 +327,7 @@ class SiteController extends Controller
                 //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
                 $content.= '<div class="jumbotron">
                     <h1>Error</h1>
-                    <p class="lead">Las credenciales del registro son erróneas.</p>' .
+                    <p class="lead">Las credenciales de la consulta son erróneas.</p>' .
                     'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
                     'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
                     '<p/><p/><p/>' .
