@@ -303,8 +303,8 @@ class SiteController extends Controller
                 $content.= '<div class="jumbotron">
                     <h1>Consulta</h1>
                     <p class="lead">Copia las credenciales del registro para el acceso a la actividad.</p>' .
-                    'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code>' .
-                    'URL: <code>' . $response->data['data']['launch_url'] . '</code>' .
+                    'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
+                    'URL: <code>' . $response->data['data']['launch_url'] . '</code><br/>' .
                     '<p><a class="btn btn-lg btn-success" href="http://127.0.0.1:8000/index.php?r=site%2Fquery">Volver</a></p>
                 </div>';
                 $content.= '</div>';
@@ -319,8 +319,8 @@ class SiteController extends Controller
                 $content.= '<div class="jumbotron">
                     <h1>Error</h1>
                     <p class="lead">Las credenciales del registro son erróneas.</p>' .
-                    'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code>' .
-                    'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code>' .
+                    'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
+                    'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
                     '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Volver</a></p>
                 </div>';
                 $content.= '</div>';
