@@ -12,7 +12,7 @@ $this->title = Yii::$app->params['yiiapp'];
         <?php
         if (Yii::$app->user->isGuest) {
         ?>
-            <p class="lead">Autentifícate con tu usuario para poder acceder al panel de Actividades.</p>
+            <p class="lead">Autentifícate con tu usuario para acceder al panel de Actividades.</p>
 
             <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Flogin">Login</a></p>
         <?php
