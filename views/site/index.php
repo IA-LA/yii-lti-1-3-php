@@ -21,7 +21,14 @@ $this->title = Yii::$app->params['yiiapp'];
         ?>
             <p class="lead">Bienvenido "<?php Yii::$app->user ?>" ya puedes acceder al panel de Actividades.</p>
 
+            <form action="/index.php?r=site%2Flogout" method="post">
+                <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                <button type="submit" class="btn btn-link logout">Logout</button>
+            </form>
+            <!--
+            <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>"><button type="submit" class="btn btn-link logout">Logout (admin)</button>
             <p><a class="btn btn-lg btn-danger" href="index.php?r=site%2Flogin">Logout</a></p>
+            -->
         <?php
         }
         ?>
