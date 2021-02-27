@@ -151,6 +151,7 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
             $model2 = new UploadForm();
+
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('upload', [
                 'model' => $model2,
@@ -191,8 +192,12 @@ class SiteController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
+            $model2 = new RegisterForm();
+
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->goBack();
+                return $this->render('upload', [
+                    'model' => $model2,
+                ]);
             }
 
             $model->password = '';
@@ -281,8 +286,12 @@ class SiteController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
+            $model2 = new RegisterForm();
+
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->goBack();
+                return $this->render('query', [
+                    'model' => $model2,
+                ]);
             }
 
             $model->password = '';
