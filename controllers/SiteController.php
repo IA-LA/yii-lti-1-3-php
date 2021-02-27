@@ -195,7 +195,7 @@ class SiteController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('upload', [
+                return $this->render('register', [
                     'model' => $model2,
                 ]);
             }
