@@ -46,51 +46,15 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             [
-                'label' => 'Activity',
+                'label' => 'Tools',
                 'items' => [
                     ['label' => 'Upload', 'url' => ['/site/upload']],
                     '<li class="divider"></li>',
-                    '<li class="dropdown-header">Menú LTI</li>',
+                    '<li class="dropdown-header">LTI Menu</li>',
                     ['label' => 'Query', 'url' => ['/site/query']],
                     ['label' => 'Register', 'url' => ['/site/register']],
                 ],
             ],
-            Yii::$app->user->isGuest ? (
-            ['label' => 'Query', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/query'], 'post')
-                . Html::submitButton(
-                    'Query (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            ),
-            Yii::$app->user->isGuest ? (
-            ['label' => 'Register', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/register'], 'post')
-                . Html::submitButton(
-                    'Register (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            ),
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Upload', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/upload'], 'post')
-                . Html::submitButton(
-                    'Upload (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            ),
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
