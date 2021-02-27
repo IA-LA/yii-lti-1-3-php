@@ -150,8 +150,11 @@ class SiteController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
+            $model2 = new UploadForm();
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('upload');
+                return $this->render('upload', [
+                'model' => $model2,
+            ]);
             }
 
             $model->password = '';
