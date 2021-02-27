@@ -385,7 +385,7 @@ class SiteController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fquery">Volver</a></p>
                     </div>';
                     $content .= '</div>';
                 }
