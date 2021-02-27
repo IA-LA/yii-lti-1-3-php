@@ -65,7 +65,7 @@ class QueryForm extends Model
                 ->setTo('query@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject('Query')
+                ->setSubject('Query ' . $url)
                 ->setTextBody('Consulta de información de una Actividad')
                 ->send();
 
