@@ -56,7 +56,7 @@ class RegisterForm extends Model
                 ->setTo('register@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject('Register')
+                ->setSubject('Register ' . $url)
                 ->setTextBody('Registro de una Actividad')
                 ->send();
 

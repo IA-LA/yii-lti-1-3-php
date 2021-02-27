@@ -246,12 +246,19 @@ class SiteController extends Controller
      */
     public function actionQuery()
     {
-        $model = new QueryForm();
 
         if (Yii::$app->user->isGuest) {
-            return $this->render('login');
+            $model = new LoginForm();
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
         }
         else {
+            $model = new QueryForm();
+
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
             ///////////////////////
