@@ -12,6 +12,7 @@ class UploadForm extends Model
      * @var UploadedFile
      */
     public $zipFile;
+    public $verifyCode;
 
     public function rules()
     {
