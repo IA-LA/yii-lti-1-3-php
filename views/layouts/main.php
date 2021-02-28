@@ -48,11 +48,12 @@ AppAsset::register($this);
             [
                 'label' => 'Tools',
                 'items' => [
+                    '<li class="divider"></li>',
                     '<li class="dropdown-header">Git Menu</li>',
                     '<li class="divider"></li>',
                     ['label' => 'Upload', 'url' => ['/site/upload']],
-                    '<li class="dropdown-header">LTI Menu</li>',
                     '<li class="divider"></li>',
+                    '<li class="dropdown-header">LTI Menu</li>',
                     ['label' => 'Query', 'url' => ['/site/query']],
                     ['label' => 'Register', 'url' => ['/site/register']],
                 ],
