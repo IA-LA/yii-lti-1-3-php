@@ -34,10 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="form-group">
                     <div class="col-lg-offset-1 col-lg-11">
-                        <div class="btn btn-sm btn-default"><?= $form->field($model, 'zipFile')->fileInput() ?></div>
+                        <div class="btn btn-lg btn-default"><?= $form->field($model, 'zipFile')->fileInput() ?></div>
 
+                        <br/>
                         <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                            'template' => '<div class="row btn-sm btn-default"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                         ]) ?>
 
                         <!-- <button class="btn btn-lg btn-success">Submit</button> -->
