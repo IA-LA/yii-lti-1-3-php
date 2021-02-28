@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= $form->field($model, 'zipFile')->fileInput() ?>
                         </div>
                     </div>
+                </div>
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
@@ -45,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 
-                </div>
 
             <?php ActiveForm::end() ?>
 

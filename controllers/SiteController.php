@@ -165,11 +165,11 @@ class SiteController extends Controller
 
         }
         else {
-            $model3 = new UploadForm();
+            $model = new UploadForm();
 
             if (Yii::$app->request->isPost) {
-                $model3->zipFile = UploadedFile::getInstance($model3, 'zipFile');
-                if ($model3->upload()) {
+                $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
+                if ($model->upload()) {
                     // file is uploaded successfully
                     return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo subido correctamente</p></div>');
                     //return $this->render('upload', ['model' => $model]);
@@ -177,7 +177,7 @@ class SiteController extends Controller
                 }
             }
 
-            return $this->render('upload', ['model' => $model3]);
+            return $this->render('upload', ['model' => $model]);
         }
     }
 
