@@ -30,17 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
     	    <?php $form = ActiveForm::begin([
 	    	    'id' => 'upload-form',
 	        ]); ?>
-	        <div class="form-group">
-	            <div class="col-lg-offset-1 col-lg-11">
-                    <div class="btn btn-lg btn-info"><?= $form->field($model, 'zipFile')->fileInput() ?></div>
-                    </div>
-                 </div>
 
-            <!-- <button class="btn btn-lg btn-success">Submit</button> -->
-            <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
+                <div class="form-group">
+                    <div class="col-lg-offset-1 col-lg-11">
+                        <div class="btn btn-lg btn-info"><?= $form->field($model, 'zipFile')->fileInput() ?></div>
+                        </div>
+                     </div>
 
-            <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-            <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                ]) ?>
+
+                <!-- <button class="btn btn-lg btn-success">Submit</button> -->
+                <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
+
+                <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
+                <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 
             <?php ActiveForm::end() ?>
 
