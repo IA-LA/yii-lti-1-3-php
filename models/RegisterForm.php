@@ -12,7 +12,7 @@ class RegisterForm extends Model
 {
     public $id;
     public $url;
-    public $verifyCode;
+    //public $verifyCode;
 
 
     /**
@@ -30,7 +30,7 @@ class RegisterForm extends Model
             // url has to be a valid URL address
             ['url', 'url'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            //['verifyCode', 'captcha'],
         ];
     }
 
