@@ -35,15 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="form-group">
                     <div class="col-lg-offset-1 col-lg-11">
                         <div class="btn btn-default">
-                            <?= $form->field($model, 'zipFile')->fileInput([
-                                'template' => '<div class="row"><div class="col-lg-3">{zipFile}</div><div class="col-lg-6">{zipFile}</div></div>',
-                            ]) ?>
-
-                            <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                            ]) ?>
-
+                            <?= $form->field($model, 'zipFile')->fileInput() ?>
                         </div>
+
+                        <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                        ]) ?>
 
                         <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
