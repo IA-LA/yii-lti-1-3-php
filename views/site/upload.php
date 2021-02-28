@@ -55,10 +55,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-lg-offset-1" style="color:#999;">
+        To modify the type to upload, please check out the code <code>app\models\UploadForm::rules()</code>.
    </div>
     <p>
         You may upload a compressed file <strong>zip</strong><br/>
-        To modify the type to upload, please check out the code <code>app\models\UploadForm::rules()</code>.
     </p>
 
 </div>
