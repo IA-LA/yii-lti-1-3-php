@@ -272,7 +272,7 @@ class SiteController extends Controller
                 if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] != 'Existe') {
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
-                        <h1>Consulta</h1>
+                        <h1>Registro</h1>
                         <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                         'LAUNCH URL: <code>' . $response->data['data']['launch_url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
@@ -289,7 +289,7 @@ class SiteController extends Controller
                     //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
-                        <p class="lead">Las credenciales de la consulta son erróneas.</p>' .
+                        <p class="lead">Las credenciales de Registro son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('RegisterForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('RegisterForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
@@ -414,7 +414,7 @@ class SiteController extends Controller
                     //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
-                        <p class="lead">Las credenciales de la consulta son erróneas.</p>' .
+                        <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
