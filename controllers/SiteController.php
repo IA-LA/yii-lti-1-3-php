@@ -171,7 +171,8 @@ class SiteController extends Controller
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 if ($model->upload()) {
                     // file is uploaded successfully
-                    return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo subido correctamente</p></div>');
+                    return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo subido correctamente</p></div>' .
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>');
                     //return $this->render('upload', ['model' => $model]);
                     //return;
                 }
@@ -368,7 +369,7 @@ class SiteController extends Controller
                         'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                         'URL: <code>' . $response->data['data']['launch_url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="http://127.0.0.1:8000/index.php?r=site%2Fquery">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Volver</a></p>
                     </div>';
                     $content .= '</div>';
 
