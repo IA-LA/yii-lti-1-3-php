@@ -50,7 +50,6 @@ AppAsset::register($this);
                 'items' => [
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Git Menu</li>',
-                    '<li class="divider"></li>',
                     ['label' => 'Upload', 'url' => ['/site/upload']],
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">LTI Menu</li>',
