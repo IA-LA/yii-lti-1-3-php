@@ -12,7 +12,7 @@ class UploadForm extends Model
      * @var UploadedFile
      */
     public $zipFile;
-    //public $verifyCode;
+    public $verifyCode;
 
     public function rules()
     {
@@ -20,7 +20,17 @@ class UploadForm extends Model
             //[['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
             [['zipFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'zip'],
             // verifyCode needs to be entered correctly
-            //['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha'],
+        ];
+    }
+
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'verifyCode' => 'Verification Code',
         ];
     }
 
