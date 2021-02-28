@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 /* use yii\widgets\ActiveForm;*/
 use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 
 $this->title = 'Upload';
 $this->params['breadcrumbs'][] = $this->title;
