@@ -19,11 +19,11 @@ $this->title = Yii::$app->params['yiiapp'];
         }
         else{
         ?>
-            <p class="lead">Bienvenido !<?php Yii::$app->user->identity ?>! accede al panel de Actividades (Tools).</p>
+            <p class="lead">Bienvenido <?= ' ¡' . Yii::$app->user->identity . '! '?>accede al panel de Actividades (Tools).</p>
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                <button type="submit" class="btn btn-lg btn-danger">Logout</button>
+                <button type="submit" class="btn btn-lg btn-danger">Logout (<?= '(' . Yii::$app->user->identity->username . ')'?></button>
             </form>
             <!--
             <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>"><button type="submit" class="btn btn-link logout">Logout (admin)</button>
