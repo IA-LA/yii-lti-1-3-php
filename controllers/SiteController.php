@@ -176,9 +176,9 @@ class SiteController extends Controller
                     //return;
                 }
             }
-
-            return $this->render('upload', ['model' => $model]);
         }
+
+        return $this->render('upload', ['model' => $model]);
     }
 
     /*REGISTER*/
