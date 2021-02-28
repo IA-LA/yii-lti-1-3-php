@@ -243,7 +243,7 @@ class SiteController extends Controller
                 $client = new Client();
 
                 if (Yii::$app->request->post('RegisterForm')['id'] !== '') {
-                    $consulta = '/create/register/' . Yii::$app->request->post('RegisterForm')['id'];
+                    $consulta = '/create/register/';
                 } else {
                     // http://192.168.0.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                     $consulta = '/create/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
@@ -254,7 +254,8 @@ class SiteController extends Controller
                     ->setMethod('POST')
                     //->setMethod('GET')
                     ->setUrl($url . $consulta) //$_POST['RegisterForm']['id'])
-                    ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'], 'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
+                    ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
+                        'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
                     ->setOptions([
                         //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                         'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
