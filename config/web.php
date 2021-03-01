@@ -52,10 +52,25 @@ $config = [
         ],
         */
     ],
+    // Add this to get debug and gii to work
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            // permits any and all IPs
+            // you should probably restrict this
+            'allowedIPs' => ['*']
+        ],
+        'debug' => [
+            'class' => 'yii\debug\Module',
+            // permits any and all IPs
+            // you should probably restrict this
+            'allowedIPs' => ['*']
+        ]
+    ],
     'params' => $params,
 ];
 
-if (!YII_ENV_TEST) {
+if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
