@@ -31,23 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
     	    <?php $form = ActiveForm::begin([
 	    	    'id' => 'upload-form',
                 'layout' => 'horizontal',
-                'fieldConfig' => [
-                    'template' => "{label}\n<div class=\"col-lg-3 btn btn-warning\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                    'labelOptions' => ['class' => 'col-lg-1 control-label'],
-                ],
                 'options' => ['enctype' => 'multipart/form-data'],
 	        ]); ?>
                 <div class="btn btn-default">
-                    <?= $form->field($model, 'zipFile')->fileInput() ?>
+                    <?= $form->field($model, 'zipFile')->fileInput([
+                        'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn btn-warning\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                    ]) ?>
                 </div>
                 <p></p>
                 <div class="form-group">
-                    <div class="col-lg-offset-1 col-lg-11">
-                        <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                        <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                        <!-- <button class="btn btn-lg btn-success">Submit</button> -->
-                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
-                    </div>
+                    <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
+                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                    <!-- <button class="btn btn-lg btn-success">Submit</button> -->
+                    <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                 </div>
             <?php ActiveForm::end() ?>
 
