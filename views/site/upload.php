@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ]); ?>
 
                 <div class="form-group">
-                    <div class="col-lg-offset-1 col-lg-11">
+                    <!-- <div class="col-lg-offset-1 col-lg-11"> -->
                         <div class="btn btn-default">
                             <?= $form->field($model, 'zipFile')->fileInput() ?>
 
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
 
-                    </div>
+                    <!-- </div> -->
 
                 </div>
             <?php ActiveForm::end() ?>
