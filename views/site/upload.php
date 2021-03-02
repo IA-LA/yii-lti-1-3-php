@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'layout' => 'horizontal',
                 'options' => ['enctype' => 'multipart/form-data'],
 	        ]); ?>
-                <div class="btn btn-default col-lg-offset-3 col-lg-11 ">
+                <div class="btn btn-default">
                     <?= $form->field($model, 'zipFile')->fileInput([
                         'template' => "<div class=\"col-lg-offset-3 col-lg-3 btn btn-warning\">{input} {label}</div>\n<div class=\"col-lg-10\">{error}</div>",
                     ]) ?>
@@ -49,15 +49,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             <?php ActiveForm::end() ?>
 
+            <div class="col-lg-offset-1" style="color:#999;">
+                To modify the type to upload, please check out the contact Form <!-- <code>app\models\UploadForm::rules()</code> -->.
+
+                You may upload a compressed file <strong>zip</strong><br/>
+            </div>
         </div>
     </div>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        To modify the type to upload, please check out the contact Form <!-- <code>app\models\UploadForm::rules()</code> -->.
-
-        You may upload a compressed file <strong>zip</strong><br/>
-    </div>
-    <p>
-    </p>
 
 </div>
