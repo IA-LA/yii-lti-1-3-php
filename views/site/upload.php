@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	        Se puede subir un fichero comprimido en formato .zip
         </p>
 
-
     <div class="row">
         <div class="col-lg-5">
     	    <?php $form = ActiveForm::begin(['id' => 'upload-form']); ?>
@@ -36,12 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                 </div>
             <?php ActiveForm::end() ?>
-
-            <div class="col-lg-offset-1" style="color:#999;">
-                To modify the type to upload, please check out the contact Form <!-- <code>app\models\UploadForm::rules()</code> -->.
-
-                You may upload a compressed file <strong>zip</strong><br/>
-            </div>
         </div>
     </div>
 
