@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    	    'id' => 'upload-form',
                 'layout' => 'horizontal',
                 'fieldConfig' => [
-                    'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                    'template' => "{label}\n<div class=\"col-lg-3 btn btn-warning\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
                     'labelOptions' => ['class' => 'col-lg-1 control-label'],
                 ],
                 'options' => ['enctype' => 'multipart/form-data'],
