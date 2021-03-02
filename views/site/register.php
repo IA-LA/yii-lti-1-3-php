@@ -47,11 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'url') ?>
 
-                    <!--
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                     ]) ?>
-                    -->
 
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
