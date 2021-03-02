@@ -20,8 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>
             Formulario de subida de Econtent complejos desde el CTU.
-            <br/>
-	        Se puede subir un fichero comprimido en formato .zip
+            Puede subirse un fichero comprimido en formato .zip de cada vez.
         </p>
 
     <div class="row">
