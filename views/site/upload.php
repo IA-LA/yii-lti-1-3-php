@@ -39,13 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     <div class="col-lg-offset-1 col-lg-11">
-
                         <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                         <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 
                         <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
-
                     </div>
 
                 </div>
