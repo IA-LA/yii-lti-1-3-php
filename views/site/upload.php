@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'layout' => 'horizontal',
                 'options' => ['enctype' => 'multipart/form-data'],
 	        ]); ?>
-                <div class="btn btn-default col-lg-11">
+                <div class="btn btn-default col-lg-offset-3">
                     <?= $form->field($model, 'zipFile')->fileInput([
-                        'template' => "<div class=\"col-lg-offset-1 col-lg-1 btn btn-warning\">{input} {label}</div>\n<div class=\"col-lg-10\">{error}</div>",
+                        'template' => "<div class=\"col-lg-offset-3 col-lg-1 btn btn-warning\">{input} {label}</div>\n<div class=\"col-lg-10\">{error}</div>",
                     ]) ?>
                 </div>
                 <p></p>
