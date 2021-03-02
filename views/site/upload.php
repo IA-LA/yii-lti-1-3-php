@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'layout' => 'horizontal',
                 'fieldConfig' => [
                     'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                    'labelOptions' => ['class' => 'col-lg-1 control-label'],
                 ],
                 'options' => ['enctype' => 'multipart/form-data'],
 	        ]); ?>
@@ -53,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="col-lg-offset-1" style="color:#999;">
+    <div class="col-lg-offset-1 col-lg-11" style="color:#999;">
         To modify the type to upload, please check out the contact Form <!-- <code>app\models\UploadForm::rules()</code> -->.
 
         You may upload a compressed file <strong>zip</strong><br/>
