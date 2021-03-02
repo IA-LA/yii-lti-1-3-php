@@ -27,6 +27,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
     	    <?php $form = ActiveForm::begin(['id' => 'upload-form']); ?>
                 <?= $form->field($model, 'zipFile')->fileInput() ?>
+
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                ]) ?>
+
                 <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
                 <!-- <button class="btn btn-lg btn-success">Submit</button> -->
