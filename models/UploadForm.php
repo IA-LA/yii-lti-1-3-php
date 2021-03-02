@@ -27,12 +27,12 @@ class UploadForm extends Model
     /**
      * @return array customized attribute labels
      */
-    //public function attributeLabels()
-    //{
-    //    return [
-    //        'verifyCode' => 'Verification Code',
-    //    ];
-    //}
+    public function attributeLabels()
+    {
+        return [
+            'verifyCode' => 'Verification Code',
+        ];
+    }
 
     /**
      * Sends a zip to the specified folder using the information collected by this model.
