@@ -30,19 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     	    <?php $form = ActiveForm::begin([
 	    	    'id' => 'upload-form',
-                'layout' => 'horizontal',
-                'fieldConfig' => [
-                    'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                    'labelOptions' => ['class' => 'col-lg-1 control-label'],
-                ],
                 'options' => ['enctype' => 'multipart/form-data'],
 	        ]); ?>
 
-                <div class="form-group">
                         <div class="btn btn-default">
                             <?= $form->field($model, 'zipFile')->fileInput() ?>
                         </div>
 
+            <div class="form-group">
                     <div class="col-lg-offset-1 col-lg-11">
                         <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                         <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
