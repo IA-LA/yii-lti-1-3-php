@@ -30,6 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     	    <?php $form = ActiveForm::begin([
 	    	    'id' => 'upload-form',
+                'layout' => 'horizontal',
+                'fieldConfig' => [
+                    'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                    'labelOptions' => ['class' => 'col-lg-1 control-label'],
+                ],
                 'options' => ['enctype' => 'multipart/form-data'],
 	        ]); ?>
                 <div class="btn btn-default">
@@ -40,8 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-lg-offset-1 col-lg-11">
                         <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                         <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                        <p></p>
-                        <p></p>
                         <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
