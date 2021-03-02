@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-lg-offset-1 col-lg-11">
                     <div class="btn btn-default">
                         <?= $form->field($model, 'zipFile')->fileInput([
-                            'template' => "<div class=\"btn btn-warning\">{input} {label}</div>\n<div class=\"btn btn-warning\">{error}</div>",
+                            'template' => "<div class=\"col-lg-3 btn btn-warning\">{input} {label}</div>\n<div class=\"btn btn-warning\">{error}</div>",
                         ]) ?>
                     </div>
                     <p></p>
