@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-5">
 
     	    <?php $form = ActiveForm::begin([
 	    	    'id' => 'upload-form',
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        ]); ?>
                 <div class="btn btn-default">
                     <?= $form->field($model, 'zipFile')->fileInput([
-                        'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn btn-warning\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                        'template' => "<div class=\"col-lg-offset-1 col-lg-1 btn btn-warning\">{input} {label}</div>\n<div class=\"col-lg-10\">{error}</div>",
                     ]) ?>
                 </div>
                 <p></p>
