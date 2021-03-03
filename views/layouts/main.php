@@ -46,7 +46,7 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             [
-                'label' => 'Tools',
+                'label' => Yii::$app->user->isGuest ? ('Tools') : ('Tools (' . Yii::$app->user->identity->username . ')'),
                 'items' => [
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Git Menu</li>',
