@@ -400,7 +400,7 @@ class SiteController extends Controller
                         <h1>Consulta</h1>
                         <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                         'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
-                        'URL_LAUNCH: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
+                        'LAUNCH_URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Volver</a></p>
                     </div>';
