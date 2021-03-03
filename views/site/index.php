@@ -3,6 +3,9 @@
 /* @var $this yii\web\View */
 
 $this->title = Yii::$app->params['yiiapp'];
+
+//TODO mostar listados con Yii ListView
+
 ?>
 <div class="site-index">
 
@@ -19,7 +22,7 @@ $this->title = Yii::$app->params['yiiapp'];
         }
         else{
         ?>
-            <p class="lead">Bienvenido, <?= ' "<i>' . Yii::$app->user->identity->username . '</i>" ' ?>accede al panel de Actividades (Tools).</p>
+            <p class="lead">Bienvenido <?= ' "<i>' . Yii::$app->user->identity->username . '</i>" ' ?>, accede al panel de Actividades (Tools).</p>
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
@@ -40,8 +43,8 @@ $this->title = Yii::$app->params['yiiapp'];
             <div class="col-lg-4">
                 <h2>Upload</h2>
 
-                <p>Permite subir contenidos en un único archivo .zip que se utilizará como plantilla para crear un nuevo
-                    proyecto Git sobre el cual puede trabajarse de forma distribuida.</p>
+                <p>Permite subir contenidos complejos, en un único archivo .zip, el cual se utilizará como plantilla de un
+                    proyecto Git sobre para trabajar de forma distribuida.</p>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>

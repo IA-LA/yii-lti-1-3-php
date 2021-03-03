@@ -23,8 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4">
                 <h3>Upload</h3>
 
-                <p>Permite subir contenidos en un único archivo .zip que se utilizará como plantilla para crear un nuevo
-                    proyecto Git sobre el cual puede trabajarse de forma distribuida.</p>
+                <p>Permite subir contenidos complejos, en un único archivo .zip, el cual se utilizará como plantilla de un
+                    proyecto Git para trabajar de forma distribuida.</p>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>
