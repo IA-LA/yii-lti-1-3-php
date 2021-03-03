@@ -44,7 +44,7 @@ $this->title = Yii::$app->params['yiiapp'];
                 <h2>Upload</h2>
 
                 <p>Permite subir contenidos complejos, en un único archivo .zip, el cual se utilizará como plantilla de un
-                    proyecto Git sobre para trabajar de forma distribuida.</p>
+                    proyecto Git para trabajar de forma distribuida.</p>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>
