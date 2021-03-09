@@ -356,10 +356,7 @@ class SiteController extends Controller
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            if (strpos($url, '10.201.54.'))
-                $url = "http://10.201.54.31:49151/servicios/lti/lti13";
-            else
-                $url = "http://192.168.0.31:49151/servicios/lti/lti13";
+            $url = Yii::$app->params['serverLti1'];
 
             //Envío del Formulario de Consulta
             if ($model->load($request = Yii::$app->request->post()) && $model->query(Yii::$app->params['adminEmail'])) {
@@ -369,23 +366,45 @@ class SiteController extends Controller
                 $client = new Client();
 
                 if (Yii::$app->request->post('QueryForm')['id'] !== '') {
+                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
                     $consulta = '/read/coleccion/Lti/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
                 } else {
-                    // http://192.168.0.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                     $consulta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
                 }
-
-                $response = $client->createRequest()
-                    ->setFormat(Client::FORMAT_JSON)
-                    //->setMethod('POST')
-                    ->setMethod('GET')
-                    ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
-                    ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
-                    ->setOptions([
-                        //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                        'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                    ])
-                    ->send();
+                // Exception GET LTI1
+                try {
+                    $response = $client->createRequest()
+                        ->setFormat(Client::FORMAT_JSON)
+                        //->setMethod('POST')
+                        ->setMethod('GET')
+                        ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
+                        ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                        ->setOptions([
+                            //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                            'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                        ])
+                        ->send();
+                }
+                catch (exception $e1) {
+                    // Exception GET LTI2
+                    try {
+                        $url = Yii::$app->params['serverLti2'];
+                        $response = $client->createRequest()
+                            ->setFormat(Client::FORMAT_JSON)
+                            //->setMethod('POST')
+                            ->setMethod('GET')
+                            ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
+                            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                            ->setOptions([
+                                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                            ])
+                            ->send();
+                    }
+                    catch (exception $e2) {
+                    }
+                }
 
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
