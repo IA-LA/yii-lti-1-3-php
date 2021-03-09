@@ -386,7 +386,7 @@ class SiteController extends Controller
                         ])
                         ->send();
                 }
-                catch (exception $e1) {
+                catch (Exception $e1) {
                     // Exception GET LTI2
                     try {
                         $url = Yii::$app->params['serverLti2'];
@@ -402,7 +402,7 @@ class SiteController extends Controller
                             ])
                             ->send();
                     }
-                    catch (exception $e2) {
+                    catch (Exception $e2) {
                     }
                 }
 
