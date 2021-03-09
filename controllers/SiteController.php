@@ -231,10 +231,7 @@ class SiteController extends Controller
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            if (strpos($url, '10.201.54.'))
-                $url = "http://10.201.54.31:49151/servicios/lti/lti13";
-            else
-                $url = "http://192.168.0.31:49151/servicios/lti/lti13";
+            $url = Yii::$app->params['serverLti1'];
 
             //Envío del Formulario de Registro
             if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
@@ -250,19 +247,42 @@ class SiteController extends Controller
                     $consulta = '/create/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                 }
 
-                $response = $client->createRequest()
-                    ->setFormat(Client::FORMAT_JSON)
-                    ->setMethod('POST')
-                    //->setMethod('GET')
-                    ->setUrl($url . $consulta) //$_POST['RegisterForm']['id'])
-                    ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
-                        'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
-                    ->setOptions([
-                        //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                        'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                    ])
-                    ->send();
+                // Exception GET LTI1
+                try {
+                    $response = $client->createRequest()
+                        ->setFormat(Client::FORMAT_JSON)
+                        ->setMethod('POST')
+                        //->setMethod('GET')
+                        ->setUrl($url . $consulta) //$_POST['RegisterForm']['id'])
+                        ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
+                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
+                        ->setOptions([
+                            //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                            'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                        ])
+                        ->send();
+                }
+                catch (Exception $e1) {
+                    // Exception GET LTI2
+                    try {
+                        $url = Yii::$app->params['serverLti2'];
 
+                        $response = $client->createRequest()
+                            ->setFormat(Client::FORMAT_JSON)
+                            ->setMethod('POST')
+                            //->setMethod('GET')
+                            ->setUrl($url . $consulta) //$_POST['RegisterForm']['id'])
+                            ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
+                                'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
+                            ->setOptions([
+                                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                            ])
+                            ->send();
+                    }
+                    catch (Exception $e2) {
+                    }
+                }
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
                 //}
@@ -390,6 +410,7 @@ class SiteController extends Controller
                     // Exception GET LTI2
                     try {
                         $url = Yii::$app->params['serverLti2'];
+
                         $response = $client->createRequest()
                             ->setFormat(Client::FORMAT_JSON)
                             //->setMethod('POST')
