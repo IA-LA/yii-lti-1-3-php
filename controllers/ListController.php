@@ -2,7 +2,7 @@
 // YOUR_APP/controllers/ListController.php
 
 /* change namespace in your app */
-namespace frontend\controllers;
+namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
