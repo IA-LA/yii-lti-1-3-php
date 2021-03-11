@@ -36,7 +36,7 @@ class ListController extends Controller
                 'id' => $i,
                 'title' => 'Title ' . $i,
                 'image' => 'http://placehold.it/300x200',
-                'link'  => '<a href="http://placehold.it/300x200">Launch URL</a>'
+                'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
             ];
 
             $fakedModels[] = $fakedItem;
