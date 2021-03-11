@@ -35,7 +35,8 @@ class ListController extends Controller
             $fakedItem = [
                 'id' => $i,
                 'title' => 'Title ' . $i,
-                'image' => 'http://placehold.it/300x200'
+                'image' => 'http://placehold.it/300x200',
+                'link'  => '<a href="http://placehold.it/300x200">Launch URL</a>'
             ];
 
             $fakedModels[] = $fakedItem;
