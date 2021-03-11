@@ -8,5 +8,6 @@ use yii\helpers\Html;
     <h3><?= Html::encode($model['title']); ?></h3>
     <figure>
         <img src="<?= $model['image'] ?>" alt="<?= Html::encode($model['title']); ?>">
+        <?= $model['link'] ?>
     </figure>
 </article>
