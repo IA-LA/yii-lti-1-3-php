@@ -382,6 +382,10 @@ class SiteController extends Controller
             // Append the host(domain name, ip) to the URL.
             $url .= $_SERVER['HTTP_HOST'];
 
+
+            print("EXCEPTION URL " . $url);
+            exit(0);
+
             // Append the requested resource location to the URL
             //$url.= $_SERVER['REQUEST_URI'];
             //echo $_REQUEST['target_link_uri'];
@@ -400,9 +404,6 @@ class SiteController extends Controller
 
                 // GET Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
-
-                print("EXCEPTION URL " . $url);
-                exit(0);
 
                 if (Yii::$app->request->post('QueryForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
