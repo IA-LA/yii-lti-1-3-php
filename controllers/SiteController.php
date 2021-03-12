@@ -408,6 +408,10 @@ class SiteController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                     $consulta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
                 }
+
+                print("EXCEPTION URL " . $url);
+                exit(0);
+
                 // Exception GET LTI1
                 try {
                     $response = $client->createRequest()
@@ -555,9 +559,6 @@ class SiteController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                     $consulta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
                 }
-                print("EXCEPTION URL " . $url);
-                exit(0);
-
                 // Exception GET LTI1
                 try {
                     $response = $client->createRequest()
