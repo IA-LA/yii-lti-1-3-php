@@ -69,6 +69,22 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays errorpage.
+     *
+     * @return string
+     */
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception instanceof \yii\web\NotFoundHttpException) {
+            // all non existing controllers+actions will end up here
+            return $this->render('pnf'); // page not found
+        } else {
+            return $this->render('error', ['exception' => $exception]);
+        }
+    }
+
+    /**
      * Displays homepage.
      *
      * @return string
