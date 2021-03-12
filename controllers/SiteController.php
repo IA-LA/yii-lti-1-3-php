@@ -493,7 +493,7 @@ class SiteController extends Controller
 
     /*LIST*/
     /**
-     * Displays query page.
+     * Displays list page.
      *
      * @return Response|string
      */
@@ -555,13 +555,16 @@ class SiteController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                     $consulta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
                 }
+                print("EXCEPTION URL " . $url);
+                exit(0);
+
                 // Exception GET LTI1
                 try {
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
                         //->setMethod('POST')
                         ->setMethod('GET')
-                        ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
+                        ->setUrl($url . $consulta) //$_POST['ListForm']['id'])
                         ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
@@ -578,7 +581,7 @@ class SiteController extends Controller
                             ->setFormat(Client::FORMAT_JSON)
                             //->setMethod('POST')
                             ->setMethod('GET')
-                            ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
+                            ->setUrl($url . $consulta) //$_POST['ListForm']['id'])
                             ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
