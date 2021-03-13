@@ -465,8 +465,8 @@ class SiteController extends Controller
                     $content .= '</div>';
                 }
 
-                return $this->render('//list/index', new ArrayDataProvider([
-                    'allModels' => ['listDataProvider' => [
+                return $this->render('//list/index', ['listDataProvider' => new ArrayDataProvider([
+                    'allModels' => [[
                         'id' => '01234567890123456789',
                         'title' => 'Title ' . '01234567890123456789',
                         'image' => 'http://placehold.it/300x200',
@@ -478,7 +478,7 @@ class SiteController extends Controller
                     'sort' => [
                         'attributes' => ['id'],
                     ],
-                ]));
+                ])]);
                 /* TODO return $this->renderContent($content);*/
                 //return $this->refresh();
             }
