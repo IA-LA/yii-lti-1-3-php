@@ -247,7 +247,11 @@ class SiteController extends Controller
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            $url = Yii::$app->params['serverLti1'];
+            /// LOCAL puerto :9000
+            if ($_SERVER['REMOTE_PORT'] !== '8000')
+                $url = Yii::$app->params['serverLti2'];
+            else
+                $url = Yii::$app->params['serverLti1'];
 
             //Envío del Formulario de Registro
             if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
@@ -281,20 +285,6 @@ class SiteController extends Controller
                 catch (Exception $e1) {
                     // Exception GET LTI2
                     try {
-                        $url = Yii::$app->params['serverLti2'];
-
-                        $response = $client->createRequest()
-                            ->setFormat(Client::FORMAT_JSON)
-                            ->setMethod('POST')
-                            //->setMethod('GET')
-                            ->setUrl($url . $consulta) //$_POST['RegisterForm']['id'])
-                            ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
-                                'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
-                            ->setOptions([
-                                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                            ])
-                            ->send();
                     }
                     catch (Exception $e2) {
                     }
@@ -382,10 +372,6 @@ class SiteController extends Controller
             // Append the host(domain name, ip) to the URL.
             $url .= $_SERVER['HTTP_HOST'];
 
-
-            print("EXCEPTION URL " . $url);
-            exit(0);
-
             // Append the requested resource location to the URL
             //$url.= $_SERVER['REQUEST_URI'];
             //echo $_REQUEST['target_link_uri'];
@@ -396,7 +382,11 @@ class SiteController extends Controller
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            $url = Yii::$app->params['serverLti1'];
+            /// LOCAL puerto :9000
+            if ($_SERVER['REMOTE_PORT'] !== '8000')
+                $url = Yii::$app->params['serverLti2'];
+            else
+                $url = Yii::$app->params['serverLti1'];
 
             //Envío del Formulario de Consulta
             if ($model->load($request = Yii::$app->request->post()) && $model->query(Yii::$app->params['adminEmail'])) {
@@ -430,19 +420,6 @@ class SiteController extends Controller
                 catch (Exception $e1) {
                     // Exception GET LTI2
                     try {
-                        $url = Yii::$app->params['serverLti2'];
-
-                        $response = $client->createRequest()
-                            ->setFormat(Client::FORMAT_JSON)
-                            //->setMethod('POST')
-                            ->setMethod('GET')
-                            ->setUrl($url . $consulta) //$_POST['QueryForm']['id'])
-                            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
-                            ->setOptions([
-                                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                            ])
-                            ->send();
                     }
                     catch (Exception $e2) {
                     }
@@ -544,7 +521,14 @@ class SiteController extends Controller
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            $url = Yii::$app->params['serverLti1'];
+            /// LOCAL puerto :9000
+            if ($_SERVER['REMOTE_PORT'] !== '8000')
+                $url = Yii::$app->params['serverLti2'];
+            else
+                $url = Yii::$app->params['serverLti1'];
+
+            print("EXCEPTION URL " . $url);
+            exit(0);
 
             //Envío del Formulario de Consulta
             if ($model->load($request = Yii::$app->request->post()) && $model->query(Yii::$app->params['adminEmail'])) {
@@ -577,19 +561,6 @@ class SiteController extends Controller
                 catch (Exception $e1) {
                     // Exception GET LTI2
                     try {
-                        $url = Yii::$app->params['serverLti2'];
-
-                        $response = $client->createRequest()
-                            ->setFormat(Client::FORMAT_JSON)
-                            //->setMethod('POST')
-                            ->setMethod('GET')
-                            ->setUrl($url . $consulta) //$_POST['ListForm']['id'])
-                            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
-                            ->setOptions([
-                                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                            ])
-                            ->send();
                     }
                     catch (Exception $e2) {
                     }
