@@ -462,7 +462,12 @@ class SiteController extends Controller
                     $content .= '</div>';
                 }
 
-                return $this->render('//list/index');
+                return $this->render('//list/index', ['listDataProvider' => [
+                    'id' => '01234567890123456789',
+                    'title' => 'Title ' . '01234567890123456789',
+                    'image' => 'http://placehold.it/300x200',
+                    'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
+                ]]);
                 /* TODO return $this->renderContent($content);*/
                 //return $this->refresh();
             }
