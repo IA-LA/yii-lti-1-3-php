@@ -462,12 +462,20 @@ class SiteController extends Controller
                     $content .= '</div>';
                 }
 
-                return $this->render('//list/index', ['listDataProvider' => [
-                    'id' => '01234567890123456789',
-                    'title' => 'Title ' . '01234567890123456789',
-                    'image' => 'http://placehold.it/300x200',
-                    'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
-                ]]);
+                return $this->render('//list/index', [
+                    'allModels' => ['listDataProvider' => [
+                        'id' => '01234567890123456789',
+                        'title' => 'Title ' . '01234567890123456789',
+                        'image' => 'http://placehold.it/300x200',
+                        'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
+                    ]],
+                    'pagination' => [
+                        'pageSize' => 5
+                    ],
+                    'sort' => [
+                        'attributes' => ['id'],
+                    ],
+                ]);
                 /* TODO return $this->renderContent($content);*/
                 //return $this->refresh();
             }
