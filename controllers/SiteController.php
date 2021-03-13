@@ -23,6 +23,9 @@ use yii\httpclient\Client;
 use app\models\QueryForm;
 use yii\helpers\Html;
 
+/* LIST */
+use yii\data\ArrayDataProvider;
+
 class SiteController extends Controller
 {
 
@@ -462,7 +465,7 @@ class SiteController extends Controller
                     $content .= '</div>';
                 }
 
-                return $this->render('//list/index', [
+                return $this->render('//list/index', new ArrayDataProvider([
                     'allModels' => ['listDataProvider' => [
                         'id' => '01234567890123456789',
                         'title' => 'Title ' . '01234567890123456789',
@@ -475,7 +478,7 @@ class SiteController extends Controller
                     'sort' => [
                         'attributes' => ['id'],
                     ],
-                ]);
+                ]));
                 /* TODO return $this->renderContent($content);*/
                 //return $this->refresh();
             }
