@@ -23,7 +23,8 @@ use yii\httpclient\Client;
 use app\models\QueryForm;
 use yii\helpers\Html;
 
-/* LIST */
+/* LISTS */
+use app\models\ListsForm;
 use yii\data\ArrayDataProvider;
 
 class SiteController extends Controller
@@ -480,10 +481,10 @@ class SiteController extends Controller
      *
      * @return Response|string
      *
-    // DETENER EJECUCION
-    ////////////////////
-    print("EXCEPTION URL " . $url);
-    exit(0);
+// DETENER EJECUCION
+////////////////////
+print("EXCEPTION URL " . $url);
+exit(0);
      */
     public function actionList()
     {
