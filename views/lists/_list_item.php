@@ -1,5 +1,5 @@
 <?php
-// YOUR_APP/views/list/_list_item.php
+// YOUR_APP/views/lists/_list_item.php
 
 use yii\helpers\Html;
 ?>

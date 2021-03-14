@@ -1,5 +1,5 @@
 <?php
-// YOUR_APP/views/list/index.php
+// YOUR_APP/views/lists/index.php
 
 use yii\widgets\ListView;
 ?>

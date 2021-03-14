@@ -1,5 +1,5 @@
 <?php
-// YOUR_APP/views/list/_ad.php
+// YOUR_APP/views/lists/_ad.php
 ?>
 
 <div class="list-item col-sm-12 ad-item">

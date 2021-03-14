@@ -53,6 +53,7 @@ AppAsset::register($this);
                     ['label' => 'Upload', 'url' => ['/site/upload']],
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">LTI Menu</li>',
+                    ['label' => 'Lists', 'url' => ['/site/lists']],
                     ['label' => 'Query', 'url' => ['/site/query']],
                     ['label' => 'Register', 'url' => ['/site/register']],
                 ],
