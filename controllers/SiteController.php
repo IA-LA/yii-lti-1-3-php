@@ -486,7 +486,7 @@ class SiteController extends Controller
 print("EXCEPTION URL " . $url);
 exit(0);
      */
-    public function actionList()
+    public function actionLists()
     {
 
         if (Yii::$app->user->isGuest) {
