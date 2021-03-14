@@ -608,10 +608,28 @@ exit(0);
                     $content .= '</div>';
                 }
 
+                // TODO crear ARRAY con todas las respuestas
+
+                $responseModels = [];
+                //foreach ($request as $key => $value){
+                //    echo "{$key} => {$value} ";
+                foreach ($response->data['data'] as $responseItem => $value){
+                    $responseItem = [
+                        'list' => 'iss',
+                        'id' => $responseItem['iss'],
+                        'title' => 'Lists ' . $responseItem['iss'],
+                        'image' => 'http://placehold.it/300x200',
+                        'link'  => '<a href="' . $responseItem['launch_url'] . '" target="_blank">Launch URL</a>'
+                    ];
+
+                    $responseModels[] = $responseItem;
+                }
+
+                // Listado ListView
                 return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
                     'allModels' => [[
-                        'id' => '01234567890123456789',
-                        'title' => 'Title ' . '01234567890123456789',
+                        'id' => Yii::$app->request->post('ListsForm')['id'],
+                        'title' => 'Title ' . Yii::$app->request->post('ListsForm')['id'],
                         'image' => 'http://placehold.it/300x200',
                         'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
                     ]],
