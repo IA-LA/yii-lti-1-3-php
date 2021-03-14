@@ -465,7 +465,7 @@ class SiteController extends Controller
                     $content .= '</div>';
                 }
 
-                return $this->render('//list/index', ['listDataProvider' => new ArrayDataProvider([
+                return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
                     'allModels' => [[
                         'id' => '01234567890123456789',
                         'title' => 'Title ' . '01234567890123456789',
