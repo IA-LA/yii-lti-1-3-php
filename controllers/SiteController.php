@@ -616,8 +616,8 @@ exit(0);
                 foreach ($response->data['data'] as $responseItem => $value){
                     $responseItem = [
                         'list' => 'iss',
-                        'id' => $responseItem['iss'],
-                        'title' => 'Lists ' . $responseItem['iss'],
+                        'id' => $responseItem['launch_parameters']['iss'],
+                        'title' => 'Lists ' . $responseItem['launch_parameters']['iss'],
                         'image' => 'http://placehold.it/300x200',
                         'link'  => '<a href="' . $responseItem['launch_url'] . '" target="_blank">Launch URL</a>'
                     ];
