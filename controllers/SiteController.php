@@ -613,13 +613,13 @@ exit(0);
                 $responseModels = [];
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
-                foreach ($response->data['data'] as $item){
+                foreach ($response as $resp => $value){
                     $responseItem = [
                         'list' => 'iss',
-                        'id' => $item['launch_parameters']['iss'],
-                        'title' => 'Lists ' . $item['launch_parameters']['iss'],
+                        'id' => $resp['data']['launch_parameters']['iss'],
+                        'title' => 'Lists ' . $resp['data']['launch_parameters']['iss'],
                         'image' => 'http://placehold.it/300x200',
-                        'link'  => '<a href="' . $item['launch_url'] . '" target="_blank">Launch URL</a>'
+                        'link'  => '<a href="' . $resp['data']['launch_url'] . '" target="_blank">Launch URL</a>'
                     ];
 
                     $responseModels[] = $responseItem;
