@@ -613,7 +613,8 @@ exit(0);
                 $responseModels = [];
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
-                foreach ($response as $resp){
+                $response_array = json_decode($response, true);
+                foreach ($response_array as $resp){
                     $responseItem = [
                         'list' => 'iss',
                         'id' => $resp['data']['launch_parameters']['iss'],
