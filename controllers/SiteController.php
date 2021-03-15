@@ -581,18 +581,26 @@ exit(0);
                     if($index === 'data') {
                         $responseItem = [
                             'list' => 'iss',
-                            'id' => $value['data']['launch_parameters']['iss'],
-                            'title' => 'Lists ' . $value['data']['launch_parameters']['iss'],
+                            'id' => $value['launch_parameters']['iss'],
+                            'title' => 'Lists ' . $value['launch_parameters']['iss'],
                             'image' => 'http://placehold.it/300x200',
-                            'link'  => '<a href="' . $value['data']['launch_url'] . '" target="_blank">Launch URL</a>'
+                            'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
                         ];
                         $responseModels[] = $responseItem;
                     }
+                    //else
+                    //    echo "{$index} => " . $value;
+                    //    echo "{$index} => " . $value['user']['email'];
                 }
 
                 // Listado ListView
                 return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
-                    'allModels' => $responseModels,
+                    'allModels' => [[
+                        'id' => Yii::$app->request->post('ListsForm')['id'],
+                        'title' => 'Title ' . Yii::$app->request->post('ListsForm')['id'],
+                        'image' => 'http://placehold.it/300x200',
+                        'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
+                    ]],
                     'pagination' => [
                         'pageSize' => 5
                     ],
