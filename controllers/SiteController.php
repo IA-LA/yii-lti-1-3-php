@@ -614,7 +614,8 @@ exit(0);
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
                 foreach ($response->data as $Item => $value){
-                    print(json_decode($Item['data'], true));
+                    //print(json_decode($Item['data'], true));
+                    echo "{$Item} => {$value}";
                     /*$responseItem = [
                         'list' => 'iss',
                         'id' => $Item['data']['launch_parameters']['iss'],
