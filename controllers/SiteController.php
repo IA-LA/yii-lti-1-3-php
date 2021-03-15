@@ -613,17 +613,17 @@ exit(0);
                 $responseModels = [];
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
-                $response_array = json_decode($response, true);
-                foreach ($response_array as $resp){
-                    $responseItem = [
+                foreach ($response->data as $Item => $value){
+                    print($Item);
+                    /*$responseItem = [
                         'list' => 'iss',
-                        'id' => $resp['data']['launch_parameters']['iss'],
-                        'title' => 'Lists ' . $resp['data']['launch_parameters']['iss'],
+                        'id' => $Item['data']['launch_parameters']['iss'],
+                        'title' => 'Lists ' . $Item['data']['launch_parameters']['iss'],
                         'image' => 'http://placehold.it/300x200',
-                        'link'  => '<a href="' . $resp['data']['launch_url'] . '" target="_blank">Launch URL</a>'
+                        'link'  => '<a href="' . $Item['data']['launch_url'] . '" target="_blank">Launch URL</a>'
                     ];
 
-                    $responseModels[] = $responseItem;
+                    $responseModels[] = $responseItem;*/
                 }
 
                 // Listado ListView
