@@ -576,31 +576,23 @@ exit(0);
                 $responseModels = [];
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
-                foreach ($response->data as $Item => $value){
-                    //print(json_decode($Item['data'], true));
-                    if($Item === 'data')
-                        echo "{$Item} => " . $value['user']['email'];
-                    else
-                        echo "{$Item} => " . $value;
-                    $responseItem = [
-                        'list' => 'iss',
-                        'id' => $Item['data']['launch_parameters']['iss'],
-                        'title' => 'Lists ' . $Item['data']['launch_parameters']['iss'],
-                        'image' => 'http://placehold.it/300x200',
-                        'link'  => '<a href="' . $Item['data']['launch_url'] . '" target="_blank">Launch URL</a>'
-                    ];
-
-                    $responseModels[] = $responseItem;
+                foreach ($response->data as $index => $value){
+                    //print(json_decode($index['data'], true));
+                    if($index === 'data') {
+                        $responseItem = [
+                            'list' => 'iss',
+                            'id' => $value['data']['launch_parameters']['iss'],
+                            'title' => 'Lists ' . $value['data']['launch_parameters']['iss'],
+                            'image' => 'http://placehold.it/300x200',
+                            'link'  => '<a href="' . $value['data']['launch_url'] . '" target="_blank">Launch URL</a>'
+                        ];
+                        $responseModels[] = $responseItem;
+                    }
                 }
 
                 // Listado ListView
                 return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
-                    'allModels' => [[
-                        'id' => Yii::$app->request->post('ListsForm')['id'],
-                        'title' => 'Title ' . Yii::$app->request->post('ListsForm')['id'],
-                        'image' => 'http://placehold.it/300x200',
-                        'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
-                    ]],
+                    'allModels' => $responseModels,
                     'pagination' => [
                         'pageSize' => 5
                     ],
