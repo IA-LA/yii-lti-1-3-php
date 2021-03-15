@@ -614,7 +614,7 @@ exit(0);
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
                 foreach ($response->data as $Item => $value){
-                    print($Item);
+                    print($Item['data']);
                     /*$responseItem = [
                         'list' => 'iss',
                         'id' => $Item['data']['launch_parameters']['iss'],
