@@ -578,7 +578,7 @@ exit(0);
                     //    echo "{$key} => {$value} ";
                     foreach ($response->data['data'] as $index => $value){
                         //print(json_decode($index['data'], true));
-                        if(($index === 'data') || ($index >= 0)) {
+                        if(($index === 'data') || (($index !== 'result') && ($index >= 0))) {
                             $responseItem = [
                                 'list' => $index,//'iss',
                                 'id' => $value['launch_parameters']['iss'],
