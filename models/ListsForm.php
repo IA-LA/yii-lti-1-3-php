@@ -35,9 +35,9 @@ class ListsForm extends Model
                 'whenClient' => "function (attribute, value) { return $('#id').val() == '00000000000000000000000'; }"
             ],
             // id has to be a valid ID alphanumerical 24 character address
-            ['id', 'match', 'pattern'=>"/^[a-z,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId alphanumerical 24 character address like this: 5fc3860a81740b0ef098a965'],
+            ['id', 'match', 'pattern'=>"/^[a-z,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId alphanumerical 24 character address like this: `5fc3860a81740b0ef098a965`'],
             // url has to be a valid URL address
-            ['url', 'url'],
+            ['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`' ],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
