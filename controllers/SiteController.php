@@ -252,7 +252,9 @@ class SiteController extends Controller
             // al servidor de SERVICIOS
             ///////////////////
             /// LOCAL puerto :9000
-            if ($_SERVER['REMOTE_PORT'] !== '8000')
+            /// GLOBAL puerto:8000 o `.uned.es`
+            ///
+            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
                 $url = Yii::$app->params['serverLti2'];
             else
                 $url = Yii::$app->params['serverLti1'];
@@ -386,7 +388,9 @@ class SiteController extends Controller
             // al servidor de SERVICIOS
             ///////////////////
             /// LOCAL puerto :9000
-            if ($_SERVER['REMOTE_PORT'] !== '8000')
+            /// GLOBAL puerto:8000 o `.uned.es`
+            ///
+            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
                 $url = Yii::$app->params['serverLti2'];
             else
                 $url = Yii::$app->params['serverLti1'];
@@ -529,6 +533,8 @@ exit(0);
             // al servidor de SERVICIOS
             ///////////////////
             /// LOCAL puerto :9000
+            /// GLOBAL puerto:8000 o `.uned.es`
+            ///
             if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
                 $url = Yii::$app->params['serverLti2'];
             else
