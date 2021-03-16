@@ -4,8 +4,9 @@
 use yii\widgets\ListView;
 use yii\helpers\Html;
 ?>
-
-<h3><?= Html::encode($title); ?></h3>
+<div class="header">
+    <h3><?= Html::encode($title); ?></h3>
+</div>
 <div class="row">
     <?= ListView::widget([
         'options' => [
@@ -46,5 +47,7 @@ use yii\helpers\Html;
     ]);
     ?>
 </div>
-<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($return); ?>">Volver</a></p>
+<div class="footer">
+    <p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($return); ?>">Volver</a></p>
+</div>
 
