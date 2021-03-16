@@ -581,7 +581,7 @@ exit(0);
                         //    echo "{$key} => {$value} ";
                         foreach ($response->data['data'] as $index => $value){
                             //print(json_decode($index['data'], true));
-                            if($index >= 0) {
+                            //if($index >= 0) {
                                 $responseItem = [
                                     'list' => $index,//'Listado',
                                     'id' => $value['launch_parameters']['iss'],
@@ -590,8 +590,8 @@ exit(0);
                                     'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
                                 ];
                                 $responseModels[] = $responseItem;
-                            }
-                            else{
+                            //}
+                            //else{
                                 //    echo "{$index} => " . $value;
                                 //    echo "{$index} => " . $value['user']['email'];
 
