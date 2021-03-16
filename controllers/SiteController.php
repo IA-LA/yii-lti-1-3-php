@@ -570,44 +570,58 @@ exit(0);
                     catch (Exception $e2) {
                     }
                 }
-
-                // TODO crear ARRAY con todas las respuestas
-                // TODO crearListDataProvider();
-                $responseModels = [];
-                //foreach ($request as $key => $value){
-                //    echo "{$key} => {$value} ";
-                foreach ($response->data as $index => $value){
-                    //print(json_decode($index['data'], true));
-                    if($index === 'data') {
-                        $responseItem = [
-                            'list' => 'iss',
-                            'id' => $value['launch_parameters']['iss'],
-                            'title' => 'Lists ' . $value['launch_parameters']['iss'],
-                            'image' => 'http://placehold.it/300x200',
-                            'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
-                        ];
-                        $responseModels[] = $responseItem;
+                if ($response->isOk && $response->data['result'] === 'ok') {
+                    // TODO crear ARRAY con todas las respuestas
+                    // TODO crearListDataProvider();
+                    $responseModels = [];
+                    //foreach ($request as $key => $value){
+                    //    echo "{$key} => {$value} ";
+                    foreach ($response->data['data'] as $index => $value){
+                        //print(json_decode($index['data'], true));
+                        //if($index === 'data') {
+                            $responseItem = [
+                                'list' => $index,//'iss',
+                                'id' => $value['launch_parameters']['iss'],
+                                'title' => 'Lists ' . $value['launch_parameters']['iss'],
+                                'image' => 'http://placehold.it/300x200',
+                                'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
+                            ];
+                            $responseModels[] = $responseItem;
+                        //}
+                        //else
+                        //    echo "{$index} => " . $value;
+                        //    echo "{$index} => " . $value['user']['email'];
                     }
-                    //else
-                    //    echo "{$index} => " . $value;
-                    //    echo "{$index} => " . $value['user']['email'];
+
+                    // Listado ListView
+                    return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
+                        'allModels' => $responseModels,
+                        'pagination' => [
+                            'pageSize' => 5
+                        ],
+                        'sort' => [
+                            'attributes' => ['id'],
+                        ],
+                    ])]);
+                } else { // BAD REQUEST
+                    $content = '<div><p/><p/><p/>';
+                    $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('ListsForm...', 'error') . '</p>';
+                    //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
+                    //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
+                    //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
+                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
+                    $content .= '<div class="jumbotron">
+                        <h1>Error</h1>
+                        <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
+                        'ID:  <code>' . Yii::$app->request->post('ListsForm')['id'] . '</code><br/>' .
+                        'URL: <code>' . Yii::$app->request->post('ListsForm')['url'] . '</code><br/>' .
+                        '<p/><p/><p/>' .
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Volver</a></p>
+                    </div>';
+                    $content .= '</div>';
                 }
 
-                // Listado ListView
-                return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
-                    'allModels' => [[
-                        'id' => Yii::$app->request->post('ListsForm')['id'],
-                        'title' => 'Title ' . Yii::$app->request->post('ListsForm')['id'],
-                        'image' => 'http://placehold.it/300x200',
-                        'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
-                    ]],
-                    'pagination' => [
-                        'pageSize' => 5
-                    ],
-                    'sort' => [
-                        'attributes' => ['id'],
-                    ],
-                ])]);
+                return $this->renderContent($content);
                 //return $this->refresh();
             }
 
