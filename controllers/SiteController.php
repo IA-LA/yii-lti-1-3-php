@@ -610,16 +610,17 @@ exit(0);
                     }
 
                     // Listado ListView
-                    return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
-                        'allModels' => $responseModels,
-                        'pagination' => [
-                            'pageSize' => 5
-                        ],
-                        'sort' => [
-                            'attributes' => ['id'],
-                        ],
-                    ]),
-                        'title' => 'Listado'
+                    return $this->render('//lists/index', [
+                        'title' => 'Listado',
+                        'listDataProvider' => new ArrayDataProvider([
+                            'allModels' => $responseModels,
+                            'pagination' => [
+                                'pageSize' => 5
+                            ],
+                            'sort' => [
+                                'attributes' => ['id'],
+                            ],
+                        ]),
                     ]);
                 } else { // BAD REQUEST
                     $content = '<div><p/><p/><p/>';

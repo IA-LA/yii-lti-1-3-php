@@ -2,6 +2,7 @@
 // YOUR_APP/views/lists/index.php
 
 use yii\widgets\ListView;
+use yii\helpers\Html;
 ?>
 
 <h3><?= Html::encode($title); ?></h3>
