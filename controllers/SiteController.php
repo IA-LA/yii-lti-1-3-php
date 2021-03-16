@@ -583,9 +583,9 @@ exit(0);
                             //print(json_decode($index['data'], true));
                             //if($index >= 0) {
                                 $responseItem = [
-                                    'list' => $index,//'Listado',
-                                    'id' => $value['launch_parameters']['iss'],
-                                    'title' => 'Lists ' . $value['launch_parameters']['iss'],
+                                    //'list' => $index,//'Listado',
+                                    'id' => $value['_id'],
+                                    'title' => 'Actividad ' . $value['launch_parameters']['iss'],
                                     'image' => 'http://placehold.it/300x200',
                                     'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
                                 ];
@@ -600,9 +600,9 @@ exit(0);
                     }
                     else{
                         $responseItem = [
-                            'list' => 'Listado',
-                            'id' => $response->data['data']['launch_parameters']['iss'],
-                            'title' => 'Lists ' . $response->data['data']['launch_parameters']['iss'],
+                            //'list' => 'Listado',
+                            'id' => $response->data['data']['_id'],
+                            'title' => 'Actividad ' . $response->data['data']['launch_parameters']['iss'],
                             'image' => 'http://placehold.it/300x200',
                             'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
                         ];
