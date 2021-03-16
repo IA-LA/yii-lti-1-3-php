@@ -4,8 +4,8 @@
 use yii\widgets\ListView;
 ?>
 
-<h3><?= Html::encode($listDataProvider['title']); ?></h3>
-<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($listDataProvider['title']); ?>">Volver</a></p>
+<h3><?= Html::encode($title); ?></h3>
+<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($title); ?>">Volver</a></p>
 <div class="row">
     <?= ListView::widget([
         'options' => [
