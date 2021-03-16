@@ -546,7 +546,7 @@ exit(0);
                     $consulta = '/read/all/coleccion/Lti/id_actividad/' . Yii::$app->request->post('ListsForm')['id'];
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                    $consulta = '/read/all/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('ListsForm')['url']));
+                    $consulta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('ListsForm')['url']));
                 }
 
                 // Exception GET LTI1
