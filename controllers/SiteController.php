@@ -578,9 +578,9 @@ exit(0);
                     //    echo "{$key} => {$value} ";
                     foreach ($response->data['data'] as $index => $value){
                         //print(json_decode($index['data'], true));
-                        if(($index === 'data') || (($index !== 'result') && ($index >= 0))) {
+                        if($index >= 0) {
                             $responseItem = [
-                                'list' => $index,//'iss',
+                                'list' => $index,//'Listado',
                                 'id' => $value['launch_parameters']['iss'],
                                 'title' => 'Lists ' . $value['launch_parameters']['iss'],
                                 'image' => 'http://placehold.it/300x200',
@@ -588,9 +588,18 @@ exit(0);
                             ];
                             $responseModels[] = $responseItem;
                         }
-                        //else
-                        //    echo "{$index} => " . $value;
-                        //    echo "{$index} => " . $value['user']['email'];
+                        else{
+                            //    echo "{$index} => " . $value;
+                            //    echo "{$index} => " . $value['user']['email'];
+                            $responseItem = [
+                                'list' => 'Listado',
+                                'id' => $response->data['data']['launch_parameters']['iss'],
+                                'title' => 'Lists ' . $response->data['data']['launch_parameters']['iss'],
+                                'image' => 'http://placehold.it/300x200',
+                                'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
+                            ];
+                            $responseModels[] = $responseItem;
+                        }
                     }
 
                     // Listado ListView
