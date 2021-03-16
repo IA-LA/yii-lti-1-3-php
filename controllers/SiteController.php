@@ -529,7 +529,7 @@ exit(0);
             // al servidor de SERVICIOS
             ///////////////////
             /// LOCAL puerto :9000
-            if ($_SERVER['REMOTE_PORT'] !== '8000')
+            if (($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
                 $url = Yii::$app->params['serverLti2'];
             else
                 $url = Yii::$app->params['serverLti1'];
