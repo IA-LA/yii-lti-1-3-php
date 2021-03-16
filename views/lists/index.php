@@ -6,7 +6,6 @@ use yii\helpers\Html;
 ?>
 
 <h3><?= Html::encode($title); ?></h3>
-<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($title); ?>">Volver</a></p>
 <div class="row">
     <?= ListView::widget([
         'options' => [
@@ -47,3 +46,5 @@ use yii\helpers\Html;
     ]);
     ?>
 </div>
+<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($return); ?>">Volver</a></p>
+
