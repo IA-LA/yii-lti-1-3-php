@@ -610,8 +610,7 @@ exit(0);
                     }
 
                     // Listado ListView
-                    return $this->render('//lists/index', ['title' => 'Listado',
-                        'listDataProvider' => new ArrayDataProvider([
+                    return $this->render('//lists/index', ['listDataProvider' => new ArrayDataProvider([
                         'allModels' => $responseModels,
                         'pagination' => [
                             'pageSize' => 5
@@ -619,7 +618,9 @@ exit(0);
                         'sort' => [
                             'attributes' => ['id'],
                         ],
-                    ])]);
+                    ]),
+                        'title' => 'Listado'
+                    ]);
                 } else { // BAD REQUEST
                     $content = '<div><p/><p/><p/>';
                     $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('ListsForm...', 'error') . '</p>';
