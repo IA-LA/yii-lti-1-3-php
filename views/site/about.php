@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo "Returned with status $retval and output:\n";
         print_r($output);
 
-        $output = shell_exec('ls -lart');
+        $output = shell_exec('ls -lart upload');
         echo "<pre>$output</pre>";
 
         ?>
