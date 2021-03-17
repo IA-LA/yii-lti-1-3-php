@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec(escapeshellcmd('ls -lart uploads'));
         echo "<pre>$output</pre>";
 
-        $output = shell_exec('ls -lart /var/www/html/lti/ | mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000000');
+        $output = shell_exec('ls -lart /var/www/html/ | mkdir /var/www/html/publicacion');
         echo "<pre>$output</pre>";
 
         $output = shell_exec('ls -lart /var/www/html/lti/publicacion');
