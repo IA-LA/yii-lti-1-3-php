@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-4">
                 <h2>Git Menu</h2>
+                <hr/>
                 <h3>Upload</h3>
 
                 <p>Permite subir contenidos complejos, en un único archivo .zip, el cual se utilizará como plantilla de un
@@ -29,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>
-            <hr/>
             <div class="col-lg-4">
                 <h2>LTI Menu</h2>
+                <hr/>
                 <h3>Delete</h3>
 
                 <p>Formulario de borrado de Actividades (Tools) dadas de alta en el servior.</p>
