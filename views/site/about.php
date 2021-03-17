@@ -27,6 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         exec('whoami', $output, $retval);
         echo "Returned with status $retval and output:\n";
         print_r($output);
+
+        $output = shell_exec('ls -lart');
+        echo "<pre>$output</pre>";
+
         ?>
 
         <div class="row">
