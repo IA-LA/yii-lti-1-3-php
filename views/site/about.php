@@ -34,6 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec('ls -lart uploads');
         echo "<pre>$output</pre>";
 
+        $output = shell_exec('ls -lart /var/www/html/lti/publicacion | mkdir/var/www/html/lti/publicacion/nombreTrabajoXXX00000000');
+        echo "<pre>$output</pre>";
+
         ?>
 
         <div class="row">
