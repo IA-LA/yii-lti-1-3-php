@@ -744,7 +744,7 @@ exit(0);
                         //->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['deleteForm']['id'])
-                        ->setData(['id_actividad' => Yii::$app->request->post('DeleteForm')['id'])
+                        ->setData(['id_actividad' => Yii::$app->request->post('DeleteForm')['id']])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
