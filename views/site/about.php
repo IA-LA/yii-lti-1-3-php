@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec('ls -lart /var/www/html/ | mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000000');
         echo "<pre>$output</pre>";
 
-        $output = shell_exec('ls -lart /var/www/html/lti/');
+        $output = shell_exec('ls -lart /var/www/html/');
         echo "<pre>$output</pre>";
 
         //mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
