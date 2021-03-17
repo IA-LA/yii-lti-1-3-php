@@ -40,7 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec('ls -lart /var/www/html/lti/publicacion');
         echo "<pre>$output</pre>";
 
-        mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000002', 0777, true);
+        mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
+
         // outputs the username that owns the running php/httpd process
         // (on a system with the "whoami" executable in the path)
         $output=null;
