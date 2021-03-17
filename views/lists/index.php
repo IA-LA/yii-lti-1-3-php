@@ -47,6 +47,7 @@ use yii\helpers\Html;
     ]);
     ?>
 </div>
+<hr/>
 <div class="footer">
     <p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($return); ?>">Volver</a></p>
 </div>
