@@ -19,6 +19,16 @@ $this->params['breadcrumbs'][] = $this->title;
 -->
     <div class="body-content">
 
+        <?php
+        // outputs the username that owns the running php/httpd process
+        // (on a system with the "whoami" executable in the path)
+        $output=null;
+        $retval=null;
+        exec('whoami', $output, $retval);
+        echo "Returned with status $retval and output:\n";
+        print_r($output);
+        ?>
+
         <div class="row">
             <div class="col-lg-4">
                 <h2>Git Menu</h2>
