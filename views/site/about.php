@@ -29,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>
             <div class="col-lg-4">
-                <h3>Register</h3>
+                <h3>Lists</h3>
 
-                <p>Formulario que permite dar de alta una Actividad (Tool) para su publicación.</p>
+                <p>Formulario de listados de Actividades (Tools) dadas de alta en el servior.</p>
 
-                <p><a class="btn btn-default" href="index.php?r=site%2Fregister">Registro &raquo;</a></p>
+                <p><a class="btn btn-default" href="index.php?r=site%2Flists">Listados &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h3>Query</h3>
@@ -41,6 +41,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Formulario de consulta de Actividades (Tools) dadas de alta en el servior.</p>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fquery">Consulta &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <h3>Register</h3>
+
+                <p>Formulario que permite dar de alta una Actividad (Tool) para su publicación.</p>
+
+                <p><a class="btn btn-default" href="index.php?r=site%2Fregister">Registro &raquo;</a></p>
             </div>
         </div>
 
