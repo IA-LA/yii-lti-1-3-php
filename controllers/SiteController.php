@@ -744,8 +744,8 @@ exit(0);
                         //->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['deleteForm']['id'])
-                        ->setData(['id_actividad' => Yii::$app->request->post('deleteForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('deleteForm')['url']])
+                        ->setData(['id_actividad' => Yii::$app->request->post('DeleteForm')['id'],
+                            'url_actividad' => Yii::$app->request->post('DeleteForm')['url']])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -779,7 +779,7 @@ exit(0);
 
                 } else {
                     $content = '<div><p/><p/><p/>';
-                    $content .= '<p class="alert error-summary"> Registro: ' . Yii::$app->request->post('deleteForm...', 'error') . '</p>';
+                    $content .= '<p class="alert error-summary"> Registro: ' . Yii::$app->request->post('DeleteForm...', 'error') . '</p>';
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
@@ -787,8 +787,8 @@ exit(0);
                     $content .= '<div class="jumbotron">
                             <h1>Error</h1>
                             <p class="lead">Las credenciales de Registro son erróneas.</p>' .
-                        'ID:  <code>' . Yii::$app->request->post('deleteForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('deleteForm')['url'] . '</code><br/>' .
+                        'ID:  <code>' . Yii::$app->request->post('DeleteForm')['id'] . '</code><br/>' .
+                        'URL: <code>' . Yii::$app->request->post('DeleteForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fdelete">Volver</a></p>
                         </div>';
