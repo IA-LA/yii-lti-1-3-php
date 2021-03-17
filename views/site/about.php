@@ -28,7 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
         echo "Returned with status $retval and output:\n";
         print_r($output);
 
-        $output = shell_exec('ls -lart ./upload');
+        $output = shell_exec('ls -lart');
+        echo "<pre>$output</pre>";
+
+        $output = shell_exec('whoami');
         echo "<pre>$output</pre>";
 
         ?>
