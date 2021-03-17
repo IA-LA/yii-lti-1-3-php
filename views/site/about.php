@@ -34,11 +34,19 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec('ls -lart uploads');
         echo "<pre>$output</pre>";
 
-        $output = shell_exec('ls -lart /var/www/html/lti/publicacion | mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000000');
+        $output = shell_exec('ls -lart /var/www/html/lti/ | mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000000');
         echo "<pre>$output</pre>";
 
         $output = shell_exec('ls -lart /var/www/html/lti/publicacion');
         echo "<pre>$output</pre>";
+
+        // outputs the username that owns the running php/httpd process
+        // (on a system with the "whoami" executable in the path)
+        $output=null;
+        $retval=null;
+        exec('mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000000', $output, $retval);
+        echo "Returned with status $retval and output:\n";
+        print_r($output);
         ?>
 
         <div class="row">
