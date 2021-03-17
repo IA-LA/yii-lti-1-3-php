@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="body-content">
 
         <div class="row">
+            <h2>Git Menu</h2>
             <div class="col-lg-4">
                 <h3>Upload</h3>
 
@@ -27,6 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     proyecto Git para trabajar de forma distribuida.</p>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
+            </div>
+            <hr/>
+            <h2>LTI Menu</h2>
+            <div class="col-lg-4">
+                <h3>Delete</h3>
+
+                <p>Formulario de borrado de Actividades (Tools) dadas de alta en el servior.</p>
+
+                <p><a class="btn btn-default" href="index.php?r=site%2Flists">Borrado &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h3>Lists</h3>
