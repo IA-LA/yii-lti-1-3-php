@@ -27,9 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <p>Permite subir contenidos complejos, en un único archivo .zip, el cual se utilizará como plantilla de un
                     proyecto Git para trabajar de forma distribuida.</p>
-                <code>TODO</code> Publicar ZIP eContent lti/publicacion/nombreTrabajoCTU16032021/
-                <code>TODO</code> Proyecto publicación en repo_nombreTrabajoCTU16032021.git
-                <code>TODO</code> Proveer proyecto en EdX y Moodle
+
+                <ol>
+                    <li><code>TODO</code> Publicar ZIP eContent lti/publicacion/nombreTrabajoCTU16032021/</li>
+                    <li><code>TODO</code> Proyecto publicación en repo_nombreTrabajoCTU16032021.git</li>
+                    <li><code>TODO</code> Proveer proyecto en EdX y Moodle</li>
+                </ol>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>
