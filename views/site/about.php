@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <p>Formulario de borrado de Actividades (Tools) dadas de alta en el servior.</p>
 
-                <p><a class="btn btn-default" href="index.php?r=site%2Flists">Borrado &raquo;</a></p>
+                <p><a class="btn btn-default" href="index.php?r=site%2Fdelete">Borrado &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h3>Lists</h3>
