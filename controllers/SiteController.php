@@ -788,7 +788,6 @@ exit(0);
                             <h1>Error</h1>
                             <p class="lead">Las credenciales de Borrado son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('DeleteForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('DeleteForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fdelete">Volver</a></p>
                         </div>';
