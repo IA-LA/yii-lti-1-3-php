@@ -770,7 +770,7 @@ exit(0);
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Borrado: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                             <h1>Borrado</h1>
-                            <p class="lead">Borra las credenciales de acceso a la actividad.</p>' .
+                            <p class="lead">Borradas las credenciales de acceso a la actividad.</p>' .
                         'REGISTRO: ' . Yii::$app->request->post('DeleteForm')['id'] . ' <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fdelete">Volver</a></p>
