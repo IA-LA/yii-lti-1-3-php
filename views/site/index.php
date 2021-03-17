@@ -40,28 +40,7 @@ $this->title = Yii::$app->params['yiiapp'];
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Upload</h2>
 
-                <p>Permite subir contenidos complejos, en un único archivo .zip, el cual se utilizará como plantilla de un
-                    proyecto Git para trabajar de forma distribuida.</p>
-
-                <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Register</h2>
-
-                <p>Formulario que permite dar de alta una Actividad (Tool) para su publicación.</p>
-
-                <p><a class="btn btn-default" href="index.php?r=site%2Fregister">Registro &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Query</h2>
-
-                <p>Formulario de consulta de Actividades (Tools) dadas de alta en el servior.</p>
-
-                <p><a class="btn btn-default" href="index.php?r=site%2Fquery">Consulta &raquo;</a></p>
-            </div>
         </div>
 
     </div>
