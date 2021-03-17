@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec('ls -lart');
         echo "<pre>$output</pre>";
 
-        $output = shell_exec('whoami');
+        $output = shell_exec('ls -lart uploads');
         echo "<pre>$output</pre>";
 
         ?>
