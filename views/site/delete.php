@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Registra una Actividad con su Identificador y la Url donde está alojada.
+            Borra una Actividad por su Identificador.
             Thank you.
         </p>
 
