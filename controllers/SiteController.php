@@ -691,7 +691,7 @@ exit(0);
 
         }
         else {
-            $model = new deleteForm();
+            $model = new DeleteForm();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
@@ -728,9 +728,9 @@ exit(0);
                 // DELETE Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
-                if (Yii::$app->request->post('deleteForm')['id'] !== '') {
+                if (Yii::$app->request->post('DeleteForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/' . Yii::$app->request->post('deleteForm')['id'];
+                    $ruta = '/delete/' . Yii::$app->request->post('DeleteForm')['id'];
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
                     $ruta = '/delete/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
