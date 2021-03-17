@@ -740,8 +740,8 @@ exit(0);
                 try {
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
-                        ->setMethod('DELETE')
-                        //->setMethod('POST')
+                        //->setMethod('DELETE')
+                        ->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['deleteForm']['id'])
                         ->setData(['id_actividad' => Yii::$app->request->post('DeleteForm')['id'],
