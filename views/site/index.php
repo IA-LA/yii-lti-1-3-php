@@ -63,6 +63,8 @@ $this->title = Yii::$app->params['yiiapp'];
             $output = shell_exec('ls -lart /var/www/html/ | mkdir uploads/publicacion');
             echo "<pre>$output</pre>";
 
+            $output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion'));
+            echo "<pre>$output</pre>";
 
             //mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
 
