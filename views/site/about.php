@@ -55,7 +55,8 @@ $this->params['breadcrumbs'][] = $this->title;
         // (on a system with the "unzip" executable in the path)
         $output=null;
         $retval=null;
-        exec(escapeshellcmd('unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+                                    //'unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'
+        exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
         echo "Returned with status $retval and output:\n";
         print_r($output);
 
