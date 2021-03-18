@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec(escapeshellcmd('ls -lart uploads'));
         echo "<pre>$output</pre>";
 
-        $output = shell_exec('ls -lart /var/www/html/ | mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000000');
+        $output = shell_exec('ls -lart /var/www/html/ | mkdir uploads/publicacion');
         echo "<pre>$output</pre>";
 
         $output = shell_exec('ls -lart /');
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
         // (on a system with the "whoami" executable in the path)
         $output=null;
         $retval=null;
-        exec('mkdir /var/www/html/lti/publicacion/nombreTrabajoXXX00000002', $output, $retval);
+        exec('mkdir uploads/publicacion/nombreTrabajoXXX00000000', $output, $retval);
         echo "Returned with status $retval and output:\n";
         print_r($output);
         ?>
