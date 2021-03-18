@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
         echo "Returned with status $retval and output:\n";
         print_r($output);
 
-        $output = shell_exec(escapeshellcmd('unzip uploads/Plantilla ePub 1_5c4ad1844ffce90a5d17f666.zip	-d uploads/publicacion/nombreTrabajoXXX00000000/'));
+        $output = shell_exec(escapeshellcmd('unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip	-d uploads/publicacion/nombreTrabajoXXX00000000/'));
         echo "<pre>$output</pre>";
 
         ?>
