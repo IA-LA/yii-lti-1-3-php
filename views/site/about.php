@@ -44,15 +44,20 @@ $this->params['breadcrumbs'][] = $this->title;
         //mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
 
         // outputs the username that owns the running php/httpd process
-        // (on a system with the "whoami" executable in the path)
+        // (on a system with the "mkdir" executable in the path)
         $output=null;
         $retval=null;
-        exec('mkdir uploads/publicacion/nombreTrabajoXXX00000001', $output, $retval);
+        exec(escapeshellcmd('mkdir uploads/publicacion/nombreTrabajoXXX00000002'), $output, $retval);
         echo "Returned with status $retval and output:\n";
         print_r($output);
 
-        $output = shell_exec(escapeshellcmd('unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip	-d uploads/publicacion/nombreTrabajoXXX00000000/'));
-        echo "<pre>$output</pre>";
+        // outputs the username that owns the running php/httpd process
+        // (on a system with the "unzip" executable in the path)
+        $output=null;
+        $retval=null;
+        exec(escapeshellcmd('unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+        echo "Returned with status $retval and output:\n";
+        print_r($output);
 
         ?>
 
