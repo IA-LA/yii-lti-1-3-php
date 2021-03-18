@@ -24,7 +24,55 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <p/>
             <p/>
-            <p class="alert alert-success">Archivo "<i> <?= $file ?> </i>" subido correctamente</p>
+            <p class="alert alert-success">Archivo "<i><?= $file ?></i>" subido correctamente</p>
+            <?php
+                // Carpeta de Actividad cargada y publicada
+                // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
+                /////////////////////////////////
+                // outputs the username that owns the running php/httpd process
+                // (on a system with the "mkdir" executable in the path)
+                $output=null;
+                $retval=null;
+                //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
+                $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+                exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
+                // MKDIR sin errores
+                if($retval === 0) {
+                    //echo "Returned with status $retval and output:\n";
+                    //print_r($output);
+                    // Carpeta de cargas
+                    $output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion/'));
+                    echo "<pre>$output</pre>";
+
+                    // Descomprime .zip
+                    // outputs the username that owns the running php/httpd process
+                    // (on a system with the "unzip" executable in the path)
+                    $output=null;
+                    $retval=null;
+                    //'unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'
+                    //exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+                    //exec(escapeshellcmd('unzip uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    // UNZIP sin errores
+                    if($retval === 0) {
+                        echo "Returned with status $retval and output:\n";
+                        echo "<p><pre>";
+                        print_r($output);
+                        echo "</pre></p>";
+
+                        // Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
+                        ////////////////////////////////
+
+                    }
+                    else {
+                        echo "<i>Error al descomprimir fichero <i>`" . $file . "`</i></pre>";
+                    }
+
+                }
+                else {
+                    echo "<i>Error al crear carpeta <i>`" . $namedir . "`</i></pre>";
+                }
+            ?>
         </div>
 
         <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>
