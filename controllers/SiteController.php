@@ -196,8 +196,9 @@ class SiteController extends Controller
                 $upload = $model->upload();
                 if ($upload['result']) {
                     // file is uploaded successfully
-                    return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo ' . $upload['file'] .' subido correctamente</p></div>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>');
+                    Yii::$app->session->setFlash('uploadFormSubmitted');
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>');
+                    return $this->render('upload', ['model' => $model, "file" => $upload['file']]);
                     //return $this->render('upload', ['model' => $model]);
                     //return;
                 }
