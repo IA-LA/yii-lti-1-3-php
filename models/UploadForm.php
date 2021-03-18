@@ -36,15 +36,20 @@ class UploadForm extends Model
 
     /**
      * Sends a zip to the specified folder using the information collected by this model.
-     * @return bool whether the model passes validation
+     *
+     * @return array whether the model passes validation
      */
     public function upload()
     {
         if ($this->validate()) {
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
-            return true;
+            //@return bool whether the model passes validation
+            //return true;
+            return ['result' => true, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension];
         } else {
-            return false;
+            //@return bool whether the model passes validation
+            //return false;
+            return ['result' => false, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension];
         }
     }
 }

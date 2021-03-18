@@ -193,9 +193,10 @@ class SiteController extends Controller
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
-                if ($model->upload()) {
+                $upload = $model->upload();
+                if ($upload['result']) {
                     // file is uploaded successfully
-                    return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo subido correctamente</p></div>' .
+                    return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo ' . $upload['file'] .' subido correctamente</p></div>' .
                         '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>');
                     //return $this->render('upload', ['model' => $model]);
                     //return;
