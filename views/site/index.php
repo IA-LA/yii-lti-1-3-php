@@ -41,7 +41,6 @@ $this->title = Yii::$app->params['yiiapp'];
 
         <div class="row">
 
-
             <?php
             // outputs the username that owns the running php/httpd process
             // (on a system with the "whoami" executable in the path)
@@ -51,23 +50,31 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "Returned with status $retval and output:\n";
             print_r($output);
 
-            $output = shell_exec('ls -lart');
-            echo "<pre>$output</pre>";
+            //$output = shell_exec(escapeshellcmd('ls -lart'));
+            //echo "<pre>$output</pre>";
 
-            $output = shell_exec('ls -lart /');
-            echo "<pre>$output</pre>";
+            //$output = shell_exec('ls -lart /');
+            //echo "<pre>$output</pre>";
 
+            // Carpeta de cargas
             $output = shell_exec(escapeshellcmd('ls -lart uploads'));
             echo "<pre>$output</pre>";
+            //$output = shell_exec(escapeshellcmd('touch uploads/index.html'));
+            //echo "<pre>$output</pre>";
 
-            $output = shell_exec('ls -lart /var/www/html/ | mkdir uploads/publicacion');
+            // Carpeta de publicación
+            $output = shell_exec(escapeshellcmd('ls -lart /var/www/html/ | mkdir uploads/publicacion'));
             echo "<pre>$output</pre>";
-
             $output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion'));
             echo "<pre>$output</pre>";
+            //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/index.html'));
+            //echo "<pre>$output</pre>";
 
             //mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
 
+            // Carpeta de Actividad cargada y publicada
+            // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
+            /////////////////////////////////
             // outputs the username that owns the running php/httpd process
             // (on a system with the "mkdir" executable in the path)
             $output=null;
