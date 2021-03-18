@@ -70,7 +70,8 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "mkdir" executable in the path)
             $output=null;
             $retval=null;
-            $namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('dmYHisu') . '00000003';
+            //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
+            $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
             exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
             print_r($output);
