@@ -31,14 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         $output = shell_exec('ls -lart');
         echo "<pre>$output</pre>";
 
+        $output = shell_exec('ls -lart /');
+        echo "<pre>$output</pre>";
+
         $output = shell_exec(escapeshellcmd('ls -lart uploads'));
         echo "<pre>$output</pre>";
 
         $output = shell_exec('ls -lart /var/www/html/ | mkdir uploads/publicacion');
         echo "<pre>$output</pre>";
 
-        $output = shell_exec('ls -lart /');
-        echo "<pre>$output</pre>";
 
         //mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
 
@@ -46,9 +47,13 @@ $this->params['breadcrumbs'][] = $this->title;
         // (on a system with the "whoami" executable in the path)
         $output=null;
         $retval=null;
-        exec('mkdir uploads/publicacion/nombreTrabajoXXX00000000', $output, $retval);
+        exec('mkdir uploads/publicacion/nombreTrabajoXXX00000001', $output, $retval);
         echo "Returned with status $retval and output:\n";
         print_r($output);
+
+        $output = shell_exec('unzip uploads/Plantilla ePub 1_5c4ad1844ffce90a5d17f666.zip	-d uploads/publicacion/nombreTrabajoXXX00000000/');
+        echo "<pre>$output</pre>";
+
         ?>
 
         <div class="row">
