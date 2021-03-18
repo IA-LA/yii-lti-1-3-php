@@ -41,6 +41,49 @@ $this->title = Yii::$app->params['yiiapp'];
 
         <div class="row">
 
+
+            <?php
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "whoami" executable in the path)
+            $output=null;
+            $retval=null;
+            exec('whoami', $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            print_r($output);
+
+            $output = shell_exec('ls -lart');
+            echo "<pre>$output</pre>";
+
+            $output = shell_exec('ls -lart /');
+            echo "<pre>$output</pre>";
+
+            $output = shell_exec(escapeshellcmd('ls -lart uploads'));
+            echo "<pre>$output</pre>";
+
+            $output = shell_exec('ls -lart /var/www/html/ | mkdir uploads/publicacion');
+            echo "<pre>$output</pre>";
+
+
+            //mkdir('/var/www/html/lti/publicacion/nombreTrabajoXXX00000001', 0777, true);
+
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "mkdir" executable in the path)
+            $output=null;
+            $retval=null;
+            exec(escapeshellcmd('mkdir uploads/publicacion/nombreTrabajoXXX00000002'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            print_r($output);
+
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "unzip" executable in the path)
+            $output=null;
+            $retval=null;
+            //'unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'
+            exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            print_r($output);
+
+            ?>
         </div>
 
     </div>
