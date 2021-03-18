@@ -94,7 +94,9 @@ $this->title = Yii::$app->params['yiiapp'];
             //exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
             exec(escapeshellcmd('unzip uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
-            echo "<pre>". print_r($output) . "</pre>";
+            echo "<p><code>";
+            print_r($output);
+            echo "</code></p>";
 
             // Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
             ////////////////////////////////
