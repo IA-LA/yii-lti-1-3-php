@@ -70,7 +70,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "mkdir" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('mkdir uploads/publicacion/nombreTrabajoXXX00000002'), $output, $retval);
+            exec(escapeshellcmd('mkdir uploads/publicacion/' . 'nombreTrabajo' . Yii::$app->user->identity->username . date('MMDDYYYY') . '00000003'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             print_r($output);
 
@@ -79,7 +79,8 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             //'unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'
-            exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+            //exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+            exec(escapeshellcmd('unzip uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             print_r($output);
 
