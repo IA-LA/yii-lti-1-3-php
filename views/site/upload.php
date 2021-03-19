@@ -82,12 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     }
                     else {
-                        echo "<i>Error al descomprimir fichero <i>`" . $file . "`</i></pre>";
+                        echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>';
                     }
 
                 }
                 else {
-                    echo "<i>Error al crear carpeta <i>`" . $namedir . "`</i></pre>";
+                    echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>';
                 }
             ?>
         </div>
