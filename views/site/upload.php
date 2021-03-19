@@ -68,7 +68,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="alert alert-success">Fichero ZIP ´<i><?= $file ?></i>´ fue descomprimido correctamente.<br/>URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
                 <?php
                         //echo "Returned with status $retval and output:\n";
-                        echo "<b>Archivos descomprimidos" . strlen($output) . ". Status " . ($retval === 0 ? 'correcto' : 'error') . ". y resultado de la descompresión:\n</b>";
+                        $outputlen=strlen($output);
+                        echo "<b>Archivos descomprimidos" . $outputlen . ". Status " . ($retval === 0 ? 'correcto' : 'error') . ". y resultado de la descompresión:\n</b>";
                         echo "<p><pre>";
                         print_r($output);
                         echo "</pre></p>";
