@@ -87,15 +87,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
-                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Volver</a></p>';
+                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
                     }
 
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Volver</a></p>';
+                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
                 }
             ?>
+            <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>
         </div>
 
     <?php else: ?>

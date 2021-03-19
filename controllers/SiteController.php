@@ -197,7 +197,7 @@ class SiteController extends Controller
                 if ($upload['result']) {
                     // file is uploaded successfully
                     Yii::$app->session->setFlash('uploadFormSubmitted');
-                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>');
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
                     return $this->render('upload', ['model' => $model, "file" => $upload['file']]);
                     //return $this->render('upload', ['model' => $model]);
                     //return;
@@ -315,7 +315,7 @@ class SiteController extends Controller
                         <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                         'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
@@ -325,14 +325,14 @@ class SiteController extends Controller
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
-                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
+                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Registro son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('RegisterForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('RegisterForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fregister">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fregister">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -452,7 +452,7 @@ class SiteController extends Controller
                         'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                         'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
@@ -462,14 +462,14 @@ class SiteController extends Controller
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
-                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
+                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fquery">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fquery">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -640,14 +640,14 @@ exit(0);
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
-                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
+                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('ListsForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('ListsForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -774,7 +774,7 @@ exit(0);
                             <p class="lead">Borradas las credenciales de acceso a la actividad.</p>' .
                         'REGISTRO: ' . Yii::$app->request->post('DeleteForm')['id'] . ' <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fdelete">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fdelete">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
 
@@ -784,13 +784,13 @@ exit(0);
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
-                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Volver</button>';
+                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                             <h1>Error</h1>
                             <p class="lead">Las credenciales de Borrado son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('DeleteForm')['id'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fdelete">Volver</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fdelete">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
                 }
