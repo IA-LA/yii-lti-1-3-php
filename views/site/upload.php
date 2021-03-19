@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p/>
                         <p/>
                         <p/>
-                        <p class="alert alert-success">Fichero .zip ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/>URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
+                        <p class="alert alert-success">Fichero ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/>URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</p>
                 <?php
                         //echo "Returned with status $retval and output:\n";
                         echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // GET
                         ////////////////////////////////
-                        echo '<div class="row alert alert-success"><div class="col-lg-6">Puede registrarse esta actividad con el ID: <i>`' . $namedir . '`</i> y la dirección URL: ´<b><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></b>´.</div>' .
+                        echo '<div class="row alert alert-success"><div class="col-lg-6">Puede registrarse esta actividad con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
                              '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
                              //$this->render('_list_item',['model' => $model])
 
