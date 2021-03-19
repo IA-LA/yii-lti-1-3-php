@@ -80,8 +80,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // GET
                         ////////////////////////////////
-                        echo '<p class="alert alert-success">Puede registrarse esta actividad con el ID: <i>`' . $namedir . '`</i> y la dirección URL: ´<b><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></b>´.</p>' .
-                             '<p class="alert alert-success"><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
+                        echo '<p class="alert alert-success"><div class="row"><div class="col-lg-4">Puede registrarse esta actividad con el ID: <i>`' . $namedir . '`</i> y la dirección URL: ´<b><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></b>´.</p></div>' .
+                             '<div class="col-lg-4"><p class="alert alert-success"><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p></div></div>';
                              //$this->render('_list_item',['model' => $model])
 
                     }
