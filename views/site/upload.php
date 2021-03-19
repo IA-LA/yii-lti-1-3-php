@@ -72,16 +72,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         print_r($output);
                         echo "</pre></p>";
 
-                        // Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
+                        // TODO Crea proyecto Git repo_$namedir.git ID=$namedir y URL='uploads/publicacion/$namedir/'
+                        // ?????????????
+                        ////////////////////////////////
+
+                        // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // GET
                         ////////////////////////////////
                         echo '<p class="alert alert-success">Ahora registra esta actividad <i>`' . $namedir . '`</i> con esta <a href="uploads/publicacion/' . $namedir . '">URL</a></p>' .
                              '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
                              //$this->render('_list_item',['model' => $model])
-
-                        // Crea proyecto Git repo_$namedir.git ID=$namedir y URL='uploads/publicacion/$namedir/'
-                        // ?????????????
-                        ////////////////////////////////
 
                     }
                     else {
