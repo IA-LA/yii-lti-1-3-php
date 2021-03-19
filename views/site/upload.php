@@ -65,10 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p/>
                         <p/>
                         <p/>
-                        <p class="alert alert-success">Fichero ZIP ´<i><?= $file ?></i>´ fue descomprimido correctamente.<br/>URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
+                        <p class="alert alert-success">Fichero ZIP ´<i><?= $file ?></i>´ descomprimido correctamente.<br/>URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
                 <?php
                         //echo "Returned with status $retval and output:\n";
-                        echo "<b>Archivos descomprimidos" . count($output) . ". Status " . ($retval === 0 ? 'correcto' : 'error') . ". y resultado de la descompresión:\n</b>";
+                        echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
                         echo "<p><pre>";
                         print_r($output);
                         echo "</pre></p>";
@@ -80,8 +80,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // GET
                         ////////////////////////////////
-                        echo '<p class="alert alert-success">Para registrar esta actividad utiliza este ID: <i>`' . $namedir . '`</i> y esta dirección URL: ´<b><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></b>´. ' .
-                             '<a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
+                        echo '<p class="alert alert-success">Puede registrarse esta actividad con este ID: <i>`' . $namedir . '`</i> y esta dirección URL: ´<b><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></b>´. ' .
+                             '<br/><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
                              //$this->render('_list_item',['model' => $model])
 
                     }
