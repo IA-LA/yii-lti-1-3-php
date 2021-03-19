@@ -75,6 +75,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         // Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // GET
                         ////////////////////////////////
+                        echo '<p class="alert alert-success">Ahora registra esta actividad <i>`' . $namedir . '`</i></p>' .
+                             '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
+                             //$this->render('_list_item',['model' => $model])
 
                         // Crea proyecto Git repo_$namedir.git ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // ?????????????
@@ -82,44 +85,51 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     }
                     else {
-                        echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>';
+                        echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
+                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Volver</a></p>';
                     }
 
                 }
                 else {
-                    echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>';
+                    echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
+                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Volver</a></p>';
                 }
             ?>
         </div>
-
-        <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Volver</a></p>
 
     <?php else: ?>
 
         <p>
             Formulario de subida de Econtent complejos desde el CTU.
-            Puede subirse un fichero comprimido en formato .zip de cada vez.
+            Puede subirse un fichero comprimido en .zip de cada vez,
+            sin tener espacios en blanco, tildes o eñes en el nombre.
         </p>
 
         <div class="row">
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin(['id' => 'upload-form']); ?>
-                    <?= $form->field($model, 'zipFile')->fileInput() ?>
+
+                <?= $form->field($model, 'zipFile')->fileInput() ?>
 
                     <!--
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                     ]) ?>
                     -->
+
                     <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                            <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
+                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
+
                 <?php ActiveForm::end() ?>
+
             </div>
         </div>
+
     <?php endif; ?>
 
 </div>
