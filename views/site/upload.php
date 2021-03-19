@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <p/>
             <p/>
-            <p class="alert alert-success">Archivo "<i><?= $file ?></i>" subido correctamente</p>
+            <p class="alert alert-success">Archivo ´<i><?= $file ?></i>´ subido correctamente</p>
             <?php
                 // Carpeta de Actividad cargada y publicada
                 // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
@@ -42,13 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p/>
                     <p/>
                     <p/>
-                    <p class="alert alert-success">Carpeta "<i><?= $namedir ?></i>" creada correctamente</p>
+                    <p class="alert alert-success">Carpeta ´<i><?= $namedir ?></i>´ creada correctamente</p>
                 <?php
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
                     // Carpeta de cargas
-                    $output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion/'));
-                    echo "<pre>$output</pre>";
+                    //$output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion/'));
+                    //echo "<pre>$output</pre>";
 
                     // Descomprime .zip
                     // outputs the username that owns the running php/httpd process
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p/>
                         <p/>
                         <p/>
-                        <p class="alert alert-success">URL Actividad "<a href="uploads/publicacion/<?= Html::encode($namedir); ?>"><?= $namedir ?></a>" publicada correctamente</p>
+                        <p class="alert alert-success">Fichero ZIP ´<i><?= $file ?></i>´ descomprimido correctamente. URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
                 <?php
                         echo "Returned with status $retval and output:\n";
                         echo "<p><pre>";
@@ -73,14 +73,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo "</pre></p>";
 
                         // TODO Crea proyecto Git repo_$namedir.git ID=$namedir y URL='uploads/publicacion/$namedir/'
-                        // ?????????????
+                        // ??????????????????????
                         ////////////////////////////////
 
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // GET
                         ////////////////////////////////
-                        echo '<p class="alert alert-success">Ahora registra esta actividad <i>`' . $namedir . '`</i> con esta <a href="uploads/publicacion/' . $namedir . '">URL</a></p>' .
-                             '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
+                        echo '<p class="alert alert-success">Para registrar esta actividad utiliza este ID: <i>`' . $namedir . '`</i> y esta dirección URL: ´<b><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></b>´. ' .
+                             '<a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Registrar</a></p>';
                              //$this->render('_list_item',['model' => $model])
 
                     }
