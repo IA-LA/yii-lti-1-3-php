@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <p/>
             <p/>
-            <p class="alert alert-success">Archivo ´<i><?= $file ?></i>´ subido correctamente</p>
+            <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ subido correctamente</p>
             <?php
                 // Carpeta de Actividad cargada y publicada
                 // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p/>
                     <p/>
                     <p/>
-                    <p class="alert alert-success">Carpeta ´<i><?= $namedir ?></i>´ creada correctamente</p>
+                    <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
                 <?php
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p/>
                         <p/>
                         <p/>
-                        <p class="alert alert-success">Fichero ZIP ´<i><?= $file ?></i>´ descomprimido correctamente.<br/>URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
+                        <p class="alert alert-success">Fichero .zip ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/>URL de la Actividad ´<b><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></b>´ publicada correctamente</p>
                 <?php
                         //echo "Returned with status $retval and output:\n";
                         echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
