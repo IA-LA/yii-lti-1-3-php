@@ -38,6 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
                 // MKDIR sin errores
                 if($retval === 0) {
+            ?>
+                    <p/>
+                    <p/>
+                    <p/>
+                    <p class="alert alert-success">Carpeta "<i><?= $namedir ?></i>" creada correctamente</p>
+                <?php
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
                     // Carpeta de cargas
@@ -55,12 +61,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     // UNZIP sin errores
                     if($retval === 0) {
+                ?>
+                        <p/>
+                        <p/>
+                        <p/>
+                        <p class="alert alert-success">URL Actividad "<a href="uploads/publicacion/<?= Html::encode($namedir); ?>"><?= $namedir ?></a>" publicada correctamente</p>
+                <?php
                         echo "Returned with status $retval and output:\n";
                         echo "<p><pre>";
                         print_r($output);
                         echo "</pre></p>";
 
                         // Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
+                        // GET
+                        ////////////////////////////////
+
+                        // Crea proyecto Git repo_$namedir.git ID=$namedir y URL='uploads/publicacion/$namedir/'
+                        // ?????????????
                         ////////////////////////////////
 
                     }
