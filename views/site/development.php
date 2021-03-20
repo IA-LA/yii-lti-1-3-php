@@ -46,6 +46,11 @@ $this->title = Yii::$app->params['yiiapp'];
             // Carpeta de cargas
             $output = shell_exec(escapeshellcmd('git --version'));
             echo "<pre>$output</pre>";
+            // Carpeta de cargas
+            //$output = shell_exec(escapeshellcmd('git init 10020210319222158000000a'));
+            $output = shell_exec(escapeshellcmd('cd /var/www/html/lti/publicacion/10020210319222158000000b'));
+            $output = shell_exec(escapeshellcmd('ll'));
+            echo "<pre>$output</pre>";
 
             // outputs the username that owns the running php/httpd process
             // (on a system with the "whoami" executable in the path)
