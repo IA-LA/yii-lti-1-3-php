@@ -48,7 +48,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<pre>$output</pre>";
             // Carpeta de cargas
             //$output = shell_exec(escapeshellcmd('git init 10020210319222158000000a'));
-            $output = shell_exec(escapeshellcmd('cd 10020210319222158000000a'));
+            $output = shell_exec(escapeshellcmd('cd uploads/publicacion/10020210319222158000000a'));
             $output = shell_exec(escapeshellcmd('ls -la'));
             echo "<pre>$output</pre>";
 
