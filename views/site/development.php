@@ -10,14 +10,14 @@ $this->title = Yii::$app->params['yiiapp'];
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>LTI Server</h1>
+        <h1>LTI Development</h1>
 
         <?php
         if (Yii::$app->user->isGuest) {
         ?>
             <p class="lead">Autentifícate para acceder al panel de Actividades (Tools).</p>
 
-            <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Flogin">Login</a></p>
+            <p><a class="btn btn-primary" href="index.php?r=site%2Flogin">Login</a></p>
         <?php
         }
         else{
@@ -26,7 +26,7 @@ $this->title = Yii::$app->params['yiiapp'];
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                <button type="submit" class="btn btn-lg btn-danger">Logout <?= '(' . Yii::$app->user->identity->username . ')'?></button>
+                <button type="submit" class="btn btn-danger">Logout <?= '(' . Yii::$app->user->identity->username . ')'?></button>
             </form>
             <!--
             <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>"><button type="submit" class="btn btn-link logout">Logout (admin)</button>
