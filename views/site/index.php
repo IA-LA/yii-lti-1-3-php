@@ -4,8 +4,6 @@
 
 $this->title = Yii::$app->params['yiiapp'];
 
-//TODO mostar listados con Yii ListView
-
 ?>
 <div class="site-index">
 
