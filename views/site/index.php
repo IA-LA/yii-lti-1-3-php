@@ -15,7 +15,7 @@ $this->title = Yii::$app->params['yiiapp'];
         ?>
             <p class="lead">Autentifícate para acceder al panel de Actividades (Tools).</p>
 
-            <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Flogin">Login</a></p>
+            <p><a class="btn btn-lg btn-primary" href="index.php?r=site%2Flogin">Login</a></p>
         <?php
         }
         else{
