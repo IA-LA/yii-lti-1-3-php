@@ -102,6 +102,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays developmentpage.
+     *
+     * @return string
+     */
+    public function actionDevelopment()
+    {
+        return $this->render('development');
+    }
+
+    /**
      * Login action.
      *
      * @return Response|string
