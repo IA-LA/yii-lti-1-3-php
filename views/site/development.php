@@ -132,8 +132,8 @@ $this->title = Yii::$app->params['yiiapp'];
             $output = shell_exec(escapeshellcmd('sleep 0.5s'));
             echo "<pre>7b.$output</pre>";
 
-            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'));
-            //echo "<pre>8.$output</pre>";
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'));
+            echo "<pre>8.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
             $output=null;
@@ -145,8 +145,8 @@ $this->title = Yii::$app->params['yiiapp'];
             print_r($output);
             echo "</pre></p>";
 
-            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'));
-            //echo "<pre>9.$output</pre>";
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'));
+            echo "<pre>9.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
             $output=null;
@@ -154,7 +154,7 @@ $this->title = Yii::$app->params['yiiapp'];
             //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
             echo "9.Returned with status $retval and output:\n";
-            echo "<p><pre>git -C uploads/publicacion/$namedir push origin master<br/>";
+            echo "<p><pre>git -C uploads/publicacion/$namedir/ push origin master<br/>";
             print_r($output);
             echo "</pre></p>";
 
