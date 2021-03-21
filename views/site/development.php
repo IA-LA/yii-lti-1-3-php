@@ -75,7 +75,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // Crear Git vacío distribuíble (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
             // Clonar Git distribuido
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
+            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
 
             // Unzip Actividad .zip
             // outputs the username that owns the running php/httpd process
