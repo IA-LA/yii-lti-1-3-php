@@ -74,8 +74,10 @@ $this->title = Yii::$app->params['yiiapp'];
             // Proyecto Git
             // Crear Git vacío distribuíble (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+            echo "<pre>$output</pre>";
             // Clonar Git distribuido
             $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
+            echo "<pre>$output</pre>";
 
             // Unzip Actividad .zip
             // outputs the username that owns the running php/httpd process
@@ -88,11 +90,15 @@ $this->title = Yii::$app->params['yiiapp'];
             //print_r($output);
             //echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+            echo "<pre>$output</pre>";
 
             // Add, Commit y Push publicacion
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+            echo "<pre>$output</pre>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'));
+            echo "<pre>$output</pre>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'));
+            echo "<pre>$output</pre>";
 
 
             ?>
