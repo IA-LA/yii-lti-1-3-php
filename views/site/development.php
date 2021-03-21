@@ -142,7 +142,7 @@ $this->title = Yii::$app->params['yiiapp'];
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI'<br/>";
-            echo passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"');
+            echo "8." . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"');
             print_r($output);
             echo "</pre></p>";
 
