@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
-                    // Carpeta de cargas
+                    // Carpeta de publicaciones
                     //$output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion/'));
                     //echo "<pre>$output</pre>";
 
