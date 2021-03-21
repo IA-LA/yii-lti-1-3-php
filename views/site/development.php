@@ -129,7 +129,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<p><pre>";
             print_r($output);
             echo "</pre></p>";
-            $output = shell_exec(escapeshellcmd('sleep 1s'));
+            $output = shell_exec(escapeshellcmd('sleep 0.5s'));
             echo "<pre>7b.$output</pre>";
 
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'));
