@@ -80,10 +80,9 @@ $this->title = Yii::$app->params['yiiapp'];
             //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
             //echo "<pre>5.$output</pre>";
             // outputs the username that owns the running php/httpd process
-            // (on a system with the "mkdir" executable in the path)
+            // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
             exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>5.";
@@ -108,13 +107,41 @@ $this->title = Yii::$app->params['yiiapp'];
             //echo "<pre>6b.$output</pre>";
 
             // Add, Commit y Push publicacion
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
-            echo "<pre>7.$output</pre>";
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'));
-            echo "<pre>8.$output</pre>";
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'));
-            echo "<pre>9.$output</pre>";
+            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+            //echo "<pre>7.$output</pre>";
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "git add" executable in the path)
+            $output=null;
+            $retval=null;
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            echo "<p><pre>7.";
+            print_r($output);
+            echo "</pre></p>";
 
+            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'));
+            //echo "<pre>8.$output</pre>";
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "git add" executable in the path)
+            $output=null;
+            $retval=null;
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            echo "<p><pre>8.";
+            print_r($output);
+            echo "</pre></p>";
+
+            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'));
+            //echo "<pre>9.$output</pre>";
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "git add" executable in the path)
+            $output=null;
+            $retval=null;
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            echo "<p><pre>9.";
+            print_r($output);
+            echo "</pre></p>";
 
             ?>
 
