@@ -96,7 +96,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $retval=null;
             exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
-            echo "<p><pre>git clone uploads/git/$namedir.git uploads/publicacion/$namedir";
+            echo "<p><pre>git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
             echo "</pre></p>";
 
@@ -125,8 +125,8 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
-            echo "7a.Returned with status $retval and output:\n";
-            echo "<p><pre>";
+            echo "7.Returned with status $retval and output:\n";
+            echo "<p><pre>7.a";
             print_r($output);
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('sleep 4.5s'));
@@ -140,7 +140,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $retval=null;
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
-            echo "<p><pre>";
+            echo "<p><pre>git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI'";
             print_r($output);
             echo "</pre></p>";
 
