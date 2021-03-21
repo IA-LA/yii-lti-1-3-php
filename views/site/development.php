@@ -90,8 +90,10 @@ $this->title = Yii::$app->params['yiiapp'];
             //echo "<p><pre>";
             //print_r($output);
             //echo "</pre></p>";
+            $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+            echo "<pre>6a.$output</pre>";
             $output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-            echo "<pre>6.$output</pre>";
+            echo "<pre>6b.$output</pre>";
 
             // Add, Commit y Push publicacion
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
