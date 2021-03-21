@@ -84,7 +84,7 @@ $this->title = Yii::$app->params['yiiapp'];
 
             // Proyecto Git
             // Crear Git vacío distribuíble (--bare)
-            $output = shell_exec(escapeshellcmd('git --bare -C ' . $git . '/uploads/git/ init ' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
             echo "<pre>4.$output</pre>";
             // Clonar Git distribuido
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
@@ -94,7 +94,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git clone ' . $git . '/uploads/git/' . $namedir . '.git ' . $git . '/uploads/publicacion/' . $namedir), $output, $retval);
+            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>5.";
             print_r($output);
@@ -124,7 +124,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>7.";
             print_r($output);
@@ -136,7 +136,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ commit'), $output, $retval);
+            exec(escapeshellcmd('git -C /uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>8.";
             print_r($output);
