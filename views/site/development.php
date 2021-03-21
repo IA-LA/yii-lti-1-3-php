@@ -184,7 +184,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
-            $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+            $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'aa';
             exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>";
