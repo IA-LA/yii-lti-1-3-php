@@ -43,23 +43,67 @@ $this->title = Yii::$app->params['yiiapp'];
 
             <?php
 
-            // Carpeta de cargas
+            // Git
             $output = shell_exec(escapeshellcmd('git --version'));
             echo "<pre>$output</pre>";
-            // Carpeta de cargas
-            //$output = shell_exec(escapeshellcmd('git init 10020210319222158000000a'));
-            $output = shell_exec(escapeshellcmd('cd uploads'));
-            echo "<pre>$output</pre>";
-            $output = shell_exec(escapeshellcmd('ls -la'));
-            echo "<pre>$output</pre>";
+            // Carpeta de Git
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "mkdir" executable in the path)
+            $output=null;
+            $retval=null;
+            exec(escapeshellcmd('mkdir uploads/git'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            echo "<p><pre>";
+            print_r($output);
+            echo "</pre></p>";
 
+            // Carpeta de Actividad Git
+            // Convenio de nombre proyecto (24 hex) y carpeta = 'repo_' + id user + fecha y hora + 'a' + '.git'
+            /////////////////////////////////
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "mkdir" executable in the path)
+            $output=null;
+            $retval=null;
+            $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+            exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
+            echo "Returned with status $retval and output:\n";
+            echo "<p><pre>";
+            print_r($output);
+            echo "</pre></p>";
+
+            // Proyecto Git
+            // Crear Git vacío distribuíble (--bare)
+            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+            // Clonar Git distribuido
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git 10020210319222158000000a'));
+
+            // Unzip Actividad .zip
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "unzip" executable in the path)
+            //$output=null;
+            //$retval=null;
+            //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+            //echo "Returned with status $retval and output:\n";
+            //echo "<p><pre>";
+            //print_r($output);
+            //echo "</pre></p>";
+            $output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . 'HolaMundo.txt'));
+
+            // Add, Commit y Push publicacion
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' add .'));
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' commit'));
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' push'));
+
+            // INICIO
             // outputs the username that owns the running php/httpd process
             // (on a system with the "whoami" executable in the path)
             $output=null;
             $retval=null;
             exec('whoami', $output, $retval);
             echo "Returned with status $retval and output:\n";
+            echo "<p><pre>";
             print_r($output);
+            echo "</pre></p>";
 
             //$output = shell_exec(escapeshellcmd('ls -lart'));
             //echo "<pre>$output</pre>";
@@ -94,7 +138,9 @@ $this->title = Yii::$app->params['yiiapp'];
             $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
             exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
+            echo "<p><pre>";
             print_r($output);
+            echo "</pre></p>";
 
             // Descomprime .zip
             // outputs the username that owns the running php/httpd process
