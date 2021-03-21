@@ -8,4 +8,7 @@ return [
     'serverLti2' => 'http://192.168.0.31:49151/servicios/lti/lti13',
     'yiiapp' => 'LTI Server',
     'yiiname' => 'UNED',
+    'git1' => '/root/LTI/yii-lti-1-3-php/web',
+    'git2' => '/home/francisco/LTI/yii-lti-1-3-php/web',
+
 ];

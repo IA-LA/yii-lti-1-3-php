@@ -43,6 +43,17 @@ $this->title = Yii::$app->params['yiiapp'];
 
             <?php
 
+            // Dirección de alojamiento
+            // del servidor de Git
+            //////////////////////
+            /// LOCAL puerto :9000
+            /// GLOBAL puerto:8000 o `.uned.es`
+            ///
+            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
+                $git = Yii::$app->params['git2'];
+            else
+                $git = Yii::$app->params['git1'];
+
             // Git
             $output = shell_exec(escapeshellcmd('git --version'));
             echo "<pre>1. $output</pre>";
@@ -113,7 +124,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>7.";
             print_r($output);
@@ -125,7 +136,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'), $output, $retval);
+            exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ commit'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>8.";
             print_r($output);
@@ -137,13 +148,14 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'), $output, $retval);
+            exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ push'), $output, $retval);
             echo "Returned with status $retval and output:\n";
             echo "<p><pre>9.";
             print_r($output);
             echo "</pre></p>";
 
             // INICIO
+            /////////
             // outputs the username that owns the running php/httpd process
             // (on a system with the "whoami" executable in the path)
             $output=null;
