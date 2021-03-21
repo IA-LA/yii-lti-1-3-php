@@ -85,7 +85,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // Proyecto Git
             // Crear Git vacío distribuíble (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
-            echo "<pre>4.$output . git --bare -C /var/www/html/lti/git/ init $namedir.git</pre>";
+            echo "<pre>4.$output</pre>";
             // Clonar Git distribuido
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
             //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
@@ -96,7 +96,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $retval=null;
             exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "Returned with status $retval and output:\n";
-            echo "<p><pre>5.";
+            echo "<p><pre>5.git clone uploads/git/$namedir.git uploads/publicacion/$namedir";
             print_r($output);
             echo "</pre></p>";
 
@@ -130,8 +130,8 @@ $this->title = Yii::$app->params['yiiapp'];
             print_r($output);
             echo "</pre></p>";
 
-            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'));
-            //echo "<pre>8.$output</pre>";
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'));
+            echo "<pre>8.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
             $output=null;
