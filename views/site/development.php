@@ -77,7 +77,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<pre>4.$output</pre>";
             // Clonar Git distribuido
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
-            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
+            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git /var/www/html/lti/publicacion/' . $namedir));
             echo "<pre>5.$output</pre>";
 
             // Unzip Actividad .zip
@@ -90,15 +90,15 @@ $this->title = Yii::$app->params['yiiapp'];
             //echo "<p><pre>";
             //print_r($output);
             //echo "</pre></p>";
-            $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+            $output = shell_exec(escapeshellcmd('touch /var/www/html/lti/publicacion/' . $namedir . '/HolaMundo.txt'));
             echo "<pre>6a.$output</pre>";
-            $output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+            $output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> /var/www/html/lti/publicacion/' . $namedir . '/HolaMundo.txt'));
             echo "<pre>6b.$output</pre>";
 
             // Add, Commit y Push publicacion
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+            $output = shell_exec(escapeshellcmd('git -C /var/www/html/lti/publicacion/' . $namedir . '/ add .'));
             echo "<pre>7.$output</pre>";
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit'));
+            $output = shell_exec(escapeshellcmd('git -C /var/www/html/lti/publicacion/' . $namedir . '/ commit'));
             echo "<pre>8.$output</pre>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push'));
             echo "<pre>9.$output</pre>";
