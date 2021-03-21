@@ -85,7 +85,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // Proyecto Git
             // Crear Git vacío distribuíble (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C ' . $git . '/uploads/git/ init ' . $namedir . '.git'));
-            echo "<pre>4.$output</pre>";
+            echo "<pre>4.$output . 'git --bare -C ' . $git . '/uploads/git/ init ' . $namedir . '.git'</pre>";
             // Clonar Git distribuido
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
             //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
