@@ -142,7 +142,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git config --global user.email "you@example.com" 2>&1'), $output, $retval);
+            exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>8.a.<br/>";
             print_r($output);
@@ -151,7 +151,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git config --global user.name "Your Name" 2>&1'), $output, $retval);
+            exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>8.b.<br/>";
             print_r($output);
