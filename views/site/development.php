@@ -57,21 +57,21 @@ $this->title = Yii::$app->params['yiiapp'];
             // Git
             $output = shell_exec(escapeshellcmd('git --version'));
             echo "<pre>1. $output</pre>";
+
             // Carpeta de Git
             // outputs the username that owns the running php/httpd process
             // (on a system with the "mkdir" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('mkdir uploads/git'), $output, $retval);
+            exec(escapeshellcmd('mkdir uploads/git 2>&1'), $output, $retval);
             echo "2.Returned with status $retval and output:\n";
             echo "<p><pre>2.a.";
             print_r($output);
             echo "</pre></p>";
-
-            // Carpeta de Actividad Git
             $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/git 2>&1'));
             echo "<pre>2.b. $output</pre>";
 
+            // Carpeta de Actividad Git
             // Convenio de nombre proyecto (24 hex) y carpeta = 'repo_' + id user + fecha y hora + 'a' + '.git'
             /////////////////////////////////
             // outputs the username that owns the running php/httpd process
@@ -79,7 +79,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-            exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
+            exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git 2>&1'), $output, $retval);
             echo "3.Returned with status $retval and output:\n";
             echo "<p><pre>";
             print_r($output);
@@ -91,18 +91,18 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<pre>4.$output</pre>";
 
             // Clonar Git distribuido
-            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
-            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
-            echo "<pre>5.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
             exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
-            echo "<p><pre>git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
+            echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
             echo "</pre></p>";
+            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
+            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
+            echo "<pre>5.b. $output</pre>";
 
             // Unzip Actividad .zip
             // outputs the username that owns the running php/httpd process
@@ -110,16 +110,16 @@ $this->title = Yii::$app->params['yiiapp'];
             //$output=null;
             //$retval=null;
             //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-            //echo "Returned with status $retval and output:\n";
+            //echo "6.Returned with status $retval and output:\n";
             //echo "<p><pre>";
             //print_r($output);
             //echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
             $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-            echo "<pre>6a.$output</pre>";
+            echo "<pre>6.a. $output</pre>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-            //echo "<pre>6b.$output</pre>";
+            //echo "<pre>6.b. $output</pre>";
 
             // Add, Commit y Push publicacion
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
