@@ -63,12 +63,15 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             exec(escapeshellcmd('mkdir uploads/git'), $output, $retval);
-            echo "Returned with status $retval and output:\n";
-            echo "<p><pre>2.";
+            echo "2.Returned with status $retval and output:\n";
+            echo "<p><pre>2.a.";
             print_r($output);
             echo "</pre></p>";
 
             // Carpeta de Actividad Git
+            $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/git 2>&1'));
+            echo "<pre>2.b. $output</pre>";
+
             // Convenio de nombre proyecto (24 hex) y carpeta = 'repo_' + id user + fecha y hora + 'a' + '.git'
             /////////////////////////////////
             // outputs the username that owns the running php/httpd process
@@ -84,7 +87,7 @@ $this->title = Yii::$app->params['yiiapp'];
 
             // Proyecto Git
             // Crear Git vacío distribuíble (--bare)
-            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git 2>&1'));
             echo "<pre>4.$output</pre>";
             // Clonar Git distribuido
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
@@ -94,7 +97,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
+            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
             echo "<p><pre>git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
@@ -112,7 +115,7 @@ $this->title = Yii::$app->params['yiiapp'];
             //echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
-            $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+            $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
             echo "<pre>6a.$output</pre>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6b.$output</pre>";
@@ -124,13 +127,13 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'), $output, $retval);
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1'), $output, $retval);
             echo "7.Returned with status $retval and output:\n";
-            echo "<p><pre>7.a";
+            echo "<p><pre>7.a.<br/>";
             print_r($output);
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('sleep 0.5s'));
-            echo "<pre>7b.$output</pre>";
+            echo "<pre>7.b. $output</pre>";
 
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
             echo "<pre>8.$output</pre>";
@@ -141,8 +144,8 @@ $this->title = Yii::$app->params['yiiapp'];
             //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'), $output, $retval);
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
-            echo "<p><pre>git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI'<br/>";
-            echo "8." . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1');
+            echo "<p><pre>8.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI'<br/>";
+            echo "8.b. " . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1');
             print_r($output);
             echo "</pre></p>";
 
@@ -161,6 +164,7 @@ $this->title = Yii::$app->params['yiiapp'];
 
             // INICIO
             /////////
+            echo "INICIO:\n";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "whoami" executable in the path)
             $output=null;
