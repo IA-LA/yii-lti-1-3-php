@@ -89,10 +89,11 @@ $this->title = Yii::$app->params['yiiapp'];
             // Crear Git vacío distribuíble (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
             echo "<pre>4.$output</pre>";
+
             // Clonar Git distribuido
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
-            //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir));
-            //echo "<pre>5.$output</pre>";
+            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
+            echo "<pre>5.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git clone" executable in the path)
             $output=null;
@@ -121,8 +122,8 @@ $this->title = Yii::$app->params['yiiapp'];
             //echo "<pre>6b.$output</pre>";
 
             // Add, Commit y Push publicacion
-            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
-            //echo "<pre>7.$output</pre>";
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+            echo "<pre>7.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
             $output=null;
@@ -132,12 +133,12 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<p><pre>7.a.<br/>";
             print_r($output);
             echo "</pre></p>";
-            $output = shell_exec(escapeshellcmd('sleep 0.5s'));
-            echo "<pre>7.b. $output</pre>";
+            //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
+            //echo "<pre>7.b. $output</pre>";
 
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
             echo "<pre>8.$output</pre>";
-            $output = shell_exec(escapeshellcmd('git config user.email "' . Yii::$app->user->identity->username . '@example.com"'));
+            $output = shell_exec(escapeshellcmd('git config user.email "' . Yii::$app->user->identity->username . '@lti.server"'));
             echo "<pre>8.a. $output</pre>";
             $output = shell_exec(escapeshellcmd('git config user.name "'. Yii::$app->user->identity->id .'"'));
             echo "<pre>8.a. $output</pre>";
