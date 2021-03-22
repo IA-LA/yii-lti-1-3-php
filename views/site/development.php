@@ -79,7 +79,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-            exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git 2>&1'), $output, $retval);
+            exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
             echo "3.Returned with status $retval and output:\n";
             echo "<p><pre>";
             print_r($output);
