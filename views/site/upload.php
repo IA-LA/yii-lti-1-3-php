@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
 
                 // Carpeta de publicación Actividad
-                $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/publicacion'));
+                $output = shell_exec(escapeshellcmd('mkdir uploads/publicacion'));
                 //echo "<pre>$output</pre>";
 
                 // Carpeta de Actividad cargada y publicada
