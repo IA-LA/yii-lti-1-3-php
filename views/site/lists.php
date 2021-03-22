@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Consulta la información de una Actividad ya registrada por su Id o su Url.
+            Lista la información de una/s Actividad/es ya registrada/s por su Id o su Url.
             Thank you.
         </p>
 
