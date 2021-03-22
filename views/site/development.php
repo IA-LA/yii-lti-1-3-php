@@ -97,7 +97,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'), $output, $retval);
+            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
             echo "<p><pre>git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
