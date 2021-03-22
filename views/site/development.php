@@ -170,12 +170,11 @@ $this->title = Yii::$app->params['yiiapp'];
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'), $output, $retval);
             echo "9.Returned with status $retval and output:\n";
             echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI'";
+            echo "<code>9.c. " . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "</code><br/>";
             print_r($output);
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
             echo "<pre>9.b. $output</pre>";
-            echo "<code>9.c. " . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "</code><br/>";
-
             // Push clonado
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
