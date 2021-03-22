@@ -26,6 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ subido correctamente</p>
             <?php
+
+                // Carpeta de publicación
+                $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/publicacion'));
+                //echo "<pre>$output</pre>";
                 // Carpeta de Actividad cargada y publicada
                 // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
                 /////////////////////////////////
@@ -78,12 +82,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         ////////////////////////////////
 
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
-                        // GET
+                        // REGISTRO
                         ////////////////////////////////
                         echo '<div class="row alert alert-success"><div class="col-lg-6">Puede registrarse esta actividad con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
                              '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
                              //$this->render('_list_item',['model' => $model])
 
+                        // Boton Atras
+                        echo ''<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>';'
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
@@ -96,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
                 }
             ?>
-            <p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>
+
         </div>
 
     <?php else: ?>
