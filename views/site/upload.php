@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                              //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
-                        echo ''<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>';'
+                        echo '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
