@@ -95,14 +95,14 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'), $output, $retval);
+            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
             echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
             echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
-            $output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
-            echo "<pre>5.b. $output</pre>";
+            //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
+            //echo "<pre>5.b. $output</pre>";
 
             // Unzip Actividad .zip
             // outputs the username that owns the running php/httpd process
@@ -117,13 +117,11 @@ $this->title = Yii::$app->params['yiiapp'];
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
             $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-            echo "<pre>6.a. $output</pre>";
+            echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.b. $output</pre>";
 
             // Add, Commit y Push publicacion
-            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
-            echo "<pre>7.$output</pre>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
             $output=null;
@@ -133,8 +131,10 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<p><pre>7.a.<br/>";
             print_r($output);
             echo "</pre></p>";
-            //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
+            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
             //echo "<pre>7.b. $output</pre>";
+            //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
+            //echo "<pre>7.c. $output</pre>";
 
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
             echo "<pre>8.$output</pre>";
