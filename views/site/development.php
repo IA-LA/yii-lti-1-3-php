@@ -142,7 +142,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'), $output, $retval);
+            exec(escapeshellcmd('git config --global user.email "you@example.com" 2>&1'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>8.a.<br/>";
             print_r($output);
@@ -151,7 +151,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git config user.name "'. Yii::$app->user->identity->id .'" 2>&1'), $output, $retval);
+            exec(escapeshellcmd('git config --global user.name "Your Name" 2>&1'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>8.b.<br/>";
             print_r($output);
@@ -174,7 +174,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
             echo "<pre>9.b. $output</pre>";
-            echo "9.c. " . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1');
+            echo "9.c. " . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
 
             // Push clonado
             // outputs the username that owns the running php/httpd process
