@@ -27,9 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ subido correctamente</p>
             <?php
 
-                // Carpeta de publicación
+                // Carpeta de publicación Actividad
                 $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/publicacion'));
                 //echo "<pre>$output</pre>";
+
                 // Carpeta de Actividad cargada y publicada
                 // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
                 /////////////////////////////////
