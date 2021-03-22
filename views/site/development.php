@@ -86,16 +86,16 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "</pre></p>";
 
             // Proyecto Git
-            // Crear Git vacío distribuíble (--bare)
+            // Crear Git vacío distribuido (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
             echo "<pre>4.$output</pre>";
 
-            // Clonar Git distribuido
+            // Clonar Git distribuido (--bare)
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
+            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
             echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
