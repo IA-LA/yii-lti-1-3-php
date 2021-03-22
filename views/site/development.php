@@ -186,6 +186,7 @@ $this->title = Yii::$app->params['yiiapp'];
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'), $output, $retval);
             echo "10.Returned with status $retval and output:\n";
             echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
+            echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
