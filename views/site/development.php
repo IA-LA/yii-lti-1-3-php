@@ -151,7 +151,8 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
+            //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>8.a.<br/>";
             echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
@@ -161,7 +162,8 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
+            //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
+            exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
             echo "8.Returned with status $retval and output:\n";
             echo "<p><pre>8.b.<br/>";
             echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
