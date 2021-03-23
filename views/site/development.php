@@ -115,17 +115,18 @@ $this->title = Yii::$app->params['yiiapp'];
             // Unzip Actividad .zip
             // outputs the username that owns the running php/httpd process
             // (on a system with the "unzip" executable in the path)
-            //$output=null;
-            //$retval=null;
+            $output=null;
+            $retval=null;
             //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-            //echo "6.Returned with status $retval and output:\n";
-            //echo "<p><pre>";
-            //print_r($output);
-            //echo "</pre></p>";
+            exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+            echo "6.Returned with status $retval and output:\n";
+            echo "<p><pre> 6.a. <br/>";
+            print_r($output);
+            echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
-            $output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-            echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
+            //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
+            //echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.b. $output</pre>";
 
@@ -145,7 +146,7 @@ $this->title = Yii::$app->params['yiiapp'];
             //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
             //echo "<pre>7.c. $output</pre>";
 
-            // Commit Configç
+            // Commit Config
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git add" executable in the path)
             $output=null;
