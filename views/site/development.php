@@ -88,7 +88,13 @@ $this->title = Yii::$app->params['yiiapp'];
             // Proyecto Git
             // Crear Git vacío distribuido (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
-            echo "<pre>4.$output</pre>";
+            echo "<pre>4.a. $output</pre>";
+            // Permisos carptetas Git ./object y ./refs
+            $output = shell_exec(escapeshellcmd('chmod uploads/git/ init ' . $namedir . '.git/objects/'));
+            echo "<pre>4.b. $output</pre>";
+            // Permisos carptetas Git ./object y ./refs
+            $output = shell_exec(escapeshellcmd('chmod uploads/git/ init ' . $namedir . '.git/refs/'));
+            echo "<pre>4.c. $output</pre>";
 
             // Clonar Git distribuido (--bare)
             // outputs the username that owns the running php/httpd process
