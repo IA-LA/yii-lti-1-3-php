@@ -88,7 +88,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // Proyecto Git
             // Crear Git vacío distribuido (--bare)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
-            echo "<pre>4.a. $output</pre>";
+            echo "<pre>4.$output</pre>";
 
             // Clonar Git distribuido (--bare)
             // outputs the username that owns the running php/httpd process
