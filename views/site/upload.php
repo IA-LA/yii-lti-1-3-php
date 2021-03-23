@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     // Git
                     $output = shell_exec(escapeshellcmd('git --version'));
-                    echo "<pre>1. $output</pre>";
+                    //echo "<pre>1. $output</pre>";
 
                     // Carpeta de Git
                     // outputs the username that owns the running php/httpd process
@@ -79,12 +79,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     exec(escapeshellcmd('mkdir uploads/git 2>&1'), $output, $retval);
-                    echo "2.Returned with status $retval and output:\n";
-                    echo "<p><pre>2.a.";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "2.Returned with status $retval and output:\n";
+                    //echo "<p><pre>2.a.";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/git 2>&1'));
-                    echo "<pre>2.b. $output</pre>";
+                    //echo "<pre>2.b. $output</pre>";
 
                     // Carpeta de Actividad Git
                     // Convenio de nombre proyecto (24 hex) y carpeta = 'repo_' + id user + fecha y hora + 'a' + '.git'
@@ -95,23 +95,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     $retval=null;
                     $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                     exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
-                    echo "3.Returned with status $retval and output:\n";
-                    echo "<p><pre>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "3.Returned with status $retval and output:\n";
+                    //echo "<p><pre>";
+                    //print_r($output);
+                    //echo "</pre></p>";
 
                     // Proyecto Git
                     // Crear Git vacío distribuido (--bare)
                     $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
-                    echo "<pre>4.a. $output</pre>";
+                    //echo "<pre>4.a. $output</pre>";
                     // Permisos carptetas Git ./object y ./refs
                     $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
-                    echo "<pre>4.b. $output</pre>";
-                    echo "4.a.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
+                    //echo "<pre>4.b. $output</pre>";
+                    //echo "4.a.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
                     // Permisos carptetas Git ./object y ./refs
                     $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1'));
-                    echo "<pre>4.c. $output</pre>";
-                    echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
+                    //echo "<pre>4.c. $output</pre>";
+                    //echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
 
                     // Clonar Git distribuido (--bare)
                     // outputs the username that owns the running php/httpd process
@@ -119,10 +119,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
-                    echo "5.Returned with status $retval and output:\n";
-                    echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "5.Returned with status $retval and output:\n";
+                    //echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
                     //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
                     //echo "<pre>5.b. $output</pre>";
@@ -144,12 +144,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     $retval=null;
                     exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
-                    echo "6.Returned with status $retval and output:\n";
+                    //echo "6.Returned with status $retval and output:\n";
                     //echo "Returned with status $retval and output:\n";
-                    echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    echo "<p><pre> 6.a. Unzip<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
+                    //echo "<p><pre> 6.a. Unzip<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                     //echo "<pre>6.$output</pre>";
                     //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
@@ -164,10 +164,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
-                    echo "7.Returned with status $retval and output:\n";
-                    echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "7.Returned with status $retval and output:\n";
+                    //echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
                     //echo "<pre>7.b. $output</pre>";
                     //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
@@ -180,26 +180,26 @@ $this->params['breadcrumbs'][] = $this->title;
                     $retval=null;
                     //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
-                    echo "8.Returned with status $retval and output:\n";
-                    echo "<p><pre>8.a.<br/>";
-                    echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "8.Returned with status $retval and output:\n";
+                    //echo "<p><pre>8.a.<br/>";
+                    //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     // outputs the username that owns the running php/httpd process
                     // (on a system with the "git add" executable in the path)
                     $output=null;
                     $retval=null;
                     //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
-                    echo "8.Returned with status $retval and output:\n";
-                    echo "<p><pre>8.b.<br/>";
-                    echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "8.Returned with status $retval and output:\n";
+                    //echo "<p><pre>8.b.<br/>";
+                    //echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
-                    echo "<pre>8.c. $output</pre>";
+                    //echo "<pre>8.c. $output</pre>";
                     $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
-                    echo "<pre>8.d. $output</pre>";
+                    //echo "<pre>8.d. $output</pre>";
 
                     // Commit -m "Init Commit Server LTI"
                     // outputs the username that owns the running php/httpd process
@@ -208,13 +208,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     $retval=null;
                     //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'), $output, $retval);
-                    echo "9.Returned with status $retval and output:\n";
-                    echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
-                    echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "9.Returned with status $retval and output:\n";
+                    //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
+                    //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
-                    echo "<pre>9.b. $output</pre>";
+                    //echo "<pre>9.b. $output</pre>";
+
                     // Push clonado
                     // outputs the username that owns the running php/httpd process
                     // (on a system with the "git add" executable in the path)
@@ -222,13 +223,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     $retval=null;
                     //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
-                    echo "10.Returned with status $retval and output:\n";
-                    echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
-                    echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
-                    print_r($output);
-                    echo "</pre></p>";
+                    //echo "10.Returned with status $retval and output:\n";
+                    //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
+                    //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
                     $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
-                    echo "<pre>10.b. $output</pre>";
+                    //echo "<pre>10.b. $output</pre>";
 
                     // Git, UNZIP y Publicacion sin errores
                     if($retval === 0) {
