@@ -166,9 +166,9 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
-            $output = shell_exec(escapeshellcmd('git config user.email "' . Yii::$app->user->identity->username . '@lti.server"'));
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
             echo "<pre>8.c. $output</pre>";
-            $output = shell_exec(escapeshellcmd('git config user.name "'. Yii::$app->user->identity->id .'"'));
+            $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
             echo "<pre>8.d. $output</pre>";
 
             // Commit -m "Init Commit Server LTI"
