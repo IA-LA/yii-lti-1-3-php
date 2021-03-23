@@ -248,8 +248,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // REGISTRO
                         ////////////////////////////////
-                        echo '<p class="row alert alert-success"><div class="col-lg-6">Puede registrarse esta actividad con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                             '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></p>';
+                        echo '<span class="row alert alert-success"><div class="col-lg-6">Puede registrarse esta actividad con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                             '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></span>';
                              //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
