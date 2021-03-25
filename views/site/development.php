@@ -135,7 +135,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "6.Returned with status $retval and output:\n";
             echo "<p><pre> 6.a. Unzip<br/>";
             print_r($output);
-            echo "8.a.PassThru " . passthru('unzip -Z uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            echo "8.a.PassThru " . passthru('unzip -Z uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
             echo "8.a.PassThru " . passthru('unzip -K -X uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
             echo "8.a.PassThru " . passthru('unzip -o uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
             echo "</pre></p>";
