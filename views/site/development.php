@@ -123,7 +123,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "6.Returned with status $retval and output:\n";
             echo "<p><pre> 6.a. Umask<br/>";
             print_r($output);
-            echo "8.a.PassThru " . passthru('umask 0022 2>&1') . "<br/>";
+            echo "8.a.PassThru " . passthru('umask 0000 2>&1') . "<br/>";
             echo "</pre></p>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "unzip" executable in the path)
@@ -135,7 +135,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "6.Returned with status $retval and output:\n";
             echo "<p><pre> 6.a. Unzip<br/>";
             print_r($output);
-            echo "8.a.PassThru " . passthru('unzip -o uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            //echo "8.a.PassThru " . passthru('unzip -o uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
             echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
