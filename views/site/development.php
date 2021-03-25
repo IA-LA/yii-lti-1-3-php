@@ -118,13 +118,15 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-            exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+            //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+            exec(escapeshellcmd('unzip uploads/b24679402957c63ec426-5c4f62c1e50c1e6654e76e873aba3df2b0cdeea2.zip -d uploads/publicacion/' . $namedir), $output, $retval);
             echo "6.Returned with status $retval and output:\n";
             echo "<p><pre> 6.a. Unzip<br/>";
             print_r($output);
             echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
+            //TODO añadir index.html en el respositorio .git
             //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
             //echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
