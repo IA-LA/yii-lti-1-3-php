@@ -119,7 +119,7 @@ $this->title = Yii::$app->params['yiiapp'];
             $retval=null;
             //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
             //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
-            exec(escapeshellcmd('unzip uploads/b24679402957c63ec426-5c4f62c1e50c1e6654e76e873aba3df2b0cdeea2.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+            exec(escapeshellcmd('unzip uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir), $output, $retval);
             echo "6.Returned with status $retval and output:\n";
             echo "<p><pre> 6.a. Unzip<br/>";
             print_r($output);
