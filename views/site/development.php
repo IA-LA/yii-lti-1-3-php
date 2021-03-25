@@ -136,6 +136,8 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<p><pre> 6.a. Unzip<br/>";
             print_r($output);
             echo "8.a.PassThru " . passthru('unzip -Z uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            echo "8.a.PassThru " . passthru('unzip -K -X uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            echo "8.a.PassThru " . passthru('unzip -o uploads/600ff7059d5e4d1174e7c425_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
             echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
