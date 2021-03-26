@@ -35,7 +35,9 @@ class ListsForm extends Model
                 'whenClient' => "function (attribute, value) { return $('#id').val() == '00000000000000000000000'; }"
             ],
             // id has to be a valid ID hexadecimal 24 character address
-            ['id', 'match', 'pattern'=>"/^([a-f,0-9]{24})|[*]$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: `5fc3860a81740b0ef098a965` or the wildcard * to list all register.'],
+            //['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: `5fc3860a81740b0ef098a965`'],
+            //['id', 'match', 'pattern'=>"/^([a-f,0-9]{24})|[*]$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: `5fc3860a81740b0ef098a965` or the wildcard * to list all registers.'],
+            ['id', 'match', 'pattern'=>"/^([a-f,0-9]{24})|[*]$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: `5fc3860a81740b0ef098a965` or the wildcard * to list all registers.'],
             // url has to be a valid URL address
             ['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
