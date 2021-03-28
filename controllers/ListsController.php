@@ -13,21 +13,30 @@ class ListsController extends Controller
 {
     public function actionIndex()
     {
-        $provider = new ArrayDataProvider([
-            'allModels' => $this->getFakedModels(),
-            'pagination' => [
-                'pageSize' => 5
-            ],
-            'sort' => [
-                'attributes' => ['id'],
-            ],
-        ]);
+        if (!isset($title)){
+            $provider = new ArrayDataProvider([
+                'allModels' => $this->getFakedModels(),
+                'pagination' => [
+                    'pageSize' => 5
+                ],
+                'sort' => [
+                    'attributes' => ['id'],
+                ],
+            ]);
 
-        return $this->render('index', [
-            'title' => 'Listado',
-            'return' => 'lists',
-            'listDataProvider' => $provider
-        ]);
+            return $this->render('index', [
+                'title' => 'Listado',
+                'return' => 'lists',
+                'listDataProvider' => $provider
+            ]);
+        }
+        else{
+            return $this->render('index', [
+                'title' => $title,
+                'return' => $return,
+                'listDataProvider' => $listDataProvider
+            ]);
+        }
     }
 
     // function to generate faked models, don't care about this.

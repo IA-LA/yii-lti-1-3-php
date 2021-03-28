@@ -631,7 +631,20 @@ exit(0);
                     }
 
                     // Listado ListView
-                    $this->redirect(array('lists/index'));
+                    $this->redirect(array('lists/index',
+                        'title' => 'Listado',
+                        'return' => 'lists',
+                        'model' => $model,
+                        'listDataProvider' => new ArrayDataProvider([
+                            'allModels' => $responseModels,
+                            'pagination' => [
+                                'pageSize' => 5
+                            ],
+                            'sort' => [
+                                'attributes' => ['id'],
+                            ],
+                        ])
+                    ));
                     return $this->render('//lists/index', [
                         'title' => 'Listado',
                         'return' => 'lists',
