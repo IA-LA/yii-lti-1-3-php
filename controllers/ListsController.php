@@ -14,6 +14,8 @@ class ListsController extends Controller
     public function actionIndex()
     {
         $provider = new ArrayDataProvider([
+            'title' => 'Listado',
+            'return' => 'lists',
             'allModels' => $this->getFakedModels(),
             'pagination' => [
                 'pageSize' => 5
