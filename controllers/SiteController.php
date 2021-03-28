@@ -632,6 +632,7 @@ exit(0);
 
                     // Listado ListView
                     return $this->render('//lists/index', [
+                        'model' => '//lists/index',
                         'title' => 'Listado',
                         'return' => 'lists',
                         'listDataProvider' => new ArrayDataProvider([
