@@ -35,8 +35,9 @@ class ListsController extends Controller
 
         for ($i = 1; $i < 18; $i++) {
             $fakedItem = [
+                //'list' => 'Listado',
                 'id' => $i,
-                'title' => 'Title ' . $i,
+                'title' => 'Actividad ' . $i,
                 'image' => 'http://placehold.it/300x200',
                 'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
             ];
