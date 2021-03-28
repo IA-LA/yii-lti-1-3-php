@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Lista la información de una/s Actividad/es ya registrada/s por su Id o su Url.
+            Lista la información de una/s Actividad/es ya registrada/s por su Id o su Url. Admite el comodín * (*, HH..HH*, *HH..HH *HH..HH*)
             Thank you.
         </p>
 
