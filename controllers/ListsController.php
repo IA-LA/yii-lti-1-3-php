@@ -1,5 +1,5 @@
 <?php
-// YOUR_APP/controllers/ListController.php
+// YOUR_APP/controllers/ListsController.php
 
 /* change namespace in your app */
 //namespace frontend\controllers;
