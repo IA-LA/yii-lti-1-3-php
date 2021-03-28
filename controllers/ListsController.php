@@ -14,8 +14,6 @@ class ListsController extends Controller
     public function actionIndex()
     {
         $provider = new ArrayDataProvider([
-            'title' => 'Listado',
-            'return' => 'lists',
             'allModels' => $this->getFakedModels(),
             'pagination' => [
                 'pageSize' => 5
@@ -25,7 +23,11 @@ class ListsController extends Controller
             ],
         ]);
 
-        return $this->render('index', ['listDataProvider' => $provider]);
+        return $this->render('index', [
+            'title' => 'Listado',
+            'return' => 'lists',
+            'listDataProvider' => $provider
+        ]);
     }
 
     // function to generate faked models, don't care about this.
