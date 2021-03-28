@@ -631,6 +631,7 @@ exit(0);
                     }
 
                     // Listado ListView
+                    $this->redirect(array('lists/index'));
                     return $this->render('//lists/index', [
                         'title' => 'Listado',
                         'return' => 'lists',
