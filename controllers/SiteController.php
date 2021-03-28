@@ -631,6 +631,19 @@ exit(0);
                     }
 
                     // Listado ListView
+                    return $this->render('//lists/index', [
+                        'title' => 'Listado',
+                        'return' => 'lists',
+                        'listDataProvider' => new ArrayDataProvider([
+                            'allModels' => $responseModels,
+                            'pagination' => [
+                                'pageSize' => 5
+                            ],
+                            'sort' => [
+                                'attributes' => ['id'],
+                            ],
+                        ]),
+                    ]);
                     $this->redirect(array('lists/index',
                         'title' => 'Listado',
                         'return' => 'lists',
@@ -645,20 +658,6 @@ exit(0);
                             ],
                         ])
                     ));
-                    return $this->render('//lists/index', [
-                        'title' => 'Listado',
-                        'return' => 'lists',
-                        'model' => $model,
-                        'listDataProvider' => new ArrayDataProvider([
-                            'allModels' => $responseModels,
-                            'pagination' => [
-                                'pageSize' => 5
-                            ],
-                            'sort' => [
-                                'attributes' => ['id'],
-                            ],
-                        ]),
-                    ]);
                 } else { // BAD REQUEST
                     $content = '<div><p/><p/><p/>';
                     $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('ListsForm...', 'error') . '</p>';
