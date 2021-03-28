@@ -634,6 +634,7 @@ exit(0);
                     return $this->render('//lists/index', [
                         'title' => 'Listado',
                         'return' => 'lists',
+                        'model' => $model,
                         'listDataProvider' => new ArrayDataProvider([
                             'allModels' => $responseModels,
                             'pagination' => [
