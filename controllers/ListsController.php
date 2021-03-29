@@ -15,7 +15,7 @@ class ListsController extends Controller
     {
         // GET params
         $title = Yii::$app->request->getQuery('title');
-        if (!isset($title)){
+        if (!isset($_GET['title'])){
             $provider = new ArrayDataProvider([
                 'allModels' => $this->getFakedModels(),
                 'pagination' => [
