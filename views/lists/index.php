@@ -55,3 +55,62 @@ use yii\helpers\Html;
 <div class="footer">
 </div>
 
+<div class=“resp-table”>
+    <div class=“resp-table-caption”>
+        Responsive Table without Table tag
+    </div>
+    <div class=“table-header-cell”>
+        Header 1
+    </div>
+    <div class=“table-header-cell”>
+        Header 2
+    </div>
+    <div class=“table-header-cell”>
+        Header 3
+    </div>
+    <div class=“table-header-cell”>
+        Header 4
+    </div>
+    <div class=“table-header-cell”>
+        Header 5
+    </div>
+
+    <div class=“resp-table-body”>
+        <div class=“resp-table-row”>
+            <div class=“table-body-cell”>
+                Cell 1–1
+            </div>
+            <div class=“table-body-cell”>
+                Cell 1–2
+            </div>
+            <div class=“table-body-cell”>
+                Cell 1–3
+            </div>
+            <div class=“table-body-cell”>
+                Cell 1–4
+            </div>
+            <div class=“table-body-cell”>
+                Cell 1–5
+            </div>
+        </div>
+    </div>
+
+    <div class=“resp-table-footer”>
+        <div class=“table-footer-cell”>
+            Footer 1
+        </div>
+        <div class=“table-footer-cell”>
+            Footer 2
+        </div>
+        <div class=“table-footer-cell”>
+            Footer 3
+        </div>
+        <div class=“table-footer-cell”>
+            Footer 4
+        </div>
+        <div class=“table-footer-cell”>
+            Footer 5
+        </div>
+    </div>
+</div>
+
