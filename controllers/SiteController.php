@@ -635,15 +635,6 @@ exit(0);
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,
-                        'listDataProvider' => new ArrayDataProvider([
-                            'allModels' => $responseModels,
-                            'pagination' => [
-                                'pageSize' => 5
-                            ],
-                            'sort' => [
-                                'attributes' => ['id'],
-                            ],
-                        ]),
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
                         'formulario' => 'ListsForm',
