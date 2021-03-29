@@ -531,15 +531,15 @@ exit(0);
             if ($model->load($request = Yii::$app->request->post()) && $model->lists(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('listsFormSubmitted');
 
-                    // Listado ListView
-                    $this->redirect(array('lists/index',
-                        'title' => 'Listado',
-                        'return' => 'lists',
-                        'model' => $model,
-                        'id' => Yii::$app->request->post('ListsForm')['id'],
-                        'url' => Yii::$app->request->post('ListsForm')['url'],
-                        'formulario' => 'ListsForm',
-                    ));
+                // Listado ListView
+                $this->redirect(array('lists/index',
+                    'title' => 'Listado',
+                    'return' => 'lists',
+                    'model' => $model,
+                    'id' => Yii::$app->request->post('ListsForm')['id'],
+                    'url' => Yii::$app->request->post('ListsForm')['url'],
+                    'formulario' => 'ListsForm',
+                ));
 
             } else { // BAD REQUEST
                 $content = '<div><p/><p/><p/>';
@@ -557,15 +557,15 @@ exit(0);
                     '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Atrás</a></p>
                 </div>';
                 $content .= '</div>';
+
+                return $this->renderContent($content);
+                //return $this->refresh();
             }
 
-            return $this->renderContent($content);
-            //return $this->refresh();
+            return $this->render('lists', [
+                'model' => $model,
+            ]);
         }
-
-        return $this->render('lists', [
-            'model' => $model,
-        ]);
     }
 
     /*DELETE*/
