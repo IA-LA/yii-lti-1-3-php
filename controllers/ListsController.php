@@ -35,9 +35,9 @@ class ListsController extends Controller
         }
         else{
             return $this->render('index', [
-                'title' => $_GET['title'],
-                //'return' => $return,
-                //'listDataProvider' => $listDataProvider
+                'title' => $params['title'],
+                'return' => $params['return'],
+                'listDataProvider' => $params['listDataProvider']
             ]);
         }
     }
