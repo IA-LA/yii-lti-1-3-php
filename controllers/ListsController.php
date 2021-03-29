@@ -37,7 +37,7 @@ class ListsController extends Controller
             return $this->render('index', [
                 'title' => $params['title'],
                 'return' => $params['return'],
-                'listDataProvider' => $params['listDataProvider']
+                'listDataProvider' => $params['listDataProvider'][0]
             ]);
         }
     }
