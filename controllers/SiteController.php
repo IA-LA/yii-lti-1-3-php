@@ -527,167 +527,45 @@ exit(0);
         else {
             $model = new ListsForm();
 
-            // Información servidor
-            //  https://www.php.net/manual/es/function.header.php
-            ///////////////////////
-            if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
-                $url = "https://";
-            else
-                $url = "http://";
-            // Append the host(domain name, ip) to the URL.
-            $url .= $_SERVER['HTTP_HOST'];
-
-            // Append the requested resource location to the URL
-            //$url.= $_SERVER['REQUEST_URI'];
-            //echo $_REQUEST['target_link_uri'];
-
-            // Llamadas REST
-            //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
-            //  https://www.php.net/manual/en/context.http.php
-            // Obtiene la configuración de las actividades con una llamada de lectura `GET`
-            // al servidor de SERVICIOS
-            ///////////////////
-            /// LOCAL puerto :9000
-            /// GLOBAL puerto:8000 o `.uned.es`
-            ///
-            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
-                $url = Yii::$app->params['serverLti2'];
-            else
-                $url = Yii::$app->params['serverLti1'];
-
             //Envío del Formulario de Consulta
             if ($model->load($request = Yii::$app->request->post()) && $model->lists(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('listsFormSubmitted');
-
-                // GET Lists (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
-                $client = new Client();
-
-                if (Yii::$app->request->post('ListsForm')['id'] !== '') {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
-                    $ruta = '/read/all/coleccion/Lti/id_actividad/' . Yii::$app->request->post('ListsForm')['id'];
-                } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                    $ruta = '/read/all/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('ListsForm')['url']));
-                }
-
-                // Exception GET LTI1
-                try {
-                    $response = $client->createRequest()
-                        ->setFormat(Client::FORMAT_JSON)
-                        //->setMethod('POST')
-                        ->setMethod('GET')
-                        ->setUrl($url . $ruta) //$_POST['ListsForm']['id'])
-                        ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
-                        ->setOptions([
-                            //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                            'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
-                        ])
-                        ->send();
-                }
-                catch (Exception $e1) {
-                    // Exception GET LTI2
-                    try {
-                    }
-                    catch (Exception $e2) {
-                    }
-                }
-                if ($response->isOk && $response->data['result'] === 'ok') {
-                    // TODO crear ARRAY con todas las respuestas
-                    // TODO crearListDataProvider();
-                    $responseModels = [];
-
-                    // Actividad múltiple/única
-                    if(!array_key_exists('_id', $response->data['data'])) {
-                        //foreach ($request as $key => $value){
-                        //    echo "{$key} => {$value} ";
-                        foreach ($response->data['data'] as $index => $value){
-                            //print(json_decode($index['data'], true));
-                            //if($index >= 0) {
-                                $responseItem = [
-                                    //'list' => $index,//'Listado',
-                                    'id' => $value['_id'],
-                                    'title' => 'Actividad ' . $value['launch_parameters']['iss'],
-                                    'image' => 'http://placehold.it/300x200',
-                                    'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
-                                ];
-                                $responseModels[] = $responseItem;
-                            //}
-                            //else{
-                                //    echo "{$index} => " . $value;
-                                //    echo "{$index} => " . $value['user']['email'];
-
-                            //}
-                        }
-                    }
-                    else{
-                        $responseItem = [
-                            //'list' => 'Listado',
-                            'id' => $response->data['data']['_id'],
-                            'title' => 'Actividad ' . $response->data['data']['launch_parameters']['iss'],
-                            'image' => 'http://placehold.it/300x200',
-                            'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
-                        ];
-                        $responseModels[] = $responseItem;
-                    }
 
                     // Listado ListView
                     $this->redirect(array('lists/index',
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,
-                        'listDataProvider' => new ArrayDataProvider([
-                            'allModels' => $responseModels,
-                            'pagination' => [
-                                'pageSize' => 5
-                            ],
-                            'sort' => [
-                                'attributes' => ['id'],
-                            ],
-                        ]),
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
                         'formulario' => 'ListsForm',
                     ));
-                    return $this->render('//lists/index', [
-                        'title' => 'Listado',
-                        'return' => 'lists',
-                        'model' => $model,
-                        'listDataProvider' => new ArrayDataProvider([
-                            'allModels' => $responseModels,
-                            'pagination' => [
-                                'pageSize' => 5
-                            ],
-                            'sort' => [
-                                'attributes' => ['id'],
-                            ],
-                        ]),
-                    ]);
-                } else { // BAD REQUEST
-                    $content = '<div><p/><p/><p/>';
-                    $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('ListsForm...', 'error') . '</p>';
-                    //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
-                    //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
-                    //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
-                    //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
-                    $content .= '<div class="jumbotron">
-                        <h1>Error</h1>
-                        <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
-                        'ID:  <code>' . Yii::$app->request->post('ListsForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('ListsForm')['url'] . '</code><br/>' .
-                        '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Atrás</a></p>
-                    </div>';
-                    $content .= '</div>';
-                }
 
-                return $this->renderContent($content);
-                //return $this->refresh();
+            } else { // BAD REQUEST
+                $content = '<div><p/><p/><p/>';
+                $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('ListsForm...', 'error') . '</p>';
+                //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
+                //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
+                //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
+                //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
+                $content .= '<div class="jumbotron">
+                    <h1>Error</h1>
+                    <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
+                    'ID:  <code>' . Yii::$app->request->post('ListsForm')['id'] . '</code><br/>' .
+                    'URL: <code>' . Yii::$app->request->post('ListsForm')['url'] . '</code><br/>' .
+                    '<p/><p/><p/>' .
+                    '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Atrás</a></p>
+                </div>';
+                $content .= '</div>';
             }
 
-            return $this->render('lists', [
-                'model' => $model,
-            ]);
+            return $this->renderContent($content);
+            //return $this->refresh();
         }
+
+        return $this->render('lists', [
+            'model' => $model,
+        ]);
     }
 
     /*DELETE*/
