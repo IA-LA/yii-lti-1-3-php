@@ -13,6 +13,8 @@ class ListsController extends Controller
 {
     public function actionIndex()
     {
+        // GET params
+        $title = Yii::$app->request->getQueryParams();
         if (!isset($title)){
             $provider = new ArrayDataProvider([
                 'allModels' => $this->getFakedModels(),
