@@ -30,9 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     LTI y como base de un proyecto Git que permita trabajar en él de forma distribuida.</p>
 
                 <ol>
-                    <li><code>DONE</code> Subir y publicar .zip eContent URL `uploads/publicacion/IdDateTimea/`</li>
-                    <li><code>TODO</code> Proyectar en Git la Actividad registrada como `repo_IdDateTimea.git`</li>
-                    <li><code>TODO</code> Registrar auto URL de publicación eContent</li>
+                    <li><code>DONE</code> Subir `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
+                    <li><code>DONE</code> Proyectar en Git la Actividad registrada como `git/IdDateTimea.git`</li>
+                    <li><code>TODO</code> Registrar las subidas de .zip, publicación y proyecto en BBDD.</li>
+                    <li><code>TODO</code> Registrar Servidor LTI automáticamente ID + URL de publicación eContent</li>
                     <li><code>TODO</code> Proveer la Actividad eContent en EdX y Moodle</li>
                 </ol>
 
