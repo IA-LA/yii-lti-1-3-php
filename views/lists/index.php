@@ -8,9 +8,6 @@ use yii\helpers\Html;
     <h3><?= Html::encode($title); ?></h3>
 </div>
 <div class="row">
-    <h5>
-        TITULO    ISS        LAUNCH URL                SYMBOL    DATE
-    </h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',
