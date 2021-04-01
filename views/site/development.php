@@ -86,8 +86,11 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "</pre></p>";
 
             // Proyecto Git
-            // Crear Git vacío distribuido (--bare)
-            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+            // Crear Git vacío distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
+            $output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
+            echo "<pre>4.post-update. $output</pre>";
+            $output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
+            $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
             echo "<pre>4.a. $output</pre>";
             // Permisos carptetas Git ./object y ./refs
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
@@ -98,7 +101,7 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<pre>4.c. $output</pre>";
             echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
 
-            // Clonar Git distribuido (--bare)
+            // Clonar Git distribuido (--bare --shared)
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git clone" executable in the path)
             $output=null;
