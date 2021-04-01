@@ -87,8 +87,8 @@ $this->title = Yii::$app->params['yiiapp'];
 
             // Proyecto Git
             // Crear Git vacío distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
-            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
-            //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
+            //$output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
             echo "<pre>4.post-update. $output</pre>";
             $output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
@@ -127,21 +127,21 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "6.Returned with status $retval and output:\n";
             echo "<p><pre> 6.a. Umask<br/>";
             print_r($output);
-            echo "8.a.PassThru " . passthru('umask 0000 2>&1') . "<br/>";
+            echo "6.a.PassThru " . passthru('umask 0000 2>&1') . "<br/>";
             echo "</pre></p>";
             // outputs the username that owns the running php/httpd process
             // (on a system with the "unzip" executable in the path)
             $output=null;
             $retval=null;
             //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-            //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
-            exec(escapeshellcmd('unzip -K -X -o uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' -o'), $output, $retval);
-            echo "6.Returned with status $retval and output:\n";
-            echo "<p><pre> 6.a. Unzip<br/>";
+            exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+            // exec(escapeshellcmd('unzip -K -X -o uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' -o'), $output, $retval);
+            echo "7.Returned with status $retval and output:\n";
+            echo "<p><pre> 7.a. Unzip<br/>";
             print_r($output);
-            echo "8.a.PassThru " . passthru('unzip -Z uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
-            echo "8.a.PassThru " . passthru('unzip -K -X uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
-            echo "8.a.PassThru " . passthru('unzip -o uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            //echo "7.a.PassThru " . passthru('unzip -Z uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            //echo "7.a.PassThru " . passthru('unzip -K -X uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+            //echo "7.a.PassThru " . passthru('unzip -o uploads/604b26121513a45112903905_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4d.zip -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
             echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
             //echo "<pre>6.$output</pre>";
@@ -158,8 +158,8 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
-            echo "7.Returned with status $retval and output:\n";
-            echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
+            echo "8.Returned with status $retval and output:\n";
+            echo "<p><pre>8.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
             print_r($output);
             echo "</pre></p>";
             //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
@@ -174,9 +174,9 @@ $this->title = Yii::$app->params['yiiapp'];
             $retval=null;
             //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
-            echo "8.Returned with status $retval and output:\n";
-            echo "<p><pre>8.a.<br/>";
-            echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
+            echo "9.Returned with status $retval and output:\n";
+            echo "<p><pre>9.a.<br/>";
+            echo "9.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
             // outputs the username that owns the running php/httpd process
@@ -185,15 +185,15 @@ $this->title = Yii::$app->params['yiiapp'];
             $retval=null;
             //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
-            echo "8.Returned with status $retval and output:\n";
-            echo "<p><pre>8.b.<br/>";
-            echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
+            echo "9.Returned with status $retval and output:\n";
+            echo "<p><pre>9.b.<br/>";
+            echo "9.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
-            echo "<pre>8.c. $output</pre>";
+            echo "<pre>9.c. $output</pre>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
-            echo "<pre>8.d. $output</pre>";
+            echo "<pre>9.d. $output</pre>";
 
             // Commit -m "Init Commit Server LTI"
             // outputs the username that owns the running php/httpd process
