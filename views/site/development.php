@@ -87,7 +87,8 @@ $this->title = Yii::$app->params['yiiapp'];
 
             // Proyecto Git
             // Crear Git vacío distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
-            $output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+            //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
             echo "<pre>4.post-update. $output</pre>";
             $output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
