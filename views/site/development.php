@@ -93,10 +93,12 @@ $this->title = Yii::$app->params['yiiapp'];
             $output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
             echo "<pre>4.a. $output</pre>";
+            echo "4.a.PassThru " . passthru('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
+            echo "4.a.PassThru " . passthru('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             // Permisos carptetas Git ./object y ./refs
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
             echo "<pre>4.b. $output</pre>";
-            echo "4.a.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
+            echo "4.b.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
             // Permisos carptetas Git ./object y ./refs
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1'));
             echo "<pre>4.c. $output</pre>";
