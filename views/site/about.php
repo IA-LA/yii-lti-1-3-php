@@ -31,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <ol>
                     <li><code>DONE</code> Subir `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
-                    <li><code>DONE</code> Proyectar en Git la Actividad registrada como `git/IdDateTimea.git`</li>
-                    <li><code>TODO</code> Registrar las subidas de .zip, publicación y proyecto en BBDD.</li>
-                    <li><code>TODO</code> Registrar Servidor LTI automáticamente ID + URL de publicación eContent</li>
-                    <li><code>TODO</code> Proveer la Actividad eContent en EdX y Moodle</li>
+                    <li><code>DONE</code> Proyectar en Git la Actividad (eContrent) registrada como `git/IdDateTimea.git`</li>
+                    <li><code>TODO</code> Registrar las subidas de .zip, publicación y proyecto en la colección de la BBDD.</li>
+                    <li><code>TODO</code> Registrar Servidor LTI automáticamente ID + URL de publicación de la Actividad (eContent)</li>
+                    <li><code>TODO</code> Proveer la Actividad (eContent) en EdX y Moodle</li>
                 </ol>
 
                 <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
