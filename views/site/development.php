@@ -246,13 +246,13 @@ $this->title = Yii::$app->params['yiiapp'];
             echo "<pre>11.a. $output</pre>";
             echo "11.a.PassThru " . passthru('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git 2>&1') . "<br/>";
             // Permisos carptetas Git ./object y ./refs
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/difusion/' . $namedir . '.git/objects/ 2>&1'));
             echo "<pre>11.b. $output</pre>";
-            echo "11.b.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
+            echo "11.b.PassThru " . passthru('chmod 777 -R uploads/difusion/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
             // Permisos carptetas Git ./object y ./refs
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/difusion/' . $namedir . '.git/refs/ 2>&1'));
             echo "<pre>11.c. $output</pre>";
-            echo "11.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
+            echo "11.c.PassThru " . passthru('chmod 777 -R uploads/difusion/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
 
             // INICIO
             /////////
