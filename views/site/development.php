@@ -82,7 +82,7 @@ $this->title = Yii::$app->params['yiiapp'];
             exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
             echo "3.Returned with status $retval and output:\n";
             echo "<p><pre>3.</br>";
-            echo "3.PassThru " . passthru('mkdir uploads/git/' . $namedir . '.git') . "<br/>";
+            echo "3.PassThru " . passthru('mkdir uploads/git/' . $namedir . '.git 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
 
