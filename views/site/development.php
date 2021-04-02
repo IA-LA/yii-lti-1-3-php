@@ -81,7 +81,8 @@ $this->title = Yii::$app->params['yiiapp'];
             $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
             exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
             echo "3.Returned with status $retval and output:\n";
-            echo "<p><pre>";
+            echo "<p><pre>3.</br>";
+            echo "3.PassThru " . passthru('mkdir uploads/git/' . $namedir . '.git') . "<br/>";
             print_r($output);
             echo "</pre></p>";
 
