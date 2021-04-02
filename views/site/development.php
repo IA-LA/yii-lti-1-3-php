@@ -90,10 +90,14 @@ $this->title = Yii::$app->params['yiiapp'];
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
             //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
             echo "<pre>4.post-update. $output</pre>";
+            //$output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
+            // Error stat
             $output = shell_exec(escapeshellcmd('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
             echo "<pre>4.a. $output</pre>";
-            echo "4.a.PassThru " . passthru('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
+            //echo "4.a.PassThru " . passthru('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
+            // Error stat
+            echo "4.a.PassThru " . passthru('c uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             echo "4.a.PassThru " . passthru('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             // Permisos carptetas Git ./object y ./refs
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
@@ -220,11 +224,27 @@ $this->title = Yii::$app->params['yiiapp'];
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
             echo "10.Returned with status $retval and output:\n";
             echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
-            echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
+            echo "10.a.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
             $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
             echo "<pre>10.b. $output</pre>";
+            echo "10.b.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ init --bare --shared 2>&1') . "<br/>";
+
+            // Crear Git difusión clonado o distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
+            $output=null;
+            $retval=null;
+            exec(escapeshellcmd('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git 2>&1'), $output, $retval);
+            echo "11.Returned with status $retval and output:\n";
+            echo "<p><pre>11.a. Difusion";
+            print_r($output);
+            echo "</pre></p>";
+            $output = shell_exec(escapeshellcmd('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git'));
+            //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
+            echo "<pre>11.b. Difusión. $output</pre>";
+            $output = shell_exec(escapeshellcmd('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git'));
+            echo "<pre>11.b. $output</pre>";
+            echo "11.b.PassThru " . passthru('cp -rf uploads/git/' . $namedir . '.git uploads/git/' . $namedir . '.git 2>&1') . "<br/>";
 
             // INICIO
             /////////
