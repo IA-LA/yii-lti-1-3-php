@@ -112,6 +112,18 @@ $this->title = Yii::$app->params['yiiapp'];
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1'));
             echo "<pre>4.c. $output</pre>";
             echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
+            // Permisos carptetas Git ./branches
+            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/branches/ 2>&1'));
+            echo "<pre>4.c. $output</pre>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/branches/ 2>&1') . "<br/>";
+            // Permisos carptetas Git ./hooks
+            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/hooks/ 2>&1'));
+            echo "<pre>4.c. $output</pre>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/hooks/ 2>&1') . "<br/>";
+            // Permisos carptetas Git ./info
+            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/' . $namedir . '.git/info/ 2>&1'));
+            echo "<pre>4.c. $output</pre>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/info/ 2>&1') . "<br/>";
 
             // Clonar Git distribuido (--bare --shared)
             // outputs the username that owns the running php/httpd process
@@ -140,6 +152,7 @@ $this->title = Yii::$app->params['yiiapp'];
             print_r($output);
             echo "6.a.PassThru " . passthru('umask 0000 2>&1') . "<br/>";
             echo "</pre></p>";
+
             // outputs the username that owns the running php/httpd process
             // (on a system with the "unzip" executable in the path)
             $output=null;
