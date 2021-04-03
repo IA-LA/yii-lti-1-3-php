@@ -90,12 +90,13 @@ $this->title = Yii::$app->params['yiiapp'];
             // Crear Git vacío distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
             $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
             //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
-            echo "<pre>4.post-update. $output</pre>";
+            echo "<pre>4.Init --bare. $output</pre>";
+            // Post update
             //$output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             // Error stat
             $output = shell_exec(escapeshellcmd('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
-            echo "<pre>4. $output</pre>";
+            echo "<pre>4.Hooks post update. $output</pre>";
             //echo "4.a.PassThru " . passthru('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             // Error stat
             echo "4.PassThru " . passthru('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
