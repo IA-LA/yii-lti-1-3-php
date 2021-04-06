@@ -114,12 +114,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo "4.a.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/ 2>&1') . "<br/>";
                     // Permisos carptetas Git ./objects
                     $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
-                    //echo "<pre>4.b. $output</pre>";
-                    //echo "4.b.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
+                    echo "<pre>4.b. $output</pre>";
+                    echo "4.b.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
                     // Permisos carptetas Git ./refs
                     $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1'));
-                    //echo "<pre>4.c. $output</pre>";
-                    //echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
+                    echo "<pre>4.c. $output</pre>";
+                    echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
 
                     // Clonar Git distribuido (--bare)
                     // outputs the username that owns the running php/httpd process
