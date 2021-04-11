@@ -96,7 +96,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // Error stat
             $output = shell_exec(escapeshellcmd('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
             $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
-            echo "<pre>4.Hooks post update. $output</pre>";
+            echo "<pre>4.Hooks. $output</pre>";
             //echo "4.a.PassThru " . passthru('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             // Error stat
             echo "4.PassThru " . passthru('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
