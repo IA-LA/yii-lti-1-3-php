@@ -74,9 +74,9 @@ class ListsController extends Controller
             /// GLOBAL puerto:8000 o `.uned.es`
             ///
             if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
-                $url = Yii::$app->params['serverLti2'];
+                $url = Yii::$app->params['serverServiciosLti_local'];
             else
-                $url = Yii::$app->params['serverLti1'];
+                $url = Yii::$app->params['serverServiciosLti_global'];
 
             //Envío del Formulario de Consulta
 
