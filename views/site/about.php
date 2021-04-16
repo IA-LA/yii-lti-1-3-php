@@ -18,7 +18,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <code><?= __FILE__ ?></code>
 -->
     <div class="body-content">
-
+        <h2>TODO</h2>
+        <ol>
+            <li><code>DONE</code> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
+            <li><code>DONE</code> Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
+            <li><code>TODO</code> Almcenar las subidas de .zip, publicación y proyecto en la colección de la BBDD.</li>
+            <li><code>TODO</code> Registrar automáticamente ID + URL de la Actividad (eContent) en el lServidor LTI</li>
+            <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX y Moodle)</li>
+        </ol>
         <div class="row">
             <div class="col-lg-4">
                 <h2>Git Menu</h2>
@@ -29,15 +36,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     el nombre, el cual se utilizará como plantilla para publicarlo en una URL, registrarlo en el Servidor
                     LTI y como base de un proyecto Git que permita trabajar en él de forma distribuida.</p>
 
+                <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
+
+                <h3>Upload Menu</h3>
                 <ol>
-                    <li><code>DONE</code> Subir `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
-                    <li><code>DONE</code> Proyectar en Git la Actividad (eContrent) registrada como `git/IdDateTimea.git`</li>
-                    <li><code>TODO</code> Registrar las subidas de .zip, publicación y proyecto en la colección de la BBDD.</li>
-                    <li><code>TODO</code> Registrar Servidor LTI automáticamente ID + URL de publicación de la Actividad (eContent)</li>
-                    <li><code>TODO</code> Proveer la Actividad (eContent) en EdX y Moodle</li>
+                    <li><code>TODO</code> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
+                    <li><code>TODO</code> Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
+                    <li><code>TODO</code> Almcenar las subidas de .zip, publicación y proyecto en la colección de la BBDD.</li>
+                    <li><code>TODO</code> Registrar automáticamente ID + URL de la Actividad (eContent) en el lServidor LTI</li>
+                    <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX y Moodle)</li>
                 </ol>
 
-                <p><a class="btn btn-default" href="index.php?r=site%2Fupload">Upload &raquo;</a></p>
             </div>
             <div class="col-lg-4">
                 <h2>LTI Menu</h2>
