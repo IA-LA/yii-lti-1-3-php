@@ -49,10 +49,17 @@ $this->title = Yii::$app->params['yiiapp'];
             /// LOCAL puerto :9000
             /// GLOBAL puerto:8000 o `.uned.es`
             ///
-            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
-                $git = Yii::$app->params['git2'];
-            else
-                $git = Yii::$app->params['git1'];
+
+            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+                $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                $serverGit = Yii::$app->params['serverGit_local'];
+                $serverLti = Yii::$app->params['serverLti_local'];
+            }
+            else {
+                $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                $serverGit = Yii::$app->params['serverGit_global'];
+                $serverLti = Yii::$app->params['serverLti_global'];
+            }
 
             // Git
             $output = shell_exec(escapeshellcmd('git --version'));
@@ -79,65 +86,65 @@ $this->title = Yii::$app->params['yiiapp'];
             $output=null;
             $retval=null;
             $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-            exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
+            exec(escapeshellcmd('mkdir ' . $serverGit . '/' . $namedir . '.git'), $output, $retval);
             echo "3.Returned with status $retval and output:\n";
             echo "<p><pre>3.</br>";
-            echo "3.PassThru " . passthru('mkdir uploads/git/' . $namedir . '.git 2>&1') . "<br/>";
+            echo "3.PassThru " . passthru('mkdir ' . $serverGit . '/' . $namedir . '.git 2>&1') . "<br/>";
             print_r($output);
             echo "</pre></p>";
 
             // Proyecto Git
             // Crear Git vacío distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
-            $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
-            //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('git --bare -C  ' . $serverGit . '/  init ' . $namedir . '.git'));
+            //$output = shell_exec(escapeshellcmd('git --bare --shared -C  ' . $serverGit . '/  init ' . $namedir . '.git'));
             echo "<pre>4.Init --bare. $output</pre>";
             // Post update
-            //$output = shell_exec(escapeshellcmd('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
+            //$output = shell_exec(escapeshellcmd('mv ' . $serverGit . '/' . $namedir . '.git/hooks/post-update.sample ' . $serverGit . '/' . $namedir . '.git/hooks/post-update'));
             // Error stat
-            $output = shell_exec(escapeshellcmd('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
-            $output = shell_exec(escapeshellcmd('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update'));
+            $output = shell_exec(escapeshellcmd('cp ' . $serverGit . '/' . $namedir . '.git/hooks/post-update.sample ' . $serverGit . '/' . $namedir . '.git/hooks/post-update'));
+            $output = shell_exec(escapeshellcmd('chmod a+x ' . $serverGit . '/' . $namedir . '.git/hooks/post-update'));
             echo "<pre>4.Hooks post update. $output</pre>";
-            //echo "4.a.PassThru " . passthru('mv uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
+            //echo "4.a.PassThru " . passthru('mv ' . $serverGit . '/' . $namedir . '.git/hooks/post-update.sample ' . $serverGit . '/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             // Error stat
-            echo "4.PassThru " . passthru('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
-            echo "4.PassThru " . passthru('chmod a+x uploads/git/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
+            echo "4.PassThru " . passthru('cp ' . $serverGit . '/' . $namedir . '.git/hooks/post-update.sample ' . $serverGit . '/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
+            echo "4.PassThru " . passthru('chmod a+x ' . $serverGit . '/' . $namedir . '.git/hooks/post-update 2>&1') . "<br/>";
             // Permisos carpteta Git .git/, ./objects y ./refs
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/ 2>&1'));
             echo "<pre>4.a. $output</pre>";
-            echo "4.a.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/ 2>&1') . "<br/>";
+            echo "4.a.PassThru " . passthru('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/ 2>&1') . "<br/>";
             // Permisos carptetas Git .git/, ./objects y ./refs
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/objects/ 2>&1'));
             echo "<pre>4.b. $output</pre>";
-            echo "4.b.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
+            echo "4.b.PassThru " . passthru('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/objects/ 2>&1') . "<br/>";
             // Permisos carptetas Git .git/, ./objects y ./refs
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/refs/ 2>&1'));
             echo "<pre>4.c. $output</pre>";
-            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/refs/ 2>&1') . "<br/>";
             // Permisos carptetas Git ./branches
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/branches/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/branches/ 2>&1'));
             echo "<pre>4.c. $output</pre>";
-            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/branches/ 2>&1') . "<br/>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/branches/ 2>&1') . "<br/>";
             // Permisos carptetas Git ./hooks
-            $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/git/' . $namedir . '.git/hooks/ 2>&1'));
+            $output = shell_exec(escapeshellcmd('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/hooks/ 2>&1'));
             echo "<pre>4.c. $output</pre>";
-            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/hooks/ 2>&1') . "<br/>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/hooks/ 2>&1') . "<br/>";
             // Permisos carptetas Git ./info
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/' . $namedir . '.git/info/ 2>&1'));
             echo "<pre>4.c. $output</pre>";
-            echo "4.c.PassThru " . passthru('chmod 777 -R uploads/git/' . $namedir . '.git/info/ 2>&1') . "<br/>";
+            echo "4.c.PassThru " . passthru('chmod 777 -R ' . $serverGit . '/' . $namedir . '.git/info/ 2>&1') . "<br/>";
 
             // Clonar Git distribuido (--bare --shared)
             // outputs the username that owns the running php/httpd process
             // (on a system with the "git clone" executable in the path)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
+            exec(escapeshellcmd('git clone ' . $serverGit . '/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
             echo "5.Returned with status $retval and output:\n";
-            echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
+            echo "<p><pre>5.a. git clone $serverGit/$namedir.git uploads/publicacion/$namedir<br/>";
             print_r($output);
             echo "</pre></p>";
-            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
-            //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
+            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone ' . $serverGit . '/' . $namedir . '.git ' . $namedir));
+            //$output = shell_exec(escapeshellcmd('git clone ' . $serverGit . '/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
             //echo "<pre>5.b. $output</pre>";
 
             // Unzip Actividad .zip
@@ -225,7 +232,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
+            //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'), $output, $retval);
             echo "9.Returned with status $retval and output:\n";
             echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
@@ -239,7 +246,7 @@ $this->title = Yii::$app->params['yiiapp'];
             // (on a system with the "git add" executable in the path)
             $output=null;
             $retval=null;
-            //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+            //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
             exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
             echo "10.Returned with status $retval and output:\n";
             echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
@@ -253,17 +260,17 @@ $this->title = Yii::$app->params['yiiapp'];
             // Crear Git difusión clonado o distribuido (--bare --shared) con post-update hook (https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols)
             $output=null;
             $retval=null;
-            exec(escapeshellcmd('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git 2>&1'), $output, $retval);
+            exec(escapeshellcmd('cp -rf ' . $serverGit . '/' . $namedir . '.git uploads/difusion/' . $namedir . '.git 2>&1'), $output, $retval);
             echo "11.Returned with status $retval and output:\n";
             echo "<p><pre>11. Difusion";
             print_r($output);
             echo "</pre></p>";
-            $output = shell_exec(escapeshellcmd('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git'));
-            //$output = shell_exec(escapeshellcmd('git --bare --shared -C uploads/git/ init ' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('cp -rf ' . $serverGit . '/' . $namedir . '.git uploads/difusion/' . $namedir . '.git'));
+            //$output = shell_exec(escapeshellcmd('git --bare --shared -C  ' . $serverGit . '/  init ' . $namedir . '.git'));
             echo "<pre>11. Difusión. $output</pre>";
-            $output = shell_exec(escapeshellcmd('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git'));
+            $output = shell_exec(escapeshellcmd('cp -rf ' . $serverGit . '/' . $namedir . '.git uploads/difusion/' . $namedir . '.git'));
             echo "<pre>11. $output</pre>";
-            echo "11.PassThru " . passthru('cp -rf uploads/git/' . $namedir . '.git uploads/difusion/' . $namedir . '.git 2>&1') . "<br/>";
+            echo "11.PassThru " . passthru('cp -rf ' . $serverGit . '/' . $namedir . '.git uploads/difusion/' . $namedir . '.git 2>&1') . "<br/>";
             // Permisos carpteta Git .git/, ./objects y ./refs
             $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/difusion/' . $namedir . '.git/ 2>&1'));
             echo "<pre>11.a. $output</pre>";
