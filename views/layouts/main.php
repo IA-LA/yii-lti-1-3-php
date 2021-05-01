@@ -52,7 +52,7 @@ AppAsset::register($this);
                     ['label' => 'Upload',
                         'items' => [
                             '<li class="divider"></li>',
-                            '<li class="dropdown-menu">Upload Menu</li>',
+                            '<li class="dropdown-submenu">Upload Menu</li>',
                             ['label' => 'Upload', 'url' => ['/site/upload']],
                             '<li class="divider"></li>',
                             '<li class="dropdown-submenu">Publish Menu</li>',
