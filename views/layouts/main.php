@@ -49,7 +49,8 @@ AppAsset::register($this);
                 'items' => [
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Git Menu</li>',
-                    ['items' => [
+                    ['label' => 'Upload',
+                        'subitems' => [
                             '<li class="divider"></li>',
                             '<li class="dropdown-header">Upload Menu</li>',
                             ['label' => 'Upload', 'url' => ['/site/upload']],
