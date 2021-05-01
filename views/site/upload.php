@@ -64,10 +64,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     /// LOCAL puerto :9000
                     /// GLOBAL puerto:8000 o `.uned.es`
                     ///
-                    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
-                        $git = Yii::$app->params['git2'];
-                    else
-                        $git = Yii::$app->params['git1'];
+                    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+                        $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                        $serverGit = Yii::$app->params['serverGit_local'];
+                        $serverLti = Yii::$app->params['serverLti_local'];
+                    }
+                    else {
+                        $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                        $serverGit = Yii::$app->params['serverGit_global'];
+                        $serverLti = Yii::$app->params['serverLti_global'];
+                    }
 
                     // Git
                     $output = shell_exec(escapeshellcmd('git --version'));
@@ -214,7 +220,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "git add" executable in the path)
                     $output=null;
                     $retval=null;
-                    //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
+                    //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI"'), $output, $retval);
                     //echo "9.Returned with status $retval and output:\n";
                     //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
@@ -229,7 +235,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "git add" executable in the path)
                     $output=null;
                     $retval=null;
-                    //exec(escapeshellcmd('git -C ' . $git . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                    //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                     //echo "10.Returned with status $retval and output:\n";
                     //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
@@ -247,7 +253,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p/>
                         <div class="alert alert-success">
                             <ol>
-                                <li>Git URL de la Actividad ´<b><i><a href="https://ailanto-dev.intecca.uned.es/git/<?= Html::encode($namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
+                                <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode(Yii::$app->params['serverGit_local'] . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
                                 <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
                                 <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
                             </ol>
