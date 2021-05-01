@@ -49,13 +49,12 @@ AppAsset::register($this);
                 'items' => [
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Git Menu</li>',
-                    ['label' => 'Upload',
-                        'items' => [
+                    ['items' => [
                             '<li class="divider"></li>',
-                            '<li class="dropdown-submenu">Upload Menu</li>',
+                            '<li class="dropdown-header">Upload Menu</li>',
                             ['label' => 'Upload', 'url' => ['/site/upload']],
                             '<li class="divider"></li>',
-                            '<li class="dropdown-submenu">Publish Menu</li>',
+                            '<li class="dropdown-header">Publish Menu</li>',
                             ['label' => 'Delete', 'url' => ['/site/delete']],
                             ['label' => 'Lists', 'url' => ['/site/lists']],
                             ['label' => 'Query', 'url' => ['/site/query']],
