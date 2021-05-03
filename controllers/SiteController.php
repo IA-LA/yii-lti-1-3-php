@@ -682,10 +682,10 @@ exit(0);
 
                 if (Yii::$app->request->post('DeleteForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/' . Yii::$app->request->post('DeleteForm')['id'];
+                    $ruta = '/delete/coleccion/Lti/id_actividad/' . Yii::$app->request->post('DeleteForm')['id'];
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
+                    $ruta = '/delete/coleccion/Lti/id_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
                 }
 
                 // Exception DELETE LTI1
