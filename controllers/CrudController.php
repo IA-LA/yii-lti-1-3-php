@@ -232,7 +232,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('register', [
+                return $this->render('Upload/register', [
                     'model' => $model2,
                 ]);
             }
