@@ -35,7 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>
             Registra una Actividad con su Identificador y la Url donde está alojada.
-            <?php echo $r . $coleccion ?>
             Thank you.
         </p>
 
