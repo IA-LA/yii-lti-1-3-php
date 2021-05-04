@@ -350,7 +350,7 @@ class CrudController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('register', [
+            return $this->render('Upload/register', [
                 'model' => $model,
             ]);
         }
