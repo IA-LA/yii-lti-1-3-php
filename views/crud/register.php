@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>
             Registra una Actividad con su Identificador y la Url donde está alojada.
-            <?php echo Yii::$app->params['r'] . Yii::$app->params['coleccion'] ?>
+            <?php echo $r . $coleccion ?>
             Thank you.
         </p>
 
