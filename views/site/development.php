@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::$app->params['yiiapp'];
+$this->title = 'Development ' . Yii::$app->params['yiiapp'];
 
 //TODO mostar listados con Yii ListView
 
