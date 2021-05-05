@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Query';
+$this->title = 'Query Actividad LTI';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-query">

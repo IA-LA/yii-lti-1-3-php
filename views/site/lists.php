@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Lists';
+$this->title = 'Lists Actividad LTI';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-lists">
