@@ -8,7 +8,7 @@ use yii\base\Model;
 /**
  * QueryForm is the model behind the query form.
  */
-class QueryForm_Upload extends Model
+class QueryForm extends Model
 {
     public $id;
     public $url;

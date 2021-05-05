@@ -8,7 +8,7 @@ use yii\base\Model;
 /**
  * DeleteForm is the model behind the delete form.
  */
-class DeleteForm_Upload extends Model
+class DeleteForm extends Model
 {
     public $id;
     public $url;
