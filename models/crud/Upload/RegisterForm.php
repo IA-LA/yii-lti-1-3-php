@@ -8,7 +8,7 @@ use yii\base\Model;
 /**
  * RegisterForm is the model behind the register form.
  */
-class RegisterForm extends Model
+class RegisterForm_Upload extends Model
 {
     public $id;
     public $url;

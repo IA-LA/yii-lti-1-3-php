@@ -11,7 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 
 /*UPLOAD*/
-use app\models\crud\Upload\UploadForm;
+use app\models\crud\Upload\UploadForm_Upload;
 use yii\web\UploadedFile;
 
 /*REGISTER*/
@@ -229,7 +229,7 @@ class CrudController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new RegisterForm();
+            $model2 = new RegisterForm_Upload();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render(Yii::$app->request->get('coleccion') . '/' . 'register', [
@@ -244,7 +244,7 @@ class CrudController extends Controller
 
         }
         else {
-            $model = new RegisterForm();
+            $model = new RegisterForm_Upload();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
