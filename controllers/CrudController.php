@@ -325,7 +325,7 @@ class CrudController extends Controller
                         <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                         'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=upload%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
@@ -462,7 +462,7 @@ class CrudController extends Controller
                         'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                         'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=upload%2Fquery">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fquery">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
@@ -479,7 +479,7 @@ class CrudController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=upload%2Fquery">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fquery">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -593,7 +593,7 @@ class CrudController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('ListsForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('ListsForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=upload%2Flists">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Flists">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -721,7 +721,7 @@ class CrudController extends Controller
                             <p class="lead">Borradas las credenciales de acceso a la actividad.</p>' .
                         'REGISTRO: ' . Yii::$app->request->post('DeleteForm')['id'] . ' <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=upload%2Fdelete">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fdelete">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
 
@@ -737,7 +737,7 @@ class CrudController extends Controller
                             <p class="lead">Las credenciales de Borrado son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('DeleteForm')['id'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=upload%2Fdelete">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fdelete">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
                 }
