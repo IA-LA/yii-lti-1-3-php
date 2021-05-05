@@ -1,5 +1,5 @@
 <?php
-// YOUR_APP/controllers/ListsController.php
+// YOUR_APP/controllers/Lists_crudController.php
 
 /* change namespace in your app */
 //namespace frontend\controllers;
@@ -24,7 +24,7 @@ use yii\data\ArrayDataProvider;
 /* DLETE */
 //use app\models\DeleteForm;
 
-class ListsController extends Controller
+class Lists_crudController extends Controller
 {
     public function actionIndex()
     {
