@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\crud\Upload;
+namespace app\models;
 
 use Yii;
 use yii\base\Model;
