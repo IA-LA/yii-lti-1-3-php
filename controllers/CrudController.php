@@ -369,7 +369,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'query', [
+                return $this->render('query', [
                     'model' => $model2,
                 ]);
             }
@@ -488,7 +488,7 @@ class CrudController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'query', [
+            return $this->render('query', [
                 'model' => $model,
             ]);
         }
@@ -513,7 +513,7 @@ exit(0);
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'lists', [
+                return $this->render('lists', [
                     'model' => $model2,
                 ]);
             }
@@ -606,7 +606,7 @@ exit(0);
                 //return $this->refresh();
             }
 
-            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'lists', [
+            return $this->render('lists', [
                 'model' => $model,
             ]);
         }
@@ -631,7 +631,7 @@ exit(0);
             $model2 = new DeleteForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'delete', [
+                return $this->render('delete', [
                     'model' => $model2,
                 ]);
             }
@@ -749,7 +749,7 @@ exit(0);
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'delete', [
+            return $this->render('delete', [
                 'model' => $model,
             ]);
         }
