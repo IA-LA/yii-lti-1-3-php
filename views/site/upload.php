@@ -253,7 +253,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p/>
                         <div class="alert alert-success">
                             <ol>
-                                <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode(Yii::$app->params['serverGit_local'] . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
+                                <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
                                 <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
                                 <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
                             </ol>
