@@ -232,7 +232,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'register', [
+                return $this->render('register', [
                     'model' => $model2,
                 ]);
             }
@@ -342,7 +342,7 @@ class CrudController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('RegisterForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('RegisterForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fregister">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -350,7 +350,7 @@ class CrudController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'register', [
+            return $this->render('register', [
                 'model' => $model,
             ]);
         }
