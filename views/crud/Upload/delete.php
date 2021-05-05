@@ -2,13 +2,13 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\DeleteForm */
+/* @var $model app\models\crud\Upload\DeleteForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Delete';
+$this->title = 'Delete Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-delete">

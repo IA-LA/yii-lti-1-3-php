@@ -2,13 +2,13 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\ListsForm */
+/* @var $model app\models\crud\Upload\ListsForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Lists';
+$this->title = 'Lists Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-lists">

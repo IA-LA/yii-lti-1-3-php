@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\RegisterForm_Upload;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -11,24 +12,24 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 
 /*UPLOAD*/
-use app\models\UploadForm;
+use app\models\crud\Upload\UploadForm;
 use yii\web\UploadedFile;
 
 /*REGISTER*/
-use app\models\RegisterForm;
+use app\models\crud\Upload\RegisterForm;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
 /*QUERY*/
-use app\models\QueryForm;
+use app\models\crud\Upload\QueryForm;
 use yii\helpers\Html;
 
 /* LISTS */
-use app\models\ListsForm;
+use app\models\crud\Upload\ListsForm;
 use yii\data\ArrayDataProvider;
 
 /* DLETE */
-use app\models\DeleteForm;
+use app\models\crud\Upload\DeleteForm;
 
 class CrudController extends Controller
 {
@@ -229,7 +230,7 @@ class CrudController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new RegisterForm();
+            $model2 = new RegisterForm_Upload();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render(Yii::$app->request->get('coleccion') . '/' . 'register', [
@@ -244,7 +245,7 @@ class CrudController extends Controller
 
         }
         else {
-            $model = new RegisterForm();
+            $model = new RegisterForm_Upload();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
@@ -282,11 +283,11 @@ class CrudController extends Controller
                 $client = new Client();
 
                 if (Yii::$app->request->post('RegisterForm')['id'] !== '') {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/register/
-                    $ruta = '/create/register/';
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
+                    $ruta = '/create/register/coleccion/' . Yii::$app->request->get('coleccion');
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
-                    $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
+                    $ruta = '/create/coleccion/' . Yii::$app->request->get('coleccion') . '/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                 }
 
                 // Exception POST LTI
@@ -369,7 +370,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('query', [
+                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'query', [
                     'model' => $model2,
                 ]);
             }
@@ -420,10 +421,10 @@ class CrudController extends Controller
 
                 if (Yii::$app->request->post('QueryForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
-                    $ruta = '/read/coleccion/Lti/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
+                    $ruta = '/read/coleccion/' . Yii::$app->request->get('coleccion') . '/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                    $ruta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
+                    $ruta = '/read/coleccion/' . Yii::$app->request->get('coleccion') . '/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
                 }
                 // Exception GET LTI1
                 try {
@@ -488,7 +489,7 @@ class CrudController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('query', [
+            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'query', [
                 'model' => $model,
             ]);
         }
@@ -513,7 +514,7 @@ exit(0);
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('lists', [
+                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'lists', [
                     'model' => $model2,
                 ]);
             }
@@ -606,7 +607,7 @@ exit(0);
                 //return $this->refresh();
             }
 
-            return $this->render('lists', [
+            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'lists', [
                 'model' => $model,
             ]);
         }
@@ -631,7 +632,7 @@ exit(0);
             $model2 = new DeleteForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('delete', [
+                return $this->render(Yii::$app->request->get('coleccion') . '/' . 'delete', [
                     'model' => $model2,
                 ]);
             }
@@ -749,7 +750,7 @@ exit(0);
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('delete', [
+            return $this->render(Yii::$app->request->get('coleccion') . '/' . 'delete', [
                 'model' => $model,
             ]);
         }
