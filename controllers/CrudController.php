@@ -11,11 +11,11 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 
 /*UPLOAD*/
-use app\models\crud\Upload\UploadForm_Upload;
+use app\models\crud\Upload\UploadForm;
 use yii\web\UploadedFile;
 
 /*REGISTER*/
-use app\models\crud\Upload\RegisterForm;
+use app\models\crud\Upload\RegisterForm_Upload;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
