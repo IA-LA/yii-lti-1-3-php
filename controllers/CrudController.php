@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\RegisterForm_Upload;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -230,7 +229,7 @@ class CrudController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new RegisterForm_Upload();
+            $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render(Yii::$app->request->get('coleccion') . '/' . 'register', [
@@ -245,7 +244,7 @@ class CrudController extends Controller
 
         }
         else {
-            $model = new RegisterForm_Upload();
+            $model = new RegisterForm();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
