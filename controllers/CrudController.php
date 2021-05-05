@@ -285,7 +285,7 @@ class CrudController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
                     $ruta = '/create/register/coleccion/Upload';
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
                     $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                 }
 
@@ -419,11 +419,11 @@ class CrudController extends Controller
                 $client = new Client();
 
                 if (Yii::$app->request->post('QueryForm')['id'] !== '') {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
-                    $ruta = '/read/coleccion/' . Yii::$app->request->get('coleccion') . '/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
+                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
+                    $ruta = '/read/coleccion/Upload/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                    $ruta = '/read/coleccion/' . Yii::$app->request->get('coleccion') . '/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
+                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                    $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
                 }
                 // Exception GET LTI1
                 try {
@@ -500,10 +500,6 @@ class CrudController extends Controller
      *
      * @return Response|string
      *
-// DETENER EJECUCION
-////////////////////
-print("EXCEPTION URL " . $url);
-exit(0);
      */
     public function actionLists()
     {
@@ -683,10 +679,10 @@ exit(0);
                 // Buscar por _ID
                 if (Yii::$app->request->post('DeleteForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/coleccion/Lti/id_actividad/' . Yii::$app->request->post('DeleteForm')['id'];
+                    $ruta = '/delete/coleccion/Upload/id_actividad/' . Yii::$app->request->post('DeleteForm')['id'];
                 } else { // Buscar por URL
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/coleccion/Lti/id_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
+                    $ruta = '/delete/coleccion/Upload/id_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
                 }
 
                 // Exception DELETE LTI1
