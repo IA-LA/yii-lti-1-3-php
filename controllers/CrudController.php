@@ -283,10 +283,10 @@ class CrudController extends Controller
 
                 if (Yii::$app->request->post('RegisterForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
-                    $ruta = '/create/register/coleccion/' . Yii::$app->request->get('coleccion');
+                    $ruta = '/create/register/coleccion/Upload';
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
-                    $ruta = '/create/coleccion/' . Yii::$app->request->get('coleccion') . '/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
+                    $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                 }
 
                 // Exception POST LTI
