@@ -5,7 +5,7 @@ use yii\widgets\ListView;
 use yii\helpers\Html;
 ?>
 <div class="header">
-    <h3><?= Html::encode($title); ?> Upload</h3>
+    <h3><?= Html::encode($title); ?> Git Upload</h3>
 </div>
 <div class="row">
     <h4>TITULO</h4>

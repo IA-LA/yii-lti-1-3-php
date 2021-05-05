@@ -557,7 +557,7 @@ class CrudController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('//lists/crud/index',
+                    return $this->redirect(array('//lists_crud/index',
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,
@@ -566,7 +566,7 @@ class CrudController extends Controller
                         'formulario' => 'ListsForm',
                     ));
                     // View from another Controller
-                    return $this->render('//lists/crud/index', [
+                    return $this->render('//lists_crud/index', [
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,

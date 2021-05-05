@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Query Upload';
+$this->title = 'Query Git Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-query">
