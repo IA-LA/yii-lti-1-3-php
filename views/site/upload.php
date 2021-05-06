@@ -58,9 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     //$output = shell_exec(escapeshellcmd('ls -lart uploads/publicacion/'));
                     //echo "<pre>$output</pre>";
 
-                    // TODO Crea proyecto Git repo_$namedir.git ID=$namedir y URL='uploads/publicacion/$namedir/'
-                    // ??????????????????????
-                    ////////////////////////////////
                     // Dirección de alojamiento
                     // del servidor de Git
                     //////////////////////
@@ -78,6 +75,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         $serverLti = Yii::$app->params['serverLti_global'];
                     }
 
+                    // Crea proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
+                    //  ID=$namedir
+                    ///////////////////////////////////////////////////////////////////////////////////
+                    ///
                     // Git
                     $output = shell_exec(escapeshellcmd('git --version'));
                     //echo "<pre>1. $output</pre>";

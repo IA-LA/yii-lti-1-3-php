@@ -49,6 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $serverLti = Yii::$app->params['serverLti_global'];
                 }
 
+                // Actualiza proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
+                //  ID=$namedir
+                ////////////////////////////////////////////////////////////////////////////////////////
+                ///
                 // Git
                 $output = shell_exec(escapeshellcmd('git --version'));
                 //echo "<pre>1. $output</pre>";
