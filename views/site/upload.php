@@ -296,7 +296,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin(['id' => 'upload-form']); ?>
 
-                <?= $form->field($model, 'zipFile')->fileInput() ?>
+                    <!-- Modal de Upload -->
+                    <?= $form->field($model, 'zipFile')->fileInput() ?>
 
                     <!--
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
