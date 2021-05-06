@@ -37,11 +37,12 @@ class PublishForm extends Model
     /**
      * Sends a file to the specified folder using the information collected by this model.
      *
+     * @param $id nombre publicación
      * @return array whether the model passes validation
      */
-    public function publish()
+    public function publish($id)
     {
-        $resultado = dir(getcwd())->path . (is_dir('/app/web/uploads/git/' . $this->id . '.' . 'git/') ? $this->id . 'true': $this->id . 'false' . '.' . 'git');
+        $resultado = dir(getcwd())->path . (is_dir('/app/web/uploads/git/' . $id . '.' . 'git/') ? $id . 'true': $id . 'false' . '.' . 'git');
         if ($this->validate()) {
             // @return bool whether the model passes validation
             // return true;

@@ -786,7 +786,7 @@ class CrudController extends Controller
             if (Yii::$app->request->isPost) {
                 Yii::$app->session->setFlash('publishFormSubmitted');
 
-                $publish = $model->publish();
+                $publish = $model->publish(Yii::$app->request->post('PublishForm')['id']);
                 // publish does successfully
                 if ($publish['result']) {
                     Yii::$app->session->setFlash('publishIsPosible');
@@ -797,7 +797,7 @@ class CrudController extends Controller
                 }
                 else {
                     Yii::$app->session->setFlash('publishIsNotPosible');
-                    return $this->render('Upload/publish', ['model' => $model, "repositorio" => $publish['$resultado']]);
+                    return $this->render('Upload/publish', ['model' => $model, "resultado" => $publish['$resultado']]);
                 }
             }
 
