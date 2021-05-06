@@ -45,7 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'url') ?>
+                <?= $form->field($model, 'url_Publicación') ?>
+
+                <?= $form->field($model, 'url_Git') ?>
 
                     <?= $form->field($model, 'fichero') ?>
 
