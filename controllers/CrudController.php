@@ -797,7 +797,7 @@ class CrudController extends Controller
                 }
                 else {
                     Yii::$app->session->setFlash('publishIsNotPosible');
-                    return $this->render('Upload/publish', ['model' => $model, "resultado" => $publish['$resultado']]);
+                    return $this->render('Upload/publish', ['model' => $model, "repositorio" => $publish['$resultado']]);
                 }
             }
 
