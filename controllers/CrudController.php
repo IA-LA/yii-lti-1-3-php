@@ -235,7 +235,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('register', [
+                return $this->render('Upload/register', [
                     'model' => $model2,
                 ]);
             }
@@ -353,7 +353,7 @@ class CrudController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('register', [
+            return $this->render('Upload/register', [
                 'model' => $model,
             ]);
         }
@@ -372,7 +372,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('query', [
+                return $this->render('Upload/query', [
                     'model' => $model2,
                 ]);
             }
@@ -491,7 +491,7 @@ class CrudController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('query', [
+            return $this->render('Upload/query', [
                 'model' => $model,
             ]);
         }
@@ -512,7 +512,7 @@ class CrudController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('lists', [
+                return $this->render('Upload/lists', [
                     'model' => $model2,
                 ]);
             }
@@ -605,7 +605,7 @@ class CrudController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('lists', [
+            return $this->render('Upload/lists', [
                 'model' => $model,
             ]);
         }
@@ -630,7 +630,7 @@ class CrudController extends Controller
             $model2 = new DeleteForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('delete', [
+                return $this->render('Upload/delete', [
                     'model' => $model2,
                 ]);
             }
@@ -748,7 +748,7 @@ class CrudController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('delete', [
+            return $this->render('Upload/delete', [
                 'model' => $model,
             ]);
         }

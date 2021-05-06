@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Publish';
+$this->title = 'Publish Git Upload';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -268,17 +268,17 @@ $this->params['breadcrumbs'][] = $this->title;
                              //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fupload">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
-                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
+                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fupload">Atrás</a></p>';
                     }
 
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
+                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fupload">Atrás</a></p>';
                 }
             ?>
 
