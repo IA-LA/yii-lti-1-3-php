@@ -20,14 +20,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php if (Yii::$app->session->hasFlash('publishFormSubmitted')): ?>
 
-        <div>
-            <p/>
-            <p/>
-            <p/>
-            <!-- TODO consultar el valor del _ID en la colección Upload de la BBDD antes de actualizar Git-->
+    <div>
+        <p/>
+        <p/>
+        <p/>
+        <!-- TODO consultar el valor del _ID en la colección Upload de la BBDD antes de actualizar Git-->
+
+        <?php if (Yii::$app->session->hasFlash('publishIsPosible')): ?>
+
             <p class="alert alert-success">Upload Git ´<b><i><?= $repositorio ?></i></b>´ es correcto</p>
 
-        </div>
+        <?php else: ?>
+
+            <p class="alert alert-danger">Upload Git ´<b><i><?= $repositorio ?></i></b>´ NO es correcto</p>
+
+        <?php endif; ?>
+
+
+    </div>
 
     <?php else: ?>
 
