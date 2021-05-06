@@ -794,6 +794,10 @@ class CrudController extends Controller
                     //return $this->render('Upload/publish', ['model' => $model]);
                     //return;
                 }
+                else {
+
+                    return $this->render('Upload/delete', ['model' => $model]);
+                }
             }
 
             return $this->render('Upload/publish', ['model' => $model]);
