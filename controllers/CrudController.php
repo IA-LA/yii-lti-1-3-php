@@ -353,8 +353,8 @@ class CrudController extends Controller
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                         <h1>Registro</h1>
-                        <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
-                        'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
+                        <p class="lead">Upload.</p>' .
+                        'PARAM: <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
                     </div>';
