@@ -28,16 +28,83 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- TODO consultar el valor del _ID en la colección Upload de la BBDD antes de actualizar Git-->
         <?php if (Yii::$app->session->hasFlash('publishIsPosible')): ?>
 
-            <p class="alert alert-success">Upload Git ´<b><i><?= $repositorio ?></i></b>´ es un proyecto correcto</p>
-            <p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>
+            <p class="alert alert-success">Upload Git ´<b><i><?= $namedir ?>.git</i></b>´ es un proyecto correcto</p>
+            <?php
+
+                // Dirección de alojamiento
+                // del servidor de Git
+                //////////////////////
+                /// LOCAL puerto :9000
+                /// GLOBAL puerto:8000 o `.uned.es`
+                ///
+                if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+                    $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                    $serverGit = Yii::$app->params['serverGit_local'];
+                    $serverLti = Yii::$app->params['serverLti_local'];
+                }
+                else {
+                    $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                    $serverGit = Yii::$app->params['serverGit_global'];
+                    $serverLti = Yii::$app->params['serverLti_global'];
+                }
+
+                // Git
+                $output = shell_exec(escapeshellcmd('git --version'));
+                //echo "<pre>1. $output</pre>";
+
+                // Pull Repositirio
+                $output=null;
+                $retval=null;
+                //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
+                exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
+                //echo "10.Returned with status $retval and output:\n";
+                //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
+                //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull 2>&1') . "<br/>";
+                //print_r($output);
+                //echo "</pre></p>";
+                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull 2>&1'));
+                //echo "<pre>10.b. $output</pre>";
+
+                // Pull Git Publicacion sin errores
+                if($retval === 0) {
+                    ?>
+
+                    <p/>
+                    <p/>
+                    <p/>
+                    <div class="alert alert-success">
+                        <ol>
+                            <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
+                            <!--
+                            <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
+                            <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                            -->
+                        </ol>
+                    </div>
+
+                    <?php
+                    // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
+                    // REGISTRO
+                    ////////////////////////////////
+                    echo '<div class="row alert alert-success"><div class="col-lg-6">Puede registrarse esta actividad con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                        '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
+                    //$this->render('_list_item',['model' => $model])
+
+                    // Boton Atras
+                    echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                }
+                else {
+                    echo '<p class="alert error-summary">Error al actualizar el repositorio <i>`' . $namedir . '.git`</i></p>' .
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                }
+            ?>
 
         <?php else: ?>
 
-            <p class="alert alert-danger">Upload Git ´<b><i><?= $repositorio ?></i></b>´ NO es un proyecto correcto</p>
-            <p><a class="btn btn-lg btn-danger" href="index.php?r=crud%2Fpublish">Atrás</a></p>
+            <p class="alert alert-danger">Upload Git ´<b><i><?= $namedir ?></i></b>.git´ NO es un proyecto correcto</p>
+            <p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>
 
         <?php endif; ?>
-
 
     </div>
 
