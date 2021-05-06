@@ -24,15 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <p/>
         <p/>
         <p/>
-        <!-- TODO consultar el valor del _ID en la colección Upload de la BBDD antes de actualizar Git-->
 
+        <!-- TODO consultar el valor del _ID en la colección Upload de la BBDD antes de actualizar Git-->
         <?php if (Yii::$app->session->hasFlash('publishIsPosible')): ?>
 
-            <p class="alert alert-success">Upload Git ´<b><i><?= $repositorio ?></i></b>´ es correcto</p>
+            <p class="alert alert-success">Upload Git ´<b><i><?= $repositorio ?></i></b>´ es un proyecto correcto</p>
+            <p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>
 
         <?php else: ?>
 
-            <p class="alert alert-danger">Upload Git ´<b><i><?= $repositorio ?></i></b>´ NO es correcto</p>
+            <p class="alert alert-danger">Upload Git ´<b><i><?= $repositorio ?></i></b>´ NO es un proyecto correcto</p>
+            <p><a class="btn btn-lg btn-danger" href="index.php?r=crud%2Fpublish">Atrás</a></p>
 
         <?php endif; ?>
 
