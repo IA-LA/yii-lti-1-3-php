@@ -9,7 +9,7 @@ use yii\helpers\Html;
 </div>
 <div class="row">
     <h4>TITULO</h4>
-    <h5>Nombre Actividad                                   URL             Acción</h5>
+    <h5><pre>Nombre upload                                   Publicación            Git            Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',
@@ -50,7 +50,7 @@ use yii\helpers\Html;
     ?>
 </div>
 <hr/>
-<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2F<?= Html::encode($return); ?>">Atrás</a></p>
+<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2F<?= Html::encode($return); ?>">Atrás</a></p>
 <div class="footer">
 </div>
 

@@ -129,9 +129,10 @@ class Lists_crudController extends Controller
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
-                                    'title' => 'Actividad ' . $value['launch_parameters']['iss'],
-                                    'image' => 'http://placehold.it/300x200',
-                                    'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
+                                    'title' => 'Upload Git ' . $value['launch_parameters']['iss'],
+                                    'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
+                                    'link1'  => '<a href="' . $value['upload']['launch_url'] . '" target="_blank">Upload Git</a>',
+                                    'image' => 'http://placehold.it/300x200'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
