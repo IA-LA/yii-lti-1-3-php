@@ -45,11 +45,11 @@ class PublishForm extends Model
         if ($this->validate()) {
             // @return bool whether the model passes validation
             // return true;
-            return ['result' => true, 'repositorio' => $resultado];
+            return ['result' => true, '$resultado' => $resultado];
         } else {
             // @return bool whether the model passes validation
             // return false;
-            return ['result' => false, 'repositorio' => $resultado];
+            return ['result' => false, '$resultado' => $resultado];
         }
     }
 }

@@ -785,19 +785,19 @@ class CrudController extends Controller
             // form is send successfully
             if (Yii::$app->request->isPost) {
                 Yii::$app->session->setFlash('publishFormSubmitted');
-                $publish = $model->publish();
 
+                $publish = $model->publish();
                 // publish does successfully
                 if ($publish['result']) {
                     Yii::$app->session->setFlash('publishIsPosible');
-                    return $this->render('Upload/publish', ['model' => $model, "repositorio" => $publish['repositorio']]);
+                    return $this->render('Upload/publish', ['model' => $model, "repositorio" => $publish['$resultado']]);
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
                     //return $this->render('Upload/publish', ['model' => $model]);
                     //return;
                 }
                 else {
                     Yii::$app->session->setFlash('publishIsNotPosible');
-                    return $this->render('Upload/publish', ['model' => $model, "repositorio" => $publish['repositorio']]);
+                    return $this->render('Upload/publish', ['model' => $model, "repositorio" => $publish['$resultado']]);
                 }
             }
 
