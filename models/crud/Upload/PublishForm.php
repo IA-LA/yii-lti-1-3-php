@@ -46,11 +46,11 @@ class PublishForm extends Model
         if ($this->validate() || is_dir('uploads/git/' . $id . '.' . 'git/')) {
             // @return bool whether the model passes validation
             // return true;
-            return ['result' => true, '$resultado' => $id . '.' . 'git/'];
+            return ['result' => true, 'resultado' => $id];
         } else {
             // @return bool whether the model passes validation
             // return false;
-            return ['result' => false, '$resultado' => $id . '.' . 'git/'];
+            return ['result' => false, 'resultado' => $id];
         }
     }
 }
