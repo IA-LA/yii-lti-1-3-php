@@ -24,13 +24,13 @@ class RegisterForm extends Model
     {
         return [
             // id and url are required
-            [['id', 'url_Publicación', 'url_Git', 'fichero', 'carpeta'], 'required'],
+            [['id', 'url_Publicacion', 'url_Git', 'fichero', 'carpeta'], 'required'],
             // id has to be a valid ID hexadecimal 24 character address
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
 //            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
             ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
             // url has to be a valid URL address
-            ['url_Publicación', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['url_Publicacion', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             ['url_Git', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
