@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Upload';
+$this->title = 'Publish';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('uploadFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('publishFormSubmitted')): ?>
 
         <div>
             <p/>
@@ -294,7 +294,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="row">
             <div class="col-lg-5">
-                <?php $form = ActiveForm::begin(['id' => 'upload-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'publish-form']); ?>
 
                 <?= $form->field($model, 'zipFile')->fileInput() ?>
 
@@ -309,7 +309,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
+                        <?= Html::submitButton('Publish', ['class' => 'btn btn-primary', 'name' => 'publish-button']) ?>
                     </div>
 
                 <?php ActiveForm::end() ?>

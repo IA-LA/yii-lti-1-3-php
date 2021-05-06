@@ -765,7 +765,7 @@ class CrudController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new UploadForm();
+            $model2 = new PublishForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('upload', [
@@ -780,14 +780,14 @@ class CrudController extends Controller
 
         }
         else {
-            $model = new UploadForm();
+            $model = new PublishForm();
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $upload = $model->upload();
                 if ($upload['result']) {
                     // file is uploaded successfully
-                    Yii::$app->session->setFlash('uploadFormSubmitted');
+                    Yii::$app->session->setFlash('publishFormSubmitted');
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
                     return $this->render('upload', ['model' => $model, "file" => $upload['file']]);
                     //return $this->render('upload', ['model' => $model]);
