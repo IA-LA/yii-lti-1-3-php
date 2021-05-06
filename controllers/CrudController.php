@@ -322,11 +322,11 @@ class CrudController extends Controller
                         ->setUrl($url . $ruta) //$_POST['RegisterForm']['id'])
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url'],
+                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url_Publicacion'],
                             'fichero' => Yii::$app->request->post('RegisterForm')['fichero'],
                             'carpeta' => Yii::$app->request->post('RegisterForm')['carpeta'],
-                            'publicacion_url' => $serverPublicacion . '/' . Yii::$app->request->post('RegisterForm')['carpeta'],
-                            'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git'
+                            'publicacion_url' => $serverPublicacion . '/' . Yii::$app->request->post('RegisterForm')['carpeta'], //['url_Publicacion']
+                            'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git' //['url_Git']
                             ]
                         )
                         ->setOptions([
