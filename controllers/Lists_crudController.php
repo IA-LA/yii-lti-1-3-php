@@ -131,7 +131,7 @@ class Lists_crudController extends Controller
                                     'id' => $value['_id'],
                                     'title' => 'Upload Git ' . $value['launch_parameters']['iss'],
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
-                                    'link1'  => '<a href="' . $value['upload']['launch_url'] . '" target="_blank">Upload Git</a>',
+                                    'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Upload Git</a>',
                                     'image' => 'http://placehold.it/300x200'
                                 ];
                                 $responseModels[] = $responseItem;
