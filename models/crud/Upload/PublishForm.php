@@ -41,7 +41,7 @@ class PublishForm extends Model
      */
     public function publish()
     {
-        $resultado = is_dir('uploads/git/' . $this->id . '.' . 'git');
+        $resultado = is_dir('uploads/git/' . $this->id . '.' . 'gitd');
         if ($this->validate()) {
             // @return bool whether the model passes validation
             // return true;
