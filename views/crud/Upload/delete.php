@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Borra una Actividad por su Identificador.
+            Borra un Upload por su Identificador.
             Thank you.
         </p>
 

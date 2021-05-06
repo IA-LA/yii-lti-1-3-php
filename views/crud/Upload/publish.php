@@ -109,8 +109,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Formulario de subida de Econtent complejos desde el CTU.
-            Puede subirse un fichero comprimido .zip, de cada vez,
+            Formulario de publicación de Econtent complejos desde el CTU.
+            Puede publicarse un proyecto o repositorio de cada vez,
             sin contener espacios en blanco, tildes o eñes en el nombre.
         </p>
 

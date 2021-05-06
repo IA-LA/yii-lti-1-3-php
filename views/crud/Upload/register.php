@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Registra una Actividad con su Identificador y la Url donde está alojada.
+            Registra un Upload con su Identificador y la Url donde está alojada.
             Thank you.
         </p>
 
@@ -46,6 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
                     <?= $form->field($model, 'url') ?>
+
+                    <?= $form->field($model, 'fichero') ?>
+
+                    <?= $form->field($model, 'carpeta') ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
