@@ -37,7 +37,7 @@ class PublishForm extends Model
     /**
      * Sends a file to the specified folder using the information collected by this model.
      *
-     * @param $id nombre publicación
+     * @param $id publicación
      * @return array whether the model passes validation
      */
     public function publish($id)
