@@ -4,13 +4,9 @@ namespace app\models\crud\Upload;
 
 use Yii;
 use yii\base\Model;
-//use yii\web\UploadedFile;
 
 class PublishForm extends Model
 {
-    /**
-     * @var UploadedFile
-     */
     public $id;
     public $zipFile;
     public $verifyCode;
