@@ -355,17 +355,17 @@ class CrudController extends Controller
                         <h1>Registro</h1>
                         <p class="lead">Upload.</p>' .
                         'PARAM: <code>' .
-                        Html::encode($response->data['data']['registr']['id_actividad']) .
+                        Html::encode($response->data['data']['register']['id_actividad']) .
                         '<br/>' .
-                        Html::encode($response->data['data']['registr']['url_actividad']) .
+                        Html::encode($response->data['data']['register']['url_actividad']) .
                         '<br/>' .
-                        Html::encode($response->data['data']['registr']['upload']['fichero']) .
+                        Html::encode($response->data['data']['register']['upload']['fichero']) .
                         '<br/>' .
-                        Html::encode($response->data['data']['registr']['upload']['carpeta']) .
+                        Html::encode($response->data['data']['register']['upload']['carpeta']) .
                         '<br/>' .
-                        Html::encode($response->data['data']['registr']['upload']['publicacion_url']) .
+                        Html::encode($response->data['data']['register']['upload']['publicacion_url']) .
                         '<br/>' .
-                        Html::encode($response->data['data']['registr']['upload']['git_url']) .
+                        Html::encode($response->data['data']['register']['upload']['git_url']) .
                         '<br/>' .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
