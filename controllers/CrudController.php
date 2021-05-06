@@ -294,13 +294,41 @@ class CrudController extends Controller
 
                 // Exception POST LTI
                 try {
+                    // Dirección de alojamiento
+                    // del servidor de Git
+                    //////////////////////
+                    /// LOCAL puerto :9000
+                    /// GLOBAL puerto:8000 o `.uned.es`
+                    ///
+                    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+                        $serverPublicacion = Yii::$app->params['serverPublicacion_local'];
+                        $carpetaPublicacion = Yii::$app->params['carpetaPublicacion_local'];
+                        $serverGit = Yii::$app->params['serverGit_local'];
+                        $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                        $serverLti = Yii::$app->params['serverLti_local'];
+                    }
+                    else {
+                        $serverPublicacion = Yii::$app->params['serverPublicacion_global'];
+                        $carpetaPublicacion = Yii::$app->params['carpetaPublicacion_global'];
+                        $serverGit = Yii::$app->params['serverGit_global'];
+                        $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                        $serverLti = Yii::$app->params['serverLti_global'];
+                    }
+
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
                         ->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['RegisterForm']['id'])
-                        ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
+                        ->setData([
+                            'id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
+                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url'],
+                            'fichero' => Yii::$app->request->post('RegisterForm')['fichero'],
+                            'carpeta' => Yii::$app->request->post('RegisterForm')['carpeta'],
+                            'publicacion_url' => $serverPublicacion . '/' . Yii::$app->request->post('RegisterForm')['carpeta'],
+                            'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git'
+                            ]
+                        )
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
