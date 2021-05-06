@@ -30,6 +30,9 @@ use yii\data\ArrayDataProvider;
 /* DLETE */
 use app\models\crud\Upload\DeleteForm;
 
+/*PUBLISH*/
+use app\models\crud\Upload\PublishForm;
+
 class CrudController extends Controller
 {
 
@@ -750,4 +753,50 @@ class CrudController extends Controller
             ]);
         }
     }
+
+    /*PUBLISH*/
+    /**
+     * Displays upload page.
+     *
+     * @return string
+     */
+    public function actionPublish()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new UploadForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('upload', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new UploadForm();
+
+            if (Yii::$app->request->isPost) {
+                $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
+                $upload = $model->upload();
+                if ($upload['result']) {
+                    // file is uploaded successfully
+                    Yii::$app->session->setFlash('uploadFormSubmitted');
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    return $this->render('upload', ['model' => $model, "file" => $upload['file']]);
+                    //return $this->render('upload', ['model' => $model]);
+                    //return;
+                }
+            }
+
+            return $this->render('upload', ['model' => $model]);
+        }
+    }
+
 }
