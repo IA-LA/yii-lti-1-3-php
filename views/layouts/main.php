@@ -56,7 +56,7 @@ AppAsset::register($this);
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Publish Git Menu</li>',
                     '<ul style="list-style-type:none">',
-                    ['label' => 'Publish', 'url' => ['/crud/publish']],
+                    ['label' => 'Publish Git', 'url' => ['/crud/publish']],
                     ['label' => 'Delete', 'url' => ['/crud/delete']],
                     ['label' => 'Lists', 'url' => ['/crud/lists']],
                     ['label' => 'Query', 'url' => ['/crud/query']],
