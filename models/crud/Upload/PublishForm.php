@@ -11,16 +11,20 @@ class PublishForm extends Model
     /**
      * @var UploadedFile
      */
+    public $id;
     public $zipFile;
     public $verifyCode;
 
     public function rules()
     {
         return [
+            // id is required
+            [['id'], 'required'],
+            ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
             //[['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
-            [['zipFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'zip'],
+            //[['zipFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'zip'],
             // verifyCode needs to be entered correctly
-            //['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
