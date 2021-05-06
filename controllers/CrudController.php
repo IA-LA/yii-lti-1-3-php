@@ -782,13 +782,14 @@ class CrudController extends Controller
         else {
             $model = new PublishForm();
 
+            // form is send successfully
             if (Yii::$app->request->isPost) {
-                //$model->zipFile = UploadedFile::getInstance($model, 'zipFile');
+                Yii::$app->session->setFlash('publishFormSubmitted');
                 $publish = $model->publish();
-                if ($publish['result']) {
-                    // form is send successfully
-                    Yii::$app->session->setFlash('publishFormSubmitted');
 
+                // publish does successfully
+                if ($publish['result']) {
+                    Yii::$app->session->setFlash('publishIsPosible');
                     return $this->render('Upload/publish', ['model' => $model, "id" => Yii::$app->request->post('PublishForm')['id']]);
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
                     //return $this->render('Upload/publish', ['model' => $model]);
@@ -796,7 +797,9 @@ class CrudController extends Controller
                 }
                 else {
 
-                    return $this->render('Upload/delete', ['model' => $model]);
+                    Yii::$app->session->setFlash('publishFormSubmitted');
+
+                    return $this->render('Upload/publish', ['model' => $model, "id" => Yii::$app->request->post('PublishForm')['id']]);
                 }
             }
 
