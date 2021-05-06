@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <p/>
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ subido correctamente</p>
+
             <?php
 
                 // Carpeta de publicación Actividad
@@ -44,11 +45,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 // MKDIR sin errores
                 if($retval === 0) {
             ?>
-                    <p/>
-                    <p/>
-                    <p/>
-                    <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
-                <?php
+
+            <p/>
+            <p/>
+            <p/>
+            <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
+
+            <?php
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
                     // Carpeta de publicaciones
@@ -247,18 +250,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     // Git, UNZIP y Publicacion sin errores
                     if($retval === 0) {
-                ?>
-                        <p/>
-                        <p/>
-                        <p/>
-                        <div class="alert alert-success">
-                            <ol>
-                                <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
-                                <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
-                                <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
-                            </ol>
-                        </div>
-                <?php
+            ?>
+
+            <p/>
+            <p/>
+            <p/>
+            <div class="alert alert-success">
+                <ol>
+                    <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
+                    <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
+                    <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                </ol>
+            </div>
+
+        <?php
 
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // REGISTRO
@@ -280,7 +285,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
                          '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
                 }
-            ?>
+        ?>
 
         </div>
 
