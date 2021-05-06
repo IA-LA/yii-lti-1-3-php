@@ -4,7 +4,7 @@ namespace app\models\crud\Upload;
 
 use Yii;
 use yii\base\Model;
-use yii\web\UploadedFile;
+//use yii\web\UploadedFile;
 
 class PublishForm extends Model
 {
@@ -39,21 +39,20 @@ class PublishForm extends Model
     }
 
     /**
-     * Sends a zip to the specified folder using the information collected by this model.
+     * Sends a file to the specified folder using the information collected by this model.
      *
      * @return array whether the model passes validation
      */
-    public function upload()
+    public function publish()
     {
-        if ($this->validate()) {
-            $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
-            //@return bool whether the model passes validation
-            //return true;
-            return ['result' => true, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension];
+        if ($this->validate() && is_dir('uploads/git/' . $this->id . '.' . 'git')) {
+            // @return bool whether the model passes validation
+            // return true;
+            return ['result' => true, 'repositorio' => $this->id . '.' . 'git'];
         } else {
-            //@return bool whether the model passes validation
-            //return false;
-            return ['result' => false, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension];
+            // @return bool whether the model passes validation
+            // return false;
+            return ['result' => false, 'repositorio' => $this->id . '.' . `git`];
         }
     }
 }
