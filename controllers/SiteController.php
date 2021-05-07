@@ -251,12 +251,12 @@ class SiteController extends Controller
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
-                $upload = $model->upload();
-                if ($upload['result']) {
+                $upload = $model->uploadregister();
+                if ($uploadregister['result']) {
                     // file is uploaded successfully
                     Yii::$app->session->setFlash('uploadregisterFormSubmitted');
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
-                    return $this->render('uploadregister', ['model' => $model, "file" => $upload['file']]);
+                    return $this->render('uploadregister', ['model' => $model, "file" => $uploadregister['file']]);
                     //return $this->render('uploadregister', ['model' => $model]);
                     //return;
                 }
