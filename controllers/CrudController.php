@@ -319,14 +319,15 @@ class CrudController extends Controller
                         ->setFormat(Client::FORMAT_JSON)
                         ->setMethod('POST')
                         //->setMethod('GET')
-                        ->setUrl($url . $ruta) //$_POST['RegisterForm']['id'])
+                        ->setUrl($url . $ruta)
+                        //$_POST['RegisterForm']['id']) Parámetros del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url_Publicacion'],
+                            'url_actividad' => Yii::$app->request->post('RegisterForm')['publicacion'],
                             'fichero' => Yii::$app->request->post('RegisterForm')['fichero'],
                             'carpeta' => Yii::$app->request->post('RegisterForm')['carpeta'],
-                            'publicacion_url' => $serverPublicacion . '/' . Yii::$app->request->post('RegisterForm')['carpeta'], //['url_Publicacion']
-                            'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git' //['url_Git']
+                            'publicacion_url' => $serverPublicacion . '/' . Yii::$app->request->post('RegisterForm')['carpeta'], //['publicacion']
+                            'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git' //['git']
                             ]
                         )
                         ->setOptions([
