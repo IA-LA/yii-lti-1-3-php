@@ -26,7 +26,7 @@ class RegisterForm extends Model
     {
         return [
             // id and url are required
-            [['id', 'publicacion', 'git', 'fichero', 'carpeta'], 'required'],
+            [['id', 'fichero', 'carpeta'], 'required'],
             // [['id', 'publicacion', 'git', 'fichero', 'carpeta'], 'required'],
             // id has to be a valid ID hexadecimal 24 character address
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
