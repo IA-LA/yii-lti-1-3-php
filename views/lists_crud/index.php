@@ -8,8 +8,8 @@ use yii\helpers\Html;
     <h3><?= Html::encode($title); ?> Git Upload</h3>
 </div>
 <div class="row">
-    <h4>TITULO</h4>
-    <h5><pre>Nombre upload                                   Publicación            Git            Acción</pre></h5>
+    <h4><pre>TITULO</pre></h4>
+    <h5><pre>Nombre-Upload                                   Publicación            Git            Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',
