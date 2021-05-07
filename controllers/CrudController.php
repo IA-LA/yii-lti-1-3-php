@@ -354,20 +354,25 @@ class CrudController extends Controller
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                         <h1>Registro</h1>
-                        <p class="lead">Upload.</p>' .
-                        'PARAM: <code>' .
+                        <p class="lead">de Upload realizado correctamente.</p>' .
+                        'ID: <code>' .
                         Html::encode($response->data['data']['register']['id_actividad']) .
-                        '<br/>' .
+                        '</code><br/>' .
+                        'URL: <code>' .
                         Html::encode($response->data['data']['register']['url_actividad']) .
-                        '<br/>' .
+                        '</code><br/>' .
+                        'FILE: <code>' .
                         Html::encode($response->data['data']['register']['upload']['fichero']) .
-                        '<br/>' .
+                        '</code><br/>' .
+                        'FOLDER: <code>' .
+                        'PUBLISH: <code>' .
                         Html::encode($response->data['data']['register']['upload']['carpeta']) .
-                        '<br/>' .
+                        '</code><br/>' .
+                        'PUBLICACION: <code>' .
                         Html::encode($response->data['data']['register']['upload']['publicacion_url']) .
-                        '<br/>' .
+                        '</code><br/>' .
+                        'GIT: <code>' .
                         Html::encode($response->data['data']['register']['upload']['git_url']) .
-                        '<br/>' .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
