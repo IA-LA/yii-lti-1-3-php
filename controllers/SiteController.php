@@ -232,7 +232,7 @@ class SiteController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new UploadForm();
+            $model2 = new UploadRegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('uploadregister', [
@@ -247,7 +247,7 @@ class SiteController extends Controller
 
         }
         else {
-            $model = new UploadForm();
+            $model = new UploadRegisterForm();
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
