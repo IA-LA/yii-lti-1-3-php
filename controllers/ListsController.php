@@ -87,10 +87,10 @@ class ListsController extends Controller
                 case 'ListsForm':
                     if ($params['id']) {
                         // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
-                        $ruta = '/read/all/coleccion/Upload/id_actividad/' . $params['id'];
+                        $ruta = '/read/all/coleccion/Lti/id_actividad/' . $params['id'];
                     } else {
                         // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                        $ruta = '/read/all/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
+                        $ruta = '/read/all/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
                     }
 
                     // Exception GET LTI1
