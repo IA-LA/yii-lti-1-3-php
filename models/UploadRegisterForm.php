@@ -39,7 +39,7 @@ class UploadRegisterForm extends Model
      *
      * @return array whether the model passes validation
      */
-    public function uploadregister()
+    public function upload()
     {
         if ($this->validate()) {
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
