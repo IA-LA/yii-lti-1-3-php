@@ -227,7 +227,7 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionUploadRegister()
+    public function actionUploadregister()
     {
 
         if (Yii::$app->user->isGuest) {
