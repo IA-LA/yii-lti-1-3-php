@@ -14,6 +14,9 @@ use app\models\ContactForm;
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
+/*UPLOADREGISTER*/
+use app\models\UploadRegisterForm;
+
 /*REGISTER*/
 use app\models\RegisterForm;
 use yii\helpers\ArrayHelper;
@@ -215,6 +218,51 @@ class SiteController extends Controller
             }
 
             return $this->render('upload', ['model' => $model]);
+        }
+    }
+
+    /*UPLOADREGISTER*/
+    /**
+     * Displays uploadregister page.
+     *
+     * @return string
+     */
+    public function actionUploadRegister()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new UploadForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('uploadregister', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new UploadForm();
+
+            if (Yii::$app->request->isPost) {
+                $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
+                $upload = $model->uploadregister();
+                if ($upload['result']) {
+                    // file is uploaded successfully
+                    Yii::$app->session->setFlash('uploadregisterFormSubmitted');
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
+                    return $this->render('uploadregister', ['model' => $model, "file" => $upload['file']]);
+                    //return $this->render('uploadregister', ['model' => $model]);
+                    //return;
+                }
+            }
+
+            return $this->render('uploadregister', ['model' => $model]);
         }
     }
 
