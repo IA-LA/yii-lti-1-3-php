@@ -12,6 +12,8 @@ class RegisterForm extends Model
 {
     public $id;
     public $url;
+    public $publicacion;
+    public $git;
     public $fichero;
     public $carpeta;
     public $verifyCode;
