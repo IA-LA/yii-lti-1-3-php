@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 // Pull Git Publicacion sin errores
                 //REPOSITORIO ACTUALIZADO CORRECTAMENTE
-                if(($retval === 0) || (!strpos($output, "Merge made by the 'recursive' strategy."))) {
+                if(($retval === 0) || (strpos($output, "Merge made by the 'recursive' strategy.") >= 0)) {
             ?>
 
                     <div class="alert alert-success">
