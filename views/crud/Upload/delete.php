@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Delete Git Upload';
+$this->title = 'Delete Git';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-delete">
