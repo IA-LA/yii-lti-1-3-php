@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git" .'), $output, $retval);
                 // REPOSITORIO SIN CAMBIOS O ACTUALIZADO CORRECTAMENTE
-                if((strpos($output, ""))) {
+                if($retval) {
                     echo "10.Returned with status $retval and output $output:\n";
                     echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
                     echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
