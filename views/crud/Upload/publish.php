@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="alert alert-success">
                         <ol>
                             <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ sin cambios.</li>
-                            <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($serverGit . '/' . $namedir); ?>" target="_blank"><?= Html::encode($serverGit . '/' . $namedir); ?></a></i></b> sin modificaciones.</li>
+                            <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= Html::encode($namedir); ?></a></i></b> sin modificaciones.</li>
                             <!--
                                         <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
                                         <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
