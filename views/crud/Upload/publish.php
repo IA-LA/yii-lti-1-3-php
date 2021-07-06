@@ -62,13 +62,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 $retval=null;
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git" .'), $output, $retval);
-                //echo "10.Returned with status $retval and output:\n";
-                //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
-                //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
-                //print_r($output);
-                //echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push 2>&1'));
-                //echo "<pre>10.b. $output</pre>";
+                echo "10.Returned with status $retval and output:\n";
+                echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
+                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
+                print_r($output);
+                echo "</pre></p>";
+                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
+                echo "<pre>10.b. $output</pre>";
 
                 // Pull Git Publicacion sin errores
                 if($retval === 0) {
