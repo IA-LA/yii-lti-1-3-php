@@ -74,6 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // Pull Git Publicacion sin errores
                 //REPOSITORIO ACTUALIZADO CORRECTAMENTE
                 if(($retval === 0) || (!strpos($output, "Merge made by the 'recursive' strategy."))) {
+                    echo 'STRPOS=' . strpos($output, "Merge made by the 'recursive' strategy.", 0);
             ?>
 
                     <div class="alert alert-success">
@@ -91,7 +92,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // REGISTRO
                     ////////////////////////////////
                     echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                        '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>' . strpos($output, "Merge made by the 'recursive' strategy.", 0);
+                        '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
                     //$this->render('_list_item',['model' => $model])
 
                     // Boton Atras
