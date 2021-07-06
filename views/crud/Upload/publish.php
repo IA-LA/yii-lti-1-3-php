@@ -62,16 +62,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 $retval=null;
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git" .'), $output, $retval);
-                echo "10.Returned with status $retval and output:\n";
-                echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
-                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
-                print_r($output);
-                echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
-                echo "<pre>10.b. $output</pre>";
+                // REPOSITORIO SIN CAMBIOS O ACTUALIZADO CORRECTAMENTE
+                if(($output === "Already up to date.") || ($output === "Merge made by the 'recursive' strategy.")) {
+                    echo "10.Returned with status $retval and output:\n";
+                    echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
+                    echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
+                    print_r($output);
+                    echo "</pre></p>";
+                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
+                    echo "<pre>10.b. $output</pre>";
 
-                // Pull Git Publicacion sin errores
-                if($retval === 0) {
+                    // Pull Git Publicacion sin errores
+                    if($retval === 0) {
             ?>
 
                     <div class="alert alert-success">
@@ -97,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS O ACTUALIZADO CORRECTAMENTE
-                    if(($output === "Already up to date.") || ($output === "Merge made by the 'recursive' strategy.")) {
+                    if(($output === '')) {
             ?>
                     <div class="alert alert-success">
                         <ol>
@@ -113,10 +115,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         // Boton Atras
                         echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
                     }
-                    else {
-                        echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
-                            '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
-                    }
+                }
+            }
+            else {
+                    echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
                 }
             ?>
 
