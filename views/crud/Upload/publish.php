@@ -96,8 +96,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
                 }
                 else {
-                    // REPOSITORIO SIN CAMBIOS
-                    if($output === 'Already up to date.') {
+                    // REPOSITORIO SIN CAMBIOS O ACTUALIZADO CORRECTAMENTE
+                    if(($output === "Already up to date.") || ($output === "Merge made by the 'recursive' strategy.")) {
             ?>
                     <div class="alert alert-success">
                         <ol>
