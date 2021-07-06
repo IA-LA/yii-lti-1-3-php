@@ -98,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS O ACTUALIZADO CORRECTAMENTE
-                    if((strpos($output, "Already up to date.")) || (strpos($output, "Merge made by the 'recursive' strategy."))) {
+                    if((!strpos($output, 'Already up to date.')) || (!strpos($output, "Merge made by the 'recursive' strategy."))) {
             ?>
                     <div class="alert alert-success">
                         <ol>
