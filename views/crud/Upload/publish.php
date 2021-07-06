@@ -63,16 +63,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git" .'), $output, $retval);
                 echo "10.Returned with status $retval and output:\n";
-                echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ merge master<br/>";
-                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ merge master 2>&1') . "<br/>";
+                echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
+                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
                 print_r($output);
                 echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ merge master 2>&1'));
+                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
                 echo "<pre>10.b. $output</pre>";
 
                 // Pull Git Publicacion sin errores
                 if($retval === 0) {
-                    ?>
+            ?>
 
                     <div class="alert alert-success">
                         <ol>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </ol>
                     </div>
 
-                    <?php
+            <?php
                     // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                     // REGISTRO
                     ////////////////////////////////
@@ -96,8 +96,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
                 }
                 else {
-                    echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                    // REPOSITORIO SIN CAMBIOS
+                    if($output === 'Already up to date.') {
+            ?>
+                    <div class="alert alert-success">
+                        <ol>
+                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ sin cambios.<br/></li>
+                            <!--
+                                        <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
+                                        <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                                        -->
+                        </ol>
+                    </div>
+            <?php
+
+                        // Boton Atras
+                        echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                    }
+                    else {
+                        echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
+                            '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                    }
                 }
             ?>
 
