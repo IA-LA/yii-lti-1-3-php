@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1') . "<br/>";
                 //print_r($output);
                 //echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
+                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push 2>&1'));
                 //echo "<pre>10.b. $output</pre>";
 
                 // Pull Git Publicacion sin errores
