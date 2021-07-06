@@ -102,7 +102,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
                     <div class="alert alert-success">
                         <ol>
-                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ sin cambios.<br/></li>
+                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ sin cambios.</li>
+                            <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($serverGit . '/' . $namedir); ?>" target="_blank"><?= Html::encode($serverGit . '/' . $namedir); ?></a></i></b> sin modificaciones.</li>
                             <!--
                                         <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
                                         <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
@@ -110,10 +111,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         </ol>
                     </div>
             <?php
-                        // REGISTRO
-                        ////////////////////////////////
-                        echo '<div class="row alert alert-success"><div class="col-lg-6">Web de publicación: <b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div></div>';
-
                         // Boton Atras
                         echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
                     }
