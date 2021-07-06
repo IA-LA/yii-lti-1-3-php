@@ -72,7 +72,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 //echo "<pre>10.b. $output</pre>";
 
                 // Pull Git Publicacion sin errores
-                if($retval === 0) {
+                //REPOSITORIO ACTUALIZADO CORRECTAMENTE
+                if(($retval === 0) || (!strpos($output, "Merge made by the 'recursive' strategy."))) {
             ?>
 
                     <div class="alert alert-success">
@@ -97,8 +98,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
                 }
                 else {
-                    // REPOSITORIO SIN CAMBIOS O ACTUALIZADO CORRECTAMENTE
-                    if((!strpos($output, 'Already up to date.')) || (!strpos($output, "Merge made by the 'recursive' strategy."))) {
+                    // REPOSITORIO SIN CAMBIOS
+                    if(!strpos($output, 'Already up to date.')) {
             ?>
                     <div class="alert alert-success">
                         <ol>
