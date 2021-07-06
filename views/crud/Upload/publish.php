@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
                         // REGISTRO
                         ////////////////////////////////
-                        echo '<div class="row alert alert-success"><div class="col-lg-6">Web de publicación: <b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>';
+                        echo '<div class="row alert alert-success"><div class="col-lg-6">Web de publicación: <b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div></div>';
 
                         // Boton Atras
                         echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
