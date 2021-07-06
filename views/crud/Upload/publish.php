@@ -73,10 +73,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 // Pull Git Publicacion sin errores
                 //REPOSITORIO ACTUALIZADO CORRECTAMENTE
-                if(($retval === 0) || (!strpos($output, "Merge made by the 'recursive' strategy."))) {
-                    echo 'STRPOS=' . $output . strpos($output, 'Already up to date', 0);
+                // !strpos($output, "Merge made by the 'recursive' strategy."))
+                if(($retval === 0) || ($retvar === 0)) {
             ?>
-
                     <div class="alert alert-success">
                         <ol>
                             <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ publicado correctamente.<br/></li>
