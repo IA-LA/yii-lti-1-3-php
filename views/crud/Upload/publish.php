@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 // Pull Git Publicacion sin errores
                 //REPOSITORIO ACTUALIZADO CORRECTAMENTE
-                if(($retval === 0) || (strpos(array_reduce($output[count($output)-1][0]), "Merge made by the 'recursive' strategy.")) ) {
+                if(($retval === 0) || (strpos(array_reduce($output[count($output)-1]), "Merge made by the 'recursive' strategy.")) ) {
             ?>
                     <div class="alert alert-success">
                         <ol>
@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
-                    if(strpos(array_reduce($output[count($output)-1][0]), 'Already up to date.')) {
+                    if(strpos(array_reduce($output[count($output)-1]), 'Already up to date.')) {
             ?>
                     <div class="alert alert-success">
                         <ol>
