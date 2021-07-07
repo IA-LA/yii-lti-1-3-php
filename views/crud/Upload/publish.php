@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo "10.Returned with status $retval and output:\n";
                 echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master<br/>";
                 print_r($output);
-                echo "10.PassThru" . $output = passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1 >> $salida', $retva) . "<br/>";
+                echo "10.PassThru" . $output = passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1 >> salida.txt', $retva) . "<br/>";
                 print($retva);
                 print($salida);
                 echo "</pre></p>";
