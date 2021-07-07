@@ -71,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo "10.PassThru" . $output = passthru(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'), $retva) . "<br/>";
                 print($retva);
                 echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'), $retv);
+                $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
                 echo "<pre>10.b. $output</pre>";
                 print($retv);
                 $output = system(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'), $ret);
