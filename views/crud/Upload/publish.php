@@ -72,14 +72,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo "10.Returned with status $retva and output:\n";
                 echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master 2>&1<br/>";
                 print_r($output);
-                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $retv) . "<br/>";
-                print($retva);
-                echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('$(git -C uploads/publicacion/' . $namedir . '/ pull origin master)'));
-                echo "<pre>10.b. $output</pre>";
-                $output = system(escapeshellcmd('$(git -C uploads/publicacion/' . $namedir . '/ pull origin master)'), $retv);
-                echo "<pre>10.c. $output</pre>";
-                print($ret);
+                //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $retv) . "<br/>";
+                //print($retva);
+                //echo "</pre></p>";
+                //$output = shell_exec(escapeshellcmd('$(git -C uploads/publicacion/' . $namedir . '/ pull origin master)'));
+                //echo "<pre>10.b. $output</pre>";
+                //$output = system(escapeshellcmd('$(git -C uploads/publicacion/' . $namedir . '/ pull origin master)'), $retv);
+                //echo "<pre>10.c. $output</pre>";
+                //print($ret);
 
                 // Pull Git Publicacion sin errores
                 //REPOSITORIO ACTUALIZADO CORRECTAMENTE
