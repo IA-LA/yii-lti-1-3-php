@@ -108,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
-                    if(strpos($output[count($output)-1], 'Already up to date.')) {
+                    if(!strpos($output[count($output)-1], 'Already up to date.')) {
             ?>
                     <div class="alert alert-success">
                         <ol>
