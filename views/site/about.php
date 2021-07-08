@@ -48,8 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     el nombre, el cual se utilizará como plantilla para publicarlo en una URL, registrarlo en el Servidor
                     LTI y como base de un proyecto Git que permita trabajar en él de forma distribuida.</p>
 
-                <p><a class="btn btn-default" href="index.php?r=site%2Fpublish">Publish &raquo;</a></p>
-                <p><a class="btn btn-default" href="index.php?r=site%2Fpublishregister">Publish & Register &raquo;</a></p>
+                <p><a class="btn btn-default" href="index.php?r=crud%2Fpublish">Publish &raquo;</a></p>
+                <p><a class="btn btn-default" href="index.php?r=crud%2Fpublishregister">Publish & Register &raquo;</a></p>
 
             </div>
             <div class="col-lg-4">
