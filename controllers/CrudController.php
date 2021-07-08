@@ -32,6 +32,7 @@ use app\models\crud\Upload\DeleteForm;
 
 /*PUBLISH*/
 use app\models\crud\Upload\PublishForm;
+use app\models\crud\Upload\PublishRegisterForm;
 
 class CrudController extends Controller
 {
@@ -849,6 +850,57 @@ class CrudController extends Controller
             }
 
             return $this->render('Upload/publish', ['model' => $model]);
+        }
+    }
+
+    /*PUBLISHREGISTER*/
+    /**
+     * Displays publishregister page.
+     *
+     * @return string
+     */
+    public function actionPublishregister()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new PublishRegisterForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('Upload/publishregister', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new PublishRegisterForm();
+
+            // form is send successfully
+            if (Yii::$app->request->isPost) {
+                Yii::$app->session->setFlash('publishregisterFormSubmitted');
+
+                $publish = $model->publish(Yii::$app->request->post('PublishRegisterForm')['id']);
+                // publish does successfully
+                if ($publish['result']) {
+                    Yii::$app->session->setFlash('publishregisterIsPosible');
+                    return $this->render('Upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    //return $this->render('Upload/publish', ['model' => $model]);
+                    //return;
+                }
+                else {
+                    Yii::$app->session->setFlash('publishregisterIsNotPosible');
+                    return $this->render('Upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                }
+            }
+
+            return $this->render('Upload/publishregister', ['model' => $model]);
         }
     }
 

@@ -8,17 +8,17 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Publish';
+$this->title = 'Publish & Register';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
 
 ?>
-<div class="site-publish">
+<div class="site-publishregister">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('publishFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('publishregisterFormSubmitted')): ?>
 
     <div>
         <p/>
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <p/>
 
         <!-- TODO consultar el valor del _ID en la colección Upload de la BBDD antes de actualizar Git-->
-        <?php if (Yii::$app->session->hasFlash('publishIsPosible')): ?>
+        <?php if (Yii::$app->session->hasFlash('publishregisterIsPosible')): ?>
 
             <p class="alert alert-success">Upload Git ´<b><i><?= $namedir ?>.git</i></b>´ es un proyecto correcto</p>
 
@@ -97,14 +97,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php
                     // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
-                    // NO REGISTRO
+                    // REGISTRO
                     ////////////////////////////////
-                    //echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                    //    '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
+                    echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                        '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
                     //$this->render('_list_item',['model' => $model])
 
                     // Boton Atras
-                    echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                    echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>';
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
@@ -122,11 +122,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
             <?php
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>';
                     }
                 }
             ?>
@@ -134,7 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php else: ?>
 
             <p class="alert alert-danger">Upload Git ´<b><i><?= $namedir ?></i></b>.git´ NO es un proyecto correcto</p>
-            <p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>
+            <p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>
 
         <?php endif; ?>
 
@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="row">
             <div class="col-lg-5">
-                <?php $form = ActiveForm::begin(['id' => 'publish-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'publishregister-form']); ?>
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
@@ -163,7 +163,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                        <?= Html::submitButton('Publish', ['class' => 'btn btn-primary', 'name' => 'publish-button']) ?>
+                        <?= Html::submitButton('Publish', ['class' => 'btn btn-primary', 'name' => 'publishregister-button']) ?>
                     </div>
 
                 <?php ActiveForm::end() ?>
