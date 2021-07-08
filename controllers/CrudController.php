@@ -885,7 +885,7 @@ class CrudController extends Controller
             if (Yii::$app->request->isPost) {
                 Yii::$app->session->setFlash('publishregisterFormSubmitted');
 
-                $publish = $model->publish(Yii::$app->request->post('PublishRegisterForm')['id']);
+                $publish = $model->publishregister(Yii::$app->request->post('PublishRegisterForm')['id']);
                 // publish does successfully
                 if ($publish['result']) {
                     Yii::$app->session->setFlash('publishregisterIsPosible');
