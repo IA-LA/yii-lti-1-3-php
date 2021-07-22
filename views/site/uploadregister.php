@@ -24,6 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <p/>
             <p/>
+            <!--
+            // VALOR DEL NOMBRE D FICHERO
+            // enviado desde el Controlador SiteController.php
+            -->
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ subido correctamente</p>
 
             <?php
@@ -39,8 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 // (on a system with the "mkdir" executable in the path)
                 $output=null;
                 $retval=null;
+                // VALOR DE LA CARPETA
+                // desde el Controlador SiteContreoller.php
                 //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
-                $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+                //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+                $namedir=$namefile;
                 exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
                 // MKDIR sin errores
                 if($retval === 0) {

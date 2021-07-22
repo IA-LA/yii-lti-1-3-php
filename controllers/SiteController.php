@@ -221,6 +221,53 @@ class SiteController extends Controller
         }
     }
 
+    /*UPLOADREGISTER_old*/
+    /**
+     * Displays uploadregister_old page.
+     *
+     * @return string
+     */
+    public function actionUploadregister_old()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new UploadRegisterForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('uploadregister', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new UploadRegisterForm();
+
+            if (Yii::$app->request->isPost) {
+                $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
+                $uploadregister = $model->uploadregister();
+                if ($uploadregister['result']) {
+                    // file is uploaded successfully
+                    Yii::$app->session->setFlash('uploadregisterFormSubmitted');
+
+                    // Return file is uploaded successfully
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
+                    return $this->render('uploadregister', ['model' => $model, "file" => $uploadregister['file']]);
+                    //return $this->render('uploadregister', ['model' => $model]);
+                    //return;
+                }
+            }
+
+            return $this->render('uploadregister', ['model' => $model]);
+        }
+    }
+
     /*UPLOADREGISTER*/
     /**
      * Displays uploadregister page.
@@ -253,10 +300,12 @@ class SiteController extends Controller
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $uploadregister = $model->uploadregister();
                 if ($uploadregister['result']) {
-                    // file is uploaded successfully
+                    // If file is uploaded successfully
                     Yii::$app->session->setFlash('uploadregisterFormSubmitted');
+
+                    // Return file is uploaded successfully
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
-                    return $this->render('uploadregister', ['model' => $model, "file" => $uploadregister['file']]);
+                    return $this->render('uploadregister', ['model' => $model, "file" => $uploadregister['file'], "namefile" => Yii::$app->user->identity->id . date('YmdHisu') . 'a']);
                     //return $this->render('uploadregister', ['model' => $model]);
                     //return;
                 }
