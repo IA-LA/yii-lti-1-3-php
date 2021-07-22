@@ -12,10 +12,10 @@ return [
     'serverGit_local' => 'http://192.168.0.31:8000/uploads/git',
     'serverPublicacion_global' => 'https://ailanto-dev.intecca.uned.es/lti/publicacion', //'http://ailanto-dev.intecca.uned.es/uploads/publicacion', // 'http://10.201.54.31:8000/uploads/publicacion',
     'serverPublicacion_local' => 'http://192.168.0.31:8000/uploads/publicacion',
-    'carpetaPublicacion_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/publicacion', //'/var/www/html/webdav/lti/publicacion',
-    'carpetaPublicacion_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/publicacion',
     'carpetaGit_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/git', //'/var/www/html/webdav/lti/git',
     'carpetaGit_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/git',
+    'carpetaPublicacion_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/publicacion', //'/var/www/html/webdav/lti/publicacion',
+    'carpetaPublicacion_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/publicacion',
     'yiiapp' => 'LTI Server',
     'yiiname' => 'UNED',
 
