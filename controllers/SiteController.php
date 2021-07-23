@@ -299,12 +299,16 @@ class SiteController extends Controller
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $uploadregister = $model->uploadregister();
+
+                // If file is uploaded successfully
+                ///////////////////////////////////
                 if ($uploadregister['result']) {
-                    // If file is uploaded successfully
                     Yii::$app->session->setFlash('uploadregisterFormSubmitted');
                     // Define Nombre carpeta, web y git
                     $namefile = Yii::$app->user->identity->id . date('YmdHisu') . 'a';
 
+                    // REGISTER Publicación & LTI
+                    // --------------------------
                     // LLAMADA POST Register
                     // Información servidor
                     //  https://www.php.net/manual/es/function.header.php
@@ -427,7 +431,11 @@ class SiteController extends Controller
                         $content .= '</div>';
                     }
 
+                    // REGISTER Upload & Git
+                    // ---------------------
+
                     // Return file is uploaded successfully
+                    ///////////////////////////////////////
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
                     return $this->render('uploadregister', ['model' => $model, "file" => $uploadregister['file'], "namefile" => $namefile]);
                     //return $this->render('uploadregister', ['model' => $model]);
