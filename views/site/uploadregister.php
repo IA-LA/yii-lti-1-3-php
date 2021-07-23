@@ -277,8 +277,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         ////////////////////////////////
                         echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI ha quedado registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
                             //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
-                            '<div class="row alert alert-success"><div class="col-lg-6">El Upload puede ser registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i></b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="uploads/git/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´,</div>' .
-                            '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>';
+                            '<div class="row alert alert-success"><div class="col-lg-6">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i></b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="uploads/git/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´,</div>' .
+                            //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
+                            '';
                              //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
