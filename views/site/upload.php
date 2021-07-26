@@ -264,7 +264,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <ol>
                     <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
                     <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
-                    <li>Web URL de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                    <li>Web URL de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir . '/'); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
                 </ol>
             </div>
 

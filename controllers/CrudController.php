@@ -327,7 +327,7 @@ class CrudController extends Controller
                             'url_actividad' => Yii::$app->request->post('RegisterForm')['publicacion'],
                             'fichero' => Yii::$app->request->post('RegisterForm')['fichero'],
                             'carpeta' => Yii::$app->request->post('RegisterForm')['carpeta'],
-                            'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('RegisterForm')['carpeta'], //['publicacion']
+                            'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '/', //['publicacion']
                             'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git' //['git']
                             ]
                         )
