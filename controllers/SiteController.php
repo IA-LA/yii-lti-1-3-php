@@ -370,7 +370,7 @@ class SiteController extends Controller
                     // REgistro por URL
                     } else {
                         // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
-                        $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($serverPub . '/' . $namefile . '/'));
+                        $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($serverPub . '/' . $namefile));
                     }
 
                     // Exception POST LTI
@@ -381,7 +381,7 @@ class SiteController extends Controller
                             //->setMethod('GET')
                             ->setUrl($url . $ruta) //$_POST['RegisterForm']['id'])
                             ->setData(['id_actividad' => $namefile,
-                                'url_actividad' => $serverPub . '/' . $namefile . '/'])
+                                'url_actividad' => $serverPub . '/' . $namefile])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                                 'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -424,7 +424,7 @@ class SiteController extends Controller
                             <h1>Error</h1>
                             <p class="lead">Las credenciales de Registro son erróneas.</p>' .
                             'ID:  <code>' . $namefile . '</code><br/>' .
-                            'URL: <code>' . $serverPub . '/' . $namefile . '/' . '</code><br/>' .
+                            'URL: <code>' . $serverPub . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fregister">Atrás</a></p>
                         </div>';
@@ -480,10 +480,10 @@ class SiteController extends Controller
                             //$_POST['RegisterForm']['id']) Parámetros del registro
                             ->setData([
                                     'id_actividad' => $namefile,
-                                    'url_actividad' => $serverPublicacion . '/' . $namefile . '/',
+                                    'url_actividad' => $serverPublicacion . '/' . $namefile,
                                     'fichero' => $uploadregister['file'],
                                     'carpeta' => $namefile,
-                                    'publicacion_url' => $serverPublicacion . '/' . $namefile . '/', //['publicacion']
+                                    'publicacion_url' => $serverPublicacion . '/' . $namefile, //['publicacion']
                                     'git_url' => $serverGit . '/' . $namefile . '.git' //['git']
                                 ]
                             )
@@ -547,7 +547,7 @@ class SiteController extends Controller
                             <h1>Error</h1>
                             <p class="lead">Las credenciales de Registro son erróneas.</p>' .
                             'ID:  <code>' . $namefile . '</code><br/>' .
-                            'URL: <code>' . $serverPublicacion . '/' . $namefile . '/' . '</code><br/>' .
+                            'URL: <code>' . $serverPublicacion . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fregister">Atrás</a></p>
                         </div>';
