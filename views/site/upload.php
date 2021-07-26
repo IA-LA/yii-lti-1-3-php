@@ -67,11 +67,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
                         $carpetaGit = Yii::$app->params['carpetaGit_local'];
                         $serverGit = Yii::$app->params['serverGit_local'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
+                        $serverPub = Yii::$app->params['serverPublicacion_local'];
                         $serverLti = Yii::$app->params['serverLti_local'];
                     }
                     else {
                         $carpetaGit = Yii::$app->params['carpetaGit_global'];
                         $serverGit = Yii::$app->params['serverGit_global'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+                        $serverPub = Yii::$app->params['serverPublicacion_global'];
                         $serverLti = Yii::$app->params['serverLti_global'];
                     }
 
@@ -258,24 +262,15 @@ $this->params['breadcrumbs'][] = $this->title;
             <p/>
             <div class="alert alert-success">
                 <ol>
-                    <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ generado correctamente.<br/></li>
+                    <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
                     <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
-                    <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                    <li>Web URL de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
                 </ol>
             </div>
 
         <?php
 
-                        // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
-                        // REGISTRO
-                        ////////////////////////////////
                         echo '<div class="row alert alert-success"><div class="col-lg-6">La acción de `<b>Upload</b>` se realizó correctamente.</div></div>';
-                        // OPCIONES DE REGISTER LTI y UPLOAD
-                        //echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>'.
-                        //    '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
-                        //    '<div class="row alert alert-success"><div class="col-lg-6">El Upload puede ser registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i></b>, la carpeta' . $namedir . ' y la publicación: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="uploads/git/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´,</div>' .
-                        //    '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>';
-                             //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
                         echo '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>';

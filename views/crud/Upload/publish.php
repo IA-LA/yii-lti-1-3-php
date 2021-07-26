@@ -41,11 +41,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
                     $carpetaGit = Yii::$app->params['carpetaGit_local'];
                     $serverGit = Yii::$app->params['serverGit_local'];
+                    $serverPub = Yii::$app->params['serverPublicacion_local'];
+                    $carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
                     $serverLti = Yii::$app->params['serverLti_local'];
                 }
                 else {
                     $carpetaGit = Yii::$app->params['carpetaGit_global'];
                     $serverGit = Yii::$app->params['serverGit_global'];
+                    $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+                    $serverPub = Yii::$app->params['serverPublicacion_global'];
                     $serverLti = Yii::$app->params['serverLti_global'];
                 }
 
@@ -87,8 +91,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
                     <div class="alert alert-success">
                         <ol>
-                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ actualizado y publicado correctamente.<br/></li>
-                            <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank">´<?= Html::encode($namedir); ?>´</a></i></b> actualizada con las modificaciones.</li>
+                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ actualizado y publicado correctamente.<br/></li>
+                            <li>Web de publicación: <b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank">´<?= Html::encode($namedir); ?>´</a></i></b> actualizada con las modificaciones.</li>
                             <!--
                             <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
                             <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
@@ -97,12 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
             <?php
-                    // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
-                    // NO REGISTRO
-                    ////////////////////////////////
-                    //echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                    //    '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
-                    //$this->render('_list_item',['model' => $model])
+
+                    echo '<div class="row alert alert-success"><div class="col-lg-6">La acción de `<b>Publicación</b>` se realizó correctamente.</div></div>';
 
                     // Boton Atras
                     echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';

@@ -302,17 +302,17 @@ class CrudController extends Controller
                     /// GLOBAL puerto:8000 o `.uned.es`
                     ///
                     if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
-                        $serverPublicacion = Yii::$app->params['serverPublicacion_local'];
-                        $carpetaPublicacion = Yii::$app->params['carpetaPublicacion_local'];
                         $serverGit = Yii::$app->params['serverGit_local'];
                         $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                        $serverPub = Yii::$app->params['serverPublicacion_local'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
                         $serverLti = Yii::$app->params['serverLti_local'];
                     }
                     else {
-                        $serverPublicacion = Yii::$app->params['serverPublicacion_global'];
-                        $carpetaPublicacion = Yii::$app->params['carpetaPublicacion_global'];
                         $serverGit = Yii::$app->params['serverGit_global'];
                         $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                        $serverPub = Yii::$app->params['serverPublicacion_global'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
                         $serverLti = Yii::$app->params['serverLti_global'];
                     }
 
@@ -327,7 +327,7 @@ class CrudController extends Controller
                             'url_actividad' => Yii::$app->request->post('RegisterForm')['publicacion'],
                             'fichero' => Yii::$app->request->post('RegisterForm')['fichero'],
                             'carpeta' => Yii::$app->request->post('RegisterForm')['carpeta'],
-                            'publicacion_url' => $serverPublicacion . '/' . Yii::$app->request->post('RegisterForm')['carpeta'], //['publicacion']
+                            'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('RegisterForm')['carpeta'], //['publicacion']
                             'git_url' => $serverGit . '/' . Yii::$app->request->post('RegisterForm')['carpeta'] . '.git' //['git']
                             ]
                         )
