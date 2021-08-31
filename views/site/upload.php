@@ -165,6 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "unzip" executable in the path)
                     $output=null;
                     $retval=null;
+                    umask(0000);
                     exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
