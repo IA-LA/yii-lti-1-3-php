@@ -90,6 +90,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     //  ID=$namedir
                     ///////////////////////////////////////////////////////////////////////////////////
                     ///
+
+                    // Unzip Actividad .zip
+                    // outputs the username that owns the running php/httpd process
+                    // (on a system with the "unzip" executable in the path)
+                    $output=null;
+                    $retval=null;
+                    exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+                    //echo "6.Returned with status $retval and output:\n";
+                    //echo "Returned with status $retval and output:\n";
+                    //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
+                    //echo "<p><pre> 6.a. Unzip<br/>";
+                    //print_r($output);
+                    //echo "</pre></p>";
+                    //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+                    //echo "<pre>6.$output</pre>";
+                    //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
+                    //echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
+                    //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+                    //echo "<pre>6.b. $output</pre>";
+
                     // Git
                     $output = shell_exec(escapeshellcmd('git --version'));
                     //echo "<pre>1. $output</pre>";
@@ -164,26 +185,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     //exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-
-                    // Unzip Actividad .zip
-                    // outputs the username that owns the running php/httpd process
-                    // (on a system with the "unzip" executable in the path)
-                    $output=null;
-                    $retval=null;
-                    exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-                    //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
-                    //echo "6.Returned with status $retval and output:\n";
-                    //echo "Returned with status $retval and output:\n";
-                    //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    //echo "<p><pre> 6.a. Unzip<br/>";
-                    //print_r($output);
-                    //echo "</pre></p>";
-                    //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                    //echo "<pre>6.$output</pre>";
-                    //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-                    //echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
-                    //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                    //echo "<pre>6.b. $output</pre>";
 
                     // Add, Commit y Push clonado
                     // Add
