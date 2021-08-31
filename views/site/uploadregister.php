@@ -175,7 +175,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
                     //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
-                    //print_r($output);
+                    print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
