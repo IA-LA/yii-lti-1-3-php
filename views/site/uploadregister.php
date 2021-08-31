@@ -170,14 +170,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "unzip" executable in the path)
                     $output=null;
                     $retval=null;
-                    exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
-                    $output = shell_exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
+                    $output = shell_exec(escapeshellcmd('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                     echo "<pre>6.b.$output</pre>";
                     //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
