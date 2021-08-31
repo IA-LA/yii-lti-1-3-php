@@ -46,7 +46,7 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => Yii::$app->user->isGuest ? ('Tools') : ('Tools (' . Yii::$app->user->identity->username . ')'),
-                'items' => [
+                'items' => Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]) : ([
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Upload Menu</li>',
                     '<ul style="list-style-type:none">',
@@ -75,7 +75,7 @@ AppAsset::register($this);
                     ['label' => 'Query', 'url' => ['/site/query']],
                     ['label' => 'Register', 'url' => ['/site/register']],
                     '</ul>',
-                ],
+                ]),
             ],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
