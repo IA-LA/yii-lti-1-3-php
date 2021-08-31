@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $retval=null;
                 //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
                 $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+                umask(0002);
                 exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
                 // MKDIR sin errores
                 if($retval === 0) {
