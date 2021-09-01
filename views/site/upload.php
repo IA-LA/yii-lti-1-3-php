@@ -193,6 +193,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
                     //echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
+                    echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
                     print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
