@@ -169,7 +169,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     umask(0000);
-                    exec(escapeshellcmd('unzip -K -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('unzip -t uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "Returned with status $retval and output:\n";
