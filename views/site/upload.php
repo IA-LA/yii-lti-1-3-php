@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
 
                 // Carpeta de publicación Actividad
+                umask(0000);
                 $output = shell_exec(escapeshellcmd('mkdir uploads/publicacion'));
                 //echo "<pre>$output</pre>";
 
@@ -93,6 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "mkdir" executable in the path)
                     $output=null;
                     $retval=null;
+                    umask(0000);
                     exec(escapeshellcmd('mkdir uploads/git 2>&1'), $output, $retval);
                     //echo "2.Returned with status $retval and output:\n";
                     //echo "<p><pre>2.a.";
@@ -108,6 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "mkdir" executable in the path)
                     $output=null;
                     $retval=null;
+                    umask(0000);
                     $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                     exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
                     //echo "3.Returned with status $retval and output:\n";
