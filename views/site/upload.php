@@ -190,13 +190,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "git add" executable in the path)
                     $output=null;
                     $retval=null;
-                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
+                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
                     //echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
-                    echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
+                    echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' add . 2>&1') . "<br/>";
                     print_r($output);
                     //echo "</pre></p>";
-                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' add .'));
                     //echo "<pre>7.b. $output</pre>";
                     //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
                     //echo "<pre>7.c. $output</pre>";
