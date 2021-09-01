@@ -174,14 +174,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "unzip" executable in the path)
                     $output=null;
                     $retval=null;
-                    exec(escapeshellcmd('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
-                    print_r($output);
+                    //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    //print_r($output);
                     //echo "</pre></p>";
-                    //$output = shell_exec(escapeshellcmd('unzip -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
+                    //$output = shell_exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                     //echo "<pre>6.b.$output</pre>";
                     //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
@@ -197,10 +197,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $retval=null;
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
-                    echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
+                    //echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
-                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
                     //echo "<pre>7.b. $output</pre>";
                     //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
                     //echo "<pre>7.c. $output</pre>";
@@ -298,7 +298,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>';
                     }
                     else {
-                        echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
+                        echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
                              '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fuploadregister">Atrás</a></p>';
                     }
 

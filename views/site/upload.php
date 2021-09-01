@@ -206,7 +206,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
-                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
+                    //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
+                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '"'), $output, $retval);
                     //echo "8.Returned with status $retval and output:\n";
                     //echo "<p><pre>8.a.<br/>";
                     //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
@@ -217,15 +218,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
-                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
+                    //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
+                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "' . Yii::$app->user->identity->id . '"'), $output, $retval);
                     //echo "8.Returned with status $retval and output:\n";
                     //echo "<p><pre>8.b.<br/>";
                     //echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
-                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
+                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
                     //echo "<pre>8.c. $output</pre>";
-                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
+                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
                     //echo "<pre>8.d. $output</pre>";
 
                     // Commit -m "Init Commit Server LTI"
@@ -240,7 +242,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
-                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
+                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
                     //echo "<pre>9.b. $output</pre>";
 
                     // Push clonado
@@ -255,7 +257,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
-                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
+                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
                     //echo "<pre>10.b. $output</pre>";
 
                     // Git, UNZIP y Publicacion sin errores
@@ -281,7 +283,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>';
                     }
                     else {
-                        echo '<p class="alert error-summary">Error al descomprimir fichero <i>`' . $file . '`</i></p>' .
+                        echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
                              '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fupload">Atrás</a></p>';
                     }
 
