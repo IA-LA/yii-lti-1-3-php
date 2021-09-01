@@ -173,7 +173,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
