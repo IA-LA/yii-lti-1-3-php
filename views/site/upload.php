@@ -175,16 +175,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
                     echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     // Permisos carptetas Publicación
-                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('chmod 744 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    echo "<p><pre> 6.b. Chmod PassThru " . passthru('chmod 744 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                    //echo "<pre>6.$output</pre>";
+                    //echo "<pre>6.c.$output</pre>";
                     //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-                    //echo "<pre>6.a. touch HolaMundo.txt $output</pre>";
+                    //echo "<pre>6.d. touch HolaMundo.txt $output</pre>";
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                    //echo "<pre>6.b. $output</pre>";
+                    //echo "<pre>6.e. $output</pre>";
 
                     // Add, Commit y Push clonado
                     // Add
