@@ -61,6 +61,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 $output = shell_exec(escapeshellcmd('git --version'));
                 //echo "<pre>1. $output</pre>";
 
+                // Commit Config
+                // outputs the username that owns the running php/httpd process
+                // (on a system with the "git add" executable in the path)
+                $output=null;
+                $retval=null;
+                //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
+                //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
+                exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '"'), $output, $retval);
+                //echo "8.Returned with status $retval and output:\n";
+                //echo "<p><pre>8.a.<br/>";
+                //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
+                //print_r($output);
+                //echo "</pre></p>";
+                // outputs the username that owns the running php/httpd process
+                // (on a system with the "git add" executable in the path)
+                $output=null;
+                $retval=null;
+                //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
+                //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
+                exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "' . Yii::$app->user->identity->id . '"'), $output, $retval);
+                //echo "8.Returned with status $retval and output:\n";
+                //echo "<p><pre>8.b.<br/>";
+                //echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
+                //print_r($output);
+                //echo "</pre></p>";
+                //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
+                //echo "<pre>8.c. $output</pre>";
+                //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
+                //echo "<pre>8.d. $output</pre>";
+
                 // Pull Repositirio
                 $output=null;
                 $retval=null;
