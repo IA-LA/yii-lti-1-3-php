@@ -68,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $retval=null;
                 //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
                 //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
-                exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '"'), $output, $retval);
+                exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '@lti.server"'), $output, $retval);
                 //echo "8.Returned with status $retval and output:\n";
                 //echo "<p><pre>8.a.<br/>";
                 //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
