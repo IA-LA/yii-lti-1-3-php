@@ -196,7 +196,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
                     print_r($output);
                     //echo "</pre></p>";
-                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
                     //echo "<pre>7.b. $output</pre>";
                     //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
                     //echo "<pre>7.c. $output</pre>";
