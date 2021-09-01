@@ -174,6 +174,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
                     echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    // Permisos carptetas Git ./objects
+                    $output = shell_exec(escapeshellcmd('chmod 777 -R uploads/publicacion/' . $namedir . '.git/objects/'));
+                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('chmod 555 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
