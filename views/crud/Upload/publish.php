@@ -91,7 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
                 //echo "<pre>8.d. $output</pre>";
 
-                // Pull Repositirio
+                // Pull Repositirio (Commit de confirmación)
                 $output=null;
                 $retval=null;
                 $retva=null;
