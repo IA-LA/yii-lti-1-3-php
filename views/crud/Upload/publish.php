@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $retva=null;
                 $retv=null;
                 $ret=null;
-                exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git ' . date('YmdHisu') . '"'), $output, $retval);
+                //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git ' . date('YmdHisu') . '"'), $output, $retval);
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 exec(escapeshellcmd('git -C /uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 //echo "10.Returned with status $retval and output:\n";
