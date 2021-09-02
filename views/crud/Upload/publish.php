@@ -102,7 +102,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 exec(escapeshellcmd('git -C /uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 //echo "10.Returned with status $retval and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ commit -m 'Commit Publish Git' .<br/>";
-                print_r($output);
+                //print_r($output);
                 //exec('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $output, $retva);
                 //echo "10.Returned with status $retva and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master 2>&1<br/>";
@@ -144,7 +144,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
                     <div class="alert alert-success">
                         <ol>
-                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ sin cambios.</li>
+                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ sin cambios.</li>
                             <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank">´<?= Html::encode($namedir); ?>´</a></i></b> sin modificaciones.</li>
                             <!--
                                         <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
