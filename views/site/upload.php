@@ -120,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     // Proyecto Git
                     // Crear Git vacío distribuido (--bare)
-                    $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+                    $output = shell_exec(escapeshellcmd('git -C uploads/git/ --bare init ' . $namedir . '.git'));
                     //echo "<pre>4.a. $output</pre>";
                     // Permisos carptetas Git ./hobks
                     $output = shell_exec(escapeshellcmd('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
@@ -192,6 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "git add" executable in the path)
                     $output=null;
                     $retval=null;
+                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
                     //echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
