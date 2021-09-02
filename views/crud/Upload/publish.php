@@ -140,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
-                    if(($output === '') || strpos(implode(" ", $output), 'up to date') || (strpos(json_encode($output), 'Already up to date.'))) {
+                    if(($output === null) || strpos(implode(" ", $output), 'up to date') || (strpos(json_encode($output), 'Already up to date.'))) {
             ?>
                     <div class="alert alert-success">
                         <ol>
