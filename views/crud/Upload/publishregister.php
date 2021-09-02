@@ -91,14 +91,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
                 //echo "<pre>8.d. $output</pre>";
 
-                // Pull Repositirio
+                // Pull Repositirio (Commit de confirmación)
                 $output=null;
                 $retval=null;
                 $retva=null;
                 $retv=null;
                 $ret=null;
-                //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
                 exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git ' . date('YmdHisu') . '"'), $output, $retval);
+                //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
+                exec(escapeshellcmd('git -C /uploads/publicacion/' . $namedir . '/ pull origin master'), $output, $retval);
                 //echo "10.Returned with status $retval and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ commit -m 'Commit Publish Git' .<br/>";
                 //print_r($output);
@@ -143,11 +144,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
-                    if(strpos(json_encode($output), 'Already up to date.')) {
+                    if(($output === null) || strpos(implode(" ", $output), 'up to date') || (strpos(json_encode($output), 'Already up to date.'))) {
             ?>
                     <div class="alert alert-success">
                         <ol>
-                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?></a></i></b>´ sin cambios.</li>
+                            <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ sin cambios.</li>
                             <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank">´<?= Html::encode($namedir); ?>´</a></i></b> sin modificaciones.</li>
                             <!--
                                         <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
