@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $ret=null;
                 exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Commit Publish Git ' . date('YmdHisu') . '"'), $output, $retval);
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ pull'), $output, $retval);
-                //exec(escapeshellcmd('git -C /uploads/publicacion/' . $namedir . '/ pull origin master'), $output, $retval);
+                exec(escapeshellcmd('git -C /uploads/publicacion/' . $namedir . '/ pull origin master'), $output, $retval);
                 //echo "10.Returned with status $retval and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ commit -m 'Commit Publish Git' .<br/>";
                 //print_r($output);
@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //echo "10.Returned with status $retva and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master 2>&1<br/>";
                 //print(implode(" ", $output));
-                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $retv) . "<br/>";
+                //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $retv) . "<br/>";
                 //print($retva);
                 //echo "</pre></p>";
                 //shell_exec(escapeshellcmd('$(git -C uploads/publicacion/' . $namedir . '/ pull origin master)'));
@@ -118,7 +118,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 // Pull Git Publicacion sin errores
                 //REPOSITORIO ACTUALIZADO CORRECTAMENTE
-                if(($retval === 0) || (strpos(implode(" ", $output), "Merge made by the 'recursive' strategy")) ) {
+                if( ($retval === 0) || (strpos(implode(" ", $output), "Merge made by the 'recursive' strategy")) || (strpos(implode(" ", $output), "origin/master Updating")) ) {
             ?>
                     <div class="alert alert-success">
                         <ol>
