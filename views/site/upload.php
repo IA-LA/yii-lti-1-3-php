@@ -175,7 +175,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
                     echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     // Permisos carptetas Publicación
-                    echo "<p><pre> 6.b. Chmod PassThru " . passthru('chmod 777 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    echo "<p><pre> 6.b. Chmod PassThru " . passthru('chmod 774 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
