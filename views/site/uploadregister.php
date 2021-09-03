@@ -174,7 +174,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "unzip" executable in the path)
                     $output=null;
                     $retval=null;
+                    umask(0000);
                     exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('chmod 774 -R uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
@@ -195,6 +197,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     // (on a system with the "git add" executable in the path)
                     $output=null;
                     $retval=null;
+                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
                     //echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
