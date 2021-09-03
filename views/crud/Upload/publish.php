@@ -103,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //echo "10.Returned with status $retval and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ commit -m 'Commit Publish Git' .<br/>";
                 //print_r($output);
-                //exec('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $output, $retva);
+                exec('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $output, $retva);
                 //echo "10.Returned with status $retva and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master 2>&1<br/>";
                 //print(implode(" ", $output));
