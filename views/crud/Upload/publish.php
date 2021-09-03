@@ -107,7 +107,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 //echo "10.Returned with status $retva and output:\n";
                 //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ pull origin master 2>&1<br/>";
                 //print(implode(" ", $output));
-                //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $retv) . "<br/>";
+                echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ pull origin master 2>&1', $retv) . "<br/>";
                 //print($retva);
                 //echo "</pre></p>";
                 shell_exec(escapeshellcmd('$(git -C uploads/publicacion/' . $namedir . '/ pull origin master)'));
