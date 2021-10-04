@@ -24,8 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>DONE</code> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
             <li><code>DONE</code> Almcenar los Uploads de .zip, publicación y proyecto Git en la colección `Uploads`de la BBDD.</li>
             <li><code>DONE</code> Almcenar las Actividades publicadas en la colección `Ltis`de la BBDD.</li>
-            <li><code>TODO</code> Registrar automáticamente ID + URL de la Actividad (eContent) publicada en el lServidor LTI</li>
-            <li><code>TODO</code> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el lServidor LTI</li>
+            <li><code>DONE</code> Registrar automáticamente ID + URL de la Actividad (eContent) publicada en el lServidor LTI</li>
+            <li><code>DONE</code> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el lServidor LTI</li>
+            <li><code>TODO</code> Proveer el Recurso (LtiResourceLinkRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms">IMS Global</a> (simulación)</li>
             <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc)</li>
         </ol>
         <div class="row">
