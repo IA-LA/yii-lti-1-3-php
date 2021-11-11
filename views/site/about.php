@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <code><?= __FILE__ ?></code>
 -->
     <div class="body-content">
-        <h2>TODO</h2>
+        <h2>TODO & DONE</h2>
         <ol>
             <li><code>DONE</code> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
             <li><code>DONE</code> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>DONE</code> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el lServidor LTI</li>
             <li><code>DONE</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTP</li>
             <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTPS</li>
-            <li><code>DONE</code> Proveer el Recurso (LtiResourceLinkRequest) OIDC en entornos <a href="https://lti-ri.imsglobal.org/platforms">IMS Global</a> (simulación)</li>
+            <li><code>DONE</code> Proveer el Recurso (LtiResourceLinkRequest) OIDC en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630">IMS Global</a> (simulación)</li>
             <li><code>TODO</code> Proveer el Recurso (LtiResourceLinkRequest) OIDC en entornos <a href="http://ailanto-dev.intecca.uned.es:8080">EDX</a> (reales)</li>
-            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms">IMS Global</a> (simulación)</li>
+            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630">IMS Global</a> (simulación)</li>
             <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="http://ailanto-dev.intecca.uned.es:8080">EDX</a> (reales)</li>
         </ol>
         <div class="row">
