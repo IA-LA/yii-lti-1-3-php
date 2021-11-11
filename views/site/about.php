@@ -20,15 +20,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="body-content">
         <h2>TODO & DONE</h2>
         <ol>
-            <li><code>DONE</code> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
-            <li><code>DONE</code> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
-            <li><code>DONE</code> Almcenar los Uploads de .zip, publicación y proyecto Git en la colección `Uploads`de la BBDD.</li>
-            <li><code>DONE</code> Almcenar las Actividades publicadas en la colección `Ltis`de la BBDD.</li>
-            <li><code>DONE</code> Registrar automáticamente ID + URL de la Actividad (eContent) publicada en el Servidor LTI</li>
-            <li><code>DONE</code> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el Servidor LTI</li>
-            <li><code>DONE</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTP</li>
+            <li><pre>DONE</pre> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
+            <li><pre>DONE</pre> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
+            <li><pre>DONE</pre> Almcenar los Uploads de .zip, publicación y proyecto Git en la colección `Uploads`de la BBDD.</li>
+            <li><pre>DONE</pre> Almcenar las Actividades publicadas en la colección `Ltis`de la BBDD.</li>
+            <li><pre>DONE</pre> Registrar automáticamente ID + URL de la Actividad (eContent) publicada en el Servidor LTI</li>
+            <li><pre>DONE</pre> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el Servidor LTI</li>
+            <li><pre>DONE</pre> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTP</li>
             <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTPS</li>
-            <li><code>DONE</code> Proveer <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041" target="_blank">un Recurso</a> (LtiResourceLinkRequest) <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041/rosters" target="_blank">vía OIDC</a> en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> (simulación)</li>
+            <li><pre>DONE</pre> Proveer <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041" target="_blank">un Recurso</a> (LtiResourceLinkRequest) <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041/rosters" target="_blank">vía OIDC</a> en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> (simulación)</li>
             <li><code>TODO</code> Proveer un Recurso (LtiResourceLinkRequest) vía OIDC en entornos <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a> (reales)</li>
             <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> (simulación)</li>
             <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a> (reales)</li>
