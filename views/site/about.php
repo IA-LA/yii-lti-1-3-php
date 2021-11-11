@@ -26,8 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>DONE</code> Almcenar las Actividades publicadas en la colección `Ltis`de la BBDD.</li>
             <li><code>DONE</code> Registrar automáticamente ID + URL de la Actividad (eContent) publicada en el lServidor LTI</li>
             <li><code>DONE</code> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el lServidor LTI</li>
-            <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc)</li>
-            <li><code>TODO</code> Proveer el Recurso (LtiResourceLinkRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms">IMS Global</a> (simulación)</li>
+            <li><code>DONE</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTP</li>
+            <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTPS</li>
+            <li><code>DONE</code> Proveer el Recurso (LtiResourceLinkRequest) OIDC en entornos <a href="https://lti-ri.imsglobal.org/platforms">IMS Global</a> (simulación)</li>
+            <li><code>TODO</code> Proveer el Recurso (LtiResourceLinkRequest) OIDC en entornos <a href="http://ailanto-dev.intecca.uned.es:8080">EDX</a> (reales)</li>
+            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms">IMS Global</a> (simulación)</li>
+            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="http://ailanto-dev.intecca.uned.es:8080">EDX</a> (reales)</li>
         </ol>
         <div class="row">
             <div class="col-lg-4">
