@@ -28,10 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>DONE</code> Registrar automáticamente ZIP + URL y Proyecto Git de la Upload en el Servidor LTI</li>
             <li><code>DONE</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTP</li>
             <li><code>TODO</code> Proveer la Actividad (eContent) en entornos LMS (EdX, Moodle, etc) HTTPS</li>
-            <li><code>DONE</code> Proveer <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041">un Recurso</a> (LtiResourceLinkRequest) <a href="hhttps://lti-ri.imsglobal.org/platforms/2630/resource_links/62041/rosters">vía OIDC</a> en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630">IMS Global</a> (simulación)</li>
-            <li><code>TODO</code> Proveer un Recurso (LtiResourceLinkRequest) vía OIDC en entornos <a href="http://ailanto-dev.intecca.uned.es:8080">EDX</a> (reales)</li>
-            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630">IMS Global</a> (simulación)</li>
-            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="http://ailanto-dev.intecca.uned.es:8080">EDX</a> (reales)</li>
+            <li><code>DONE</code> Proveer <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041" target="_blank">un Recurso</a> (LtiResourceLinkRequest) <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041/rosters" target="_blank">vía OIDC</a> en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> (simulación)</li>
+            <li><code>TODO</code> Proveer un Recurso (LtiResourceLinkRequest) vía OIDC en entornos <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a> (reales)</li>
+            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> (simulación)</li>
+            <li><code>TODO</code> Proveer mensaje (DeepLinkingRequest) en entornos <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a> (reales)</li>
         </ol>
         <div class="row">
             <div class="col-lg-4">
