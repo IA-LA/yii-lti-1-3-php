@@ -22,7 +22,7 @@ $this->title = 'Development ' . Yii::$app->params['yiiapp'];
         }
         else{
         ?>
-            <p class="lead">Bienvenido <?= ' "<i>' . Yii::$app->user->identity->username . '</i>" ' ?>, accede al panel de Actividades (Tools).</p>
+            <p class="lead">Hola <?= ' "<i>' . Yii::$app->user->identity->username . '</i>" ' ?>, accede al panel de Actividades (Tools).</p>
 
             <form action="/index.php?r=site%2Flogout" method="post">
                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
