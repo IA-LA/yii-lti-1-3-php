@@ -12,7 +12,7 @@ This code contains the basic features that would let you to manage an LTI Tool S
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
-[![build](https://github.com/IA-LA/yii-lti-1-3-php/workflows/build/badge.svg)](https://github.com/IA-LA/yii-lti-1-3-php/actions?query=workflow%3Abuild)
+[![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/IA-LA/yii-lti-1-3-php/actions?query=workflow%3Abuild)
 
 Deploy with Docker
 ----------------------
