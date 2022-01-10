@@ -1,8 +1,85 @@
 <p align="center">
+    <a href="http://ailanto-dev.intecca.uned.es/" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/99332" height="100px">
+    </a>
+    <h1 align="center">LTI Tool Server Client</h1>
+    <br>
+</p>
+
+LTI Client is based on [Yii 2](http://www.yiiframework.com/).
+
+This code contains the basic features that would allow you to management a LTI Tool Server Ecosystem.
+
+[![Latest Stable Version](https://img.shields.io/packagist/v/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
+[![build](https://github.com/IA-LA/yii-lti-1-3-php/workflows/build/badge.svg)](https://github.com/IA-LA/yii-lti-1-3-php/actions?query=workflow%3Abuild)
+
+Deploy with Docker
+----------------------
+
+  
+Start the container
+
+    docker-compose up
+    
+You can then access the application through the following URL:
+
+    http://127.0.0.1:8000
+    
+    
+FOLDER STRUCTURE
+-------------------
+
+      controllers/          contains Web controller classes
+            Crud...             CRUD collection
+            Lists...            Listing elements
+            Lists_crud...       Listing elements of a CRUD collection
+            Site...             Base site
+      models/               contains model classes
+            crud
+                Lti             CRUD Form ltis collection
+                Upload          CRUD Form uploads collection
+      views/                contains view files for the Web application
+            crud                
+                Lti                 CRUD Form ltis collection
+                Upload              CRUD Form uploads collection
+            layouts             Web Menu
+            lists               Listing elements
+            lists_crud          Listing elements of a CRUD collection
+            site                Base site
+            web                 Index file
+      web/                  contains the entry script and Web resources
+            uploads/            .zip files uploaded
+
+MAIN URLs
+------------
+
+
+## Client:
+Global:
+~~~
+http://ailanto-dev.intecca.uned.es/
+~~~
+Local:
+~~~
+http://10.201.54.31:8000/
+~~~
+
+## Repository:
+Global:
+
+Local:
+~~~
+http://10.201.54.232/vanesa/clienteLTI.git
+~~~
+
+
+## Framework:
+<p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h3 align="center">Yii 2 Basic Project Template</h3>
     <br>
 </p>
 

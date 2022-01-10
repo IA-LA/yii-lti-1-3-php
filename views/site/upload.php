@@ -147,7 +147,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "5.Returned with status $retval and output:\n";
                     //echo "<p><pre>5.a. git clone uploads/git/$namedir.git uploads/publicacion/$namedir<br/>";
-                    print_r($output);
+                    //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/ clone uploads/git/' . $namedir . '.git ' . $namedir));
                     //$output = shell_exec(escapeshellcmd('git clone uploads/git/' . $namedir . '.git uploads/publicacion/' . $namedir . ' 2>&1'));
