@@ -8,7 +8,7 @@
 
 LTI Client is based on [Yii 2](http://www.yiiframework.com/).
 
-This code contains the basic features that would allow you to management a LTI Tool Server Ecosystem.
+This code contains the basic features that would let you to manage an LTI Tool Server Ecosystem.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
