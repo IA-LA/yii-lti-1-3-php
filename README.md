@@ -36,19 +36,19 @@ FOLDER STRUCTURE
             Lists_crud...       Listing elements of a CRUD collection
             Site...             Base site
       models/               contains model classes
-            crud
-                Lti             CRUD Form ltis collection
-                Upload          CRUD Form uploads collection
+            crud/
+                Lti/            CRUD Form ltis collection
+                Upload/         CRUD Form uploads collection
       views/                contains view files for the Web application
-            crud                
-                Lti                 CRUD Form ltis collection
-                Upload              CRUD Form uploads collection
-            layouts             Web Menu
-            lists               Listing elements
-            lists_crud          Listing elements of a CRUD collection
-            site                Base site
-            web                 Index file
+            crud/                
+                Lti/                CRUD Form ltis collection
+                Upload/             CRUD Form uploads collection
+            layouts/            Web Menu
+            lists/              Listing elements
+            lists_crud/         Listing elements of a CRUD collection
+            site/               Base site
       web/                  contains the entry script and Web resources
+            index...            Application launcher
             uploads/            .zip files uploaded
 
 MAIN URLs
