@@ -49,7 +49,7 @@ FOLDER STRUCTURE
             site/               Base site
       web/                  contains the entry script and Web resources
             index...            Application launcher
-            uploads/            .zip files uploaded
+            uploads/            .Zip files uploaded
 
 MAIN URLs
 ------------
