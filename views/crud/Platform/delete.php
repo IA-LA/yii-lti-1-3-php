@@ -2,19 +2,19 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\crud\Lti\RegisterForm */
+/* @var $model app\models\crud\Platform\DeleteForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Register';
+$this->title = 'Delete';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-register">
+<div class="site-delete">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('deleteFormSubmitted')): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.
@@ -34,25 +34,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Registra una Actividad con su Identificador y la Url donde está alojada.
+            Borra una Actividad por su Identificador.
             Thank you.
         </p>
 
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'register-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'delete-form']); ?>
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
-
-                    <?= $form->field($model, 'url') ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'delete-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

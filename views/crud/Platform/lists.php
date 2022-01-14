@@ -2,19 +2,19 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\crud\Lti\RegisterForm */
+/* @var $model app\models\crud\Platform\ListsForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Register';
+$this->title = 'Lists';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-register">
+<div class="site-lists">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('listsFormSubmitted')): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>
             Note that if you turn on the Yii debugger, you should be able
-            to view the mail message on the mail panel of the debugger.<br/>
+            to view the mail message on the mail panel of the debugger.
             <?php if (Yii::$app->mailer->useFileTransport): ?>
                 Because the application is in development mode, the email is not sent but saved as
                 a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
@@ -34,14 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Registra una Actividad con su Identificador y la Url donde está alojada.
+            Lista la información de una/s Actividad/es ya registrada/s por su Id o su Url.<br/>
+            Admite el comodín * en estas formas (*, HH..HH*, *HH..HH *HH..HH*).<br/>
             Thank you.
         </p>
 
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'register-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'lists-form']); ?>
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
@@ -52,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'lists-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

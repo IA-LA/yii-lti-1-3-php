@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\DeleteForm */
+/* @var $model app\models\crud\Lti\DeleteForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
