@@ -43,14 +43,14 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        /* Quitado */
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        /* Quitado */
     ],
     // Add this to get debug and gii to work
     'modules' => [
