@@ -11,27 +11,27 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 
 /*UPLOAD*/
-use app\models\UploadForm;
+use app\models\crud\Lti\UploadForm;
 use yii\web\UploadedFile;
 
 /*UPLOADREGISTER*/
-use app\models\UploadRegisterForm;
+use app\models\crud\Lti\UploadRegisterForm;
 
 /*REGISTER*/
-use app\models\RegisterForm;
+use app\models\crud\Lti\RegisterForm;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
 /*QUERY*/
-use app\models\QueryForm;
+use app\models\crud\Lti\QueryForm;
 use yii\helpers\Html;
 
 /* LISTS */
-use app\models\ListsForm;
+use app\models\crud\Lti\ListsForm;
 use yii\data\ArrayDataProvider;
 
 /* DLETE */
-use app\models\DeleteForm;
+use app\models\crud\Lti\DeleteForm;
 
 class SiteController extends Controller
 {
