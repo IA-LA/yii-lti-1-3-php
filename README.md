@@ -31,7 +31,7 @@ FOLDER STRUCTURE
 -------------------
 
       controllers/          contains Web controller classes
-            Crud...             CRUD collection
+            CrudCollection...   CRUD of this collection
             Lists...            Listing elements
             Lists_crud...       Listing elements of a CRUD collection
             Site...             Base site
