@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>TODO</code> Paso mensajes LTI Advantage (AGS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
             <li><code>TODO</code> Paso mensajes LTI Advantage (NPRS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
             <li>Platform Menu</li>
-            <li>Update (Git, Lti y Platform)</li>
+            <li>Update Form (Git, Lti y Platform)</li>
         </ol>
         <div class="row">
             <div class="col-lg-4">
