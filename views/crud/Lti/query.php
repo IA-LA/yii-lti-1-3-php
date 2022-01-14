@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Query Lti';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-query">
+<div class="crud-Lti-query">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('queryFormSubmitted')): ?>

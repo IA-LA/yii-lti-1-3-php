@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Register Lti';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-register">
+<div class="crud-Lti-register">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>
