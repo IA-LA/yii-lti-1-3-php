@@ -34,7 +34,7 @@ use app\models\crud\Platform\DeleteForm;
 use app\models\crud\Platform\PublishForm;
 use app\models\crud\Platform\PublishRegisterForm;
 
-class CrudController extends Controller
+class CrudPlatformController extends Controller
 {
 
     /**

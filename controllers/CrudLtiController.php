@@ -33,7 +33,7 @@ use yii\data\ArrayDataProvider;
 /* DLETE */
 use app\models\crud\Lti\DeleteForm;
 
-class SiteController extends Controller
+class CrudLtiController extends Controller
 {
 
     /**

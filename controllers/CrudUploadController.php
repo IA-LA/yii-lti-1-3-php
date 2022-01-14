@@ -34,7 +34,7 @@ use app\models\crud\Upload\DeleteForm;
 use app\models\crud\Upload\PublishForm;
 use app\models\crud\Upload\PublishRegisterForm;
 
-class CrudController extends Controller
+class CrudUploadController extends Controller
 {
 
     /**
