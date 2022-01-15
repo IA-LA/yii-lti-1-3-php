@@ -43,14 +43,18 @@ $config = [
             ],
         ],
         'db' => $db,
-        /* Quitado */
+        /* Descomentado */
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'about' => 'site/about',
+                'lti' => 'crud/lti/delete',
+                'platform' => 'crud/platform/delete',
+                'upload' => 'crud/upload/delete'
             ],
         ],
-        /* Quitado */
+        /* Descomentado */
     ],
     // Add this to get debug and gii to work
     'modules' => [
