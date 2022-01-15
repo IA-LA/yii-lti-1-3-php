@@ -236,7 +236,7 @@ class CrudUploadController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Upload/register', [
+                return $this->render('upload/register', [
                     'model' => $model2,
                 ]);
             }
@@ -420,7 +420,7 @@ class CrudUploadController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Upload/query', [
+                return $this->render('upload/query', [
                     'model' => $model2,
                 ]);
             }
@@ -539,7 +539,7 @@ class CrudUploadController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('Upload/query', [
+            return $this->render('upload/query', [
                 'model' => $model,
             ]);
         }
@@ -560,7 +560,7 @@ class CrudUploadController extends Controller
             $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Upload/lists', [
+                return $this->render('upload/lists', [
                     'model' => $model2,
                 ]);
             }
@@ -653,7 +653,7 @@ class CrudUploadController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('Upload/lists', [
+            return $this->render('upload/lists', [
                 'model' => $model,
             ]);
         }
@@ -678,7 +678,7 @@ class CrudUploadController extends Controller
             $model2 = new DeleteForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Upload/delete', [
+                return $this->render('upload/delete', [
                     'model' => $model2,
                 ]);
             }
@@ -796,7 +796,7 @@ class CrudUploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('Upload/delete', [
+            return $this->render('upload/delete', [
                 'model' => $model,
             ]);
         }
@@ -816,7 +816,7 @@ class CrudUploadController extends Controller
             $model2 = new PublishForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Upload/publish', [
+                return $this->render('upload/publish', [
                     'model' => $model2,
                 ]);
             }
@@ -838,18 +838,18 @@ class CrudUploadController extends Controller
                 // publish does successfully
                 if ($publish['result']) {
                     Yii::$app->session->setFlash('publishIsPosible');
-                    return $this->render('Upload/publish', ['model' => $model, "namedir" => $publish['resultado']]);
+                    return $this->render('upload/publish', ['model' => $model, "namedir" => $publish['resultado']]);
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
-                    //return $this->render('Upload/publish', ['model' => $model]);
+                    //return $this->render('upload/publish', ['model' => $model]);
                     //return;
                 }
                 else {
                     Yii::$app->session->setFlash('publishIsNotPosible');
-                    return $this->render('Upload/publish', ['model' => $model, "namedir" => $publish['resultado']]);
+                    return $this->render('upload/publish', ['model' => $model, "namedir" => $publish['resultado']]);
                 }
             }
 
-            return $this->render('Upload/publish', ['model' => $model]);
+            return $this->render('upload/publish', ['model' => $model]);
         }
     }
 
@@ -867,7 +867,7 @@ class CrudUploadController extends Controller
             $model2 = new PublishRegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Upload/publishregister', [
+                return $this->render('upload/publishregister', [
                     'model' => $model2,
                 ]);
             }
@@ -889,18 +889,18 @@ class CrudUploadController extends Controller
                 // publish does successfully
                 if ($publish['result']) {
                     Yii::$app->session->setFlash('publishregisterIsPosible');
-                    return $this->render('Upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                    return $this->render('upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
                     //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
-                    //return $this->render('Upload/publish', ['model' => $model]);
+                    //return $this->render('upload/publish', ['model' => $model]);
                     //return;
                 }
                 else {
                     Yii::$app->session->setFlash('publishregisterIsNotPosible');
-                    return $this->render('Upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                    return $this->render('upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
                 }
             }
 
-            return $this->render('Upload/publishregister', ['model' => $model]);
+            return $this->render('upload/publishregister', ['model' => $model]);
         }
     }
 
