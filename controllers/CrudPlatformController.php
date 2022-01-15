@@ -37,6 +37,191 @@ use app\models\crud\Platform\PublishRegisterForm;
 class CrudPlatformController extends Controller
 {
 
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['logout'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            ],
+        ];
+    }
+
+    /**
+     * Displays errorpage.
+     *
+     * @return string
+     */
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception instanceof \yii\web\NotFoundHttpException) {
+            // all non existing controllers+actions will end up here
+            return $this->render('pnf'); // page not found
+        } else {
+            return $this->render('error', ['exception' => $exception]);
+        }
+    }
+
+    /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
+
+    /**
+     * Displays developmentpage.
+     *
+     * @return string
+     */
+    public function actionDevelopment()
+    {
+        return $this->render('development');
+    }
+
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
+    public function actionLogin()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Logout action.
+     *
+     * @return Response
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+
+            return $this->refresh();
+        }
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
+
+    /*UPLOAD*/
+    /**
+     * Displays upload page.
+     *
+     * @return string
+     */
+    public function actionUpload()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new UploadForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('upload', [
+                'model' => $model2,
+            ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new UploadForm();
+
+            if (Yii::$app->request->isPost) {
+                $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
+                $upload = $model->upload();
+                if ($upload['result']) {
+                    // file is uploaded successfully
+                    Yii::$app->session->setFlash('uploadFormSubmitted');
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    return $this->render('upload', ['model' => $model, "file" => $upload['file']]);
+                    //return $this->render('upload', ['model' => $model]);
+                    //return;
+                }
+            }
+
+            return $this->render('upload', ['model' => $model]);
+        }
+    }
+
     /*REGISTER*/
     /**
      * Displays register page.
@@ -614,6 +799,108 @@ class CrudPlatformController extends Controller
             return $this->render('Platform/delete', [
                 'model' => $model,
             ]);
+        }
+    }
+
+    /*PUBLISH*/
+    /**
+     * Displays upload page.
+     *
+     * @return string
+     */
+    public function actionPublish()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new PublishForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('Upload/publish', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new PublishForm();
+
+            // form is send successfully
+            if (Yii::$app->request->isPost) {
+                Yii::$app->session->setFlash('publishFormSubmitted');
+
+                $publish = $model->publish(Yii::$app->request->post('PublishForm')['id']);
+                // publish does successfully
+                if ($publish['result']) {
+                    Yii::$app->session->setFlash('publishIsPosible');
+                    return $this->render('Upload/publish', ['model' => $model, "namedir" => $publish['resultado']]);
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    //return $this->render('Upload/publish', ['model' => $model]);
+                    //return;
+                }
+                else {
+                    Yii::$app->session->setFlash('publishIsNotPosible');
+                    return $this->render('Upload/publish', ['model' => $model, "namedir" => $publish['resultado']]);
+                }
+            }
+
+            return $this->render('Upload/publish', ['model' => $model]);
+        }
+    }
+
+    /*PUBLISHREGISTER*/
+    /**
+     * Displays publishregister page.
+     *
+     * @return string
+     */
+    public function actionPublishregister()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new PublishRegisterForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('Upload/publishregister', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new PublishRegisterForm();
+
+            // form is send successfully
+            if (Yii::$app->request->isPost) {
+                Yii::$app->session->setFlash('publishregisterFormSubmitted');
+
+                $publish = $model->publishregister(Yii::$app->request->post('PublishRegisterForm')['id']);
+                // publish does successfully
+                if ($publish['result']) {
+                    Yii::$app->session->setFlash('publishregisterIsPosible');
+                    return $this->render('Upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    //return $this->render('Upload/publish', ['model' => $model]);
+                    //return;
+                }
+                else {
+                    Yii::$app->session->setFlash('publishregisterIsNotPosible');
+                    return $this->render('Upload/publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                }
+            }
+
+            return $this->render('Upload/publishregister', ['model' => $model]);
         }
     }
 
