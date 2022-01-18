@@ -8,32 +8,32 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
 
 /*UPLOAD*/
-use app\models\crud\Lti\UploadForm;
+use app\models\Upload\UploadForm;
 use yii\web\UploadedFile;
 
-/*UPLOADREGISTER*/
-use app\models\crud\Lti\UploadRegisterForm;
-
 /*REGISTER*/
-use app\models\crud\Lti\RegisterForm;
+use app\models\Upload\crud\CreateForm;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
 /*QUERY*/
-use app\models\crud\Lti\QueryForm;
+use app\models\Upload\crud\ReadForm;
 use yii\helpers\Html;
 
 /* LISTS */
-use app\models\crud\Lti\ListsForm;
+use app\models\Upload\ListsForm;
 use yii\data\ArrayDataProvider;
 
 /* DLETE */
-use app\models\crud\Lti\DeleteForm;
+use app\models\crud\Upload\DeleteForm;
 
-class CrudLtiController extends Controller
+/*PUBLISH*/
+use app\models\crud\Upload\PublishForm;
+use app\models\crud\Upload\PublishRegisterForm;
+
+class UploadController extends Controller
 {
 
     /*REGISTER*/
@@ -47,10 +47,10 @@ class CrudLtiController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new RegisterForm();
+            $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Lti/register', [
+                return $this->render('crud/register', [
                     'model' => $model2,
                 ]);
             }
@@ -62,7 +62,7 @@ class CrudLtiController extends Controller
 
         }
         else {
-            $model = new RegisterForm();
+            $model = new CreateForm();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
@@ -99,23 +99,52 @@ class CrudLtiController extends Controller
                 // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
-                if (Yii::$app->request->post('RegisterForm')['id'] !== '') {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/register/
-                    $ruta = '/create/register/';
+                if (Yii::$app->request->post('CreateForm')['id'] !== '') {
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
+                    $ruta = '/create/register/coleccion/Upload';
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
-                    $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
+                    $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('CreateForm')['url']));
                 }
 
                 // Exception POST LTI
                 try {
+                    // Dirección de alojamiento
+                    // del servidor de Git
+                    //////////////////////
+                    /// LOCAL puerto :9000
+                    /// GLOBAL puerto:8000 o `.uned.es`
+                    ///
+                    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+                        $serverGit = Yii::$app->params['serverGit_local'];
+                        $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                        $serverPub = Yii::$app->params['serverPublicacion_local'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
+                        $serverLti = Yii::$app->params['serverLti_local'];
+                    }
+                    else {
+                        $serverGit = Yii::$app->params['serverGit_global'];
+                        $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                        $serverPub = Yii::$app->params['serverPublicacion_global'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+                        $serverLti = Yii::$app->params['serverLti_global'];
+                    }
+
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
                         ->setMethod('POST')
                         //->setMethod('GET')
-                        ->setUrl($url . $ruta) //$_POST['RegisterForm']['id'])
-                        ->setData(['id_actividad' => Yii::$app->request->post('RegisterForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('RegisterForm')['url']])
+                        ->setUrl($url . $ruta)
+                        //$_POST['CreateForm']['id']) Parámetros del registro
+                        ->setData([
+                            'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
+                            'url_actividad' => Yii::$app->request->post('CreateForm')['publicacion'],
+                            'fichero' => Yii::$app->request->post('CreateForm')['fichero'],
+                            'carpeta' => Yii::$app->request->post('CreateForm')['carpeta'],
+                            'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('CreateForm')['carpeta'], //['publicacion']
+                            'git_url' => $serverGit . '/' . Yii::$app->request->post('CreateForm')['carpeta'] . '.git' //['git']
+                            ]
+                        )
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -132,24 +161,42 @@ class CrudLtiController extends Controller
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
                 //}
-                // Array ( [_csrf] => _jj1OVZYhyxeDkVwF82Lt-ANf6mPzL_xKv5nCNCp7H-4daVqPx3eXm1LGjpNq8Tut3RMnMCex7dQlStFhZC9LQ== [RegisterForm] => Array ( [id] => 012345678901234567890123 [url] => http://127.0.0.1:8000/index.php?r=site%2Fregister [subject] => a [body] => aa [verifyCode] => zuvagi ) [register-button] => )
-                //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . ArrayHelper::getValue($request, 'RegisterForm') . print_r($request) . print_r($response) . '</p></div>');
+                // Array ( [_csrf] => _jj1OVZYhyxeDkVwF82Lt-ANf6mPzL_xKv5nCNCp7H-4daVqPx3eXm1LGjpNq8Tut3RMnMCex7dQlStFhZC9LQ== [CreateForm] => Array ( [id] => 012345678901234567890123 [url] => http://127.0.0.1:8000/index.php?r=site%2Fregister [subject] => a [body] => aa [verifyCode] => zuvagi ) [register-button] => )
+                //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . ArrayHelper::getValue($request, 'CreateForm') . print_r($request) . print_r($response) . '</p></div>');
                 //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . '<br/>REQUEST:<br/> . print_r($request) . <br/>RESPONSE:<br/> . print_r($response)' . print_r($request) . '</p></div><br/>');
                 // yii\httpclient\Response Object ( [client] => yii\httpclient\Client Object ( [baseUrl] => [formatters] => Array ( [urlencoded] => yii\httpclient\UrlEncodedFormatter Object ( [encodingType] => 1 [charset] => ) ) [parsers] => Array ( ) [requestConfig] => Array ( ) [responseConfig] => Array ( ) [contentLoggingMaxSize] => 2000 [_transport:yii\httpclient\Client:private] => yii\httpclient\StreamTransport Object ( [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => ) [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => Array ( ) ) [_headers:yii\httpclient\Message:private] => Array ( [0] => HTTP/1.1 200 OK [1] => X-Powered-By: Express [2] => Content-Type: application/json; charset=utf-8 [3] => Content-Length: 1180 [4] => ETag: W/"49c-2mm6tdE08PBK3Du9hRlhHVqbw2Y" [5] => Date: Thu, 25 Feb 2021 09:53:53 GMT [6] => Connection: close ) [_cookies:yii\httpclient\Message:private] => [_content:yii\httpclient\Message:private] => {"result":"ok","data":{"user":{"email":"nadie@uned.es","nombre":"Nadie","rol":"Administrador"},"launch_parameters":{"iss":"5fc3860a81740b0ef098a983","login_hint":"123456","target_link_uri":"http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html","lti_message_hint":"123456"},"credentials":{"deployment":["8c49a5fa-f955-405e-865f-3d7e959e809f"],"client_id":"d42df408-70f5-4b60-8274-6c98d3b9468d","auth_login_url":"http://10.201.54.31:9002/platform/login.php","auth_token_url":"http://10.201.54.31:9002/platform/token.php","key_set_url":"http://10.201.54.31:9002/platform/jwks.php","private_key_file":"/private.key","auth_server":"http://10.201.54.31:9002/platform/login.php","kid":"58f36e10-c1c1-4df0-af8b-85c857d1634f"},"_id":"5fc3860a81740b0ef098a983","id_actividad":"5fc3860a81740b0ef098a983","url_actividad":"http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html","launch_url":"http://10.201.54.31:9002/login.php?iss=5fc3860a81740b0ef098a983&login_hint=123456&target_link_uri=http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html<i_message_hint=123456","zf":"2020-12-17T09:01:03.889Z"}} [_data:yii\httpclient\Message:private] => [_format:yii\httpclient\Message:private] => [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => )
                 if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] != 'Existe') {
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                         <h1>Registro</h1>
-                        <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
-                        'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
+                        <p class="lead">de Upload realizado correctamente.</p>' .
+                        'ID: <code>' .
+                        Html::encode($response->data['data']['register']['id_actividad']) .
+                        '</code><br/>' .
+                        'URL: <code>' .
+                        Html::encode($response->data['data']['register']['url_actividad']) .
+                        '</code><br/>' .
+                        'FILE: <code>' .
+                        Html::encode($response->data['data']['register']['upload']['fichero']) .
+                        '</code><br/>' .
+                        'FOLDER: <code>' .
+                        'PUBLISH: <code>' .
+                        Html::encode($response->data['data']['register']['upload']['carpeta']) .
+                        '</code><br/>' .
+                        'PUBLICACION: <code>' .
+                        Html::encode($response->data['data']['register']['upload']['publicacion_url']) .
+                        '</code><br/>' .
+                        'GIT: <code>' .
+                        Html::encode($response->data['data']['register']['upload']['git_url']) .
+                        '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
                 } else {
                     $content = '<div><p/><p/><p/>';
-                    $content .= '<p class="alert error-summary"> Registro: ' . Yii::$app->request->post('RegisterForm...', 'error') . '</p>';
+                    $content .= '<p class="alert error-summary"> Registro: ' . Yii::$app->request->post('CreateForm...', 'error') . '</p>';
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
@@ -157,10 +204,10 @@ class CrudLtiController extends Controller
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Registro son erróneas.</p>' .
-                        'ID:  <code>' . Yii::$app->request->post('RegisterForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('RegisterForm')['url'] . '</code><br/>' .
+                        'ID:  <code>' . Yii::$app->request->post('CreateForm')['id'] . '</code><br/>' .
+                        'URL: <code>' . Yii::$app->request->post('CreateForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fregister">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -168,7 +215,7 @@ class CrudLtiController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('Lti/register', [
+            return $this->render('crud/register', [
                 'model' => $model,
             ]);
         }
@@ -184,10 +231,10 @@ class CrudLtiController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new RegisterForm();
+            $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Lti/query', [
+                return $this->render('crud/query', [
                     'model' => $model2,
                 ]);
             }
@@ -199,7 +246,7 @@ class CrudLtiController extends Controller
 
         }
         else {
-            $model = new QueryForm();
+            $model = new ReadForm();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
@@ -236,12 +283,12 @@ class CrudLtiController extends Controller
                 // GET Query (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
-                if (Yii::$app->request->post('QueryForm')['id'] !== '') {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
-                    $ruta = '/read/coleccion/Lti/id_actividad/' . Yii::$app->request->post('QueryForm')['id'];
+                if (Yii::$app->request->post('ReadForm')['id'] !== '') {
+                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
+                    $ruta = '/read/coleccion/Upload/id_actividad/' . Yii::$app->request->post('ReadForm')['id'];
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                    $ruta = '/read/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('QueryForm')['url']));
+                    // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                    $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('ReadForm')['url']));
                 }
                 // Exception GET LTI1
                 try {
@@ -268,8 +315,8 @@ class CrudLtiController extends Controller
                 //foreach ($request as $key => $value){
                 //    echo "{$key} => {$value} ";
                 //}
-                // Array ( [_csrf] => _jj1OVZYhyxeDkVwF82Lt-ANf6mPzL_xKv5nCNCp7H-4daVqPx3eXm1LGjpNq8Tut3RMnMCex7dQlStFhZC9LQ== [RegisterForm] => Array ( [id] => 012345678901234567890123 [url] => http://127.0.0.1:8000/index.php?r=site%2Fregister [subject] => a [body] => aa [verifyCode] => zuvagi ) [register-button] => )
-                //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . ArrayHelper::getValue($request, 'RegisterForm') . print_r($request) . print_r($response) . '</p></div>');
+                // Array ( [_csrf] => _jj1OVZYhyxeDkVwF82Lt-ANf6mPzL_xKv5nCNCp7H-4daVqPx3eXm1LGjpNq8Tut3RMnMCex7dQlStFhZC9LQ== [CreateForm] => Array ( [id] => 012345678901234567890123 [url] => http://127.0.0.1:8000/index.php?r=site%2Fregister [subject] => a [body] => aa [verifyCode] => zuvagi ) [register-button] => )
+                //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . ArrayHelper::getValue($request, 'CreateForm') . print_r($request) . print_r($response) . '</p></div>');
                 //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . '<br/>REQUEST:<br/> . print_r($request) . <br/>RESPONSE:<br/> . print_r($response)' . print_r($request) . '</p></div><br/>');
                 // yii\httpclient\Response Object ( [client] => yii\httpclient\Client Object ( [baseUrl] => [formatters] => Array ( [urlencoded] => yii\httpclient\UrlEncodedFormatter Object ( [encodingType] => 1 [charset] => ) ) [parsers] => Array ( ) [requestConfig] => Array ( ) [responseConfig] => Array ( ) [contentLoggingMaxSize] => 2000 [_transport:yii\httpclient\Client:private] => yii\httpclient\StreamTransport Object ( [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => ) [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => Array ( ) ) [_headers:yii\httpclient\Message:private] => Array ( [0] => HTTP/1.1 200 OK [1] => X-Powered-By: Express [2] => Content-Type: application/json; charset=utf-8 [3] => Content-Length: 1180 [4] => ETag: W/"49c-2mm6tdE08PBK3Du9hRlhHVqbw2Y" [5] => Date: Thu, 25 Feb 2021 09:53:53 GMT [6] => Connection: close ) [_cookies:yii\httpclient\Message:private] => [_content:yii\httpclient\Message:private] => {"result":"ok","data":{"user":{"email":"nadie@uned.es","nombre":"Nadie","rol":"Administrador"},"launch_parameters":{"iss":"5fc3860a81740b0ef098a983","login_hint":"123456","target_link_uri":"http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html","lti_message_hint":"123456"},"credentials":{"deployment":["8c49a5fa-f955-405e-865f-3d7e959e809f"],"client_id":"d42df408-70f5-4b60-8274-6c98d3b9468d","auth_login_url":"http://10.201.54.31:9002/platform/login.php","auth_token_url":"http://10.201.54.31:9002/platform/token.php","key_set_url":"http://10.201.54.31:9002/platform/jwks.php","private_key_file":"/private.key","auth_server":"http://10.201.54.31:9002/platform/login.php","kid":"58f36e10-c1c1-4df0-af8b-85c857d1634f"},"_id":"5fc3860a81740b0ef098a983","id_actividad":"5fc3860a81740b0ef098a983","url_actividad":"http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html","launch_url":"http://10.201.54.31:9002/login.php?iss=5fc3860a81740b0ef098a983&login_hint=123456&target_link_uri=http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html<i_message_hint=123456","zf":"2020-12-17T09:01:03.889Z"}} [_data:yii\httpclient\Message:private] => [_format:yii\httpclient\Message:private] => [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => )
                 if ($response->isOk && $response->data['result'] === 'ok') {
@@ -280,13 +327,13 @@ class CrudLtiController extends Controller
                         'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                         'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fquery">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fquery">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
                 } else {
                     $content = '<div><p/><p/><p/>';
-                    $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('QueryForm...', 'error') . '</p>';
+                    $content .= '<p class="alert error-summary"> Consulta: ' . Yii::$app->request->post('ReadForm...', 'error') . '</p>';
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
@@ -294,10 +341,10 @@ class CrudLtiController extends Controller
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
-                        'ID:  <code>' . Yii::$app->request->post('QueryForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('QueryForm')['url'] . '</code><br/>' .
+                        'ID:  <code>' . Yii::$app->request->post('ReadForm')['id'] . '</code><br/>' .
+                        'URL: <code>' . Yii::$app->request->post('ReadForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fquery">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fquery">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -306,7 +353,7 @@ class CrudLtiController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('Lti/query', [
+            return $this->render('crud/query', [
                 'model' => $model,
             ]);
         }
@@ -318,20 +365,16 @@ class CrudLtiController extends Controller
      *
      * @return Response|string
      *
-    // DETENER EJECUCION
-    ////////////////////
-    print("EXCEPTION URL " . $url);
-    exit(0);
      */
     public function actionLists()
     {
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new RegisterForm();
+            $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Lti/lists', [
+                return $this->render('lists', [
                     'model' => $model2,
                 ]);
             }
@@ -379,7 +422,7 @@ class CrudLtiController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('lists/index',
+                    return $this->redirect(array('lists_crud/index',
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,
@@ -388,7 +431,7 @@ class CrudLtiController extends Controller
                         'formulario' => 'ListsForm',
                     ));
                     // View from another Controller
-                    return $this->render('//lists/index', [
+                    return $this->render('//lists_crud/index', [
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,
@@ -415,7 +458,7 @@ class CrudLtiController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('ListsForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('ListsForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Flists">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Flists">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -424,7 +467,7 @@ class CrudLtiController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('Lti/lists', [
+            return $this->render('lists', [
                 'model' => $model,
             ]);
         }
@@ -449,7 +492,7 @@ class CrudLtiController extends Controller
             $model2 = new DeleteForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('Lti/delete', [
+                return $this->render('crud/delete', [
                     'model' => $model2,
                 ]);
             }
@@ -501,10 +544,10 @@ class CrudLtiController extends Controller
                 // Buscar por _ID
                 if (Yii::$app->request->post('DeleteForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/coleccion/Lti/id_actividad/' . Yii::$app->request->post('DeleteForm')['id'];
+                    $ruta = '/delete/coleccion/Upload/id_actividad/' . Yii::$app->request->post('DeleteForm')['id'];
                 } else { // Buscar por URL
                     // http://10.201.54.31:49151/servicios/lti/lti13/delete/5e0df19c0c2e74489066b43g
-                    $ruta = '/delete/coleccion/Lti/id_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
+                    $ruta = '/delete/coleccion/Upload/id_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('deleteForm')['id']));
                 }
 
                 // Exception DELETE LTI1
@@ -543,7 +586,7 @@ class CrudLtiController extends Controller
                             <p class="lead">Borradas las credenciales de acceso a la actividad.</p>' .
                         'REGISTRO: ' . Yii::$app->request->post('DeleteForm')['id'] . ' <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fdelete">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fdelete">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
 
@@ -559,7 +602,7 @@ class CrudLtiController extends Controller
                             <p class="lead">Las credenciales de Borrado son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('DeleteForm')['id'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fdelete">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fdelete">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
                 }
@@ -567,9 +610,112 @@ class CrudLtiController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('Lti/delete', [
+            return $this->render('crud/delete', [
                 'model' => $model,
             ]);
         }
     }
+
+    /*PUBLISH*/
+    /**
+     * Displays upload page.
+     *
+     * @return string
+     */
+    public function actionPublish()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new PublishForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('publish', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new PublishForm();
+
+            // form is send successfully
+            if (Yii::$app->request->isPost) {
+                Yii::$app->session->setFlash('publishFormSubmitted');
+
+                $publish = $model->publish(Yii::$app->request->post('PublishForm')['id']);
+                // publish does successfully
+                if ($publish['result']) {
+                    Yii::$app->session->setFlash('publishIsPosible');
+                    return $this->render('publish', ['model' => $model, "namedir" => $publish['resultado']]);
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    //return $this->render('publish', ['model' => $model]);
+                    //return;
+                }
+                else {
+                    Yii::$app->session->setFlash('publishIsNotPosible');
+                    return $this->render('publish', ['model' => $model, "namedir" => $publish['resultado']]);
+                }
+            }
+
+            return $this->render('publish', ['model' => $model]);
+        }
+    }
+
+    /*PUBLISHREGISTER*/
+    /**
+     * Displays publishregister page.
+     *
+     * @return string
+     */
+    public function actionPublishregister()
+    {
+
+        if (Yii::$app->user->isGuest) {
+            $model = new LoginForm();
+            $model2 = new PublishCreateForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->render('publishregister', [
+                    'model' => $model2,
+                ]);
+            }
+
+            $model->password = '';
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+
+        }
+        else {
+            $model = new PublishRegisterForm();
+
+            // form is send successfully
+            if (Yii::$app->request->isPost) {
+                Yii::$app->session->setFlash('publishregisterFormSubmitted');
+
+                $publish = $model->publishregister(Yii::$app->request->post('PublishRegisterForm')['id']);
+                // publish does successfully
+                if ($publish['result']) {
+                    Yii::$app->session->setFlash('publishregisterIsPosible');
+                    return $this->render('publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupload">Atrás</a></p>');
+                    //return $this->render('publishregister', ['model' => $model]);
+                    //return;
+                }
+                else {
+                    Yii::$app->session->setFlash('publishregisterIsNotPosible');
+                    return $this->render('publishregister', ['model' => $model, "namedir" => $publish['resultado']]);
+                }
+            }
+
+            return $this->render('publishregister', ['model' => $model]);
+        }
+    }
+
 }

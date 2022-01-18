@@ -6,9 +6,9 @@ use Yii;
 use yii\base\Model;
 
 /**
- * QueryForm is the model behind the query form.
+ * RegisterForm is the model behind the register form.
  */
-class QueryForm extends Model
+class CreateForm extends Model
 {
     public $id;
     public $url;
@@ -21,21 +21,12 @@ class QueryForm extends Model
     public function rules()
     {
         return [
-            // id, url are required
-            //[['id', 'url'], 'required'],
-            // id, url Either one field is required
-            ['id', 'required',
-                'message' => 'Either id or url is required.',
-                'when' => function($model) { return empty($model->url); },
-                'whenClient' => "function (attribute, value) { return $('#url').val() == 'https://a.a.a'; }"
-            ],
-            ['url', 'required',
-                'message' => 'Either id or url is required.',
-                'when' => function($model) { return empty($model->id); },
-                'whenClient' => "function (attribute, value) { return $('#id').val() == '00000000000000000000000'; }"
-            ],
+            // id, url, subject and body are required
+            [['id', 'url'], 'required'],
             // id has to be a valid ID hexadecimal 24 character address
-            ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
+//            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
+//            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
+            ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
             // url has to be a valid URL address
             ['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
@@ -58,15 +49,15 @@ class QueryForm extends Model
      * @param string $url the target url address
      * @return bool whether the model passes validation
      */
-    public function query($url)
+    public function register($url)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo('query@a.a')
+                ->setTo('register@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject('Query ' . $url)
-                ->setTextBody('Consulta de información de una Actividad')
+                ->setSubject('Register ' . $url)
+                ->setTextBody('Registro de una Actividad')
                 ->send();
 
             return true;

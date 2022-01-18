@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\crud\Upload;
+namespace app\models\crud\Platform;
 
 use Yii;
 use yii\base\Model;
@@ -8,14 +8,10 @@ use yii\base\Model;
 /**
  * RegisterForm is the model behind the register form.
  */
-class RegisterForm extends Model
+class CreateForm extends Model
 {
     public $id;
     public $url;
-    public $publicacion;
-    public $git;
-    public $fichero;
-    public $carpeta;
     public $verifyCode;
 
 
@@ -25,17 +21,14 @@ class RegisterForm extends Model
     public function rules()
     {
         return [
-            // id and url are required
-            [['id', 'fichero', 'carpeta'], 'required'],
-            // [['id', 'publicacion', 'git', 'fichero', 'carpeta'], 'required'],
+            // id, url, subject and body are required
+            [['id', 'url'], 'required'],
             // id has to be a valid ID hexadecimal 24 character address
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
 //            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
             ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
             // url has to be a valid URL address
-            //['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
-            ['publicacion', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
-            ['git', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];

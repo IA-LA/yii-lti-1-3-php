@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\crud\Upload;
+namespace app\models\crud\Platform;
 
 use Yii;
 use yii\base\Model;
@@ -8,7 +8,7 @@ use yii\base\Model;
 /**
  * QueryForm is the model behind the query form.
  */
-class QueryForm extends Model
+class ReadForm extends Model
 {
     public $id;
     public $url;
