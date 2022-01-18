@@ -49,9 +49,9 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'about' => 'site/about',
-                'lti' => 'lti/crud/delete',
-                'platform' => 'platform/crud/delete',
-                'upload' => 'upload/crud/delete'
+                //'lti' => 'lti/crud/delete',
+                //'platform' => 'platform/crud/delete',
+                //'upload' => 'upload/crud/delete'
             ],
         ],
         /* Descomentado */
