@@ -2,19 +2,19 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\crud\Upload\ReadForm */
+/* @var $model app\models\Lti\crud\CreateForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Query Git';
+$this->title = 'Register Lti';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Upload-query">
+<div class="crud-Lti-register">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('queryFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <p>
             Note that if you turn on the Yii debugger, you should be able
-            to view the mail message on the mail panel of the debugger.
+            to view the mail message on the mail panel of the debugger.<br/>
             <?php if (Yii::$app->mailer->useFileTransport): ?>
                 Because the application is in development mode, the email is not sent but saved as
                 a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
@@ -34,14 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Consulta la información de un Upload ya registrado por su Id o su Url.
+            Registra una Actividad con su Identificador y la Url donde está alojada.
             Thank you.
         </p>
 
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'query-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'register-form']); ?>
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'query-button']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

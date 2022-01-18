@@ -2,16 +2,16 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\crud\Upload\CreateForm */
+/* @var $model app\models\Platform\crud\CreateForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Register Git';
+$this->title = 'Register Platform';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Upload-register">
+<div class="crud-Platform-register">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Registra el Proyecto de un Upload con su Identificador, URL de publicación y de proyecto Git y nombre del fichero y carpeta donde se ha subido.
+            Registra una Actividad con su Identificador y la Url donde está alojada.
             Thank you.
         </p>
 
@@ -45,19 +45,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'publicacion') ?>
-
-                    <?= $form->field($model, 'git') ?>
-
-                    <?= $form->field($model, 'fichero') ?>
-
-                    <?= $form->field($model, 'carpeta') ?>
+                    <?= $form->field($model, 'url') ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                     ]) ?>
-
-                    <!-- <input type="hidden" name="coleccion" value="Upload"> -->
 
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>

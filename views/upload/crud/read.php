@@ -2,16 +2,16 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\crud\Lti\ReadForm */
+/* @var $model app\models\Upload\crud\ReadForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Query Lti';
+$this->title = 'Query Git';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Lti-query">
+<div class="crud-Upload-query">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('queryFormSubmitted')): ?>
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Consulta la información de una Actividad ya registrada por su Id o su Url.
+            Consulta la información de un Upload ya registrado por su Id o su Url.
             Thank you.
         </p>
 
