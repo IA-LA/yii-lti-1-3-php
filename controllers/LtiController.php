@@ -19,7 +19,7 @@ use app\models\Lti\crud\ReadForm;
 use yii\helpers\Html;
 
 /* LISTS */
-use app\models\Lti\crud\ListsForm;
+use app\models\Lti\ListsForm;
 use yii\data\ArrayDataProvider;
 
 /* DLETE */

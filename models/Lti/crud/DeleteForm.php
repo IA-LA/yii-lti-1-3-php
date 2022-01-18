@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\crud\Lti;
+namespace app\models\Lti\crud;
 
 use Yii;
 use yii\base\Model;
