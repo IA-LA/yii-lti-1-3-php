@@ -397,7 +397,7 @@ class UploadController extends Controller
             $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('crud/register', [
+                return $this->render('crud/create', [
                     'model' => $model2,
                 ]);
             }
@@ -562,7 +562,7 @@ class UploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
-            return $this->render('crud/register', [
+            return $this->render('crud/create', [
                 'model' => $model,
             ]);
         }
@@ -581,7 +581,7 @@ class UploadController extends Controller
             $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('crud/query', [
+                return $this->render('crud/read', [
                     'model' => $model2,
                 ]);
             }
@@ -700,7 +700,7 @@ class UploadController extends Controller
                 //return $this->refresh();
             }
 
-            return $this->render('crud/query', [
+            return $this->render('crud/read', [
                 'model' => $model,
             ]);
         }
