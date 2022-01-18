@@ -1,12 +1,12 @@
 <?php
 
-namespace app\models;
+namespace app\models\Upload;
 
 use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
-class UploadForm extends Model
+class UploadRegisterForm extends Model
 {
     /**
      * @var UploadedFile
@@ -39,7 +39,7 @@ class UploadForm extends Model
      *
      * @return array whether the model passes validation
      */
-    public function upload()
+    public function uploadregister()
     {
         if ($this->validate()) {
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);

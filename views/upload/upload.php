@@ -1,33 +1,29 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\UploadRegisterForm */
+/* @var $model app\models\Upload\UploadForm */
 
 use yii\helpers\Html;
 /* use yii\widgets\ActiveForm;*/
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Upload & Register';
+$this->title = 'Upload';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
 
 ?>
-<div class="site-uploadregister">
+<div class="site-upload">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('uploadregisterFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('uploadFormSubmitted')): ?>
 
         <div>
             <p/>
             <p/>
             <p/>
-            <!--
-            // VALOR DEL NOMBRE D FICHERO
-            // enviado desde el Controlador SiteController.php
-            -->
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ subido correctamente</p>
 
             <?php
@@ -44,11 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 // (on a system with the "mkdir" executable in the path)
                 $output=null;
                 $retval=null;
-                // VALOR DE LA CARPETA
-                // desde el Controlador SiteContreoller.php
                 //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
-                //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-                $namedir=$namefile;
+                $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                 umask(0000);
                 exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
                 // MKDIR sin errores
@@ -118,6 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     umask(0000);
+                    $namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                     exec(escapeshellcmd('mkdir uploads/git/' . $namedir . '.git'), $output, $retval);
                     //echo "3.Returned with status $retval and output:\n";
                     //echo "<p><pre>";
@@ -126,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     // Proyecto Git
                     // Crear Git vacío distribuido (--bare)
-                    $output = shell_exec(escapeshellcmd('git --bare -C uploads/git/ init ' . $namedir . '.git'));
+                    $output = shell_exec(escapeshellcmd('git -C uploads/git/ --bare init ' . $namedir . '.git'));
                     //echo "<pre>4.a. $output</pre>";
                     // Permisos carptetas Git ./hobks
                     $output = shell_exec(escapeshellcmd('cp uploads/git/' . $namedir . '.git/hooks/post-update.sample uploads/git/' . $namedir . '.git/hooks/post-update'));
@@ -175,21 +169,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     umask(0000);
-                    exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-                    exec(escapeshellcmd('chmod 774 -R uploads/publicacion/' . $namedir), $output, $retval);
+                    //exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    // Permisos carptetas Publicación
+                    echo "<p><pre> 6.b. Chmod PassThru " . passthru('chmod 774 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
-                    //$output = shell_exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
+                    //$output = shell_exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                    //echo "<pre>6.b.$output</pre>";
+                    //echo "<pre>6.c.$output</pre>";
                     //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-                    //echo "<pre>6.c. touch HolaMundo.txt $output</pre>";
+                    //echo "<pre>6.d. touch HolaMundo.txt $output</pre>";
                     //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                    //echo "<pre>6.d. $output</pre>";
+                    //echo "<pre>6.e. $output</pre>";
 
                     // Add, Commit y Push clonado
                     // Add
@@ -200,10 +195,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
-                    //echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
-                    //print_r($output);
+                    //echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
+                    echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
+                    print_r($output);
                     //echo "</pre></p>";
-                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+                    $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
                     //echo "<pre>7.b. $output</pre>";
                     //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
                     //echo "<pre>7.c. $output</pre>";
@@ -219,7 +215,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "8.Returned with status $retval and output:\n";
                     //echo "<p><pre>8.a.<br/>";
                     //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
-                    //print_r($output);
+                    print_r($output);
                     //echo "</pre></p>";
                     // outputs the username that owns the running php/httpd process
                     // (on a system with the "git add" executable in the path)
@@ -231,7 +227,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "8.Returned with status $retval and output:\n";
                     //echo "<p><pre>8.b.<br/>";
                     //echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
-                    //print_r($output);
+                    print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
                     //echo "<pre>8.c. $output</pre>";
@@ -248,7 +244,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //echo "9.Returned with status $retval and output:\n";
                     //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
                     //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
-                    //print_r($output);
+                    print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
                     //echo "<pre>9.b. $output</pre>";
@@ -259,11 +255,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     $output=null;
                     $retval=null;
                     //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                    //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                     //echo "10.Returned with status $retval and output:\n";
                     //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
-                    //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
-                    //print_r($output);
+                    echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
+                    echo "<p><pre>10.a.b. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ reset 2>&1') . "<br/>";
+                    print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
                     //echo "<pre>10.b. $output</pre>";
@@ -285,30 +283,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?php
 
-                        /**
-                        // Registra ID=$namedir ... y URL='uploads/publicacion/$namedir/' en Colección BBDD Ltis y Uploads
-                        // REGISTRO
-                        ////////////////////////////////
-                        */
-                        echo '<p><div class="row alert alert-success">La actividad LTI ha quedado registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                            //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
-                            '<div class="row alert alert-success">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
-                            //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
-                            '';
-                             //$this->render('_list_item',['model' => $model])
+                        echo '<div class="row alert alert-success"><div class="col-lg-6">La acción de `<b>Upload</b>` se realizó correctamente.</div></div>';
 
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-success" href="../site/index.php?r=site%2Fupload">Atrás</a></p>';
                     }
                     else {
-                        echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
-                             '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fuploadregister">Atrás</a></p>';
+                        echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
+                            '<p><a class="btn btn-lg btn-warning" href="../site/index.php?r=site%2Fupload">Atrás</a></p>';
                     }
 
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                         '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fuploadregister">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="../site/index.php?r=site%2Fupload">Atrás</a></p>';
                 }
         ?>
 
@@ -324,7 +312,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="row">
             <div class="col-lg-5">
-                <?php $form = ActiveForm::begin(['id' => 'uploadregister-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'upload-form']); ?>
 
                     <!-- Modal de Upload -->
                     <?= $form->field($model, 'zipFile')->fileInput() ?>
@@ -340,7 +328,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                        <?= Html::submitButton('Upload & Register', ['class' => 'btn btn-primary', 'name' => 'uploadregister-button']) ?>
+                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
                     </div>
 
                 <?php ActiveForm::end() ?>

@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\crud\Upload\PublishRegisterForm */
+/* @var $model app\models\Upload\PublishRegisterForm */
 
 use yii\helpers\Html;
 /* use yii\widgets\ActiveForm;*/

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\crud\Platform;
+namespace app\models\Platform;
 
 use Yii;
 use yii\base\Model;
