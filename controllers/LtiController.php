@@ -28,13 +28,13 @@ use app\models\Lti\crud\DeleteForm;
 class LtiController extends Controller
 {
 
-    /*REGISTER*/
+    /*CREATE*/
     /**
-     * Displays register page.
+     * Displays create page.
      *
      * @return Response|string
      */
-    public function actionRegister()
+    public function actionCreate()
     {
 
         if (Yii::$app->user->isGuest) {
@@ -166,13 +166,13 @@ class LtiController extends Controller
         }
     }
 
-    /*QUERY*/
+    /*READ*/
     /**
-     * Displays query page.
+     * Displays read page.
      *
      * @return Response|string
      */
-    public function actionQuery(){
+    public function actionRead(){
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();

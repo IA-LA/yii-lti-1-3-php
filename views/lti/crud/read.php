@@ -8,13 +8,13 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Query Lti';
+$this->title = 'Read Lti';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Lti-query">
+<div class="lti-crud-read">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('queryFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('readFormSubmitted')): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'query-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'read-form']); ?>
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'query-button']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'read-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

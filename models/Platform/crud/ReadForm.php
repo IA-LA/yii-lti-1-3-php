@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * QueryForm is the model behind the query form.
+ * ReadQueryForm is the model behind the read form.
  */
 class ReadForm extends Model
 {

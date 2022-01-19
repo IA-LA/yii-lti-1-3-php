@@ -8,10 +8,10 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Register Platform';
+$this->title = 'Create Platform';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Platform-register">
+<div class="platform-crud-create">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>

@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Delete Platform';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Platform-delete">
+<div class="platform-crud-delete">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('deleteFormSubmitted')): ?>
