@@ -86,7 +86,7 @@ class LtiController extends Controller
 
             //Envío del Formulario de Registro
             if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('registerFormSubmitted');
+                Yii::$app->session->setFlash('createFormSubmitted');
 
                 // POST Create (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
@@ -223,7 +223,7 @@ class LtiController extends Controller
 
             //Envío del Formulario de Consulta
             if ($model->load($request = Yii::$app->request->post()) && $model->query(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('queryFormSubmitted');
+                Yii::$app->session->setFlash('readFormSubmitted');
 
                 // GET Query (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
@@ -304,16 +304,12 @@ class LtiController extends Controller
         }
     }
 
-    /*LIST*/
+    /*LISTs*/
     /**
      * Displays list page.
      *
      * @return Response|string
      *
-    // DETENER EJECUCION
-    ////////////////////
-    print("EXCEPTION URL " . $url);
-    exit(0);
      */
     public function actionLists()
     {
