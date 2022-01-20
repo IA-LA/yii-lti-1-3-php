@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="platform-crud-create">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('registerFormSubmitted')): ?>
+    <?php if (Yii::$app->session->hasFlash('createFormSubmitted')): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-lg-5">
 
-                <?php $form = ActiveForm::begin(['id' => 'register-form']); ?>
+                <?php $form = ActiveForm::begin(['id' => 'create-form']); ?>
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'register-button']) ?>
+                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

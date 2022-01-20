@@ -58,7 +58,7 @@ class ReadForm extends Model
      * @param string $url the target url address
      * @return bool whether the model passes validation
      */
-    public function query($url)
+    public function read($url)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()

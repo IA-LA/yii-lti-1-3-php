@@ -56,7 +56,7 @@ class CreateForm extends Model
      * @param string $url the target url address
      * @return bool whether the model passes validation
      */
-    public function register($url)
+    public function create($url)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()

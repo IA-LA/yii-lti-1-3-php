@@ -94,7 +94,7 @@ class PlatformController extends Controller
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
             //Envío del Formulario de Registro
-            if ($model->load($request = Yii::$app->request->post()) && $model->register(Yii::$app->params['adminEmail'])) {
+            if ($model->load($request = Yii::$app->request->post()) && $model->create(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('createFormSubmitted');
 
                 // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
@@ -278,7 +278,7 @@ class PlatformController extends Controller
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
             //Envío del Formulario de Consulta
-            if ($model->load($request = Yii::$app->request->post()) && $model->query(Yii::$app->params['adminEmail'])) {
+            if ($model->load($request = Yii::$app->request->post()) && $model->read(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('readFormSubmitted');
 
                 // GET Query (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)

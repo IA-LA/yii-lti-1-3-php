@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Read Git';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="crud-Upload-read">
+<div class="crud-opload-read">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('readFormSubmitted')): ?>

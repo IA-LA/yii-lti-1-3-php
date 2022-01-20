@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 // ini_set('upload_max_filesize', '10M');
 
 ?>
-<div class="site-uploadregister">
+<div class="upload-uploadregister">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

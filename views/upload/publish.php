@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 // ini_set('upload_max_filesize', '10M');
 
 ?>
-<div class="crud-Upload-publish">
+<div class="upload-publish">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
