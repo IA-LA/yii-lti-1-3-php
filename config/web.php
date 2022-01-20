@@ -43,7 +43,7 @@ $config = [
             ],
         ],
         'db' => $db,
-        /* Descomentado */
+        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -54,7 +54,7 @@ $config = [
                 //'upload' => 'upload/crud/delete'
             ],
         ],
-        /* Descomentado */
+        */
     ],
     // Add this to get debug and gii to work
     'modules' => [
