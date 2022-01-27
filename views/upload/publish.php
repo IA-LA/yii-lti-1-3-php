@@ -136,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo '<div class="row alert alert-success"><div class="col-lg-6">La acción de `<b>Publicación</b>` se realizó correctamente.</div></div>';
 
                     // Boton Atras
-                    echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                    echo '<p><a class="btn btn-lg btn-success" href="#">Atrás</a></p>';
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
@@ -154,11 +154,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
             <?php
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-primary" href="#">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="#">Atrás</a></p>';
                     }
                 }
             ?>
@@ -166,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php else: ?>
 
             <p class="alert alert-danger">Upload Git ´<b><i><?= $namedir ?></i></b>.git´ NO es un proyecto correcto</p>
-            <p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublish">Atrás</a></p>
+            <p><a class="btn btn-lg btn-warning" href="#">Atrás</a></p>
 
         <?php endif; ?>
 
