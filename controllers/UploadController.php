@@ -27,6 +27,7 @@ use yii\helpers\Html;
 
 /* UPDATE */
 use app\models\Upload\crud\UpdateForm;
+use yii\helpers\Url;
 
 /* LISTS */
 use app\models\Upload\ListsForm;
@@ -499,7 +500,7 @@ class UploadController extends Controller
                 if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] != 'No existe') {
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Actualización: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
-                        <h1>Registro</h1>
+                        <h1>Actualización</h1>
                         <p class="lead">de Upload realizado correctamente.</p>' .
                         'ID: <code>' .
                         Html::encode($response->data['data']['register']['id_actividad']) .
@@ -526,19 +527,21 @@ class UploadController extends Controller
                     $content .= '</div>';
 
                 } else {
+                    // Remember current URL
+                    Url::remember();
                     $content = '<div><p/><p/><p/>';
-                    $content .= '<p class="alert error-summary"> Registro: ' . Yii::$app->request->post('UpdateForm...', 'error') . '</p>';
+                    $content .= '<p class="alert error-summary"> Actualización: ' . Yii::$app->request->post('UpdateForm...', 'error') . '</p>';
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
                     //$content.='<div><p/><p/><p/><p class="alert alert-success"> REQUEST : ' . print_r($request) . '</p></div><br/>';
                     //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
                     //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
-                        <p class="lead">Las credenciales de Registro son erróneas.</p>' .
+                        <p class="lead">Las credenciales de Actualización son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('UpdateForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('UpdateForm')['publicacion'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }

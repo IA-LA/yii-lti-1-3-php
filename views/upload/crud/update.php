@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                         <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'update-button']) ?>
                     </div>
-                <?=
+                <?
                 $this->widget('widget.EBackButtonWidget',
                     array(
                         'width' => "100%",
