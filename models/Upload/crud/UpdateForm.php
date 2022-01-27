@@ -64,7 +64,7 @@ class UpdateForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Update ' . $url)
-                ->setTextBody('Creación de Registro de una Actividad')
+                ->setTextBody('Actualización de Registro de una Actividad')
                 ->send();
 
             return true;

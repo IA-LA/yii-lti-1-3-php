@@ -4,9 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
+
+use yii\helpers\Url;
+
+/* LOGIN */
 use app\models\LoginForm;
 
 /*UPLOAD*/
@@ -16,18 +20,17 @@ use yii\web\UploadedFile;
 /*UPLOADREGISTER*/
 use app\models\Upload\UploadRegisterForm;
 
-/*REGISTER*/
+/*CREATE*/
 use app\models\Upload\crud\CreateForm;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
-/*QUERY*/
+/*READ*/
 use app\models\Upload\crud\ReadForm;
 use yii\helpers\Html;
 
 /* UPDATE */
 use app\models\Upload\crud\UpdateForm;
-use yii\helpers\Url;
 
 /* LISTS */
 use app\models\Upload\ListsForm;
@@ -38,6 +41,8 @@ use app\models\Upload\crud\DeleteForm;
 
 /*PUBLISH*/
 use app\models\Upload\PublishForm;
+
+/*PUBLISHREGISTER*/
 use app\models\Upload\PublishRegisterForm;
 
 class UploadController extends Controller
@@ -51,6 +56,8 @@ class UploadController extends Controller
      */
     public function actionCreate()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -197,7 +204,7 @@ class UploadController extends Controller
                         Html::encode($response->data['data']['register']['upload']['git_url']) .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
@@ -214,7 +221,7 @@ class UploadController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('CreateForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('CreateForm')['publicacion'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -235,6 +242,9 @@ class UploadController extends Controller
      * @return Response|string
      */
     public function actionRead(){
+
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -334,7 +344,7 @@ class UploadController extends Controller
                         'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
                         'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fquery">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
@@ -351,7 +361,7 @@ class UploadController extends Controller
                         'ID:  <code>' . Yii::$app->request->post('ReadForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('ReadForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fquery">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
                 }
@@ -374,6 +384,8 @@ class UploadController extends Controller
      */
     public function actionUpdate()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -522,13 +534,11 @@ class UploadController extends Controller
                         Html::encode($response->data['data']['register']['upload']['git_url']) .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
 
                 } else {
-                    // Remember current URL
-                    Url::remember();
                     $content = '<div><p/><p/><p/>';
                     $content .= '<p class="alert error-summary"> Actualización: ' . Yii::$app->request->post('UpdateForm...', 'error') . '</p>';
                     //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
@@ -564,6 +574,8 @@ class UploadController extends Controller
      */
     public function actionDelete()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -664,7 +676,7 @@ class UploadController extends Controller
                             <p class="lead">Borradas las credenciales de acceso a la actividad.</p>' .
                         'REGISTRO: ' . Yii::$app->request->post('DeleteForm')['id'] . ' <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fdelete">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
 
@@ -680,7 +692,7 @@ class UploadController extends Controller
                             <p class="lead">Las credenciales de Borrado son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('DeleteForm')['id'] . '</code><br/>' .
                         '<p/><p/><p/>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fdelete">Atrás</a></p>
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
                     $content .= '</div>';
                 }
@@ -816,6 +828,8 @@ class UploadController extends Controller
      */
     public function actionPublish()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -867,6 +881,8 @@ class UploadController extends Controller
      */
     public function actionPublishregister()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -918,6 +934,8 @@ class UploadController extends Controller
      */
     public function actionUpload()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -963,6 +981,8 @@ class UploadController extends Controller
      */
     public function actionUploadregister()
     {
+        // Remember current URL
+        Url::remember();
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
@@ -1096,7 +1116,7 @@ class UploadController extends Controller
                             <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                             'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                             '<p/><p/><p/>' .
-                            '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fregister">Atrás</a></p>
+                            '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
                         $content .= '</div>';
 
@@ -1113,7 +1133,7 @@ class UploadController extends Controller
                             'ID:  <code>' . $namefile . '</code><br/>' .
                             'URL: <code>' . $serverPub . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
-                            '<p><a class="btn btn-lg btn-warning" href="index.php?r=site%2Fregister">Atrás</a></p>
+                            '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
                         $content .= '</div>';
                     }
@@ -1219,7 +1239,7 @@ class UploadController extends Controller
                             Html::encode($response->data['data']['register']['upload']['git_url']) .
                             '</code><br/>' .
                             '<p/><p/><p/>' .
-                            '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fregister">Atrás</a></p>
+                            '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
                         $content .= '</div>';
 
@@ -1236,7 +1256,7 @@ class UploadController extends Controller
                             'ID:  <code>' . $namefile . '</code><br/>' .
                             'URL: <code>' . $serverPublicacion . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
-                            '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fregister">Atrás</a></p>
+                            '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
                         $content .= '</div>';
                     }
