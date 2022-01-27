@@ -4,6 +4,7 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\Upload\crud\UpdateForm */
 
+use app\widgets\EBackButtonWidget;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
@@ -64,6 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 <?
                 $this->widget('widget.EBackButtonWidget',
+                    array(
+                        'width' => "100%",
+                    ));
+                EBackButtonWidget::widget('widget.EBackButtonWidget',
                     array(
                         'width' => "100%",
                     ));
