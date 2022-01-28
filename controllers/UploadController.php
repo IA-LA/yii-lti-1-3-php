@@ -106,11 +106,11 @@ class UploadController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Creación
             if ($model->load($request = Yii::$app->request->post()) && $model->create(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('createFormSubmitted');
 
-                // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                // POST CREATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
                 if (Yii::$app->request->post('CreateForm')['id'] !== '') {
@@ -121,7 +121,7 @@ class UploadController extends Controller
                     $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('CreateForm')['publicacion']));
                 }
 
-                // Exception POST LTI
+                // Exception POST Upload
                 try {
                     // Dirección de alojamiento
                     // del servidor de Git
@@ -166,7 +166,7 @@ class UploadController extends Controller
                         ->send();
                 }
                 catch (Exception $e1) {
-                    // Exception POST LTI2
+                    // Exception POST Upload2
                     try {
                     }
                     catch (Exception $e2) {
@@ -434,11 +434,11 @@ class UploadController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Actualización
             if ($model->load($request = Yii::$app->request->post()) && $model->update(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('updateFormSubmitted');
 
-                // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                // POST UPDATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
                 if (Yii::$app->request->post('UpdateForm')['id'] !== '') {
@@ -449,7 +449,7 @@ class UploadController extends Controller
                     $ruta = '/update/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('UpdateForm')['publicacion']));
                 }
 
-                // Exception POST LTI
+                // Exception POST Upload
                 try {
                     // Dirección de alojamiento
                     // del servidor de Git
@@ -474,9 +474,9 @@ class UploadController extends Controller
 
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
-                        //->setMethod('PUT')
+                        ->setMethod('PUT')
                         //->setMethod('DELETE')
-                        ->setMethod('POST')
+                        //->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta)
                         //$_POST['UpdateForm']['id']) Parámetros del registro
@@ -504,7 +504,7 @@ class UploadController extends Controller
                         ->send();
                 }
                 catch (Exception $e1) {
-                    // Exception POST LTI2
+                    // Exception POST Upload2
                     try {
                     }
                     catch (Exception $e2) {
@@ -631,7 +631,7 @@ class UploadController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Borrado
             if ($model->load($request = Yii::$app->request->post()) && $model->delete(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('deleteFormSubmitted');
 
@@ -1023,7 +1023,7 @@ class UploadController extends Controller
 
                     // REGISTER Publicación & LTI
                     // --------------------------
-                    // LLAMADA POST Register 1
+                    // LLAMADA POST CREATE 1
                     // Información servidor
                     //  https://www.php.net/manual/es/function.header.php
                     ///////////////////////
@@ -1074,7 +1074,7 @@ class UploadController extends Controller
                     }
 
                     // POST
-                    // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                    // POST CREATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                     $client = new Client();
 
                     // Registro por ID
@@ -1154,12 +1154,12 @@ class UploadController extends Controller
 
                     // REGISTER Upload & Git
                     // ---------------------
-                    // LLAMADA POST Register 1
+                    // LLAMADA POST CREATE 1
                     // Información servidor
                     //  https://www.php.net/manual/es/function.header.php
 
                     // POST
-                    // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                    // POST CREATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                     $client = new Client();
 
                     if ($namefile !== '') {
@@ -1170,7 +1170,7 @@ class UploadController extends Controller
                         $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                     }
 
-                    // Exception POST LTI
+                    // Exception POST Upload
                     try {
                         // Dirección de alojamiento
                         // del servidor de Git
@@ -1223,7 +1223,7 @@ class UploadController extends Controller
                             ->send();
                     }
                     catch (Exception $e1) {
-                        // Exception POST LTI2
+                        // Exception POST Upload2
                         try {
                         }
                         catch (Exception $e2) {
