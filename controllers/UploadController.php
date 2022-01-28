@@ -474,23 +474,23 @@ class UploadController extends Controller
 
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
-                        //->setMethod('PUT')
+                        ->setMethod('PUT')
                         //->setMethod('DELETE')
-                        ->setMethod('POST')
+                        //->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta)
                         //$_POST['UpdateForm']['id']) Parámetros del registro
                         ->setData([
                                 'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
                                 'url_actividad' => Yii::$app->request->post('UpdateForm')['publicacion'],
-                                "upload" => [
+                                'upload' => [
                                     'fichero' => Yii::$app->request->post('UpdateForm')['fichero'],
                                     'carpeta' => Yii::$app->request->post('UpdateForm')['carpeta'],
                                     'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('UpdateForm')['carpeta'], //['publicacion']
                                     'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git', //['git']],
                                     'actualizado' => '1'
                                 ],
-                                "user" => [
+                                'user' => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
                                     'nombre' => Yii::$app->user->identity->username,
                                     'rol' => Yii::$app->user->identity
