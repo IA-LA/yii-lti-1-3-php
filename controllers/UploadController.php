@@ -474,9 +474,9 @@ class UploadController extends Controller
 
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
-                        ->setMethod('PUT')
+                        //->setMethod('PUT')
                         //->setMethod('DELETE')
-                        //->setMethod('POST')
+                        ->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta)
                         //$_POST['UpdateForm']['id']) Parámetros del registro
