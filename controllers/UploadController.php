@@ -493,7 +493,7 @@ class UploadController extends Controller
                                 "user" => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
                                     'nombre' => Yii::$app->user->identity->username,
-                                    'rol' => Yii::$app->user->identity->id
+                                    'rol' => Yii::$app->user->identity
                                 ]
                             ]
                         )
@@ -1018,7 +1018,7 @@ class UploadController extends Controller
                 ///////////////////////////////////
                 if ($uploadregister['result']) {
                     Yii::$app->session->setFlash('uploadregisterFormSubmitted');
-                    // Define Nombre carpeta, web y git
+                    // Define Nombre de carpeta, de la web de publicación y del git
                     $namefile = Yii::$app->user->identity->id . date('YmdHisu') . 'a';
 
                     // REGISTER Publicación & LTI
@@ -1080,7 +1080,7 @@ class UploadController extends Controller
                     // Registro por ID
                     if ($namefile !== '') {
                         // http://10.201.54.31:49151/servicios/lti/lti13/create/register/
-                        $ruta = '/create/register/';
+                        $ruta = '/create/register/coleccion/Lti';
                         // REgistro por URL
                     } else {
                         // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
@@ -1094,8 +1094,15 @@ class UploadController extends Controller
                             ->setMethod('POST')
                             //->setMethod('GET')
                             ->setUrl($url . $ruta) //$_POST['RegisterForm']['id'])
-                            ->setData(['id_actividad' => $namefile,
-                                'url_actividad' => $serverPub . '/' . $namefile])
+                            ->setData([
+                                'id_actividad' => $namefile,
+                                'url_actividad' => $serverPub . '/' . $namefile,
+                                "user" => [
+                                    'email' => Yii::$app->user->identity->username . '@lti.server',
+                                    'nombre' => Yii::$app->user->identity->username,
+                                    'rol' => Yii::$app->user->identity->id
+                                ]
+                            ])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                                 'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -1195,10 +1202,18 @@ class UploadController extends Controller
                             ->setData([
                                     'id_actividad' => $namefile,
                                     'url_actividad' => $serverPublicacion . '/' . $namefile,
-                                    'fichero' => $uploadregister['file'],
-                                    'carpeta' => $namefile,
-                                    'publicacion_url' => $serverPublicacion . '/' . $namefile, //['publicacion']
-                                    'git_url' => $serverGit . '/' . $namefile . '.git' //['git']
+                                    "upload" => [
+                                        'fichero' => $uploadregister['file'],
+                                        'carpeta' => $namefile,
+                                        'publicacion_url' => $serverPublicacion . '/' . $namefile, //['publicacion']
+                                        'git_url' => $serverGit . '/' . $namefile . '.git', //['git']
+                                        'actualizado' => '0'
+                                    ],
+                                    "user" => [
+                                        'email' => Yii::$app->user->identity->username . '@lti.server',
+                                        'nombre' => Yii::$app->user->identity->username,
+                                        'rol' => Yii::$app->user->identity->id
+                                    ]
                                 ]
                             )
                             ->setOptions([
