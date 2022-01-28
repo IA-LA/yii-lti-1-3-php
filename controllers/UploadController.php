@@ -474,9 +474,9 @@ class UploadController extends Controller
 
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
-                        ->setMethod('PUT')
+                        //->setMethod('PUT')
                         //->setMethod('DELETE')
-                        //->setMethod('POST')
+                        ->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta)
                         //$_POST['UpdateForm']['id']) Parámetros del registro
@@ -556,7 +556,7 @@ class UploadController extends Controller
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Actualización son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('UpdateForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . $response->data['result'] . '</code><br/>' .
+                        'URL: <code>' . Yii::$app->request->post('UpdateForm')['publicacion'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
