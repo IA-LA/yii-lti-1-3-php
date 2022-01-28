@@ -549,7 +549,7 @@ class UploadController extends Controller
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Actualización son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('UpdateForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . $response->data['data']['result'] . '</code><br/>' .
+                        'URL: <code>' . $response->data['result'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
