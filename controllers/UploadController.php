@@ -493,7 +493,7 @@ class UploadController extends Controller
                                 "user" => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
                                     'nombre' => Yii::$app->user->identity->username,
-                                    'rol' => Yii::$app->user->identity
+                                    'rol' => Yii::$app->user->identity->id
                                 ]
                             ]
                         )
