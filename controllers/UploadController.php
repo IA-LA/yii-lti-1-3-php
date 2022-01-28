@@ -487,7 +487,13 @@ class UploadController extends Controller
                                     'fichero' => Yii::$app->request->post('UpdateForm')['fichero'],
                                     'carpeta' => Yii::$app->request->post('UpdateForm')['carpeta'],
                                     'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('UpdateForm')['carpeta'], //['publicacion']
-                                    'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git' //['git']]
+                                    'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git', //['git']],
+                                    'actualizado' => '1'
+                                ],
+                                "user" => [
+                                    'email' => Yii::$app->user->identity->username . '@lti.server',
+                                    'nombre' => Yii::$app->user->identity->username,
+                                    'rol' => Yii::$app->user->identity->id
                                 ]
                             ]
                         )
