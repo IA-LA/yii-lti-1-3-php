@@ -483,10 +483,12 @@ class UploadController extends Controller
                         ->setData([
                                 'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
                                 'url_actividad' => Yii::$app->request->post('UpdateForm')['publicacion'],
-                                'fichero' => Yii::$app->request->post('UpdateForm')['fichero'],
-                                'carpeta' => Yii::$app->request->post('UpdateForm')['carpeta'],
-                                'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('UpdateForm')['carpeta'], //['publicacion']
-                                'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git' //['git']
+                                "upload" => [
+                                    'fichero' => Yii::$app->request->post('UpdateForm')['fichero'],
+                                    'carpeta' => Yii::$app->request->post('UpdateForm')['carpeta'],
+                                    'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('UpdateForm')['carpeta'], //['publicacion']
+                                    'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git' //['git']]
+                                ]
                             ]
                         )
                         ->setOptions([
@@ -524,7 +526,6 @@ class UploadController extends Controller
                         Html::encode($response->data['data']['register']['upload']['fichero']) .
                         '</code><br/>' .
                         'FOLDER: <code>' .
-                        'PUBLISH: <code>' .
                         Html::encode($response->data['data']['register']['upload']['carpeta']) .
                         '</code><br/>' .
                         'PUBLICACION: <code>' .
