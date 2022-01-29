@@ -93,7 +93,7 @@ class PlatformController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Creación
             if ($model->load($request = Yii::$app->request->post()) && $model->create(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('createFormSubmitted');
 
@@ -108,7 +108,7 @@ class PlatformController extends Controller
                     $ruta = '/create/coleccion/Platform/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('CreateForm')['url']));
                 }
 
-                // Exception POST LTI
+                // Exception POST Platform
                 try {
                     // Dirección de alojamiento
                     // del servidor de Git
@@ -140,12 +140,19 @@ class PlatformController extends Controller
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
                             'url_actividad' => Yii::$app->request->post('CreateForm')['publicacion'],
-                            'fichero' => Yii::$app->request->post('CreateForm')['fichero'],
-                            'carpeta' => Yii::$app->request->post('CreateForm')['carpeta'],
-                            'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('CreateForm')['carpeta'], //['publicacion']
-                            'git_url' => $serverGit . '/' . Yii::$app->request->post('CreateForm')['carpeta'] . '.git' //['git']
+                            "upload" => [
+                                'fichero' => Yii::$app->request->post('CreateForm')['fichero'],
+                                'carpeta' => Yii::$app->request->post('CreateForm')['carpeta'],
+                                'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('CreateForm')['carpeta'], //['publicacion']
+                                'git_url' => $serverGit . '/' . Yii::$app->request->post('CreateForm')['carpeta'] . '.git', //['git']],
+                                'actualizado' => 0
+                            ],
+                            "user" => [
+                                'email' => Yii::$app->user->identity->username . '@lti.server',
+                                'nombre' => Yii::$app->user->identity->username,
+                                'rol' => Yii::$app->user->identity->id
                             ]
-                        )
+                        ])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -153,7 +160,7 @@ class PlatformController extends Controller
                         ->send();
                 }
                 catch (Exception $e1) {
-                    // Exception POST LTI2
+                    // Exception POST Platform2
                     try {
                     }
                     catch (Exception $e2) {
@@ -422,7 +429,7 @@ class PlatformController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Borrado
             if ($model->load($request = Yii::$app->request->post()) && $model->delete(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('deleteFormSubmitted');
 

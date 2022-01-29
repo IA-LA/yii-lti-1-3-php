@@ -93,7 +93,7 @@ class LtiController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Creación
             if ($model->load($request = Yii::$app->request->post()) && $model->create(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('createFormSubmitted');
 
@@ -102,7 +102,7 @@ class LtiController extends Controller
 
                 if (Yii::$app->request->post('CreateForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/
-                    $ruta = '/create/register/';
+                    $ruta = '/create/register/coleccion/Lti';
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
                     $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('CreateForm')['url']));
@@ -115,8 +115,15 @@ class LtiController extends Controller
                         ->setMethod('POST')
                         //->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['CreateForm']['id'])
-                        ->setData(['id_actividad' => Yii::$app->request->post('CreateForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('CreateForm')['url']])
+                        ->setData([
+                            'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
+                            'url_actividad' => Yii::$app->request->post('CreateForm')['url'],
+                            "user" => [
+                                'email' => Yii::$app->user->identity->username . '@lti.server',
+                                'nombre' => Yii::$app->user->identity->username,
+                                'rol' => Yii::$app->user->identity->id
+                            ]
+                        ])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -322,10 +329,6 @@ class LtiController extends Controller
      *
      * @return Response|string
      *
-    // DETENER EJECUCION
-    ////////////////////
-    print("EXCEPTION URL " . $url);
-    exit(0);
      */
     public function actionDelete()
     {
@@ -379,7 +382,7 @@ class LtiController extends Controller
             else
                 $url = Yii::$app->params['serverServiciosLti_global'];
 
-            //Envío del Formulario de Registro
+            //Envío del Formulario de Borrado
             if ($model->load($request = Yii::$app->request->post()) && $model->delete(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('deleteFormSubmitted');
 
