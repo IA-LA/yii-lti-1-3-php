@@ -525,15 +525,15 @@ class UploadController extends Controller
                             $content .= "{$key} => {$value}<br/>";
                         }
                         else{
-                            foreach ($response->data['data']['register'] as $key => $value) {
+                            foreach ($value as $key => $value) {
                                 if (!is_array($value)) {
-                                    $content .= "    {$key} => {$value}<br/>";
+                                    $content .= "&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {$value}<br/>";
                                 } else {
-                                    foreach ($response->data['data']['register'] as $key => $value) {
+                                    foreach ($value as $key => $value) {
                                         if (!is_array($value)) {
-                                            $content .= "        {$key} => {$value}<br/>";
+                                            $content .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {$value}<br/>";
                                         } else {
-                                            $content .= "        {$key} => {array()}<br/>";
+                                            $content .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {array()}<br/>";
                                         }
 
                                     }
