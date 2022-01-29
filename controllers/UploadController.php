@@ -521,8 +521,9 @@ class UploadController extends Controller
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Actualización: ' . $response->data['result'] . '</p>';
                     // Array de hasta 3 niveles
                     foreach ($response->data['data']['register'] as $key => $value) {
+                        $content .= "<pre><br/>";
                         if(! is_array($value)){
-                            $content .= "{$key} => {$value}<br/>";
+                            $content .= "<pre>{$key} => {$value}<br/>";
                         }
                         else{
                             $content .= "{$key} => [<br/>";
@@ -535,7 +536,7 @@ class UploadController extends Controller
                                         if (!is_array($value)) {
                                             $content .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {$value}<br/>";
                                         } else {
-                                            $content .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {array()}<br/>";
+                                            $content .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {array[]}<br/>";
                                         }
                                     }
                                     $content .= "&nbsp;&nbsp;&nbsp;&nbsp;]<br/>";
@@ -543,6 +544,7 @@ class UploadController extends Controller
                             }
                             $content .= "]<br/>";
                         }
+                        $content .= "</pre><br/>";
                     }
                     $content .= '<div class="jumbotron">
                         <h1>Actualización</h1>
