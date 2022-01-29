@@ -537,11 +537,13 @@ class UploadController extends Controller
                                         } else {
                                             $content .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$key} => {array()}<br/>";
                                         }
-                                        $content .= "&nbsp;&nbsp;&nbsp;&nbsp;]<br/>";
                                     }
+                                    if (is_array($value))
+                                        $content .= "&nbsp;&nbsp;&nbsp;&nbsp;]<br/>";
                                 }
-                                $content .= "]<br/>";
                             }
+                            if (is_array($value))
+                                $content .= "]<br/>";
                         }
                     }
                     $content .= '<div class="jumbotron">
