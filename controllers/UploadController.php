@@ -522,18 +522,18 @@ class UploadController extends Controller
                     // Array de hasta 3 niveles
                     foreach ($response->data['data']['register'] as $key => $value) {
                         if(! is_array($value)){
-                            $content .= "{$key} => {$value}\n";
+                            $content .= "{$key} => {$value}<br/>";
                         }
                         else{
                             foreach ($response->data['data']['register'] as $key => $value) {
                                 if (!is_array($value)) {
-                                    $content .= "{$key} => {$value}\n";
+                                    $content .= "    {$key} => {$value}<br/>";
                                 } else {
                                     foreach ($response->data['data']['register'] as $key => $value) {
                                         if (!is_array($value)) {
-                                            $content .= "{$key} => {$value}\n";
+                                            $content .= "        {$key} => {$value}<br/>";
                                         } else {
-                                            $content .= "{$key} => {array()}\n";
+                                            $content .= "        {$key} => {array()}<br/>";
                                         }
 
                                     }
