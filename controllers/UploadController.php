@@ -523,7 +523,7 @@ class UploadController extends Controller
                     foreach ($response->data['data']['register'] as $key => $value) {
                         $content .= "<pre><br/>";
                         if(! is_array($value)){
-                            $content .= "<pre>{$key} => {$value}<br/>";
+                            $content .= "{$key} => {$value}<br/>";
                         }
                         else{
                             $content .= "{$key} => [<br/>";
@@ -544,7 +544,7 @@ class UploadController extends Controller
                             }
                             $content .= "]<br/>";
                         }
-                        $content .= "</pre><br/>";
+                        $content .= "</pre>";
                     }
                     $content .= '<div class="jumbotron">
                         <h1>Actualización</h1>
