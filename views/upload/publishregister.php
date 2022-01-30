@@ -8,10 +8,15 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
+use yii\helpers\Url;
+
 $this->title = 'Publish & Register';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
+
+// Remember current URL
+Url::remember();
 
 ?>
 <div class="upload-publishregister">
@@ -140,7 +145,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     //$this->render('_list_item',['model' => $model])
 
                     // Boton Atras
-                    echo '<p><a class="btn btn-lg btn-success" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>';
+                    echo '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>';
                 }
                 else {
                     // REPOSITORIO SIN CAMBIOS
@@ -161,15 +166,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         // REGISTRO
                         ////////////////////////////////
                         echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                            '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar</a></div></div>';
+                            '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=lti%2Fcreate">Registrar</a></div></div>';
                         //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-primary" href="' . Url::previous() . '">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al publicar el repositorio <i>`' . $namedir . '.git`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                     }
                 }
             ?>
@@ -177,7 +182,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php else: ?>
 
             <p class="alert alert-danger">Upload Git ´<b><i><?= $namedir ?></i></b>.git´ NO es un proyecto correcto</p>
-            <p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2Fpublishregister">Atrás</a></p>
+            <p><a class="btn btn-lg btn-warning" href="<?= Url::previous() ?>">Atrás</a></p>
 
         <?php endif; ?>
 

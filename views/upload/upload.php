@@ -8,10 +8,15 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
+use yii\helpers\Url;
+
 $this->title = 'Upload';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
+
+// Remember current URL
+Url::remember();
 
 ?>
 <div class="upload-upload">
@@ -173,9 +178,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
                     //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                    echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     // Permisos carptetas Publicación
-                    echo "<p><pre> 6.b. Chmod PassThru " . passthru('chmod 774 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                    //echo "<p><pre> 6.b. Chmod PassThru " . passthru('chmod 774 -R uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
                     //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('unzip -X -o uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
@@ -196,8 +201,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                     //echo "7.Returned with status $retval and output:\n";
                     //echo "<p><pre>7.a. git -C uploads/publicacion/" . $namedir . "/ add .<br/>";
-                    echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
-                    print_r($output);
+                    //echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
+                    //print_r($output);
                     //echo "</pre></p>";
                     $output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
                     //echo "<pre>7.b. $output</pre>";
@@ -259,9 +264,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                     //echo "10.Returned with status $retval and output:\n";
                     //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
-                    echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
-                    echo "<p><pre>10.a.b. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ reset 2>&1') . "<br/>";
-                    print_r($output);
+                    //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
+                    //echo "<p><pre>10.a.b. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ reset 2>&1') . "<br/>";
+                    //print_r($output);
                     //echo "</pre></p>";
                     //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
                     //echo "<pre>10.b. $output</pre>";
@@ -286,17 +291,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo '<div class="row alert alert-success"><div class="col-lg-6">La acción de `<b>Upload</b>` se realizó correctamente.</div></div>';
 
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-success" href="../site/index.php?r=site%2Fupload">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
-                            '<p><a class="btn btn-lg btn-warning" href="../site/index.php?r=site%2Fupload">Atrás</a></p>';
+                            '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                     }
 
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="../site/index.php?r=site%2Fupload">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                 }
         ?>
 

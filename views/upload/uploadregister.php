@@ -8,10 +8,15 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
+use yii\helpers\Url;
+
 $this->title = 'Upload & Register';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
+
+// Remember current URL
+Url::remember();
 
 ?>
 <div class="upload-uploadregister">
@@ -298,17 +303,17 @@ $this->params['breadcrumbs'][] = $this->title;
                              //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-success" href="../site/index.php?r=site%2Fuploadregister">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
-                            '<p><a class="btn btn-lg btn-warning" href="../site/index.php?r=site%2Fuploadregister">Atrás</a></p>';
+                            '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                     }
 
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="../site/index.php?r=site%2Fuploadregister">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                 }
         ?>
 
