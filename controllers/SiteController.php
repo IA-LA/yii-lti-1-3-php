@@ -166,7 +166,7 @@ class SiteController extends Controller
 
     /*LISTs*/
     /**
-     * Displays list page.
+     * Displays lists page.
      *
      * @return Response|string
      *

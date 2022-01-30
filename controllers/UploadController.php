@@ -611,7 +611,7 @@ class UploadController extends Controller
 
     /*DELETE*/
     /**
-     * Displays list page.
+     * Displays delete page.
      *
      * @return Response|string
      *
@@ -752,7 +752,7 @@ class UploadController extends Controller
 
     /*LISTs*/
     /**
-     * Displays list page.
+     * Displays lists page.
      *
      * @return Response|string
      *
