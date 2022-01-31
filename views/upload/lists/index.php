@@ -1,8 +1,13 @@
 <?php
-// YOUR_APP/views/lists/index.php
+// YOUR_APP/views/upload/lists/index.php
 
 use yii\widgets\ListView;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+// Remember current URL
+Url::remember();
+
 ?>
 <div class="header">
     <h3><?= Html::encode($title); ?> Git</h3>
