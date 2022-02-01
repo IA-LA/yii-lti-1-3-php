@@ -1,5 +1,5 @@
 <?php
-// YOUR_APP/views/lists/index.php
+// YOUR_APP/views/lti/lists/index.php
 
 use yii\widgets\ListView;
 use yii\helpers\Html;

@@ -813,7 +813,7 @@ class UploadController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('upload/index',
+                    return $this->redirect(array('upload/lists',
                         'title' => 'Listado',
                         'return' => 'lists',
                         'model' => $model,
