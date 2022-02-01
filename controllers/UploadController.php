@@ -949,7 +949,8 @@ class UploadController extends Controller
             // GET (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
             $client = new Client();
 
-            print_r("EXCEPTION URL " . $params);
+            print("EXCEPTION URL ");
+            print_r( $params);
             exit(0);
             switch($params['formulario']){
                 case 'ListsForm':
