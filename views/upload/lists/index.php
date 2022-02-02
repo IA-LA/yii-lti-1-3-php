@@ -10,7 +10,7 @@ Url::remember();
 
 ?>
 <div class="header">
-    <h4><?= Html::encode($title); ?> Upload</h4>
+    <h3><?= Html::encode($title); ?> Upload</h3>
 </div>
 <div class="row">
     <h4><pre>UPLOAD</pre></h4>
