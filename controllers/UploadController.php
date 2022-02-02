@@ -1008,10 +1008,10 @@ class UploadController extends Controller
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
-                                    'buttonC' => '<button class="btn btn-lg btn-success">Create</button>',
-                                    'buttonR' => '<button class="btn btn-lg btn-success">Readte</button>',
-                                    'buttonU' => '<button class="btn btn-lg btn-success">Update</button>',
-                                    'buttonD' => '<button class="btn btn-lg btn-success">Delete</button>'
+                                    'buttonC' => '<button class="btn btn-lg btn-outline-primary">Create</button>',
+                                    'buttonR' => '<button class="btn btn-lg btn-info">Readte</button>',
+                                    'buttonU' => '<button class="btn btn-lg btn-warning">Update</button>',
+                                    'buttonD' => '<button class="btn btn-lg btn-danger">Delete</button>'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
