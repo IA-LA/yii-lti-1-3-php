@@ -1003,8 +1003,8 @@ class UploadController extends Controller
                                 //if($index >= 0) {
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
-                                    'id' => $value['upload']['fichero'],
-                                    'title' => $value['_id'] . ' ' . $value['user']['email'] . ' ' . $value['zf'],
+                                    'id' => $value['_id'] . ' (' . $value['upload']['fichero'] . ')',
+                                    'title' => $value['user']['email'] . ' ' . $value['zf'],
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
