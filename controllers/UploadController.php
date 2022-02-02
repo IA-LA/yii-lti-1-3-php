@@ -321,7 +321,7 @@ class UploadController extends Controller
                         //->setMethod('POST')
                         ->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['ListForm']['id'])
-                        ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                        ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -816,16 +816,17 @@ class UploadController extends Controller
                     // Ruta: PrefijoControlador/carpeta vista
                     return $this->redirect(array('upload/index',
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
+                        'controller' => 'Upload',
+                        'formulario' => 'ListsForm',
                         'model' => $model,
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
-                        'formulario' => 'ListsForm',
                     ));
                     // View from another Controller
                     return $this->render('//lists_crud/index', [
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'listDataProvider' => new ArrayDataProvider([
                             'allModels' => $responseModels,
@@ -910,7 +911,7 @@ class UploadController extends Controller
 
             return $this->render('lists/index', [
                 'title' => 'FakedModels',
-                'return' => 'lists',
+                'back' => 'lists',
                 'listDataProvider' => $provider
             ]);
         }
@@ -949,17 +950,20 @@ class UploadController extends Controller
             // GET (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
             $client = new Client();
 
+            // STOP EXECUTION
             print("EXCEPTION URL ");
-            print_r( $params);
+            print_r(Yii::$app->user->identity);
             exit(0);
+
+            // PARAMS: Array ( [r] => upload/index [title] => Listado [formulario] => ListsForm [controller] => Upload [return] => lists [model] => Array ( [id] => * [url] => [verifyCode] => vumegu ) [id] => * [url] => )
             switch($params['formulario']){
                 case 'ListsForm':
                     if ($params['id']) {
                         // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
-                        $ruta = '/read/all/coleccion/Upload/id_actividad/' . $params['id'];
+                        $ruta = '/read/all/coleccion/' . $params['controller'] . '/id_actividad/' . $params['id'];
                     } else {
                         // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                        $ruta = '/read/all/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
+                        $ruta = '/read/all/coleccion/' . $params['controller'] . '/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
                     }
 
                     // Exception GET LTI1
@@ -969,7 +973,7 @@ class UploadController extends Controller
                             //->setMethod('POST')
                             ->setMethod('GET')
                             ->setUrl($url . $ruta) //$_POST['ListsForm']['id'])
-                            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                            ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                                 'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -1025,7 +1029,8 @@ class UploadController extends Controller
 
                         return $this->render('lists/index', [
                             'title' => $params['title'],
-                            'return' => $params['return'],
+                            'back' => $params['back'],
+                            'back' => $params['back'],
                             'listDataProvider' => new ArrayDataProvider([
                                 'allModels' => $responseModels,
                                 'pagination' => [
@@ -1042,7 +1047,7 @@ class UploadController extends Controller
                 default:
                     return $this->render('lists/index', [
                         'title' => $params['title'],
-                        'return' => $params['return'],
+                        'back' => $params['back'],
                     ]);
             }
         }
