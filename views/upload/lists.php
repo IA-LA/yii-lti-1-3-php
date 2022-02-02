@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Lists Git';
+$this->title = 'Lists Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-lists">
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Lista la información de un/os  Upload/s ya registrado/s por su Id o su Url.<br/>
+            Lista la información de un/os Upload/s ya registrado/s por su Id o su Url.<br/>
             Admite el comodín * en estas formas (*, HH..HH*, *HH..HH *HH..HH*).<br/>
             Thank you.
         </p>

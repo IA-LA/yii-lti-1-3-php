@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Create Git';
+$this->title = 'Create Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-crud-create">

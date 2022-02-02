@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Update Git';
+$this->title = 'Update Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="upload-crud-update">

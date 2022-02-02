@@ -10,7 +10,7 @@ use yii\captcha\Captcha;
 
 use yii\helpers\Url;
 
-$this->title = 'Publish & Register';
+$this->title = 'Publish & Register Git';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');

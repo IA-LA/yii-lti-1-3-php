@@ -1004,7 +1004,7 @@ class UploadController extends Controller
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
-                                    'title' => 'Upload Git ' . $value['id_actividad'],
+                                    'title' => 'Upload ' . $value['id_actividad'],
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',

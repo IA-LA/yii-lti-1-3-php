@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Read Git';
+$this->title = 'Read Upload';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="crud-opload-read">
