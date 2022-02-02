@@ -1009,7 +1009,7 @@ class UploadController extends Controller
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
                                     'buttonC' => '<button class="btn btn-lg btn-primary">Create</button>',
-                                    'buttonR' => '<button class="btn btn-md btn-info">Readte</button>',
+                                    'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     'buttonU' => '<button class="btn btn-sm btn-warning">Update</button>',
                                     'buttonD' => '<button class="btn btn-xs btn-danger">Delete</button>'
                                 ];
