@@ -765,7 +765,7 @@ class UploadController extends Controller
             $model2 = new ListsForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('upload/lists', [
+                return $this->render('lists', [
                     'model' => $model2,
                 ]);
             }
@@ -951,10 +951,10 @@ class UploadController extends Controller
             $client = new Client();
 
             // STOP EXECUTION
-            print("EXCEPTION URL ");
+            // print("EXCEPTION URL ");
             //print_r(Yii::$app->user);
-            print_r($params);
-            exit(0);
+            // print_r($params);
+            // exit(0);
 
             // PARAMS: Array ( [r] => upload/index [title] => Listado [formulario] => ListsForm [controller] => Upload [return] => lists [model] => Array ( [id] => * [url] => [verifyCode] => vumegu ) [id] => * [url] => )
             switch($params['formulario']){
