@@ -765,7 +765,7 @@ class UploadController extends Controller
             $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('lists', [
+                return $this->render('upload/lists', [
                     'model' => $model2,
                 ]);
             }
