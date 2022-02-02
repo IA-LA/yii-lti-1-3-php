@@ -952,7 +952,8 @@ class UploadController extends Controller
 
             // STOP EXECUTION
             print("EXCEPTION URL ");
-            print_r(Yii::$app->user->identity);
+            print_r(Yii::$app->user);
+            //print_r($params);
             exit(0);
 
             // PARAMS: Array ( [r] => upload/index [title] => Listado [formulario] => ListsForm [controller] => Upload [return] => lists [model] => Array ( [id] => * [url] => [verifyCode] => vumegu ) [id] => * [url] => )
@@ -973,6 +974,7 @@ class UploadController extends Controller
                             //->setMethod('POST')
                             ->setMethod('GET')
                             ->setUrl($url . $ruta) //$_POST['ListsForm']['id'])
+                            //app\models\User Object( [id] => 100 [username] => admin [password] => ****** [authKey] => test100key [accessToken] => 100-token )
                             ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
