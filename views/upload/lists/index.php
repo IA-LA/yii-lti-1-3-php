@@ -13,7 +13,7 @@ Url::remember();
     <h3><?= Html::encode($title); ?> Upload</h3>
 </div>
 <div class="row">
-    <h4><pre>UPLOAD</pre></h4>
+    <h4><pre>FICHERO</pre></h4>
     <h5><pre>Nombre                                   Publicación            Git            Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
