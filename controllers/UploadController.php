@@ -886,7 +886,7 @@ class UploadController extends Controller
                     'id' => $i,
                     'title' => 'Actividad ' . $i,
                     'image' => 'http://placehold.it/300x200',
-                    'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
+                    'link'  => '<a href="http://placehold.it/300x200" target="_blank">URL</a>'
                 ];
 
                 $fakedModels[] = $fakedItem;
@@ -951,10 +951,10 @@ class UploadController extends Controller
             $client = new Client();
 
             // STOP EXECUTION
-            print("EXCEPTION URL ");
-            print_r(Yii::$app->user);
+            //print("EXCEPTION URL ");
+            //print_r(Yii::$app->user);
             //print_r($params);
-            exit(0);
+            //exit(0);
 
             // PARAMS: Array ( [r] => upload/index [title] => Listado [formulario] => ListsForm [controller] => Upload [return] => lists [model] => Array ( [id] => * [url] => [verifyCode] => vumegu ) [id] => * [url] => )
             switch($params['formulario']){
@@ -1004,10 +1004,14 @@ class UploadController extends Controller
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
-                                    'title' => 'Upload Git ' . $value['launch_parameters']['iss'],
+                                    'title' => 'Upload Git ' . $value['id_actividad'],
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
-                                    'image' => 'http://placehold.it/300x200'
+                                    'image' => 'http://placehold.it/300x200',
+                                    'buttonC' => '<button class="btn btn-lg btn-success">Create</button>',
+                                    'buttonR' => '<button class="btn btn-lg btn-success">Readte</button>',
+                                    'buttonU' => '<button class="btn btn-lg btn-success">Update</button>',
+                                    'buttonD' => '<button class="btn btn-lg btn-success">Delete</button>'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
@@ -1021,10 +1025,10 @@ class UploadController extends Controller
                         else{
                             $responseItem = [
                                 //'list' => 'Listado',
-                                'id' => $response->data['data']['_id'],
-                                'title' => 'Actividad ' . $response->data['data']['launch_parameters']['iss'],
+                                'id' => '_id',
+                                'title' => $params['controller'],
                                 'image' => 'http://placehold.it/300x200',
-                                'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
+                                'link'  => '<a href="' . '#' . '" target="_blank">URL</a>'
                             ];
                             $responseModels[] = $responseItem;
                         }
@@ -1032,7 +1036,7 @@ class UploadController extends Controller
                         return $this->render('lists/index', [
                             'title' => $params['title'],
                             'back' => $params['back'],
-                            'back' => $params['back'],
+                            'controller' => $params['controller'],
                             'listDataProvider' => new ArrayDataProvider([
                                 'allModels' => $responseModels,
                                 'pagination' => [
