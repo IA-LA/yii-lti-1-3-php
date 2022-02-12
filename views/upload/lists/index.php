@@ -55,7 +55,7 @@ Url::remember();
     ?>
 </div>
 <hr/>
-<p><a class="btn btn-lg btn-warning" href="index.php?r=<?= Html::encode($controller); ?>%2F<?= Html::encode($back); ?>">Atrás</a></p>
+<p><a class="btn btn-lg btn-warning" href="index.php?r=<?= strtolower(Html::encode($controller)); ?>%2F<?= Html::encode($back); ?>">Atrás</a></p>
 <div class="footer">
 </div>
 
