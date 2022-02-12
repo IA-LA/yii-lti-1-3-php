@@ -11,28 +11,28 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 
 /*UPLOAD*/
-use app\models\crud\Upload\UploadForm;
+use app\models\Upload\UploadForm;
 use yii\web\UploadedFile;
 
 /*REGISTER*/
-use app\models\crud\Upload\CreateForm;
+use app\models\RegisterForm;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
 /*QUERY*/
-use app\models\crud\Upload\ReadForm;
+use app\models\QueryForm;
 use yii\helpers\Html;
 
 /* LISTS */
-use app\models\crud\Upload\ListsForm;
+use app\models\ListsForm;
 use yii\data\ArrayDataProvider;
 
 /* DLETE */
-use app\models\crud\Upload\DeleteForm;
+use app\models\crud\DeleteForm;
 
 /*PUBLISH*/
-use app\models\crud\Upload\PublishForm;
-use app\models\crud\Upload\PublishRegisterForm;
+use app\models\Upload\PublishForm;
+use app\models\Upload\PublishRegisterForm;
 
 class UploadController extends Controller
 {
@@ -483,7 +483,7 @@ class UploadController extends Controller
                         //->setMethod('POST')
                         ->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['ListForm']['id'])
-                        ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                        ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -610,7 +610,7 @@ class UploadController extends Controller
                     // Listado ListView
                     return $this->redirect(array('lists_crud/index',
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
@@ -619,7 +619,7 @@ class UploadController extends Controller
                     // View from another Controller
                     return $this->render('//lists_crud/index', [
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'listDataProvider' => new ArrayDataProvider([
                             'allModels' => $responseModels,
