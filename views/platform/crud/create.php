@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php if (Yii::$app->mailer->useFileTransport): ?>
                 Because the application is in development mode, the email is not sent but saved as
                 a file under <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>.
-                Please configure the <code>useFileTransport</code> property of the <code>mail</code>
+                                                                                                    Please configure the <code>useFileTransport</code> property of the <code>mail</code>
                 application component to be false to enable email sending.
             <?php endif; ?>
         </p>
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Crea una Actividad con su Identificador y la Url donde está alojada.
+            Crea el Proyecto de un Upload con su Identificador, URL de publicación y de proyecto Git y nombre del fichero y carpeta donde se ha subido.
             Thank you.
         </p>
 
@@ -43,17 +43,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'create-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
 
-                    <?= $form->field($model, 'url') ?>
+                <?= $form->field($model, 'publicacion') ?>
 
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                    ]) ?>
+                <?= $form->field($model, 'git') ?>
 
-                    <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
-                    </div>
+                <?= $form->field($model, 'fichero') ?>
+
+                <?= $form->field($model, 'carpeta') ?>
+
+                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                ]) ?>
+
+                <!-- <input type="hidden" name="coleccion" value="Upload"> -->
+
+                <div class="form-group">
+                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
+                </div>
 
                 <?php ActiveForm::end(); ?>
 
