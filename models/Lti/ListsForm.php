@@ -69,7 +69,7 @@ class ListsForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Lists ' . $url)
-                ->setTextBody('Lista de información de una Actividad')
+                ->setTextBody('Lista de información de una Actividad LTI')
                 ->send();
 
             return true;

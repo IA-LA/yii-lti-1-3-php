@@ -64,7 +64,7 @@ class CreateForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Create ' . $url)
-                ->setTextBody('Creación de Registro de una Actividad')
+                ->setTextBody('Creación de un Upload')
                 ->send();
 
             return true;

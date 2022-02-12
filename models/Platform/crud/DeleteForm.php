@@ -57,7 +57,7 @@ class DeleteForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Delete ' . $url)
-                ->setTextBody('Borrado de una Actividad')
+                ->setTextBody('Borrado de una Plataforma')
                 ->send();
 
             return true;

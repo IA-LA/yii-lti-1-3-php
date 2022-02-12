@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Crea el Proyecto de un Upload con su Identificador, URL de publicación y de proyecto Git y nombre del fichero y carpeta donde se ha subido.
+            Crea el Registro de una Plataforma con su Identificador, URL de publicación y de proyecto Git y nombre del fichero y carpeta donde se ha subido.
             Thank you.
         </p>
 

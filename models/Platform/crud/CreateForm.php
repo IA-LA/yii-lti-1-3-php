@@ -6,12 +6,16 @@ use Yii;
 use yii\base\Model;
 
 /**
- * RegisterForm is the model behind the register form.
+ * CreateForm is the model behind the create form.
  */
 class CreateForm extends Model
 {
     public $id;
     public $url;
+    public $publicacion;
+    public $git;
+    public $fichero;
+    public $carpeta;
     public $verifyCode;
 
 
@@ -59,7 +63,7 @@ class CreateForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Create ' . $url)
-                ->setTextBody('Registro de una Actividad')
+                ->setTextBody('Creación de una Plataforma')
                 ->send();
 
             return true;

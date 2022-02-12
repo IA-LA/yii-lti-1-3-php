@@ -66,7 +66,7 @@ class ReadForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Query ' . $url)
-                ->setTextBody('Consulta de información de una Actividad')
+                ->setTextBody('Consulta de información de una Plataforma')
                 ->send();
 
             return true;
