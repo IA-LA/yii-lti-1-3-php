@@ -334,9 +334,12 @@ class PlatformController extends Controller
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Consulta: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                         <h1>Consulta</h1>
-                        <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
-                        'ID: <code>' . $response->data['data']['launch_parameters']['iss'] . '</code><br/>' .
-                        'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
+                        <p class="lead">Copia las credenciales de acceso a la Plataforma.</p>' .
+                        'ID: <code>' . $response->data['data']['id_actividad'] . '</code><br/>' .
+                        'CLIENT: <code>' . Html::encode($response->data['data']['credentials']['client_id']) . '</code><br/>' .
+                        'LOGIN: <code>' . Html::encode($response->data['data']['credentials']['auth_login_url']) . '</code><br/>' .
+                        'OAUTH: <code>' . Html::encode($response->data['data']['credentials']['auth_token_url']) . '</code><br/>' .
+                        'JWKS: <code>' . Html::encode($response->data['data']['credentials']['key_set_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
