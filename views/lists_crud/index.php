@@ -50,7 +50,7 @@ use yii\helpers\Html;
     ?>
 </div>
 <hr/>
-<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2F<?= Html::encode($return); ?>">Atrás</a></p>
+<p><a class="btn btn-lg btn-warning" href="index.php?r=crud%2F<?= Html::encode($back); ?>">Atrás</a></p>
 <div class="footer">
 </div>
 

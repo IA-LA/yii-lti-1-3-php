@@ -308,7 +308,7 @@ class PlatformController extends Controller
                         //->setMethod('POST')
                         ->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['ListForm']['id'])
-                        ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                        ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -578,7 +578,7 @@ class PlatformController extends Controller
                     // Listado ListView
                     return $this->redirect(array('lists_crud/index',
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
@@ -587,7 +587,7 @@ class PlatformController extends Controller
                     // View from another Controller
                     return $this->render('//lists_crud/index', [
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'listDataProvider' => new ArrayDataProvider([
                             'allModels' => $responseModels,

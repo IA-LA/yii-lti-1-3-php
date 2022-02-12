@@ -261,7 +261,7 @@ class LtiController extends Controller
                         //->setMethod('POST')
                         ->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['ListForm']['id'])
-                        ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                        ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -481,7 +481,7 @@ class LtiController extends Controller
             $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('lists', [
+                return $this->render('lti/lists', [
                     'model' => $model2,
                 ]);
             }
@@ -531,7 +531,7 @@ class LtiController extends Controller
                     // Listado ListView
                     return $this->redirect(array('lists/index',
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
@@ -540,7 +540,7 @@ class LtiController extends Controller
                     // View from another Controller
                     return $this->render('//lists/index', [
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'listDataProvider' => new ArrayDataProvider([
                             'allModels' => $responseModels,

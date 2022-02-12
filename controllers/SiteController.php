@@ -229,7 +229,7 @@ class SiteController extends Controller
                     // Listado ListView
                     return $this->redirect(array('lists/index',
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
@@ -238,7 +238,7 @@ class SiteController extends Controller
                     // View from another Controller
                     return $this->render('//lists/index', [
                         'title' => 'Listado',
-                        'return' => 'lists',
+                        'back' => 'lists',
                         'model' => $model,
                         'listDataProvider' => new ArrayDataProvider([
                             'allModels' => $responseModels,

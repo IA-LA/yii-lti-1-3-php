@@ -44,7 +44,7 @@ class Lists_crudController extends Controller
 
             return $this->render('index', [
                 'title' => 'FakedModels',
-                'return' => 'lists',
+                'back' => 'lists',
                 'listDataProvider' => $provider
             ]);
         }
@@ -100,7 +100,7 @@ class Lists_crudController extends Controller
                             //->setMethod('POST')
                             ->setMethod('GET')
                             ->setUrl($url . $ruta) //$_POST['ListsForm']['id'])
-                            ->setData(['name' => 'John Doe', 'email' => 'johndoe@domain.com'])
+                            ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                                 'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -156,7 +156,7 @@ class Lists_crudController extends Controller
 
                         return $this->render('index', [
                             'title' => $params['title'],
-                            'return' => $params['return'],
+                            'back' => $params['back'],
                             'listDataProvider' => new ArrayDataProvider([
                                 'allModels' => $responseModels,
                                 'pagination' => [
@@ -173,7 +173,7 @@ class Lists_crudController extends Controller
                 default:
                     return $this->render('index', [
                         'title' => $params['title'],
-                        'return' => $params['return'],
+                        'back' => $params['back'],
                     ]);
             }
         }
@@ -190,7 +190,7 @@ class Lists_crudController extends Controller
                 'id' => $i,
                 'title' => 'Actividad ' . $i,
                 'image' => 'http://placehold.it/300x200',
-                'link'  => '<a href="http://placehold.it/300x200" target="_blank">Launch URL</a>'
+                'link'  => '<a href="http://placehold.it/300x200" target="_blank">URL</a>'
             ];
 
             $fakedModels[] = $fakedItem;
