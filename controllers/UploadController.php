@@ -1013,7 +1013,7 @@ class UploadController extends Controller
                                     'buttonC' => '<button type="submit" class="btn btn-lg btn-primary">Create</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
-                                    'buttonR' => '<form action="/crud/read" method="post">
+                                    'buttonR' => '<form action="index.php?r=upload%2Fread" method="post">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
