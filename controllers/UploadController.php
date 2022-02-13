@@ -1010,10 +1010,15 @@ class UploadController extends Controller
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
-                                    'buttonC' => '<button class="btn btn-lg btn-primary">Create</button>',
-                                    'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
-                                    'buttonU' => '<button class="btn btn-sm btn-warning">Update</button>',
-                                    'buttonD' => '<button class="btn btn-xs btn-danger">Delete</button>'
+                                    'buttonC' => '<button type="submit" class="btn btn-lg btn-primary">Create</button>',
+                                    //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
+                                    //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
+                                    'buttonR' => '<form action="/crud/read" method="post">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
+                                                  </form>',
+                                    'buttonU' => '<button type="submit" class="btn btn-sm btn-warning">Update</button>',
+                                    'buttonD' => '<button type="submit" class="btn btn-xs btn-danger">Delete</button>'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
