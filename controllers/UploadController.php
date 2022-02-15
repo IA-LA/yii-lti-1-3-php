@@ -1062,8 +1062,16 @@ class UploadController extends Controller
                                                 </div>',
                                     */
                                     //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</a>',
-                                    'buttonU' => '<button type="submit" class="btn btn-sm btn-warning" action="index.php?r=upload%2Fupdate" method="post">Update</button>',
-                                    'buttonD' => '<a href="index.php?r=upload%2Fread" class="btn btn-xs btn-danger">Delete</a>'
+                                    //'buttonU' => <button type="submit" class="btn btn-sm btn-warning" action="index.php?r=upload%2Fupdate" method="post">Update</button>',
+                                    'buttonU' => '<?php Modal::begin([
+                                                                        \'header\' => \'<h2>Update Upload</h2>\',
+                                                                        \'toggleButton\' => [\'label\' => \'Update\', \'class\' => \'btn btn-sm btn-warning\'],
+                                                                    ]);
+                                                                    echo \'Update Form...\';
+
+                                                        Modal::end();
+                                                    ?>',
+                                    'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a>'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
