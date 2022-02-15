@@ -1029,7 +1029,7 @@ class UploadController extends Controller
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1' => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
-                                    'data'  => $response->data['data'],
+                                    'data'  => [$index => $value],
                                     'buttonC' => '<form type="hidden" action="index.php?r=upload%2Fcreate" method="post"><button type="submit" class="btn btn-lg btn-primary">Create</button></form>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
