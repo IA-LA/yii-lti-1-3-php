@@ -1061,7 +1061,7 @@ class UploadController extends Controller
                                                     </div>
                                                 </div>',
                                     */
-                                    'buttonR' => '<button class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</button>',
+                                    'buttonR' => '<button class="btn btn-md btn-info" onclick="index.php?r=upload/read">Read&nbsp;&nbsp;</button>',
                                     'buttonU' => '<button type="submit" class="btn btn-sm btn-warning">Update</button>',
                                     'buttonD' => '<button type="submit" class="btn btn-xs btn-danger">Delete</button>'
                                 ];
