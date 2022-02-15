@@ -35,7 +35,7 @@ use app\models\Upload\crud\UpdateForm;
 /* LISTS */
 use app\models\Upload\ListsForm;
 use yii\data\ArrayDataProvider;
-use yii\helpers\Button;
+use yii\bootstrap\Button;
 
 /* DLETE */
 use app\models\Upload\crud\DeleteForm;
