@@ -18,7 +18,7 @@ use yii\bootstrap\Modal;
                 'toggleButton' => ['label' => 'End',  'class' => 'btn btn-sm btn-warning'],
             ]);
 
-            echo $this->render('crud/read', [
+            echo $this->render('update/read', [
                 'model' => $model2,
             ]);
 
