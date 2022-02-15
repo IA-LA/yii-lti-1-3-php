@@ -1061,8 +1061,8 @@ class UploadController extends Controller
                                                 </div>',
                                     */
                                     //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</a>',
-                                    'buttonU' => '<a href="index.php?r=upload%2Fupdate" class="btn btn-sm btn-warning">Update</button>',
-                                    'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a>'
+                                    'buttonU' => '<a href="index.php?r=upload%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
+                                    'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
