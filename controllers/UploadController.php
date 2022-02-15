@@ -918,25 +918,7 @@ class UploadController extends Controller
             ]);
         }
         else{
-            // Modelos de los diferentes botones CRUD
-            $modelC = new CreateForm();
-            $modelR = new ReadForm();
-            $modelU = new UpdateForm();
-            $modelD = new DeleteForm();
 
-            //Envío del Formulario de Consulta CRUD
-            if ($modelC->load($request = Yii::$app->request->post()) && $modelC->create(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('CrudFormSubmitted');
-            }
-            if ($modelR->load($request = Yii::$app->request->post()) && $modelR->read(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('CrudFormSubmitted');
-            }
-            if ($modelU->load($request = Yii::$app->request->post()) && $modelU->update(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('CrudFormSubmitted');
-            }
-            if ($modelD->load($request = Yii::$app->request->post()) && $modelD->delete(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('CrudFormSubmitted');
-            }
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
