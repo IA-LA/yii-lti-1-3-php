@@ -18,9 +18,28 @@ use yii\bootstrap\Modal;
                 'toggleButton' => ['label' => 'End',  'class' => 'btn btn-sm btn-warning'],
             ]);
 
-            echo $this->render('upload/read', [
-                'model' => $model2,
-            ]);
+            echo '
+        <p>
+            Consulta la información de un Upload ya registrado por su Id o su Url.
+            Thank you.
+        </p>
+
+        <div class="row">
+            <div class="col-lg-5">';
+
+        $form = ActiveForm::begin(['id' => 'read-form']);
+        $form->field($model, 'id')->textInput(['autofocus' => true]);
+        $form->field($model, 'url');
+        $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+        ]);
+
+        echo '<div class="form-group">';
+        Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'read-button']);
+        echo '</div>';
+        echo '            </div>
+        </div>
+';
 
             Modal::end();
         ?>
