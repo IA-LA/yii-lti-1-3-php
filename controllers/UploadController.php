@@ -35,6 +35,7 @@ use app\models\Upload\crud\UpdateForm;
 /* LISTS */
 use app\models\Upload\ListsForm;
 use yii\data\ArrayDataProvider;
+use yii\bootstrap\Button;
 
 /* DLETE */
 use app\models\Upload\crud\DeleteForm;
@@ -1061,7 +1062,11 @@ class UploadController extends Controller
                                                     </div>
                                                 </div>',
                                     */
-                                    'buttonR' => '<button class="btn btn-md btn-info" onclick="index.php?r=upload/read">Read&nbsp;&nbsp;</button>',
+                                    'buttonR' => Button::Widget([
+                                                                    'label' => 'label',
+                                                                    'options' => ['class' => 'btn btn-info'],
+                                                                    'url' => Url::toRoute(['/upload/read']),
+                                                                ]),
                                     'buttonU' => '<button type="submit" class="btn btn-sm btn-warning">Update</button>',
                                     'buttonD' => '<button type="submit" class="btn btn-xs btn-danger">Delete</button>'
                                 ];
