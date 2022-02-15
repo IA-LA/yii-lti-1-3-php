@@ -8,6 +8,7 @@ use yii\bootstrap\ActiveForm;
 use yii\widgets\ListView;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\bootstrap\Modal;
 
 // Remember current URL
 Url::remember();
@@ -71,6 +72,14 @@ Url::remember();
         ]);
         ?>
     <?php
+        Modal::begin([
+            'header' => '<h2>Hello world</h2>',
+            'toggleButton' => ['label' => 'click me'],
+        ]);
+
+        echo 'Say hello...';
+
+        Modal::end();
     endif;
     ?>
 </div>
