@@ -16,7 +16,7 @@ use yii\bootstrap\Modal;
         <?php
             $modelR = new ReadForm();
             Modal::begin([
-                'header' => '<h2>'. $model['id'] . '</h2>',
+                'header' => '<h2>'. $model['data']['_id'] . '</h2>',
                 'toggleButton' => ['label' => 'Read&nbsp;&nbsp;',  'class' => 'btn btn-md btn-info'],
             ]);
             echo    '<p>
