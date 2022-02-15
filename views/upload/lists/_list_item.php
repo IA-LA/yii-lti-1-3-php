@@ -8,6 +8,16 @@ use yii\helpers\Html;
     <h4><?= Html::encode($model['id']); ?></h4>
     <h5>
         <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?> <?= $model['buttonR'] ?> <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
+        <?php
+            Modal::begin([
+                'header' => '<h2>End Form</h2>',
+                'toggleButton' => ['label' => 'End',  'class' => 'btn btn-sm btn-warning'],
+            ]);
+
+            echo 'Say hello...';
+
+            Modal::end();
+        ?>
     </h5>
 </article>
 
