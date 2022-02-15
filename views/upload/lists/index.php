@@ -19,8 +19,19 @@ Url::remember();
 <div class="row">
     <h4><pre>FICHERO</pre></h4>
     <h5><pre>Nombre                                   Publicación            Git            Acción</pre></h5>
+    <?php
+    if (Yii::$app->session->hasFlash('CrudFormSubmitted')):
+        echo 'CrudFormSubmitted';
+        $form = ActiveForm::begin(['id' => 'lists-form']);
+            $form->field($model, 'id')->textInput(['autofocus' => true]);
+            $form->field($model, 'url');
+            $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+            ]);
+            Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'lists-button']);
+        ActiveForm::end();
+    else:?>
     <?=
-
         ListView::widget([
             'options' => [
                 'tag' => 'div',
@@ -58,7 +69,9 @@ Url::remember();
             ],
 
         ]);
-
+        ?>
+    <?php
+    endif;
     ?>
 </div>
 <hr/>
