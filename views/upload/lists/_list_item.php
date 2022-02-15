@@ -2,6 +2,8 @@
 // YOUR_APP/views/upload/lists/_list_item.php
 
 use yii\helpers\Html;
+use yii\bootstrap\Modal;
+
 ?>
 
 <article class="list-item col-sm-12" data-key="<?= $model['id'] ?>">
