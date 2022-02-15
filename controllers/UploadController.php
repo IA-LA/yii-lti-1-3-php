@@ -918,6 +918,26 @@ class UploadController extends Controller
             ]);
         }
         else{
+            // Modelos de los diferentes botones CRUD
+            $modelC = new CreateForm();
+            $modelR = new ReadForm();
+            $modelU = new UpdateForm();
+            $modelD = new DeleteForm();
+
+            //Envío del Formulario de Consulta CRUD
+            if ($modelC->load($request = Yii::$app->request->post()) && $modelC->create(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('CrudFormSubmitted');
+            }
+            if ($modelR->load($request = Yii::$app->request->post()) && $modelR->read(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('CrudFormSubmitted');
+            }
+            if ($modelU->load($request = Yii::$app->request->post()) && $modelU->update(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('CrudFormSubmitted');
+            }
+            if ($modelD->load($request = Yii::$app->request->post()) && $modelD->delete(Yii::$app->params['adminEmail'])) {
+                Yii::$app->session->setFlash('CrudFormSubmitted');
+            }
+
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
             ///////////////////////
@@ -1017,6 +1037,27 @@ class UploadController extends Controller
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
                                                   </form>',
+                                    'buttonR' => '<div class="row">
+                                                    <div class="col-lg-5">
+                                        
+                                                        <?php $form = ActiveForm::begin(["id" => "read-form"]); ?>
+                                        
+                                                            <?= $form->field($model, "id")->textInput(["autofocus" => true]) ?>
+                                        
+                                                            <?= $form->field($model, "url") ?>
+                                        
+                                                            <?= $form->field($model, "verifyCode")->widget(Captcha::className(), [
+                                                                "template" => "<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>",
+                                                            ]) ?>
+                                        
+                                                            <div class="form-group">
+                                                                <?= Html::submitButton("Submit", ["class" => "btn btn-primary", "name" => "read-button"]) ?>
+                                                            </div>
+                                        
+                                                        <?php ActiveForm::end(); ?>
+                                        
+                                                    </div>
+                                                </div>',
                                     'buttonU' => '<button type="submit" class="btn btn-sm btn-warning">Update</button>',
                                     'buttonD' => '<button type="submit" class="btn btn-xs btn-danger">Delete</button>'
                                 ];

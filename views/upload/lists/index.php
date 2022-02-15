@@ -19,7 +19,7 @@ Url::remember();
 <div class="row">
     <h4><pre>FICHERO</pre></h4>
     <h5><pre>Nombre                                   Publicación            Git            Acción</pre></h5>
-    <?php
+    <?=
 
         ListView::widget([
             'options' => [
