@@ -21,6 +21,7 @@ Url::remember();
     <h5><pre>Nombre                                   Publicación            Git            Acción</pre></h5>
     <?php
     if (Yii::$app->session->hasFlash('CrudFormSubmitted')):
+        echo 'CrudFormSubmitted';
         $form = ActiveForm::begin(['id' => 'lists-form']);
             $form->field($model, 'id')->textInput(['autofocus' => true]);
             $form->field($model, 'url');
