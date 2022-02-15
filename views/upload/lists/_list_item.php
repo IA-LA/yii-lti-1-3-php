@@ -16,7 +16,27 @@ use yii\bootstrap\Modal;
                 'toggleButton' => ['label' => 'End',  'class' => 'btn btn-sm btn-warning'],
             ]);
 
-            echo 'Say hello...';
+            echo '<div class="row">
+                    <div class="col-lg-5">
+        
+                        <?php $form = ActiveForm::begin(["id" => "read-form"]); ?>
+        
+                            <?= $form->field($model, "id")->textInput(["autofocus" => true]) ?>
+        
+                            <?= $form->field($model, "url") ?>
+        
+                            <?= $form->field($model, "verifyCode")->widget(Captcha::className(), [
+                                "template" => "<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>",
+                            ]) ?>
+        
+                            <div class="form-group">
+                                <?= Html::submitButton("Submit", ["class" => "btn btn-primary", "name" => "read-button"]) ?>
+                            </div>
+        
+                        <?php ActiveForm::end(); ?>
+        
+                    </div>
+                </div>';
 
             Modal::end();
         ?>
