@@ -12,21 +12,18 @@ use yii\bootstrap\Modal;
     <h5>
         <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?> <?= $model['buttonR'] ?> <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
         <?php
-        $model2 = new ReadForm();
+            $modelR = new ReadForm();
             Modal::begin([
-                'header' => '<h2>End Form</h2>',
+                'header' => '<h2>Read Form</h2>',
                 'toggleButton' => ['label' => 'End',  'class' => 'btn btn-sm btn-warning'],
             ]);
-
-            echo '
-        <p>
-            Consulta la información de un Upload ya registrado por su Id o su Url.
-            Thank you.
-        </p>
-
-        <pre>';
-        print_r($model);
-        echo '</pre>';
+            echo    '<p>
+                        Consulta la información de un Upload ya registrado por su Id o su Url.
+                        Thank you.
+                    </p>
+                    <pre>';
+            print_r($model['data']);
+            echo '</pre>';
 
             Modal::end();
         ?>
