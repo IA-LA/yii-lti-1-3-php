@@ -1029,7 +1029,7 @@ class UploadController extends Controller
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
-                                    'buttonC' => '<button type="submit" class="btn btn-lg btn-primary">Create</button>',
+                                    'buttonC' => '<form type="hidden" action="index.php?r=upload%2Fcreate" method="post"><button type="submit" class="btn btn-lg btn-primary">Create</button></form>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
                                     'buttonR' => '<form type="hidden" action="index.php?r=upload%2Fread" method="post">
@@ -1062,8 +1062,8 @@ class UploadController extends Controller
                                                 </div>',
                                     */
                                     //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</a>',
-                                    'buttonU' => '<button type="submit" class="btn btn-sm btn-warning">Update</button>',
-                                    'buttonD' => '<button type="submit" class="btn btn-xs btn-danger">Delete</button>'
+                                    'buttonU' => '<button type="submit" class="btn btn-sm btn-warning" action="index.php?r=upload%2Fupdate" method="post">Update</button>',
+                                    'buttonD' => '<button onclick="index.php?r=upload%2Fread" class="btn btn-xs btn-danger">Delete</button>'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
