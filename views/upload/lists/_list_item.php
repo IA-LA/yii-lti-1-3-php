@@ -17,7 +17,7 @@ use yii\bootstrap\Modal;
             $modelR = new ReadForm();
             Modal::begin([
                 'header' => '<h2>Read Form</h2>',
-                'toggleButton' => ['label' => 'Read',  'class' => 'btn btn-md btn-info'],
+                'toggleButton' => ['label' => 'Read&nbsp;&nbsp;',  'class' => 'btn btn-md btn-info'],
             ]);
             echo    '<p>
                         Consulta la información de un Upload ya registrado por su Id o su Url.
