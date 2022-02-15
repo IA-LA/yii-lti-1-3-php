@@ -1,6 +1,7 @@
 <?php
 // YOUR_APP/views/upload/lists/_list_item.php
 
+use app\models\Upload\crud\ReadForm;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
 
@@ -11,16 +12,15 @@ use yii\bootstrap\Modal;
     <h5>
         <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?> <?= $model['buttonR'] ?> <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
         <?php
+        $model2 = new ReadForm();
             Modal::begin([
                 'header' => '<h2>End Form</h2>',
                 'toggleButton' => ['label' => 'End',  'class' => 'btn btn-sm btn-warning'],
             ]);
 
-            echo '<form action="index.php?r=upload%2Fread" method="post">
-                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                    <input name="id" value="' . $model['id'] . '">
-                    <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
-                  </form>';
+            echo $this->render('crud/read', [
+                'model' => $model2,
+            ]);
 
             Modal::end();
         ?>
