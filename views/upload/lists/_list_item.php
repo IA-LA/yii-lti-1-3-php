@@ -11,6 +11,8 @@ use yii\bootstrap\Modal;
     <h4><?= Html::encode($model['id']); ?></h4>
     <h5>
         <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30">
+        <?= $model['buttonC'] ?>
+        <!-- <?= $model['buttonR'] ?> -->
         <?php
             $modelR = new ReadForm();
             Modal::begin([
@@ -27,7 +29,7 @@ use yii\bootstrap\Modal;
 
             Modal::end();
         ?>
-        <?= $model['buttonC'] ?> <?= $model['buttonR'] ?>
+        <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
     </h5>
 </article>
 
