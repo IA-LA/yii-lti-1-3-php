@@ -20,7 +20,7 @@ Url::remember();
     <h4><pre>FICHERO</pre></h4>
     <h5><pre>Nombre                                   Publicación            Git            Acción</pre></h5>
     <?php
-    if (Yii::$app->session->hasFlash('CrudFormSubmitted')):
+    if (!Yii::$app->session->hasFlash('CrudFormSubmitted')):
         echo 'CrudFormSubmitted';
         $form = ActiveForm::begin(['id' => 'lists-form']);
             $form->field($model, 'id')->textInput(['autofocus' => true]);
