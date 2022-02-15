@@ -1,6 +1,9 @@
 <?php
 // YOUR_APP/views/upload/lists/index.php
+/* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\Upload\ListsForm */
+
+use yii\bootstrap\ActiveForm;
 
 use yii\widgets\ListView;
 use yii\helpers\Html;
