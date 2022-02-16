@@ -1035,8 +1035,8 @@ class UploadController extends Controller
                                     //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     'buttonC' => '<nobr><form action="index.php?r=upload%2Fcreate" method="post">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                                                    <input type="hidden" name="id" value="' . $value['_id'] . '"><
-                                                    button type="submit" class="btn btn-lg btn-primary">Create</button>
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                     </form><nobr>',
                                     'buttonR' => '<a href="index.php?r=upload%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
