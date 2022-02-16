@@ -237,15 +237,15 @@ class UploadController extends Controller
                 //return $this->refresh();
             }
 
-            // Parámetros llamada vista create desde los listados Lists
+            // Parámetros llamada a la Vista create desde los listados Lists
             $params = Yii::$app->request->post();
             return $this->render('crud/create', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
-                'publicacion'=> isset($params['upload']['publicacion_url'])? $params['upload']['publicacion_url'] :' ',
-                'git'=> isset($params['upload']['git_url'])? $params['upload']['git_url'] :' ',
-                'fichero'=> isset($params['upload']['id'])? $params['upload']['id'] :' ',
-                'carpeta'=> isset($params['upload']['carpeta'])? $params['upload']['carpeta'] :' ',
+                'publicacion'=> isset($params['publicacion'])? $params['publicacion'] :' ',
+                'git'=> isset($params['git'])? $params['git'] :' ',
+                'fichero'=> isset($params['fichero'])? $params['fichero'] :' ',
+                'carpeta'=> isset($params['carpeta'])? $params['carpeta'] :' ',
             ]);
         }
     }
@@ -387,8 +387,12 @@ class UploadController extends Controller
                 //return $this->refresh();
             }
 
+            // Parámetros llamada a la Vista read desde los listados Lists
+            $params = Yii::$app->request->post();
             return $this->render('crud/read', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
+                'publicacion'=> isset($params['url'])? $params['url'] :' ',
             ]);
         }
     }
@@ -613,8 +617,16 @@ class UploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
+            // Parámetros llamada a la Vista update desde los listados Lists
+            $params = Yii::$app->request->post();
             return $this->render('crud/update', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
+                'publicacion'=> isset($params['publicacion'])? $params['publicacion'] :' ',
+                'git'=> isset($params['git'])? $params['git'] :' ',
+                'fichero'=> isset($params['fichero'])? $params['fichero'] :' ',
+                'carpeta'=> isset($params['carpeta'])? $params['carpeta'] :' ',
             ]);
         }
     }
@@ -754,8 +766,11 @@ class UploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+            // Parámetros llamada a la Vista delete desde los listados Lists
+            $params = Yii::$app->request->post();
             return $this->render('crud/delete', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
             ]);
         }
     }
@@ -1081,8 +1096,22 @@ class UploadController extends Controller
                                                 </div>',
                                     */
                                     //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</a>',
-                                    'buttonU' => '<a href="index.php?r=upload%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
-                                    'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
+                                    //'buttonU' => '<a href="index.php?r=upload%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
+                                    'buttonU' => '<form action="index.php?r=upload%2Fupdate" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['upload']['git_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['upload']['fichero'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['upload']['carpeta'] . '">
+                                                    <button type="submit" class="btn btn-sm btn-warning">Update</button>
+                                                  </form>',
+                                    //'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
+                                    'buttonD' => '<form action="index.php?r=upload%2Fdelete" method="post" style="display: inline;">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
+                                                  </form>',
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
