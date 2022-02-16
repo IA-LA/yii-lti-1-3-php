@@ -1056,7 +1056,7 @@ class UploadController extends Controller
                                     'image' => 'http://placehold.it/300x200',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
-                                    'buttonC' => '<form action="index.php?r=upload%2Fcreate" method="post" style="white-space: nowrap">
+                                    'buttonC' => '<form action="index.php?r=upload%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
