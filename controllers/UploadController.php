@@ -236,8 +236,13 @@ class UploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
+            // Parámetros llamada vista create
+            $params = Yii::$app->request->getQueryParams();
             return $this->render('crud/create', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :'',
+                'url'=> 'https://www.www.www',
             ]);
         }
     }
