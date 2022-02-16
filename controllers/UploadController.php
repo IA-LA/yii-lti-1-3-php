@@ -241,7 +241,7 @@ class UploadController extends Controller
             $params = Yii::$app->request->getQueryParams();
             return $this->render('crud/create', [
                 'model' => $model,
-                'id' => isset($params['id'])? $params['id'] :'',
+                'id' => isset($params['id'])? $params['id'] :'jjjjjjj',
                 'url'=> 'https://www.www.www',
             ]);
         }
