@@ -44,15 +44,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'update-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : '']) ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' ']) ?>
 
-                    <?= $form->field($model, 'publicacion') ?>
+                <?= $form->field($model, 'publicacion')->textInput(['value' => isset($publicacion)? $publicacion : ' ']) ?>
 
-                    <?= $form->field($model, 'git') ?>
+                <?= $form->field($model, 'git')->textInput(['value' => isset($git)? $git : ' ']) ?>
 
-                    <?= $form->field($model, 'fichero') ?>
+                <?= $form->field($model, 'fichero')->textInput(['value' => isset($fichero)? $fichero : ' ']) ?>
 
-                    <?= $form->field($model, 'carpeta') ?>
+                <?= $form->field($model, 'carpeta')->textInput(['value' => isset($carpeta)? $carpeta : ' ']) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',

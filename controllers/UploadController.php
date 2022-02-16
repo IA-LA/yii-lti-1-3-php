@@ -237,12 +237,15 @@ class UploadController extends Controller
                 //return $this->refresh();
             }
 
-            // Parámetros llamada vista create
+            // Parámetros llamada vista create desde los listados Lists
             $params = Yii::$app->request->post();
             return $this->render('crud/create', [
                 'model' => $model,
-                'id' => isset($params['id'])? $params['id'] :'jjjjjjj',
-                'url'=> 'https://www.www.www',
+                'id' => isset($params['id'])? $params['id'] :' ',
+                'publicacion'=> isset($params['upload']['publicacion_url'])? $params['upload']['publicacion_url'] :' ',
+                'git'=> isset($params['upload']['git_url'])? $params['upload']['git_url'] :' ',
+                'fichero'=> isset($params['upload']['id'])? $params['upload']['id'] :' ',
+                'carpeta'=> isset($params['upload']['carpeta'])? $params['upload']['carpeta'] :' ',
             ]);
         }
     }
@@ -1038,11 +1041,15 @@ class UploadController extends Controller
                                     'image' => 'http://placehold.it/300x200',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
-                                    'buttonC' => '<nobr><form action="index.php?r=upload%2Fcreate" method="post">
+                                    'buttonC' => '<form action="index.php?r=upload%2Fcreate" method="post" style="white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['upload']['git_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['upload']['fichero'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['upload']['carpeta'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
-                                                    </form><nobr>',
+                                                  </form>',
                                     'buttonR' => '<a href="index.php?r=upload%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
