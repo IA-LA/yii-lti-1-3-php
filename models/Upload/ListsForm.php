@@ -27,13 +27,13 @@ class ListsForm extends Model
             ['id', 'required',
                 'message' => 'Either id or url is required.',
                 'when' => function($model) { return empty($model->url); },
-                'whenClient' => "function (attribute, value) { return $('#url').val() == 'https://a.a.a'; }"
+                'whenClient' => "function (attribute, value) { return $('#url').val() == 'https://a.a.a'; }",
+                'default', 'value'=> '*'
             ],
             ['url', 'required',
                 'message' => 'Either id or url is required.',
                 'when' => function($model) { return empty($model->id); },
-                'whenClient' => "function (attribute, value) { return $('#id').val() == '00000000000000000000000'; }",
-                'default', 'value'=> '*'
+                'whenClient' => "function (attribute, value) { return $('#id').val() == '00000000000000000000000'; }"
             ],
             // id has to be a valid ID hexadecimal 24 character address
             //['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: `5fc3860a81740b0ef098a965`'],
