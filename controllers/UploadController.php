@@ -1031,9 +1031,15 @@ class UploadController extends Controller
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1' => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'http://placehold.it/300x200',
-                                    'data'  => $value,
-                                    'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
-                                    'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
+                                    'data'  => $value[0],
+                                    //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
+                                    'buttonC' => '<nobr><form action="index.php?r=upload%2Fcreate" method="post">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '"><
+                                                    button type="submit" class="btn btn-lg btn-primary">Create</button>
+                                                    </form><nobr>',
+                                    'buttonR' => '<a href="index.php?r=upload%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
+                                    //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
                                     /*'buttonR' => '<form action="index.php?r=upload%2Fread" method="post">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
