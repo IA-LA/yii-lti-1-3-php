@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'lists-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => $id ]) ?>
 
                     <?= $form->field($model, 'url') ?>
 
