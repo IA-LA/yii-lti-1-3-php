@@ -33,7 +33,7 @@ use yii\bootstrap\Modal;
                     <pre>';
             print_r($model['data']);
             echo '</pre>';
-            $this->render('uplodad/crud/read',['model' => $modelR, 'id' => '*']);
+            $this->render('//uplodad/crud/read',['model' => $modelR, 'id' => '*']);
             Modal::end();
         ?>
         <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
