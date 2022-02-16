@@ -32,6 +32,7 @@ class UpdateForm extends Model
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
 //            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
             ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
+            ['id', 'default', 'value'=> '00000000000000000000000'],
             // url has to be a valid URL address
             //['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             ['publicacion', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
