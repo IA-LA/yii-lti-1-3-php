@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'read-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true])->value('*') ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => '*']) ?>
 
                     <?= $form->field($model, 'url') ?>
 
