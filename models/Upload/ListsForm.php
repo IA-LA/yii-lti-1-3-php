@@ -27,7 +27,8 @@ class ListsForm extends Model
             ['id', 'required',
                 'message' => 'Either id or url is required.',
                 'when' => function($model) { return empty($model->url); },
-                'whenClient' => "function (attribute, value) { return $('#url').val() == 'https://a.a.a'; }"
+                'whenClient' => "function (attribute, value) { return $('#url').val() == 'https://a.a.a'; }",
+                'default', 'value'=> '*'
             ],
             ['url', 'required',
                 'message' => 'Either id or url is required.',
