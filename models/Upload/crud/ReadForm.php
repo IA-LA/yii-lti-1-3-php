@@ -36,6 +36,7 @@ class ReadForm extends Model
             ],
             // id has to be a valid ID hexadecimal 24 character address
             ['id', 'match', 'pattern'=>"/^[a-f,0-9]{24}$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: 5fc3860a81740b0ef098a965'],
+            ['id', 'default', 'value'=> '00000000000000000000000'],
             // url has to be a valid URL address
             ['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
