@@ -769,6 +769,8 @@ class UploadController extends Controller
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('lists', [
                     'model' => $model2,
+                    'id' => '*',
+                    'url'=> 'https://www.www.www',
                 ]);
             }
 

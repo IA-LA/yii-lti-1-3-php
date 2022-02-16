@@ -20,7 +20,7 @@ use yii\bootstrap\Modal;
                 'header' => '<h2>'. $model['data']['_id'] . '</h2>',
                 'toggleButton' => ['label' => 'Read&nbsp;&nbsp;',  'class' => 'btn btn-md btn-info'],
                 'id' => 'modal-r',
-                'size' => 'modal-lg',
+                //'size' => 'modal-lg',
                 //keeps from closing modal with esc key or by clicking out of the modal.
                 // user must click cancel or X to close
                 'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
