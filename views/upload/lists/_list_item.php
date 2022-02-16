@@ -33,7 +33,7 @@ use yii\bootstrap\Modal;
                     <pre>';
             print_r($model['data']);
             echo '</pre>';
-            $this->render('read',['model' => $modelR, 'id' => '*']);
+            $this->render('_ad',['model' => $modelR, 'id' => '*']);
             Modal::end();
         ?>
         <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
