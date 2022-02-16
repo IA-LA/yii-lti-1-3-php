@@ -238,7 +238,7 @@ class UploadController extends Controller
             }
 
             // Parámetros llamada vista create
-            $params = Yii::$app->request->getQueryParams();
+            $params = Yii::$app->request->post();
             return $this->render('crud/create', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :'jjjjjjj',
@@ -1038,7 +1038,7 @@ class UploadController extends Controller
                                     'image' => 'http://placehold.it/300x200',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
-                                    'buttonC' => '<nobr><form action="index.php?r=upload%2Fcreate" method="get">
+                                    'buttonC' => '<nobr><form action="index.php?r=upload%2Fcreate" method="post">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
