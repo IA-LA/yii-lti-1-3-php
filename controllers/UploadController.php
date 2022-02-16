@@ -767,10 +767,8 @@ class UploadController extends Controller
             $model2 = new ListsForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('mierda', [
+                return $this->render('lists', [
                     'model' => $model2,
-                    'id' => '*',
-                    'url'=> 'https://www.www.www',
                 ]);
             }
 
@@ -866,6 +864,8 @@ class UploadController extends Controller
 
             return $this->render('lists', [
                 'model' => $model,
+                'id' => '*',
+                'url'=> 'https://www.www.www',
             ]);
         }
     }
