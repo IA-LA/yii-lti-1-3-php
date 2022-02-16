@@ -864,6 +864,8 @@ class UploadController extends Controller
 
             return $this->render('lists', [
                 'model' => $model,
+                'id' => '*',
+                'url'=> 'https://www.www.www',
             ]);
         }
     }
