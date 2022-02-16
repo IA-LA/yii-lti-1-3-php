@@ -40,7 +40,7 @@ class ListsForm extends Model
             ['id', 'match', 'pattern'=>"/^([a-f0-9]{24})|([a-f0-9]{1,23}[*])|([*][a-f0-9]{1,23})|([*][a-f0-9]{1,22}[*])|([*])$/u", 'message'=>'Has to be a valid Mongo ObjectId hexadecimal 24 character address like this: `5fc3860a81740b0ef098a965` or using the wildcard * to list all registers in this way: *, HH..HH*, *HH..HH, *HH..HH*.'],
             // url has to be a valid URL address
             //['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
-            ['url', 'match', 'pattern'=>"/^(.*)|(.*)[*]|[*](.*)|[*](.*)[*]|([*])$/u", 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/` or using the wildcard * to list all registers in this way: *, HH..HH*, *HH..HH, *HH..HH*.', 'value'=> '*'],
+            ['url', 'match', 'pattern'=>"/^(.*)|(.*)[*]|[*](.*)|[*](.*)[*]|([*])$/u", 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/` or using the wildcard * to list all registers in this way: *, HH..HH*, *HH..HH, *HH..HH*.', 'default', 'value'=> '*'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
