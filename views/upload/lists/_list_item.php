@@ -10,8 +10,7 @@ use yii\bootstrap\Modal;
 <article class="list-item col-sm-12" data-key="<?= $model['id'] ?>">
     <h4><?= Html::encode($model['id']); ?></h4>
     <h5>
-        <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30">
-        <?= $model['buttonC'] ?>
+        <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?>
         <!-- <?= $model['buttonR'] ?> -->
         <?php
             $modelR = new ReadForm();
