@@ -18,7 +18,7 @@ Url::remember();
     <h3><?= Html::encode($title); ?> Upload</h3>
 </div>
 <div class="row">
-    <h4><pre>FICHERO</pre></h4>
+    <h4><pre>ID (Fichero)</pre></h4>
     <h5><pre>Nombre                                   Publicación            Git            Acción</pre></h5>
     <?php
     if (Yii::$app->session->hasFlash('CrudFormSubmitted')):
@@ -31,7 +31,8 @@ Url::remember();
             ]);
             Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'lists-button']);
         ActiveForm::end();
-    else:?>
+    else:
+    ?>
     <?=
         ListView::widget([
             'options' => [
@@ -72,6 +73,7 @@ Url::remember();
         ]);
         ?>
     <?php
+        /*
         Modal::begin([
             'header' => '<h2>Hello world</h2>',
             'toggleButton' => ['label' => 'click me'],
@@ -80,6 +82,7 @@ Url::remember();
         echo 'Say hello...';
 
         Modal::end();
+        */
     endif;
     ?>
 </div>

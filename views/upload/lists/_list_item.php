@@ -3,7 +3,11 @@
 
 //use app\models\Upload\crud\ReadForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Modal;
+
+// Remember current URL
+Url::remember();
 
 ?>
 

@@ -46,13 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' ']) ?>
 
-                <?= $form->field($model, 'publicacion')->textInput(['value' => isset($publicacion)? $publicacion : ' ']) ?>
+                    <?= $form->field($model, 'publicacion')->textInput(['value' => isset($publicacion)? $publicacion : ' ']) ?>
 
-                <?= $form->field($model, 'git')->textInput(['value' => isset($git)? $git : ' ']) ?>
+                    <?= $form->field($model, 'git')->textInput(['value' => isset($git)? $git : ' ']) ?>
 
-                <?= $form->field($model, 'fichero')->textInput(['value' => isset($fichero)? $fichero : ' ']) ?>
+                    <?= $form->field($model, 'fichero')->textInput(['value' => isset($fichero)? $fichero : ' ']) ?>
 
-                <?= $form->field($model, 'carpeta')->textInput(['value' => isset($carpeta)? $carpeta : ' ']) ?>
+                    <?= $form->field($model, 'carpeta')->textInput(['value' => isset($carpeta)? $carpeta : ' ']) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
@@ -63,16 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="form-group">
                         <?= Html::submitButton('Update', ['class' => 'btn btn-warning', 'name' => 'update-button']) ?>
                     </div>
-                <?
-                $this->widget('widget.EBackButtonWidget',
-                    array(
-                        'width' => "100%",
-                    ));
-                EBackButtonWidget::widget('widget.EBackButtonWidget',
-                    array(
-                        'width' => "100%",
-                    ));
-                ?>
+
                 <?php ActiveForm::end(); ?>
 
             </div>
