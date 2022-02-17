@@ -13,7 +13,7 @@ use yii\bootstrap\Modal;
         <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?>
         <!-- <?= $model['buttonR'] ?> -->
         <?php
-            $modelR = new ReadForm();
+            //$modelR = new ReadForm();
             Modal::begin([
                 'headerOptions' => ['id' => 'modalHeader'],
                 'header' => '<h2>'. $model['data']['_id'] . '</h2>',
