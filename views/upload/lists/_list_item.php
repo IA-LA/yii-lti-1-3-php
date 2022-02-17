@@ -1,7 +1,7 @@
 <?php
 // YOUR_APP/views/upload/lists/_list_item.php
 
-use app\models\Upload\crud\ReadForm;
+//use app\models\Upload\crud\ReadForm;
 use yii\helpers\Html;
 use yii\bootstrap\Modal;
 
@@ -32,7 +32,7 @@ use yii\bootstrap\Modal;
                     <pre>';
             print_r($model['data']);
             echo '</pre>';
-            $this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
+            //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
             Modal::end();
         ?>
         <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
