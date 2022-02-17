@@ -889,6 +889,7 @@ class UploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
             //$model->loadDefaultValues();
             return $this->render('lists', [
                 'model' => $model,
