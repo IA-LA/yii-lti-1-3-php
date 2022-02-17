@@ -729,7 +729,7 @@ class LtiController extends Controller
             $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('lti/index', [
+                return $this->render('lti/lists', [
                     'model' => $model2,
                 ]);
             }
@@ -777,7 +777,7 @@ class LtiController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('lti/index',
+                    return $this->redirect(array('lti/lists/index',
                         'title' => 'Listado',
                         'back' => 'lists',
                         'controller' => 'Lti',
