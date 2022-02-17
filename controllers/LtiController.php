@@ -777,7 +777,7 @@ class LtiController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('lti/lists/index',
+                    return $this->redirect(array('lti/index',
                         'title' => 'Listado',
                         'back' => 'lists',
                         'controller' => 'Lti',
