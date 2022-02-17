@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- <input type="hidden" name="coleccion" value="Upload"> -->
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'update-button']) ?>
+                        <?= Html::submitButton('Update', ['class' => 'btn btn-warning', 'name' => 'update-button']) ?>
                     </div>
                 <?
                 $this->widget('widget.EBackButtonWidget',

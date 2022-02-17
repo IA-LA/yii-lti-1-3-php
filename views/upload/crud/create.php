@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- <input type="hidden" name="coleccion" value="Upload"> -->
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
+                        <?= Html::submitButton('Create', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>
