@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Crea el Registro de una Plataforma con su Identificador, URL de publicación y de proyecto Git y nombre del fichero y carpeta donde se ha subido.
+            Crea el Registro de una Plataforma con su Identificador y Credenciales.
             Thank you.
         </p>
 
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- <input type="hidden" name="coleccion" value="Upload"> -->
 
                 <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
+                    <?= Html::submitButton('Create', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>

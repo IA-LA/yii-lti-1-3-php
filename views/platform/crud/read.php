@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Consulta la información de una Plataform ya registrada por su Id o su Url.
+            Consulta la información de una Plataform ya registrada por su Id.
             Thank you.
         </p>
 
@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'read-button']) ?>
+                        <?= Html::submitButton('Read', ['class' => 'btn btn-info', 'name' => 'read-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

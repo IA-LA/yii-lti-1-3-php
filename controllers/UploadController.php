@@ -239,6 +239,7 @@ class UploadController extends Controller
 
             // Parámetros llamada a la Vista create desde los listados Lists
             $params = Yii::$app->request->post();
+
             return $this->render('crud/create', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
@@ -389,10 +390,11 @@ class UploadController extends Controller
 
             // Parámetros llamada a la Vista read desde los listados Lists
             $params = Yii::$app->request->post();
+
             return $this->render('crud/read', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
-                'publicacion'=> isset($params['url'])? $params['url'] :' ',
+                'url'=> isset($params['url'])? $params['url'] :' ',
             ]);
         }
     }
@@ -620,6 +622,7 @@ class UploadController extends Controller
 
             // Parámetros llamada a la Vista update desde los listados Lists
             $params = Yii::$app->request->post();
+
             return $this->render('crud/update', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
@@ -766,8 +769,10 @@ class UploadController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
             // Parámetros llamada a la Vista delete desde los listados Lists
             $params = Yii::$app->request->post();
+
             return $this->render('crud/delete', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
@@ -888,7 +893,6 @@ class UploadController extends Controller
             return $this->render('lists', [
                 'model' => $model,
                 'id' => '*',
-                'url'=> 'https://www.www.www',
             ]);
         }
     }

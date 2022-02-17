@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Crea una Actividad con su Identificador y la Url donde está alojada.
+            Crea una Actividad LTI con su Identificador y la Url donde está alojada.
             Thank you.
         </p>
 
@@ -43,16 +43,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'create-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' ']) ?>
 
-                    <?= $form->field($model, 'url') ?>
+                    <?= $form->field($model, 'url')->textInput(['value' => isset($url)? $url : ' ']) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
+                        <?= Html::submitButton('Create', ['class' => 'btn btn-primary', 'name' => 'create-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

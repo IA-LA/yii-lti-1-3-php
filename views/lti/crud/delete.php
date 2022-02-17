@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Borra una Actividad por su Identificador.
+            Borra una Actividad LTI por su Identificador.
             Thank you.
         </p>
 
@@ -43,14 +43,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'delete-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' ']) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'delete-button']) ?>
+                        <?= Html::submitButton('Delete', ['class' => 'btn btn-danger', 'name' => 'delete-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

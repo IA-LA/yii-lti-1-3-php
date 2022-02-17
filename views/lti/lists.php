@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'lists-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : '*']) ?>
 
                     <?= $form->field($model, 'url') ?>
 
@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'lists-button']) ?>
+                        <?= Html::submitButton('List', ['class' => 'btn btn-primary', 'name' => 'lists-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>
