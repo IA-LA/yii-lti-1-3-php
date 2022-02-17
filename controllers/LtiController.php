@@ -729,7 +729,7 @@ class LtiController extends Controller
             $model2 = new CreateForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('lti/lists', [
+                return $this->render('lti/index', [
                     'model' => $model2,
                 ]);
             }
