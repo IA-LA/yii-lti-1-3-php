@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Consulta la información de una Actividad LTI ya registrada por su Id o su Url.
+            Consulta la información de una Actividad LTI ya registrada por su Identificador o su Url.
             Thank you.
         </p>
 

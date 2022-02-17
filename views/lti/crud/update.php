@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Actualiza una Actividad LTI con su Identificador y URL.
+            Actualiza una Actividad LTI por su Identificador y URL.
             Thank you.
         </p>
 

@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php else: ?>
 
         <p>
-            Crea una Actividad LTI con su Identificador y la Url donde está alojada.
+            Crea una Actividad LTI con su Identificador y la Url donde se encuentra alojada.
             Thank you.
         </p>
 
