@@ -12,7 +12,7 @@ use yii\captcha\Captcha;
 $this->title = 'Update Platform';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="upload-crud-update">
+<div class="platform-crud-update">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php if (Yii::$app->session->hasFlash('updateFormSubmitted')): ?>
