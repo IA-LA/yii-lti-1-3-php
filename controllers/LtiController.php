@@ -962,7 +962,7 @@ class LtiController extends Controller
                                     'buttonC' => '<form action="index.php?r=lti%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="url" value="' . $value['url'] . '">
+                                                    <input type="hidden" name="url" value="' . $value['url_actividad'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
                                     'buttonR' => '<a href="index.php?r=lti%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
@@ -970,7 +970,7 @@ class LtiController extends Controller
                                     'buttonU' => '<form action="index.php?r=lti%2Fupdate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="url" value="' . $value['url'] . '">
+                                                    <input type="hidden" name="url" value="' . $value['url_actividad'] . '">
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
                                     //'buttonD' => '<a href="index.php?r=lti%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
