@@ -5,7 +5,7 @@ use yii\widgets\ListView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Lists Lti';
+$this->title = 'Lists Platform';
 $this->params['breadcrumbs'][] = $this->title;
 
 // Remember current URL
