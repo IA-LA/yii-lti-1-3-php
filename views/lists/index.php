@@ -5,7 +5,7 @@ use yii\widgets\ListView;
 use yii\helpers\Html;
 ?>
 <div class="header">
-    <h3><?= Html::encode($title); ?> Actividad LTI</h3>
+    <h3><?= Html::encode($title); ?> Actividad Site</h3>
 </div>
 <div class="row">
     <h4><pre>TITULO</pre></h4>
