@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models\Upload\crud;
+namespace app\models\Platform\crud;
 
 use Yii;
 use yii\base\Model;
@@ -65,7 +65,7 @@ class UpdateForm extends Model
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Update ' . $url)
-                ->setTextBody('Actualización de Registro de un Upload')
+                ->setTextBody('Actualización de Registro de una Plataforma')
                 ->send();
 
             return true;

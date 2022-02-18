@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\Upload\crud\UpdateForm */
+/* @var $model app\models\Platform\crud\UpdateForm */
 
 use app\widgets\EBackButtonWidget;
 use yii\helpers\Html;
