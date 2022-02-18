@@ -817,10 +817,11 @@ class PlatformController extends Controller
                     return $this->redirect(array('platform/index',
                         'title' => 'Listado',
                         'back' => 'lists',
+                        'controller' => 'Platform',
+                        'formulario' => 'ListsForm',
                         'model' => $model,
                         'id' => Yii::$app->request->post('ListsForm')['id'],
                         'url' => Yii::$app->request->post('ListsForm')['url'],
-                        'formulario' => 'ListsForm',
                     ));
                     // View from another Controller
                     return $this->render('//lists_crud/index', [
