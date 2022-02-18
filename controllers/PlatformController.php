@@ -763,7 +763,7 @@ class PlatformController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new CreateForm();
+            $model2 = new ListsForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('lists', [
@@ -814,7 +814,7 @@ class PlatformController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('lists_crud/index',
+                    return $this->redirect(array('platform/index',
                         'title' => 'Listado',
                         'back' => 'lists',
                         'model' => $model,
@@ -865,5 +865,254 @@ class PlatformController extends Controller
             ]);
         }
     }
+
+    /*INDEX LISTs*/
+    /**
+     * Displays index lists page.
+     *
+     * @return Response|string
+     *
+     */
+    public function actionIndex()
+    {
+        // function to generate faked models, don't care about this.
+        function getFakedModels()
+        {
+            $fakedModels = [];
+
+            for ($i = 1; $i < 18; $i++) {
+                $fakedItem = [
+                    //'list' => 'Listado',
+                    'id' => $i,
+                    'title' => 'Actividad ' . $i,
+                    'image' => 'http://placehold.it/300x200',
+                    'link'  => '<a href="http://placehold.it/300x200" target="_blank">URL</a>'
+                ];
+
+                $fakedModels[] = $fakedItem;
+            }
+
+            return $fakedModels;
+        }
+
+        // GET params
+        $params = Yii::$app->request->getQueryParams();
+        //$title = Yii::$app->request->getQuery('title');
+        if (!isset($params['title'])){
+            $provider = new ArrayDataProvider([
+                'allModels' => getFakedModels(),
+                'pagination' => [
+                    'pageSize' => 5
+                ],
+                'sort' => [
+                    'attributes' => ['id'],
+                ],
+            ]);
+
+            return $this->render('lists/index', [
+                'title' => 'FakedModels',
+                'back' => 'lists',
+                'listDataProvider' => $provider
+            ]);
+        }
+        else{
+
+            // Información servidor
+            //  https://www.php.net/manual/es/function.header.php
+            ///////////////////////
+            if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                $url = "https://";
+            else
+                $url = "http://";
+            // Append the host(domain name, ip) to the URL.
+            $url .= $_SERVER['HTTP_HOST'];
+
+            // Append the requested resource location to the URL
+            //$url.= $_SERVER['REQUEST_URI'];
+            //echo $_REQUEST['target_link_uri'];
+
+            // Llamadas REST
+            //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
+            //  https://www.php.net/manual/en/context.http.php
+            // Obtiene la configuración de las actividades con una llamada de lectura `GET`
+            // al servidor de SERVICIOS
+            ///////////////////
+            /// LOCAL puerto :9000
+            /// GLOBAL puerto:8000 o `.uned.es`
+            ///
+            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
+                $url = Yii::$app->params['serverServiciosLti_local'];
+            else
+                $url = Yii::$app->params['serverServiciosLti_global'];
+
+            //Envío del Formulario de Consulta
+
+            // GET (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+            $client = new Client();
+
+            // STOP EXECUTION
+            // print("EXCEPTION URL ");
+            //print_r(Yii::$app->user);
+            // print_r($params);
+            // exit(0);
+
+            // PARAMS: Array ( [r] => upload/index [title] => Listado [formulario] => ListsForm [controller] => Upload [return] => lists [model] => Array ( [id] => * [url] => [verifyCode] => vumegu ) [id] => * [url] => )
+            switch($params['formulario']){
+                case 'ListsForm':
+                    if ($params['id']) {
+                        // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
+                        $ruta = '/read/all/coleccion/' . $params['controller'] . '/id_actividad/' . $params['id'];
+                    } else {
+                        // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                        $ruta = '/read/all/coleccion/' . $params['controller'] . '/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
+                    }
+
+                    // Exception GET LTI1
+                    try {
+                        $response = $client->createRequest()
+                            ->setFormat(Client::FORMAT_JSON)
+                            //->setMethod('POST')
+                            ->setMethod('GET')
+                            ->setUrl($url . $ruta) //$_POST['ListsForm']['id'])
+                            //app\models\User Object( [id] => 100 [username] => admin [password] => ****** [authKey] => test100key [accessToken] => 100-token )
+                            ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
+                            ->setOptions([
+                                //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
+                                'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                            ])
+                            ->send();
+                    }
+                    catch (Exception $e1) {
+                        // Exception GET LTI2
+                        try {
+                        }
+                        catch (Exception $e2) {
+                        }
+                    }
+                    if ($response->isOk && $response->data['result'] === 'ok') {
+                        // Crea ARRAY con todas las respuestas
+                        // TODO separar en una función 'crearListDataProvider();'
+                        $responseModels = [];
+
+                        // Actividad múltiple/única
+                        if(!array_key_exists('_id', $response->data['data'])) {
+                            //foreach ($request as $key => $value){
+                            //    echo "{$key} => {$value} ";
+                            foreach ($response->data['data'] as $index => $value){
+                                //print(json_decode($index['data'], true));
+                                //if($index >= 0) {
+                                $responseItem = [
+                                    //'list' => $index,//'Listado',
+                                    'id' => $value['_id'] . ' (' . $value['upload']['fichero'] . ')',
+                                    'title' => $value['user']['email'] . ' ' . $value['zf'],
+                                    'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
+                                    'link1' => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
+                                    'image' => 'http://placehold.it/300x200',
+                                    'data'  => $value,
+                                    //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
+                                    //'buttonC' => '<a href="index.php?r=upload%2Fuploadregister" class="btn btn-lg btn-primary">Upload</a>',
+                                    'buttonC' => '<form action="index.php?r=upload%2Fcreate" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['upload']['git_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['upload']['fichero'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['upload']['carpeta'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-primary">Create</button>
+                                                  </form>',
+                                    'buttonR' => '<a href="index.php?r=upload%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
+                                    //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
+                                    //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
+                                    /*'buttonR' => '<form action="index.php?r=upload%2Fread" method="post">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
+                                                  </form>',
+                                     * 'buttonR' => '<div class="row">
+                                                    <div class="col-lg-5">
+
+                                                        <?php $form = ActiveForm::begin(["id" => "read-form"]); ?>
+
+                                                            <?= $form->field($model, "id")->textInput(["autofocus" => true]) ?>
+
+                                                            <?= $form->field($model, "url") ?>
+
+                                                            <?= $form->field($model, "verifyCode")->widget(Captcha::className(), [
+                                                                "template" => "<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>",
+                                                            ]) ?>
+
+                                                            <div class="form-group">
+                                                                <?= Html::submitButton("Submit", ["class" => "btn btn-primary", "name" => "read-button"]) ?>
+                                                            </div>
+
+                                                        <?php ActiveForm::end(); ?>
+
+                                                    </div>
+                                                </div>',
+                                    */
+                                    //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</a>',
+                                    //'buttonU' => '<a href="index.php?r=upload%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
+                                    'buttonU' => '<form action="index.php?r=upload%2Fupdate" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['upload']['git_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['upload']['fichero'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['upload']['carpeta'] . '">
+                                                    <button type="submit" class="btn btn-sm btn-warning">Update</button>
+                                                  </form>',
+                                    //'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
+                                    'buttonD' => '<form action="index.php?r=upload%2Fdelete" method="post" style="display: inline;">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
+                                                  </form>',
+                                ];
+                                $responseModels[] = $responseItem;
+                                //}
+                                //else{
+                                //    echo "{$index} => " . $value;
+                                //    echo "{$index} => " . $value['user']['email'];
+
+                                //}
+                            }
+                        }
+                        else{
+                            $responseItem = [
+                                //'list' => 'Listado',
+                                'id' => '_id',
+                                'title' => $params['title'],
+                                'image' => 'http://placehold.it/300x200',
+                                'link'  => '<a href="' . '#' . '" target="_blank">URL</a>'
+                            ];
+                            $responseModels[] = $responseItem;
+                        }
+
+                        return $this->render('lists_crud/index', [
+                            'title' => $params['title'],
+                            'back' => $params['back'],
+                            'controller' => $params['controller'],
+                            'listDataProvider' => new ArrayDataProvider([
+                                'allModels' => $responseModels,
+                                'pagination' => [
+                                    'pageSize' => 5
+                                ],
+                                'sort' => [
+                                    'attributes' => ['id'],
+                                ],
+                            ]),
+                        ]);
+                    }
+
+                    break;
+                default:
+                    return $this->render('lists_crud/index', [
+                        'title' => $params['title'],
+                        'back' => $params['back'],
+                    ]);
+            }
+        }
+    }
+
 
 }

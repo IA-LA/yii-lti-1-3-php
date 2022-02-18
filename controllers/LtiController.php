@@ -940,8 +940,8 @@ class LtiController extends Controller
                         }
                     }
                     if ($response->isOk && $response->data['result'] === 'ok') {
-                        // TODO crear ARRAY con todas las respuestas
-                        // TODO crearListDataProvider();
+                        // Crea ARRAY con todas las respuestas
+                        // TODO separar en una función 'crearListDataProvider();'
                         $responseModels = [];
 
                         // Actividad múltiple/única

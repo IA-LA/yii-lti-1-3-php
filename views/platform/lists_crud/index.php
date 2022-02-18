@@ -1,15 +1,23 @@
 <?php
-// YOUR_APP/views/lists/index.php
+// YOUR_APP/views/platform/lists/index.php
 
 use yii\widgets\ListView;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+$this->title = 'Lists Lti';
+$this->params['breadcrumbs'][] = $this->title;
+
+// Remember current URL
+Url::remember();
+
 ?>
 <div class="header">
-    <h3><?= Html::encode($title); ?> Actividad Crud</h3>
+    <h3><?= Html::encode($title); ?> Plataforma</h3>
 </div>
 <div class="row">
-    <h4><pre>TITULO</pre></h4>
-    <h5><pre>Nombre-Upload                                   Publicación            Git            Acción</pre></h5>
+    <h4><pre>ID</pre></h4>
+    <h5><pre>Nombre                         Publicación Git                     Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',
