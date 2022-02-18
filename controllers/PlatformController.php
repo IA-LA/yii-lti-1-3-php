@@ -861,6 +861,7 @@ class PlatformController extends Controller
 
             return $this->render('lists', [
                 'model' => $model,
+                'id' => '*',
             ]);
         }
     }
