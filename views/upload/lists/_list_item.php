@@ -17,6 +17,7 @@ Url::remember();
         <?= $model['title'] ?> <?= $model['link'] ?>  <?= $model['link1'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?>
         <!-- <?= $model['buttonR'] ?> -->
         <?php
+            // Modal READ
             //$modelR = new ReadForm();
             Modal::begin([
                 'headerOptions' => ['id' => 'modalHeader'],

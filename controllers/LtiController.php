@@ -912,10 +912,10 @@ class LtiController extends Controller
                 case 'ListsForm':
                     if ($params['id']) {
                         // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
-                        $ruta = '/read/all/coleccion/Lti/id_actividad/' . $params['id'];
+                        $ruta = '/read/all/coleccion/' . $params['controller'] . '/id_actividad/' . $params['id'];
                     } else {
                         // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                        $ruta = '/read/all/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
+                        $ruta = '/read/all/coleccion/' . $params['controller'] . '/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
                     }
 
                     // Exception GET LTI1
@@ -955,8 +955,30 @@ class LtiController extends Controller
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
                                     'title' => 'Actividad ' . $value['launch_parameters']['iss'],
+                                    'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>',
                                     'image' => 'http://placehold.it/300x200',
-                                    'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
+                                    'data'  => $value,
+                                    //'buttonC' => '<a href="index.php?r=lti%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
+                                    'buttonC' => '<form action="index.php?r=lti%2Fcreate" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="url" value="' . $value['url'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-primary">Create</button>
+                                                  </form>',
+                                    'buttonR' => '<a href="index.php?r=lti%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
+                                    //'buttonU' => '<a href="index.php?r=lti%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
+                                    'buttonU' => '<form action="index.php?r=lti%2Fupdate" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="url" value="' . $value['url'] . '">
+                                                    <button type="submit" class="btn btn-sm btn-warning">Update</button>
+                                                  </form>',
+                                    //'buttonD' => '<a href="index.php?r=lti%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
+                                    'buttonD' => '<form action="index.php?r=lti%2Fdelete" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
+                                                  </form>',
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
