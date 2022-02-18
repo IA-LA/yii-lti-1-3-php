@@ -10,6 +10,9 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 
+$this->title = 'Lists Upload';
+$this->params['breadcrumbs'][] = $this->title;
+
 // Remember current URL
 Url::remember();
 
