@@ -21,11 +21,11 @@ Url::remember();
         ],
         'dataProvider' => $listDataProvider,
         'itemView' => function ($model, $key, $index, $widget) {
-            $itemContent = $this->render('lists/_list_item',['model' => $model]);
+            $itemContent = $this->render('_list_item',['model' => $model]);
 
             /* Display an Advertisement after the first list item */
             if ($index == 0) {
-                $adContent = $this->render('lists/_ad');
+                $adContent = $this->render('_ad');
                 $itemContent .= $adContent;
             }
 
