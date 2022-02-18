@@ -777,7 +777,7 @@ class LtiController extends Controller
 
                 if ((Yii::$app->request->post('ListsForm')['id'] !== '') || (Yii::$app->request->post('ListsForm')['url'] !== '')) {
                     // Listado ListView
-                    return $this->redirect(array('lists/index',
+                    return $this->redirect(array('lti/index',
                         'title' => 'Listado',
                         'back' => 'lists',
                         'controller' => 'Lti',
@@ -867,7 +867,7 @@ class LtiController extends Controller
                 ],
             ]);
 
-            return $this->render('index', [
+            return $this->render('lists/index', [
                 'title' => 'FakedModels',
                 'back' => 'lists',
                 'listDataProvider' => $provider
@@ -978,7 +978,7 @@ class LtiController extends Controller
                             $responseModels[] = $responseItem;
                         }
 
-                        return $this->render('index', [
+                        return $this->render('lists/index', [
                             'title' => $params['title'],
                             'back' => $params['back'],
                             'listDataProvider' => new ArrayDataProvider([
@@ -995,7 +995,7 @@ class LtiController extends Controller
 
                     break;
                 default:
-                    return $this->render('index', [
+                    return $this->render('lists/index', [
                         'title' => $params['title'],
                         'back' => $params['back'],
                     ]);
