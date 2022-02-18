@@ -993,9 +993,9 @@ class LtiController extends Controller
                             $responseItem = [
                                 //'list' => 'Listado',
                                 'id' => $response->data['data']['_id'],
-                                'title' => 'Actividad ' . $response->data['data']['launch_parameters']['iss'],
+                                'title' => $value['user']['email'] . ' ' . $value['zf'],
+                                'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
                                 'image' => 'http://placehold.it/300x200',
-                                'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
                             ];
                             $responseModels[] = $responseItem;
                         }
@@ -1003,6 +1003,7 @@ class LtiController extends Controller
                         return $this->render('lists/index', [
                             'title' => $params['title'],
                             'back' => $params['back'],
+                            'controller' => $params['controller'],
                             'listDataProvider' => new ArrayDataProvider([
                                 'allModels' => $responseModels,
                                 'pagination' => [

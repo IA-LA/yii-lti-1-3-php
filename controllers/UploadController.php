@@ -1132,7 +1132,7 @@ class UploadController extends Controller
                             $responseItem = [
                                 //'list' => 'Listado',
                                 'id' => '_id',
-                                'title' => $params['controller'],
+                                'title' => $params['title'],
                                 'image' => 'http://placehold.it/300x200',
                                 'link'  => '<a href="' . '#' . '" target="_blank">URL</a>'
                             ];
