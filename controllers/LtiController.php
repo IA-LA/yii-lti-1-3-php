@@ -954,8 +954,8 @@ class LtiController extends Controller
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
-                                    'title' => 'Actividad ' . $value['launch_parameters']['iss'],
-                                    'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>',
+                                    'title' => $value['user']['email'] . ' ' . $value['zf'],
+                                    'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
                                     'image' => 'http://placehold.it/300x200',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=lti%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
