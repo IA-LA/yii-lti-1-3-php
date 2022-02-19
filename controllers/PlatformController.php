@@ -824,7 +824,7 @@ class PlatformController extends Controller
                         'url' => Yii::$app->request->post('ListsForm')['url'],
                     ));
                     // View from another Controller
-                    return $this->render('//lists_crud/index', [
+                    return $this->render('//lists/index', [
                         'title' => 'Listado',
                         'back' => 'lists',
                         'model' => $model,
@@ -1004,10 +1004,10 @@ class PlatformController extends Controller
                                 //if($index >= 0) {
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
-                                    'id' => $value['_id'] . ' (' . $value['upload']['fichero'] . ')',
+                                    'id' => $value['_id'] . ' (' . $value['credentials']['client_id'] . ')',
                                     'title' => $value['user']['email'] . ' ' . $value['zf'],
-                                    'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
-                                    'link1' => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
+                                    'link'  => '<a href="' . $value['tool_parameters']['Launch'] . '" target="_blank">Launch</a>',
+                                    'link1' => '<a href="' . $value['tool_parameters']['JWT Key Set Endpoint'] . '" target="_blank">JWT Endpoint</a>',
                                     'image' => 'http://placehold.it/300x200',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
@@ -1015,10 +1015,10 @@ class PlatformController extends Controller
                                     'buttonC' => '<form action="index.php?r=upload%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
-                                                    <input type="hidden" name="git" value="' . $value['upload']['git_url'] . '">
-                                                    <input type="hidden" name="fichero" value="' . $value['upload']['fichero'] . '">
-                                                    <input type="hidden" name="carpeta" value="' . $value['upload']['carpeta'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['tool_parameters']['publicacion_url'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['tool_parameters']['git_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['tool_parameters']['fichero'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['tool_parameters']['carpeta'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
                                     'buttonR' => '<a href="index.php?r=upload%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
@@ -1089,7 +1089,7 @@ class PlatformController extends Controller
                             $responseModels[] = $responseItem;
                         }
 
-                        return $this->render('lists_crud/index', [
+                        return $this->render('lists/index', [
                             'title' => $params['title'],
                             'back' => $params['back'],
                             'controller' => $params['controller'],
@@ -1107,7 +1107,7 @@ class PlatformController extends Controller
 
                     break;
                 default:
-                    return $this->render('lists_crud/index', [
+                    return $this->render('lists/index', [
                         'title' => $params['title'],
                         'back' => $params['back'],
                     ]);

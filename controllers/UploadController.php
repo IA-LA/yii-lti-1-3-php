@@ -854,7 +854,7 @@ class UploadController extends Controller
                         'url' => Yii::$app->request->post('ListsForm')['url'],
                     ));
                     // View from another Controller
-                    return $this->render('//lists_crud/index', [
+                    return $this->render('//lists/index', [
                         'title' => 'Listado',
                         'back' => 'lists',
                         'model' => $model,

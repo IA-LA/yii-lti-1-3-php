@@ -13,7 +13,7 @@ Url::remember();
 
 ?>
 <div class="header">
-    <h3><?= Html::encode($title); ?> Actividad LTI</h3>
+    <h3><?= Html::encode($title); ?> Actividades LTI</h3>
 </div>
 <div class="row">
     <h4><pre>ID</pre></h4>
