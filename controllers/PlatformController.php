@@ -1006,25 +1006,24 @@ class PlatformController extends Controller
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'] . ' (' . $value['credentials']['client_id'] . ')',
                                     'title' => $value['user']['email'] . ' ' . $value['zf'],
-                                    'link'  => '<a href="' . $value['tool_parameters']['Launch'] . '" target="_blank">Launch</a>',
-                                    'link1' => '<a href="' . $value['tool_parameters']['JWT Key Set Endpoint'] . '" target="_blank">JWT Endpoint</a>',
+                                    'link'  => '<a href="' . $value['tool']['Launch'] . '" target="_blank">Launch</a>',
+                                    'link1' => '<a href="' . $value['tool']['JWT Key Set Endpoint'] . '" target="_blank">JWKS Endpoint</a>',
                                     'image' => 'http://placehold.it/300x200',
                                     'data'  => $value,
-                                    //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
-                                    //'buttonC' => '<a href="index.php?r=upload%2Fuploadregister" class="btn btn-lg btn-primary">Upload</a>',
-                                    'buttonC' => '<form action="index.php?r=upload%2Fcreate" method="post" style="display: inline; white-space: nowrap">
+                                    //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
+                                    'buttonC' => '<form action="index.php?r=platform%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="publicacion" value="' . $value['tool_parameters']['publicacion_url'] . '">
-                                                    <input type="hidden" name="git" value="' . $value['tool_parameters']['git_url'] . '">
-                                                    <input type="hidden" name="fichero" value="' . $value['tool_parameters']['fichero'] . '">
-                                                    <input type="hidden" name="carpeta" value="' . $value['tool_parameters']['carpeta'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['credentials']['client_id'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['credentials']['auth_login_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['credentials']['auth_token_url'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['credentials']['key_set_url'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
-                                    'buttonR' => '<a href="index.php?r=upload%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
+                                    'buttonR' => '<a href="index.php?r=platform%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
-                                    /*'buttonR' => '<form action="index.php?r=upload%2Fread" method="post">
+                                    /*'buttonR' => '<form action="index.php?r=platform%2Fread" method="post">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
@@ -1051,19 +1050,19 @@ class PlatformController extends Controller
                                                     </div>
                                                 </div>',
                                     */
-                                    //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=upload%2Fread">Read&nbsp;&nbsp;</a>',
-                                    //'buttonU' => '<a href="index.php?r=upload%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
-                                    'buttonU' => '<form action="index.php?r=upload%2Fupdate" method="post" style="display: inline; white-space: nowrap">
+                                    //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=platform%2Fread">Read&nbsp;&nbsp;</a>',
+                                    //'buttonU' => '<a href="index.php?r=platform%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
+                                    'buttonU' => '<form action="index.php?r=platform%2Fupdate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="publicacion" value="' . $value['upload']['publicacion_url'] . '">
-                                                    <input type="hidden" name="git" value="' . $value['upload']['git_url'] . '">
-                                                    <input type="hidden" name="fichero" value="' . $value['upload']['fichero'] . '">
-                                                    <input type="hidden" name="carpeta" value="' . $value['upload']['carpeta'] . '">
+                                                    <input type="hidden" name="publicacion" value="' . $value['credentials']['client_id'] . '">
+                                                    <input type="hidden" name="git" value="' . $value['credentials']['auth_login_url'] . '">
+                                                    <input type="hidden" name="fichero" value="' . $value['credentials']['auth_token_url'] . '">
+                                                    <input type="hidden" name="carpeta" value="' . $value['credentials']['key_set_url'] . '">
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
-                                    //'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
-                                    'buttonD' => '<form action="index.php?r=upload%2Fdelete" method="post" style="display: inline;">
+                                    //'buttonD' => '<a href="index.php?r=platform%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
+                                    'buttonD' => '<form action="index.php?r=platform%2Fdelete" method="post" style="display: inline;">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
