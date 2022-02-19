@@ -886,8 +886,8 @@ class PlatformController extends Controller
                     //'list' => 'Listado',
                     'id' => $i,
                     'title' => 'Actividad ' . $i,
-                    'image' => 'http://placehold.it/300x200',
-                    'link'  => '<a href="http://placehold.it/300x200" target="_blank">URL</a>'
+                    'image' => 'https://place-hold.it/30x20/',
+                    'link'  => '<a href="https://place-hold.it/30x20/" target="_blank">URL</a>'
                 ];
 
                 $fakedModels[] = $fakedItem;
@@ -1008,7 +1008,7 @@ class PlatformController extends Controller
                                     'title' => $value['user']['email'] . ' ' . $value['zf'],
                                     'link'  => '<a href="' . $value['tool']['Launch'] . '" target="_blank">Launch</a>',
                                     'link1' => '<a href="' . $value['tool']['JWT Key Set Endpoint'] . '" target="_blank">JWKS Endpoint</a>',
-                                    'image' => 'http://placehold.it/300x200',
+                                    'image' => 'https://place-hold.it/30x20/',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     'buttonC' => '<form action="index.php?r=platform%2Fcreate" method="post" style="display: inline; white-space: nowrap">
@@ -1082,7 +1082,7 @@ class PlatformController extends Controller
                                 //'list' => 'Listado',
                                 'id' => '_id',
                                 'title' => $params['title'],
-                                'image' => 'http://placehold.it/300x200',
+                                'image' => 'https://place-hold.it/30x20/',
                                 'link'  => '<a href="' . '#' . '" target="_blank">URL</a>'
                             ];
                             $responseModels[] = $responseItem;
