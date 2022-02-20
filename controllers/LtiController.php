@@ -843,8 +843,8 @@ class LtiController extends Controller
                 //'list' => 'Listado',
                 'id' => $i,
                 'title' => 'Actividad ' . $i,
-                'image' => 'https://place-hold.it/3x2/',
-                'link'  => '<a href="https://place-hold.it/3x2/" target="_blank">URL</a>'
+                'image' => 'https://place-hold.it/1x1/',
+                'link'  => '<a href="https://place-hold.it/1x1/" target="_blank">URL</a>'
             ];
 
             $fakedModels[] = $fakedItem;
@@ -956,7 +956,7 @@ class LtiController extends Controller
                                     'id' => $value['_id'],
                                     'title' => $value['user']['email'] . ' ' . $value['zf'],
                                     'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
-                                    'image' => 'https://place-hold.it/3x2/',
+                                    'image' => 'https://place-hold.it/1x1/',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=lti%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     'buttonC' => '<form action="index.php?r=lti%2Fcreate" method="post" style="display: inline; white-space: nowrap">
@@ -995,7 +995,7 @@ class LtiController extends Controller
                                 'id' => $response->data['data']['_id'],
                                 'title' => $value['user']['email'] . ' ' . $value['zf'],
                                 'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
-                                'image' => 'https://place-hold.it/3x2/',
+                                'image' => 'https://place-hold.it/1x1/',
                             ];
                             $responseModels[] = $responseItem;
                         }

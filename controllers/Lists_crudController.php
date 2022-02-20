@@ -132,7 +132,7 @@ class Lists_crudController extends Controller
                                     'title' => 'Upload Git ' . $value['launch_parameters']['iss'],
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1'  => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
-                                    'image' => 'https://place-hold.it/3x2/'
+                                    'image' => 'https://place-hold.it/1x1/'
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
@@ -148,7 +148,7 @@ class Lists_crudController extends Controller
                                 //'list' => 'Listado',
                                 'id' => $response->data['data']['_id'],
                                 'title' => 'Actividad ' . $response->data['data']['launch_parameters']['iss'],
-                                'image' => 'https://place-hold.it/3x2/',
+                                'image' => 'https://place-hold.it/1x1/',
                                 'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
                             ];
                             $responseModels[] = $responseItem;
@@ -189,8 +189,8 @@ class Lists_crudController extends Controller
                 //'list' => 'Listado',
                 'id' => $i,
                 'title' => 'Actividad ' . $i,
-                'image' => 'https://place-hold.it/3x2/',
-                'link'  => '<a href="https://place-hold.it/3x2/" target="_blank">URL</a>'
+                'image' => 'https://place-hold.it/1x1/',
+                'link'  => '<a href="https://place-hold.it/1x1/" target="_blank">URL</a>'
             ];
 
             $fakedModels[] = $fakedItem;

@@ -130,7 +130,7 @@ class ListsController extends Controller
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
                                     'title' => 'Actividad ' . $value['launch_parameters']['iss'],
-                                    'image' => 'https://place-hold.it/3x2/',
+                                    'image' => 'https://place-hold.it/1x1/',
                                     'link'  => '<a href="' . $value['launch_url'] . '" target="_blank">Launch URL</a>'
                                 ];
                                 $responseModels[] = $responseItem;
@@ -147,7 +147,7 @@ class ListsController extends Controller
                                 //'list' => 'Listado',
                                 'id' => $response->data['data']['_id'],
                                 'title' => 'Actividad ' . $response->data['data']['launch_parameters']['iss'],
-                                'image' => 'https://place-hold.it/3x2/',
+                                'image' => 'https://place-hold.it/1x1/',
                                 'link'  => '<a href="' . $response->data['data']['launch_url'] . '" target="_blank">Launch URL</a>'
                             ];
                             $responseModels[] = $responseItem;
@@ -188,8 +188,8 @@ class ListsController extends Controller
                 //'list' => 'Listado',
                 'id' => $i,
                 'title' => 'Actividad ' . $i,
-                'image' => 'https://place-hold.it/3x2/',
-                'link'  => '<a href="https://place-hold.it/3x2/" target="_blank">URL</a>'
+                'image' => 'https://place-hold.it/1x1/',
+                'link'  => '<a href="https://place-hold.it/1x1/" target="_blank">URL</a>'
             ];
 
             $fakedModels[] = $fakedItem;
