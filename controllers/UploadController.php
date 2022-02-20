@@ -917,8 +917,8 @@ class UploadController extends Controller
                     //'list' => 'Listado',
                     'id' => $i,
                     'title' => 'Actividad ' . $i,
-                    'image' => 'https://place-hold.it/30x20/',
-                    'link'  => '<a href="https://place-hold.it/30x20/" target="_blank">URL</a>'
+                    'image' => 'https://place-hold.it/3x2/',
+                    'link'  => '<a href="https://place-hold.it/3x2/" target="_blank">URL</a>'
                 ];
 
                 $fakedModels[] = $fakedItem;
@@ -1058,7 +1058,7 @@ class UploadController extends Controller
                                     'title' => $value['user']['email'] . ' ' . $value['zf'],
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1' => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
-                                    'image' => 'https://place-hold.it/30x20/',
+                                    'image' => 'https://place-hold.it/3x2/',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=upload%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     //'buttonC' => '<a href="index.php?r=upload%2Fuploadregister" class="btn btn-lg btn-primary">Upload</a>',
@@ -1133,7 +1133,7 @@ class UploadController extends Controller
                                 //'list' => 'Listado',
                                 'id' => '_id',
                                 'title' => $params['title'],
-                                'image' => 'https://place-hold.it/30x20/',
+                                'image' => 'https://place-hold.it/3x2/',
                                 'link'  => '<a href="' . '#' . '" target="_blank">URL</a>'
                             ];
                             $responseModels[] = $responseItem;
