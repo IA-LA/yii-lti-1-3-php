@@ -954,7 +954,7 @@ class LtiController extends Controller
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'],
-                                    'title' => $value['user']['email'] . ' ' . $value['zf'],
+                                    'title' => $value['user']['email'] . ' ' . substr($value['zf'], 0, 10),
                                     'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
                                     'image' => 'https://place-hold.it/1x1/',
                                     'data'  => $value,
@@ -993,7 +993,7 @@ class LtiController extends Controller
                             $responseItem = [
                                 //'list' => 'Listado',
                                 'id' => $response->data['data']['_id'],
-                                'title' => $value['user']['email'] . ' ' . $value['zf'],
+                                'title' => $value['user']['email'] . ' ' . substr($value['zf'], 0, 10),
                                 'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
                                 'image' => 'https://place-hold.it/1x1/',
                             ];
