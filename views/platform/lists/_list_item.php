@@ -30,7 +30,7 @@ use yii\bootstrap\Modal;
         ]);
         echo    '<div id="modalContent"></div>
                     <p>
-                        Consulta la información de un Upload ya registrado por su Id o su Url.
+                        Consulta la información de una Plataforma ya registrada.
                         Thank you.
                     </p>
                     <pre>';
