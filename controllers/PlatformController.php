@@ -225,6 +225,11 @@ class PlatformController extends Controller
             }
             return $this->render('crud/create', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
+                'publicacion'=> isset($params['publicacion'])? $params['publicacion'] :' ',
+                'git'=> isset($params['git'])? $params['git'] :' ',
+                'fichero'=> isset($params['fichero'])? $params['fichero'] :' ',
+                'carpeta'=> isset($params['carpeta'])? $params['carpeta'] :' ',
             ]);
         }
     }
@@ -369,6 +374,8 @@ class PlatformController extends Controller
 
             return $this->render('crud/read', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
+                'url'=> isset($params['url'])? $params['url'] :' ',
             ]);
         }
     }
@@ -745,6 +752,7 @@ class PlatformController extends Controller
             }
             return $this->render('crud/delete', [
                 'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
             ]);
         }
     }
