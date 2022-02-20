@@ -17,7 +17,7 @@ Url::remember();
 </div>
 <div class="row">
     <h4><pre>ID</pre></h4>
-    <h5><pre>Autor-Fecha                                URL                             Acción</pre></h5>
+    <h5><pre>User-Fecha                                URL                             Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',

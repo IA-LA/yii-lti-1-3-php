@@ -1014,8 +1014,8 @@ class PlatformController extends Controller
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'] . ' (' . $value['credentials']['client_id'] . ')',
                                     'title' => $value['user']['email'] . ' ' . $value['zf'],
-                                    'link'  => '<a href="' . $value['tool']['Launch'] . '" target="_blank">Launch</a>',
-                                    'link1' => '<a href="' . $value['tool']['JWT Key Set Endpoint'] . '" target="_blank">JWKS Endpoint</a>',
+                                    'link'  => '<a href="' . $value['tool']['Launch'] . '" target="_blank">Launch-URL</a>',
+                                    'link1' => '<a href="' . $value['tool']['JWT Key Set Endpoint'] . '" target="_blank">JWKS-Endpoint</a>',
                                     'image' => 'https://place-hold.it/1x1/',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
@@ -1121,6 +1121,5 @@ class PlatformController extends Controller
             }
         }
     }
-
 
 }

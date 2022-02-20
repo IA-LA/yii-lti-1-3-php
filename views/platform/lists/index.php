@@ -17,7 +17,7 @@ Url::remember();
 </div>
 <div class="row">
     <h4><pre>Iss/Audience EdX (ID cliente)</pre></h4>
-    <h5><pre>Nombre-Fecha                         Launch JWKS-Endpoint                     Acción</pre></h5>
+    <h5><pre>User-Fecha                         Launch_URL JWKS_Endpoint                     Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',

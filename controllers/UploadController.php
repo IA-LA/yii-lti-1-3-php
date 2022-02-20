@@ -1055,7 +1055,7 @@ class UploadController extends Controller
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'] . ' (' . $value['upload']['fichero'] . ')',
-                                    'title' => $value['user']['email'] . ' ' . $value['zf'],
+                                    'title' => $value['user']['email'] . ' ' . substr($value['zf'], 0, 10),
                                     'link'  => '<a href="' . $value['upload']['publicacion_url'] . '" target="_blank">Publicación</a>',
                                     'link1' => '<a href="' . $value['upload']['git_url'] . '" target="_blank">Git</a>',
                                     'image' => 'https://place-hold.it/1x1/',
