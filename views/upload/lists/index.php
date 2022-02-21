@@ -22,7 +22,7 @@ Url::remember();
 </div>
 <div class="row">
     <h4><pre>ID (Fichero)</pre></h4>
-    <h5><pre>User-Fecha                            Publicación Git                     Acción</pre></h5>
+    <h5><pre>User-Fecha                 Publicación Git                     Acción</pre></h5>
     <?php
     if (Yii::$app->session->hasFlash('CrudFormSubmitted')):
         echo 'CrudFormSubmitted';
