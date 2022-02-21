@@ -223,6 +223,10 @@ class PlatformController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
+            // Parámetros llamada a la Vista delete desde los listados Lists
+            $params = Yii::$app->request->post();
+
             return $this->render('crud/create', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
@@ -371,6 +375,9 @@ class PlatformController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
+            // Parámetros llamada a la Vista delete desde los listados Lists
+            $params = Yii::$app->request->post();
 
             return $this->render('crud/read', [
                 'model' => $model,
@@ -750,6 +757,10 @@ class PlatformController extends Controller
                 return $this->renderContent($content);
                 //return $this->refresh();
             }
+
+            // Parámetros llamada a la Vista delete desde los listados Lists
+            $params = Yii::$app->request->post();
+
             return $this->render('crud/delete', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
@@ -1014,8 +1025,9 @@ class PlatformController extends Controller
                                     //'list' => $index,//'Listado',
                                     'id' => $value['_id'] . ' (' . $value['credentials']['client_id'] . ')',
                                     'title' => $value['user']['email'] . ' ' . substr($value['zf'], 0, 10),
-                                    'link'  => '<a href="' . $value['tool']['Launch'] . '" target="_blank">Launch-URL</a>',
-                                    'link1' => '<a href="' . $value['tool']['JWT Key Set Endpoint'] . '" target="_blank">JWKS-Endpoint</a>',
+                                    'link'  => '<a href="' . $value['credentials']['auth_login_url'] . '" target="_blank">Launch-URL</a>',
+                                    'link1' => '<a href="' . $value['credentials']['auth_token_url'] . '" target="_blank">JWKS-Endpoint</a>',
+                                    'link2' => '<a href="' . $value['credentials']['key_set_url'] . '" target="_blank">JWKS-Endpoint</a>',
                                     'image' => 'https://place-hold.it/1x1/',
                                     'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
@@ -1070,7 +1082,7 @@ class PlatformController extends Controller
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
                                     //'buttonD' => '<a href="index.php?r=platform%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
-                                    'buttonD' => '<form action="index.php?r=platform%2Fdelete" method="post" style="display: inline;">
+                                    'buttonD' => '<form action="index.php?r=platform%2Fdelete" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>

@@ -1113,7 +1113,7 @@ class UploadController extends Controller
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
                                     //'buttonD' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
-                                    'buttonD' => '<form action="index.php?r=upload%2Fdelete" method="post" style="display: inline;">
+                                    'buttonD' => '<form action="index.php?r=upload%2Fdelete" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
