@@ -244,8 +244,6 @@ class PlatformController extends Controller
                 'auth_token_url'=> isset($params['auth_token_url'])? $params['auth_token_url'] :' ',
                 'key_set_url'=> isset($params['key_set_url'])? $params['key_set_url'] :' ',
                 'kid'=> isset($params['kid'])? $params['kid'] :' ',
-                'deployment'=> isset($params['deployment'])? $params['deployment'] :' ',
-                'carpeta'=> isset($params['carpeta'])? $params['carpeta'] :' ',
             ]);
         }
     }
