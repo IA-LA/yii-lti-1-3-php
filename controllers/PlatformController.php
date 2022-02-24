@@ -520,13 +520,16 @@ class PlatformController extends Controller
                         //$_POST['UpdateForm']['id']) Parámetros del registro
                         ->setData([
                                 'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
-                                'url_actividad' => Yii::$app->request->post('UpdateForm')['publicacion'],
-                                "upload" => [
-                                    'fichero' => Yii::$app->request->post('UpdateForm')['fichero'],
-                                    'carpeta' => Yii::$app->request->post('UpdateForm')['carpeta'],
-                                    'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('UpdateForm')['carpeta'], //['publicacion']
-                                    'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git', //['git']],
-                                    'actualizado' => 1
+                                'issuer' => Yii::$app->request->post('CreateForm')['issuer'],
+                                "credentials" => [
+                                    'client_id' => Yii::$app->request->post('CreateForm')['client_id'],
+                                    'auth_login_url' => Yii::$app->request->post('CreateForm')['auth_login_url'],
+                                    'auth_token_url' => Yii::$app->request->post('CreateForm')['auth_token_url'],
+                                    'key_set_url' => Yii::$app->request->post('CreateForm')['key_set_url'],
+                                    'private_key_file' => '/keys/tool/private.key', // TODO Configurable
+                                    'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
+                                    'deployment' => Yii::$app->request->post('CreateForm')['deployment'],
+                                    'auth_server' => '/platform/login.php' // TODO Configurable
                                 ],
                                 "user" => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
@@ -564,20 +567,41 @@ class PlatformController extends Controller
                         'ID: <code>' .
                         Html::encode($response->data['data']['register']['id_actividad']) .
                         '</code><br/>' .
-                        'URL: <code>' .
-                        Html::encode($response->data['data']['register']['url_actividad']) .
+                        'ISSUER: <code>' .
+                        Html::encode($response->data['data']['register']['issuer']) .
                         '</code><br/>' .
-                        'FILE: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['fichero']) .
+                        'CLIENT ID: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['client_id']) .
                         '</code><br/>' .
-                        'FOLDER: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['carpeta']) .
+                        'LOGIN: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['auth_login_url']) .
                         '</code><br/>' .
-                        'PUBLICACION: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['publicacion_url']) .
+                        'OAUTH: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['auth_token_url']) .
                         '</code><br/>' .
-                        'GIT: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['git_url']) .
+                        'JWKS: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['key_set_url']) .
+                        '</code><br/>' .
+                        'KID: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['kid']) .
+                        '</code><br/>' .
+                        'DEPLOYMENT: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['deployment']) .
+                        '</code><br/>' .
+                        '<p/><p/><p/>' .
+                        '<h1>Credenciales</h1>
+                        <p class="lead">del Servidor (Tool):</p>' .
+                        'LOGIN: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['login_endpoint']) .
+                        '</code><br/>' .
+                        'PUBLIC KEY: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['public_key']) .
+                        '</code><br/>' .
+                        'JWKS: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['jwks_endpoint']) .
+                        '</code><br/>' .
+                        'DEEP LINK: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['deep_link_endpoint']) .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
@@ -624,7 +648,7 @@ class PlatformController extends Controller
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Actualización son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('UpdateForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('UpdateForm')['publicacion'] . '</code><br/>' .
+                        'ISSUER: <code>' . Yii::$app->request->post('UpdateForm')['issuer'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
@@ -641,10 +665,14 @@ class PlatformController extends Controller
             return $this->render('crud/update', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
-                'publicacion'=> isset($params['publicacion'])? $params['publicacion'] :' ',
-                'git'=> isset($params['git'])? $params['git'] :' ',
-                'fichero'=> isset($params['fichero'])? $params['fichero'] :' ',
-                'carpeta'=> isset($params['carpeta'])? $params['carpeta'] :' ',
+                'issuer'=> isset($params['issuer'])? $params['issuer'] :' ',
+                'client_id'=> isset($params['client_id'])? $params['client_id'] :' ',
+                'auth_login_url'=> isset($params['auth_login_url'])? $params['auth_login_url'] :' ',
+                'auth_token_url'=> isset($params['auth_token_url'])? $params['auth_token_url'] :' ',
+                'key_set_url'=> isset($params['key_set_url'])? $params['key_set_url'] :' ',
+                'kid'=> isset($params['kid'])? $params['kid'] :' ',
+                'deployment'=> isset($params['deployment'])? $params['deployment'] :' ',
+                'auth_server'=> isset($params['auth_server'])? $params['auth_server'] :' ',
             ]);
         }
     }
@@ -1105,10 +1133,13 @@ class PlatformController extends Controller
                                     'buttonU' => '<form action="index.php?r=platform%2Fupdate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="publicacion" value="' . $value['credentials']['client_id'] . '">
-                                                    <input type="hidden" name="git" value="' . $value['credentials']['auth_login_url'] . '">
-                                                    <input type="hidden" name="fichero" value="' . $value['credentials']['auth_token_url'] . '">
-                                                    <input type="hidden" name="carpeta" value="' . $value['credentials']['key_set_url'] . '">
+                                                    <input type="hidden" name="client_id" value="' . $value['credentials']['client_id'] . '">
+                                                    <input type="hidden" name="auth_login_url" value="' . $value['credentials']['auth_login_url'] . '">
+                                                    <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
+                                                    <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
+                                                    <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
+                                                    <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
                                     //'buttonD' => '<a href="index.php?r=platform%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '

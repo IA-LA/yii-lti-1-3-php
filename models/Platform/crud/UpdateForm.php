@@ -11,11 +11,16 @@ use yii\base\Model;
 class UpdateForm extends Model
 {
     public $id;
-    public $url;
-    public $publicacion;
-    public $git;
-    public $fichero;
-    public $carpeta;
+    public $issuer;             // This will usually look something like 'http://example.com'
+    public $client_id;          // This is the id received in the 'aud' (Audience) during a launch
+    public $auth_login_url;     // The platform's OIDC login endpoint
+    public $auth_token_url;     // The platform's service authorization endpoint (OAuth)
+    public $key_set_url;        // The platform's JWKS endpoint (https://tools.ietf.org/html/rfc7519)
+    public $private_key_file;   // Relative path to the tool's private key
+    public $kid;                // Key Identification (optional) Header Parameter with an unspecified structure.
+    // MUST be a case-sensitive string. https://stackoverflow.com/questions/43867440/whats-the-meaning-of-the-kid-claim-in-a-jwt-token
+    public $deployment;         // The deployment_id passed by the platform during launch
+    public $auth_server;        // 3rd part authorization endpoint (OAuth)
     public $verifyCode;
 
 
@@ -26,8 +31,7 @@ class UpdateForm extends Model
     {
         return [
             // id and url are required
-            [['id', 'fichero', 'carpeta'], 'required'],
-            // [['id', 'publicacion', 'git', 'fichero', 'carpeta'], 'required'],
+            [['id', 'issuer', 'client_id', 'auth_login_url', 'auth_token_url', 'key_set_url', 'deployment'], 'required'],
             // id has to be a valid ID hexadecimal 24 character address
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
 //            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
@@ -35,8 +39,10 @@ class UpdateForm extends Model
             ['id', 'default', 'value'=> '00000000000000000000000'],
             // url has to be a valid URL address
             //['url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
-            ['publicacion', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
-            ['git', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['auth_login_url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['auth_token_url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['key_set_url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['$auth_server', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
