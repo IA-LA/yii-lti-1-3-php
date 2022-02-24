@@ -1061,10 +1061,13 @@ class PlatformController extends Controller
                                     'buttonC' => '<form action="index.php?r=platform%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <input type="hidden" name="publicacion" value="' . $value['credentials']['client_id'] . '">
-                                                    <input type="hidden" name="git" value="' . $value['credentials']['auth_login_url'] . '">
-                                                    <input type="hidden" name="fichero" value="' . $value['credentials']['auth_token_url'] . '">
-                                                    <input type="hidden" name="carpeta" value="' . $value['credentials']['key_set_url'] . '">
+                                                    <input type="hidden" name="client_id" value="' . $value['credentials']['client_id'] . '">
+                                                    <input type="hidden" name="auth_login_url" value="' . $value['credentials']['auth_login_url'] . '">
+                                                    <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
+                                                    <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
+                                                    <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
+                                                    <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
                                     'buttonR' => '<a href="index.php?r=platform%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
