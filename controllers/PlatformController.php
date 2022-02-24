@@ -139,13 +139,16 @@ class PlatformController extends Controller
                         //$_POST['CreateForm']['id']) Parámetros del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
-                            'url_actividad' => Yii::$app->request->post('CreateForm')['publicacion'],
-                            "upload" => [
-                                'fichero' => Yii::$app->request->post('CreateForm')['fichero'],
-                                'carpeta' => Yii::$app->request->post('CreateForm')['carpeta'],
-                                'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('CreateForm')['carpeta'], //['publicacion']
-                                'git_url' => $serverGit . '/' . Yii::$app->request->post('CreateForm')['carpeta'] . '.git', //['git']],
-                                'actualizado' => 0
+                            'issuer' => Yii::$app->request->post('CreateForm')['issuer'],
+                            "credentials" => [
+                                'client_id' => Yii::$app->request->post('CreateForm')['client_id'],
+                                'auth_login_url' => Yii::$app->request->post('CreateForm')['auth_login_url'],
+                                'auth_token_url' => Yii::$app->request->post('CreateForm')['auth_token_url'],
+                                'key_set_url' => Yii::$app->request->post('CreateForm')['key_set_url'],
+                                'private_key_file' => '/keys/tool/private.key', // TODO Configurable
+                                'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
+                                'deployment' => Yii::$app->request->post('CreateForm')['deployment'],
+                                'auth_server' => '/platform/login.php'
                             ],
                             "user" => [
                                 'email' => Yii::$app->user->identity->username . '@lti.server',
@@ -181,21 +184,26 @@ class PlatformController extends Controller
                         'ID: <code>' .
                         Html::encode($response->data['data']['register']['id_actividad']) .
                         '</code><br/>' .
-                        'URL: <code>' .
-                        Html::encode($response->data['data']['register']['url_actividad']) .
+                        'ISSUER: <code>' .
+                        Html::encode($response->data['data']['register']['issuer']) .
                         '</code><br/>' .
-                        'FILE: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['fichero']) .
+                        'CLIENT ID: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['client_id']) .
                         '</code><br/>' .
-                        'FOLDER: <code>' .
-                        'PUBLISH: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['carpeta']) .
+                        'LOGIN: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['auth_login_url']) .
                         '</code><br/>' .
-                        'PUBLICACION: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['publicacion_url']) .
+                        'OAUTH: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['auth_token_url']) .
                         '</code><br/>' .
-                        'GIT: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['git_url']) .
+                        'JWKS: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['key_set_url']) .
+                        '</code><br/>' .
+                        'KID: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['kid']) .
+                        '</code><br/>' .
+                        'DEPLOYMENT: <code>' .
+                        Html::encode($response->data['data']['register']['credentials']['deployment']) .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
@@ -213,7 +221,7 @@ class PlatformController extends Controller
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Registro son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('CreateForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('CreateForm')['url'] . '</code><br/>' .
+                        'ISSUER: <code>' . Yii::$app->request->post('CreateForm')['issuer'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
@@ -230,9 +238,13 @@ class PlatformController extends Controller
             return $this->render('crud/create', [
                 'model' => $model,
                 'id' => isset($params['id'])? $params['id'] :' ',
-                'publicacion'=> isset($params['publicacion'])? $params['publicacion'] :' ',
-                'git'=> isset($params['git'])? $params['git'] :' ',
-                'fichero'=> isset($params['fichero'])? $params['fichero'] :' ',
+                'issuer'=> isset($params['issuer'])? $params['issuer'] :' ',
+                'client_id'=> isset($params['client_id'])? $params['client_id'] :' ',
+                'auth_login_url'=> isset($params['auth_login_url'])? $params['auth_login_url'] :' ',
+                'auth_token_url'=> isset($params['auth_token_url'])? $params['auth_token_url'] :' ',
+                'key_set_url'=> isset($params['key_set_url'])? $params['key_set_url'] :' ',
+                'kid'=> isset($params['kid'])? $params['kid'] :' ',
+                'deployment'=> isset($params['deployment'])? $params['deployment'] :' ',
                 'carpeta'=> isset($params['carpeta'])? $params['carpeta'] :' ',
             ]);
         }
