@@ -1094,7 +1094,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
-                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
@@ -1138,7 +1138,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
-                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
