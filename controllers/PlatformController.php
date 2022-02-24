@@ -148,7 +148,7 @@ class PlatformController extends Controller
                                 'private_key_file' => '/keys/tool/private.key', // TODO Configurable
                                 'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
                                 'deployment' => Yii::$app->request->post('CreateForm')['deployment'],
-                                'auth_server' => '/platform/login.php'
+                                'auth_server' => '/platform/login.php' // TODO Configurable
                             ],
                             "user" => [
                                 'email' => Yii::$app->user->identity->username . '@lti.server',
@@ -206,6 +206,21 @@ class PlatformController extends Controller
                         Html::encode($response->data['data']['register']['credentials']['deployment']) .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
+                        '<h1>Credenciales</h1>
+                        <p class="lead">del Servidor (Tool):</p>' .
+                        'LOGIN: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['login_endpoint']) .
+                        '</code><br/>' .
+                        'PUBLIC KEY: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['public_key']) .
+                        '</code><br/>' .
+                        'JWKS: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['jwks_endpoint']) .
+                        '</code><br/>' .
+                        'DEEP LINK: <code>' .
+                        Html::encode($response->data['data']['register']['tool']['deep_link_endpoint']) .
+                        '</code><br/>' .
+                        '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
                     $content .= '</div>';
@@ -244,6 +259,8 @@ class PlatformController extends Controller
                 'auth_token_url'=> isset($params['auth_token_url'])? $params['auth_token_url'] :' ',
                 'key_set_url'=> isset($params['key_set_url'])? $params['key_set_url'] :' ',
                 'kid'=> isset($params['kid'])? $params['kid'] :' ',
+                'deployment'=> isset($params['deployment'])? $params['deployment'] :' ',
+                'auth_server'=> isset($params['auth_server'])? $params['auth_server'] :' ',
             ]);
         }
     }
