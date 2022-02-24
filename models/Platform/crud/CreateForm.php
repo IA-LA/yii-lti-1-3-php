@@ -21,6 +21,7 @@ class CreateForm extends Model
                                 // MUST be a case-sensitive string. https://stackoverflow.com/questions/43867440/whats-the-meaning-of-the-kid-claim-in-a-jwt-token
     public $deployment;         // The deployment_id passed by the platform during launch
     public $auth_server;        // 3rd part authorization endpoint (OAuth)
+    public $verifyCode;
 
 
     /**
