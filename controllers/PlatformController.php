@@ -278,7 +278,7 @@ class PlatformController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new CreateForm();
+            $model2 = new ReadForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('crud/read', [
@@ -520,15 +520,15 @@ class PlatformController extends Controller
                         //$_POST['UpdateForm']['id']) Parámetros del registro
                         ->setData([
                                 'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
-                                'issuer' => Yii::$app->request->post('CreateForm')['id'],
+                                'issuer' => Yii::$app->request->post('UpdateForm')['id'],
                                 "credentials" => [
-                                    'client_id' => Yii::$app->request->post('CreateForm')['client_id'],
-                                    'auth_login_url' => Yii::$app->request->post('CreateForm')['auth_login_url'],
-                                    'auth_token_url' => Yii::$app->request->post('CreateForm')['auth_token_url'],
-                                    'key_set_url' => Yii::$app->request->post('CreateForm')['key_set_url'],
+                                    'client_id' => Yii::$app->request->post('UpdateForm')['client_id'],
+                                    'auth_login_url' => Yii::$app->request->post('UpdateForm')['auth_login_url'],
+                                    'auth_token_url' => Yii::$app->request->post('UpdateForm')['auth_token_url'],
+                                    'key_set_url' => Yii::$app->request->post('UpdateForm')['key_set_url'],
                                     'private_key_file' => '/keys/tool/private.key', // TODO Configurable
                                     'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
-                                    'deployment' => Yii::$app->request->post('CreateForm')['deployment'],
+                                    'deployment' => Yii::$app->request->post('UpdateForm')['deployment'],
                                     'auth_server' => '/platform/login.php' // TODO Configurable
                                 ],
                                 "user" => [
