@@ -440,7 +440,7 @@ class LtiController extends Controller
                         //$_POST['UpdateForm']['id']) Parámetros del registro
                         ->setData([
                                 'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
-                                'url_actividad' => Yii::$app->request->post('UpdateForm')['publicacion'],
+                                'url_actividad' => Yii::$app->request->post('UpdateForm')['url_actividad'],
                                 "user" => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
                                     'nombre' => Yii::$app->user->identity->username,

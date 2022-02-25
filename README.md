@@ -30,27 +30,43 @@ You can then access the application through the following URL:
 FOLDER STRUCTURE
 -------------------
 
-      controllers/          contains Web controller classes
-            CrudCollection...   CRUD of this collection
-            Lists...            Listing elements
-            Lists_crud...       Listing elements of a CRUD collection
-            Site...             Base site
-      models/               contains model classes
+      controllers/          contains Web controller classes for the Web application
+            crud/    
+        Collection...           Collection DB's Controller
+        List...                 List of elements
+        Site...                 Base site web (login, contact, user, menu, etc.)
+      models/           contains model classes for the Web application
             crud/
-                Lti/            CRUD Form ltis collection
-                Upload/         CRUD Form uploads collection
-      views/                contains view files for the Web application
+        NameForm...         Base site web models (login, contact, user, menu, etc.)
+            Lti/                Collection DB's     
+                crud/               CRUD Form ltis collection
+                lists/              Listing elements of a CRUD collection
+            Upload/             Collection DB's
+                crud/               CRUD Form uploads collection
+                lists/              Listing elements of a CRUD collection
+            Platform/           Collection DB's
+                crud/               CRUD Form platforms collection
+                lists/              Listing elements of a CRUD collection
+      views/            contains View files for the Web application
             crud/                
-                Lti/                CRUD Form ltis collection
-                Upload/             CRUD Form uploads collection
-            layouts/            Web Menu
+            lti/                Collection DB's View                
+                crud/               CRUD View ltis collection
+                lists/              Listing elements of a CRUD collection
+            upload/             Collection DB's View               
+                crud/               CRUD View uploads collection
+                lists/              Listing elements of a CRUD collection
+            platform/           Collection DB's View               
+                crud/               CRUD View platforms collection
+                lists/              Listing elements of a CRUD collection
+            layouts/            Contextual Menu
             lists/              Listing elements
-            lists_crud/         Listing elements of a CRUD collection
             site/               Base site
-      web/                  contains the entry script and Web resources
-            index...            Application launcher
-            uploads/            .Zip files uploaded
+      web/              contains the entry script and Web resources
+            index...            application launcher
+            uploads/            .zip files uploaded
 
+      widgets/          contains diferent external modules
+      
 MAIN URLs
 ------------
 
