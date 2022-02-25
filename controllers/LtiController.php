@@ -441,13 +441,6 @@ class LtiController extends Controller
                         ->setData([
                                 'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
                                 'url_actividad' => Yii::$app->request->post('UpdateForm')['publicacion'],
-                                "upload" => [
-                                    'fichero' => Yii::$app->request->post('UpdateForm')['fichero'],
-                                    'carpeta' => Yii::$app->request->post('UpdateForm')['carpeta'],
-                                    'publicacion_url' => $serverPub . '/' . Yii::$app->request->post('UpdateForm')['carpeta'], //['publicacion']
-                                    'git_url' => $serverGit . '/' . Yii::$app->request->post('UpdateForm')['carpeta'] . '.git', //['git']],
-                                    'actualizado' => 1
-                                ],
                                 "user" => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
                                     'nombre' => Yii::$app->user->identity->username,
