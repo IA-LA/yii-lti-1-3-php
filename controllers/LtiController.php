@@ -811,6 +811,13 @@ class LtiController extends Controller
         }
     }
 
+    /*INDEX LISTs*/
+    /**
+     * Displays index lists page.
+     *
+     * @return Response|string
+     *
+     */
     public function actionIndex()
     {
 

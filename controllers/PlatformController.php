@@ -157,7 +157,7 @@ class PlatformController extends Controller
                         ])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                            'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
+                            'timeout' => 3600, // set timeout to 5 seconds for the case server is not responding
                         ])
                         ->send();
                 }
