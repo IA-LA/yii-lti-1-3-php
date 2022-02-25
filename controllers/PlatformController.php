@@ -104,7 +104,7 @@ class PlatformController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
                     $ruta = '/create/register/coleccion/Platform';
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/client_id/d42df408-70f5-4b60-8274-6c98d3b9468d
                     $ruta = '/create/coleccion/Platform/client_id/' . Yii::$app->request->post('CreateForm')['client_id'];
                 }
 
