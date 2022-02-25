@@ -149,7 +149,7 @@ class LtiController extends Controller
                     $content .= '<div class="jumbotron">
                         <h1>Registro</h1>
                         <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
-                        'LAUNCH URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
+                        'URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
@@ -480,18 +480,6 @@ class LtiController extends Controller
                         'URL: <code>' .
                         Html::encode($response->data['data']['register']['url_actividad']) .
                         '</code><br/>' .
-                        'FILE: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['fichero']) .
-                        '</code><br/>' .
-                        'FOLDER: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['carpeta']) .
-                        '</code><br/>' .
-                        'PUBLICACION: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['publicacion_url']) .
-                        '</code><br/>' .
-                        'GIT: <code>' .
-                        Html::encode($response->data['data']['register']['upload']['git_url']) .
-                        '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
@@ -537,7 +525,7 @@ class LtiController extends Controller
                         <h1>Error</h1>
                         <p class="lead">Las credenciales de Actualización son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('UpdateForm')['id'] . '</code><br/>' .
-                        'URL: <code>' . Yii::$app->request->post('UpdateForm')['publicacion'] . '</code><br/>' .
+                        'URL: <code>' . Yii::$app->request->post('UpdateForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
                     </div>';
