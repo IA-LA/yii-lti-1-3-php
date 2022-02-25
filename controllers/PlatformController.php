@@ -105,13 +105,13 @@ class PlatformController extends Controller
                     $ruta = '/create/register/coleccion/Platform';
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
-                    $ruta = '/create/coleccion/Platform/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('CreateForm')['url']));
+                    $ruta = '/create/coleccion/Platform/client_id/' . Yii::$app->request->post('CreateForm')['client_id'];
                 }
 
                 // Exception POST Platform
                 try {
                     // Dirección de alojamiento
-                    // del servidor de Git
+                    // del servidor
                     //////////////////////
                     /// LOCAL puerto :9000
                     /// GLOBAL puerto:8000 o `.uned.es`
@@ -139,7 +139,6 @@ class PlatformController extends Controller
                         //$_POST['CreateForm']['id']) Parámetros del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
-                            'issuer' => Yii::$app->request->post('CreateForm')['id'],
                             "credentials" => [
                                 'client_id' => Yii::$app->request->post('CreateForm')['client_id'],
                                 'auth_login_url' => Yii::$app->request->post('CreateForm')['auth_login_url'],
