@@ -41,7 +41,7 @@ class CreateForm extends Model
             ['auth_login_url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             ['auth_token_url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             ['key_set_url', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
-            ['$auth_server', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
+            ['auth_server', 'url', 'message'=>'Has to be a valid URL address like `http://contenido.uned.es/`'],
             // verifyCode needs to be entered correctly
             ['verifyCode', 'captcha'],
         ];
