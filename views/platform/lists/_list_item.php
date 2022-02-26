@@ -21,7 +21,7 @@ use yii\bootstrap\Modal;
             'headerOptions' => ['id' => 'modalHeader'],
             'header' => '<h2>'. $model['data']['_id'] . '</h2>',
             'toggleButton' => ['label' => 'Read&nbsp;&nbsp;',  'class' => 'btn btn-md btn-info'],
-            'id' => 'modal-r',
+            'id' => 'modal-r'. $model['data']['_id'] ,
             //'size' => 'modal-lg',
             //keeps from closing modal with esc key or by clicking out of the modal.
             // user must click cancel or X to close
