@@ -899,10 +899,10 @@ class LtiController extends Controller
             switch($params['formulario']){
                 case 'ListsForm':
                     if ($params['id']) {
-                        // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
+                        // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/controller/id_actividad/5e0df19c0c2e74489066b43g
                         $ruta = '/read/all/coleccion/' . $params['controller'] . '/id_actividad/' . $params['id'];
                     } else {
-                        // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                        // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/controller/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                         $ruta = '/read/all/coleccion/' . $params['controller'] . '/url_actividad/' . str_replace('+', '%20', urlencode($params['url']));
                     }
 
