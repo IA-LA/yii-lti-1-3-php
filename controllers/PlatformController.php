@@ -181,10 +181,10 @@ class PlatformController extends Controller
                         <h1>Registro</h1>
                         <p class="lead">de Platform realizado correctamente.</p>' .
                         'ID: <code>' .
-                        Html::encode($response->data['data']['register']['id_actividad']) .
+                        Html::encode($response->data['data']['register']['_id']) .
                         '</code><br/>' .
                         'ISSUER: <code>' .
-                        Html::encode($response->data['data']['register']['issuer']) .
+                        Html::encode($response->data['data']['register']['id_actividad']) .
                         '</code><br/>' .
                         'CLIENT ID: <code>' .
                         Html::encode($response->data['data']['register']['credentials']['client_id']) .
@@ -564,10 +564,10 @@ class PlatformController extends Controller
                         <h1>Actualización</h1>
                         <p class="lead">de Upload realizado correctamente.</p>' .
                         'ID: <code>' .
-                        Html::encode($response->data['data']['register']['id_actividad']) .
+                        Html::encode($response->data['data']['register']['_id']) .
                         '</code><br/>' .
                         'ISSUER: <code>' .
-                        Html::encode($response->data['data']['register']['issuer']) .
+                        Html::encode($response->data['data']['register']['id_actividad']) .
                         '</code><br/>' .
                         'CLIENT ID: <code>' .
                         Html::encode($response->data['data']['register']['credentials']['client_id']) .
