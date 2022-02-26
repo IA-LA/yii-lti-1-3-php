@@ -1144,7 +1144,7 @@ class PlatformController extends Controller
                                                                     Thank you.
                                                                 </p>
                                                                 <pre>';
-                                                    print_r(" . $value . ");
+                                                    " . print_r($value) . "
                                                     echo '</pre>';
                                                     Modal::end();
                                                     ?>",
