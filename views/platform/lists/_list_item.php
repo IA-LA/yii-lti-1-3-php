@@ -13,8 +13,7 @@ use yii\bootstrap\Modal;
 <article class="list-item col-sm-12" data-key="<?= $model['id'] ?>">
     <h4><?= Html::encode($model['id']); ?></h4>
     <h5>
-        <?= $model['title'] ?> <?= $model['link'] ?>    <?= $model['link1'] ?>  <?= $model['link2'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?>
-        <!-- <?= $model['buttonR'] ?> -->
+        <?= $model['title'] ?> <?= $model['link'] ?>    <?= $model['link1'] ?>  <?= $model['link2'] ?> <img src="<?= $model['image'] ?>" alt="<?= $model['id'] ?>" width="30"> <?= $model['buttonC'] ?> <?= $model['buttonR'] ?> <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
         <?php
         // Modal READ
         //$modelR = new ReadForm();
@@ -39,7 +38,7 @@ use yii\bootstrap\Modal;
         //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
         Modal::end();
         ?>
-        <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
+
     </h5>
 </article>
 

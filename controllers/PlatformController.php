@@ -1083,7 +1083,7 @@ class PlatformController extends Controller
                                     'link1' => '<a href="' . $value['credentials']['auth_token_url'] . '" target="_blank">OAuth-Endpoint</a>',
                                     'link2' => '<a href="' . $value['credentials']['key_set_url'] . '" target="_blank">JWKS-Endpoint</a>',
                                     'image' => 'https://place-hold.it/1x1/',
-                                    'data'  => $value,
+                                    //'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     'buttonC' => '<form action="index.php?r=platform%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
@@ -1097,7 +1097,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
-                                    'buttonR' => '<a href="index.php?r=platform%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
+                                    //'buttonR' => '<a href="index.php?r=platform%2Fread" class="btn btn-md btn-info">Read&nbsp;&nbsp;</a>',
                                     //'buttonR' => '<button class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>',
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
                                     /*'buttonR' => '<form action="index.php?r=platform%2Fread" method="post">
@@ -1127,7 +1127,27 @@ class PlatformController extends Controller
                                                     </div>
                                                 </div>',
                                     */
-                                    //'buttonR' => '<a class="btn btn-md btn-info" onclick="index.php?r=platform%2Fread">Read&nbsp;&nbsp;</a>',
+                                    'buttonR' => "<?php
+                                                    Modal::begin([
+                                                        'headerOptions' => ['id' => 'modalHeader'],
+                                                        'header' => '<h2>'". $value['_id'] . "'</h2>',
+                                                        'toggleButton' => ['label' => 'Read&nbsp;&nbsp;',  'class' => 'btn btn-md btn-info'],
+                                                        'id' => 'modal-r',
+                                                        //'size' => 'modal-lg',
+                                                        //keeps from closing modal with esc key or by clicking out of the modal.
+                                                        // user must click cancel or X to close
+                                                        'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                                                    ]);
+                                                    echo    '<div id=\"modalContent\"></div>
+                                                                <p>
+                                                                    Consulta la información de una Plataforma ya registrada.
+                                                                    Thank you.
+                                                                </p>
+                                                                <pre>';
+                                                    print_r(" . $value . ");
+                                                    echo '</pre>';
+                                                    Modal::end();
+                                                    ?>",
                                     //'buttonU' => '<a href="index.php?r=platform%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
                                     'buttonU' => '<form action="index.php?r=platform%2Fupdate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
