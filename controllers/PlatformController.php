@@ -1126,7 +1126,6 @@ class PlatformController extends Controller
 
                                                     </div>
                                                 </div>',
-                                    */
                                     'buttonR' => "<?php
                                                     Modal::begin([
                                                         'headerOptions' => ['id' => 'modalHeader'],
@@ -1148,6 +1147,7 @@ class PlatformController extends Controller
                                                     echo '</pre>';
                                                     Modal::end();
                                                     ?>",
+                                    */
                                     //'buttonU' => '<a href="index.php?r=platform%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
                                     'buttonU' => '<form action="index.php?r=platform%2Fupdate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
