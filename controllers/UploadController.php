@@ -189,7 +189,7 @@ class UploadController extends Controller
                 if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] != 'Existe') {
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
-                        <h1>Registro</h1>
+                        <h1>Creación de registro</h1>
                         <p class="lead">de Upload realizado correctamente.</p>' .
                         'ID: <code>' .
                         Html::encode($response->data['data']['register']['id_actividad']) .
@@ -1464,11 +1464,11 @@ class UploadController extends Controller
                     if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] === 'Existe') {
                         $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                         $content .= '<div class="jumbotron">
-                            <h1>Registro</h1>
-                            <p class="lead">Copia las URL de acceso al upload.</p>' .
-                            'URL: <code>' . Html::encode($response->data['data']['upload']['publicacion_url']) . '</code><br/>' .
-                            'GIT: <code>' . Html::encode($response->data['data']['upload']['git_url']) . '</code><br/>' .
-                            'FICHERO: <code>' . $response->data['data']['upload']['fichero'] . '</code><br/>' .
+                            <h1>Creación de registro</h1>
+                            <p class="lead">de Actividad LTI realizado correctamente.</p>
+                            <p class="lead">Copia las credenciales de acceso al actividad.</p>' .
+                            'ID:  <code>' . $namefile . '</code><br/>' .
+                            'URL: <code>' . $serverPub . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
                             '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
                         </div>';
@@ -1579,7 +1579,7 @@ class UploadController extends Controller
                     if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] === 'Existe') {
                         $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                         $content .= '<div class="jumbotron">
-                            <h1>Registro</h1>
+                            <h1>Creación de registro</h1>
                             <p class="lead">de Upload realizado correctamente.</p>' .
                             'ID: <code>' .
                             Html::encode($response->data['data']['register']['id_actividad']) .

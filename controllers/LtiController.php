@@ -147,7 +147,8 @@ class LtiController extends Controller
                 if ($response->isOk && $response->data['result'] === 'ok' && $response->data['data']['result'] != 'Existe') {
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
-                        <h1>Registro</h1>
+                        <h1>Creación de registro</h1>
+                        <p class="lead">de Actividad LTI realizado correctamente.</p>
                         <p class="lead">Copia las credenciales de acceso a la actividad.</p>' .
                         'URL: <code>' . Html::encode($response->data['data']['launch_url']) . '</code><br/>' .
                         '<p/><p/><p/>' .
