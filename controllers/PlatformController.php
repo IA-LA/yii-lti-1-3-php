@@ -585,7 +585,7 @@ class PlatformController extends Controller
                         Html::encode($response->data['data']['register']['credentials']['kid']) .
                         '</code><br/>' .
                         'DEPLOYMENT: <code>' .
-                        Html::encode($response->data['data']['register']['credentials']['deployment']) .
+                        Html::encode($response->data['data']['register']['credentials']['deployment'][0]) .
                         '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<h1>Credenciales</h1>
