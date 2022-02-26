@@ -146,7 +146,7 @@ class PlatformController extends Controller
                                 'key_set_url' => Yii::$app->request->post('CreateForm')['key_set_url'],
                                 'private_key_file' => '/keys/tool/private.key', // TODO Configurable
                                 'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
-                                'deployment' => Yii::$app->request->post('CreateForm')['deployment'],
+                                'deployment' => [Yii::$app->request->post('CreateForm')['deployment']],
                                 'auth_server' => '/platform/login.php' // TODO Configurable
                             ],
                             "user" => [
@@ -527,7 +527,7 @@ class PlatformController extends Controller
                                     'key_set_url' => Yii::$app->request->post('UpdateForm')['key_set_url'],
                                     'private_key_file' => '/keys/tool/private.key', // TODO Configurable
                                     'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
-                                    'deployment' => Yii::$app->request->post('UpdateForm')['deployment'],
+                                    'deployment' => [Yii::$app->request->post('UpdateForm')['deployment']],
                                     'auth_server' => '/platform/login.php' // TODO Configurable
                                 ],
                                 "user" => [
