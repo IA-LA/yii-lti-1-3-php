@@ -1083,7 +1083,7 @@ class PlatformController extends Controller
                                     'link1' => '<a href="' . $value['credentials']['auth_token_url'] . '" target="_blank">OAuth-Endpoint</a>',
                                     'link2' => '<a href="' . $value['credentials']['key_set_url'] . '" target="_blank">JWKS-Endpoint</a>',
                                     'image' => 'https://place-hold.it/1x1/',
-                                    //'data'  => $value,
+                                    'data'  => $value,
                                     //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     'buttonC' => '<form action="index.php?r=platform%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
@@ -1144,7 +1144,7 @@ class PlatformController extends Controller
                                                                     Thank you.
                                                                 </p>
                                                                 <pre>';
-                                                    " . print_r($value) . "
+                                                    print_r(\$model['data'])
                                                     echo '</pre>';
                                                     Modal::end();
                                                     ?>",
