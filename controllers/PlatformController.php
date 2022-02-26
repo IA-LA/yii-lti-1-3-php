@@ -1087,7 +1087,7 @@ class PlatformController extends Controller
                                     //'buttonC' => '<a href="index.php?r=platform%2Fcreate" class="btn btn-lg btn-primary">Create</a>',
                                     'buttonC' => '<form action="index.php?r=platform%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="id" value="' . $value['id_actividad'] . '">
                                                     <input type="hidden" name="client_id" value="' . $value['credentials']['client_id'] . '">
                                                     <input type="hidden" name="auth_login_url" value="' . $value['credentials']['auth_login_url'] . '">
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
@@ -1102,7 +1102,7 @@ class PlatformController extends Controller
                                     //'buttonR' => '<button class="btn btn-md btn-info" onclick="$this->render('crud/read',['model' => new ReadForm();]);">Read&nbsp;&nbsp;</button>',
                                     /*'buttonR' => '<form action="index.php?r=platform%2Fread" method="post">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="id" value="' . $value['id_actividad'] . '">
                                                     <button type="submit" class="btn btn-md btn-info">Read&nbsp;&nbsp;</button>
                                                   </form>',
                                      * 'buttonR' => '<div class="row">
@@ -1131,7 +1131,7 @@ class PlatformController extends Controller
                                     //'buttonU' => '<a href="index.php?r=platform%2Fupdate" class="btn btn-sm btn-warning">Update</a> ',
                                     'buttonU' => '<form action="index.php?r=platform%2Fupdate" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="id" value="' . $value['id_actividad'] . '">
                                                     <input type="hidden" name="client_id" value="' . $value['credentials']['client_id'] . '">
                                                     <input type="hidden" name="auth_login_url" value="' . $value['credentials']['auth_login_url'] . '">
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
@@ -1144,7 +1144,7 @@ class PlatformController extends Controller
                                     //'buttonD' => '<a href="index.php?r=platform%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
                                     'buttonD' => '<form action="index.php?r=platform%2Fdelete" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
-                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <input type="hidden" name="id" value="' . $value['id_actividad'] . '">
                                                     <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
                                                   </form>',
                                 ];
