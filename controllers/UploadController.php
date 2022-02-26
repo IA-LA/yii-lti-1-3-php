@@ -124,7 +124,7 @@ class UploadController extends Controller
                 // Exception POST Upload
                 try {
                     // Dirección de alojamiento
-                    // del servidor de Git
+                    // del servidor de Git y Pub
                     //////////////////////
                     /// LOCAL puerto :9000
                     /// GLOBAL puerto:8000 o `.uned.es`
@@ -143,13 +143,12 @@ class UploadController extends Controller
                         $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
                         $serverLti = Yii::$app->params['serverLti_global'];
                     }
-
+                    // LLAMADA RUTA
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
                         ->setMethod('POST')
                         //->setMethod('GET')
-                        ->setUrl($url . $ruta)
-                        //$_POST['CreateForm']['id']) Parámetros del registro
+                        ->setUrl($url . $ruta) //$_POST['CreateForm']['id']) Parámetros de creación del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
                             'url_actividad' => Yii::$app->request->post('CreateForm')['publicacion'],
@@ -224,7 +223,7 @@ class UploadController extends Controller
                     //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
-                        <p class="lead">Las credenciales de Registro son erróneas.</p>' .
+                        <p class="lead">Las credenciales de Creación del registro son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('CreateForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('CreateForm')['publicacion'] . '</code><br/>' .
                         '<p/><p/><p/>' .
@@ -1483,7 +1482,7 @@ class UploadController extends Controller
                         //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                         $content .= '<div class="jumbotron">
                             <h1>Error</h1>
-                            <p class="lead">Las credenciales de Registro son erróneas.</p>' .
+                            <p class="lead">Las credenciales de Creación del registro son erróneas.</p>' .
                             'ID:  <code>' . $namefile . '</code><br/>' .
                             'URL: <code>' . $serverPub . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
@@ -1614,7 +1613,7 @@ class UploadController extends Controller
                         //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                         $content .= '<div class="jumbotron">
                             <h1>Error</h1>
-                            <p class="lead">Las credenciales de Registro son erróneas.</p>' .
+                            <p class="lead">Las credenciales de Creación del registro son erróneas.</p>' .
                             'ID:  <code>' . $namefile . '</code><br/>' .
                             'URL: <code>' . $serverPublicacion . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .

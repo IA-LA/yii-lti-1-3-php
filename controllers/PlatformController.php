@@ -97,7 +97,7 @@ class PlatformController extends Controller
             if ($model->load($request = Yii::$app->request->post()) && $model->create(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('createFormSubmitted');
 
-                // POST Register (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                // POST CREATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
                 if (Yii::$app->request->post('CreateForm')['id'] !== '') {
@@ -111,7 +111,7 @@ class PlatformController extends Controller
                 // Exception POST Platform
                 try {
                     // Dirección de alojamiento
-                    // del servidor
+                    // del servidor LTI
                     //////////////////////
                     /// LOCAL puerto :9000
                     /// GLOBAL puerto:8000 o `.uned.es`
@@ -130,13 +130,12 @@ class PlatformController extends Controller
                         $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
                         $serverLti = Yii::$app->params['serverLti_global'];
                     }
-
+                    // LLAMADA RUTA
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
                         ->setMethod('POST')
                         //->setMethod('GET')
-                        ->setUrl($url . $ruta)
-                        //$_POST['CreateForm']['id']) Parámetros del registro
+                        ->setUrl($url . $ruta) //$_POST['CreateForm']['id']) Parámetros de creación del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
                             "credentials" => [
@@ -157,7 +156,7 @@ class PlatformController extends Controller
                         ])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
-                            'timeout' => 3600, // set timeout to 5 seconds for the case server is not responding
+                            'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
                         ])
                         ->send();
                 }
@@ -233,7 +232,7 @@ class PlatformController extends Controller
                     //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
-                        <p class="lead">Las credenciales de Registro son erróneas.</p>' .
+                        <p class="lead">Las credenciales de Creación del registro son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('CreateForm')['id'] . '</code><br/>' .
                         'ISSUER: <code>' . Yii::$app->request->post('CreateForm')['issuer'] . '</code><br/>' .
                         '<p/><p/><p/>' .
@@ -1093,7 +1092,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
-                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
@@ -1137,7 +1136,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
-                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',

@@ -97,11 +97,11 @@ class LtiController extends Controller
             if ($model->load($request = Yii::$app->request->post()) && $model->create(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('createFormSubmitted');
 
-                // POST Create (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                // POST CREATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
                 if (Yii::$app->request->post('CreateForm')['id'] !== '') {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/register/
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
                     $ruta = '/create/register/coleccion/Lti';
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/Lti/url_actividad/https://www.uned.es
@@ -110,11 +110,32 @@ class LtiController extends Controller
 
                 // Exception POST LTI
                 try {
+                    // Dirección de alojamiento
+                    // del servidor LTI
+                    //////////////////////
+                    /// LOCAL puerto :9000
+                    /// GLOBAL puerto:8000 o `.uned.es`
+                    ///
+                    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+                        $serverGit = Yii::$app->params['serverGit_local'];
+                        $carpetaGit = Yii::$app->params['carpetaGit_local'];
+                        $serverPub = Yii::$app->params['serverPublicacion_local'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
+                        $serverLti = Yii::$app->params['serverLti_local'];
+                    }
+                    else {
+                        $serverGit = Yii::$app->params['serverGit_global'];
+                        $carpetaGit = Yii::$app->params['carpetaGit_global'];
+                        $serverPub = Yii::$app->params['serverPublicacion_global'];
+                        $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+                        $serverLti = Yii::$app->params['serverLti_global'];
+                    }
+                    // LLAMADA RUTA
                     $response = $client->createRequest()
                         ->setFormat(Client::FORMAT_JSON)
                         ->setMethod('POST')
                         //->setMethod('GET')
-                        ->setUrl($url . $ruta) //$_POST['CreateForm']['id'])
+                        ->setUrl($url . $ruta) //$_POST['CreateForm']['id']) Parámetros de creación del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
                             'url_actividad' => Yii::$app->request->post('CreateForm')['url'],
@@ -165,7 +186,7 @@ class LtiController extends Controller
                     //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                     $content .= '<div class="jumbotron">
                         <h1>Error</h1>
-                        <p class="lead">Las credenciales de Registro son erróneas.</p>' .
+                        <p class="lead">Las credenciales de Creación del registro son erróneas.</p>' .
                         'ID:  <code>' . Yii::$app->request->post('CreateForm')['id'] . '</code><br/>' .
                         'URL: <code>' . Yii::$app->request->post('CreateForm')['url'] . '</code><br/>' .
                         '<p/><p/><p/>' .
