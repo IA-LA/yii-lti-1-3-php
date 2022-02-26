@@ -102,7 +102,7 @@ class PlatformController extends Controller
 
                 if (Yii::$app->request->post('CreateForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
-                    $ruta = '/create/register/coleccion/Platform';
+                    $ruta = '/create/coleccion/Platform/id_actividad/' . Yii::$app->request->post('CreateForm')['id'];
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/client_id/d42df408-70f5-4b60-8274-6c98d3b9468d
                     $ruta = '/create/coleccion/Platform/client_id/' . Yii::$app->request->post('CreateForm')['client_id'];
@@ -479,7 +479,7 @@ class PlatformController extends Controller
 
                 if (Yii::$app->request->post('UpdateForm')['id'] !== '') {
                     // http://10.201.54.31:49151/servicios/lti/lti13/update/register/coleccion/:coleccion
-                    $ruta = '/update/coleccion/Platform/id_actividad/' . urlencode(Yii::$app->request->post('UpdateForm')['id']);
+                    $ruta = '/update/coleccion/Platform/id_actividad/' . Yii::$app->request->post('UpdateForm')['id'];
                 } else {
                     // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/coleccion/client_id/d42df408-70f5-4b60-8274-6c98d3b9468d
                     $ruta = '/update/coleccion/Platform/client_id/' . Yii::$app->request->post('UpdateForm')['client_id'];
@@ -1092,7 +1092,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
-                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-lg btn-primary">Create</button>
                                                   </form>',
@@ -1136,7 +1136,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
-                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'] . '">
+                                                    <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
                                                     <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                                   </form>',
