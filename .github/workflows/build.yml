@@ -29,6 +29,15 @@ jobs:
           - "7.4"
           
     steps:
+
+      - name: Set Actions Allow Unsecure Commands Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+
+      - name: Set Actions Allow Unsecure Commands Windows
+        if: matrix.os == 'windows-latest'
+        run: ECHO 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
+
       - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
         id: ACTIONS_ALLOW_UNSECURE_COMMANDS
         run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
@@ -57,9 +66,6 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: ${{ env.extensions }}
           ini-values: date.timezone='UTC'
-
-      - name: Set Actions Allow Unsecure Commands
-        run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
 
       - name: Determine composer cache directory on Linux
         if: matrix.os == 'ubuntu-latest'
