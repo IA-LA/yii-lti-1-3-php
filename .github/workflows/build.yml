@@ -55,7 +55,8 @@ jobs:
           ini-values: date.timezone='UTC'
 
       - name: Set Actions Allow Unsecure Commands
-          run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+          run: |
+            echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
 
       - name: Determine composer cache directory on Linux
         if: matrix.os == 'ubuntu-latest'
