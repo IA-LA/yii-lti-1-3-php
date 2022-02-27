@@ -1,5 +1,5 @@
 {
-    "name": "cliente/LTI",
+    "name": "cliente/lti",
     "description": "Cliente LTI Yii 2",
     "keywords": ["LTI", "1.3", "Advantage", "yii2", "framework", "basic", "project template"],
     "homepage": "http://ailanto-dev.intecca.uned.es",
@@ -71,7 +71,7 @@
     ],
     "authors": [
         {
-            "name": "Francisco Sánchez",
+            "name": "Francisco Sanchez",
             "email": "fjsanchez@intecca.uned.es"
         }
     ]
