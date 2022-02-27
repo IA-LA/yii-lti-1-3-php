@@ -1,5 +1,5 @@
 {
-    "name": "cliente_lti",
+    "name": "cliente/LTI",
     "description": "Cliente LTI Yii 2",
     "keywords": ["LTI", "1.3", "Advantage", "yii2", "framework", "basic", "project template"],
     "homepage": "http://ailanto-dev.intecca.uned.es",
