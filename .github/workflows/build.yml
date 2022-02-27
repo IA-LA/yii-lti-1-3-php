@@ -36,7 +36,7 @@ jobs:
 
       - name: Set Actions Allow Unsecure Commands Windows
         if: matrix.os == 'windows-latest'
-        run: ECHO "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+        run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -69,7 +69,7 @@ jobs:
 
       - name: Determine composer cache directory on Windows
         if: matrix.os == 'windows-latest'
-        run: echo "~\AppData\Local\Composer" >> $COMPOSER_CACHE_DIR
+        run: echo "::set-env name=COMPOSER_CACHE_DIR::~\AppData\Local\Composer"
 
       - name: Cache dependencies installed with composer
         uses: actions/cache@v1
