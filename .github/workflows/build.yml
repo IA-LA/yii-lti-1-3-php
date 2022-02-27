@@ -67,7 +67,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: echo "::set-env name=COMPOSER_CACHE_DIR::$(composer config cache-dir)"
 
-      - shell: powershell
+      - name: Determine composer cache directory on Windows
         if: matrix.os == 'windows-latest'
         run: echo "~\AppData\Local\Composer" >> $COMPOSER_CACHE_DIR
 
