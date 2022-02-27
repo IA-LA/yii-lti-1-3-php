@@ -31,10 +31,12 @@ jobs:
     steps:
 
       - name: Set Actions Allow Unsecure Commands Linux
+        if: matrix.os == 'ubuntu-latest'
         run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
 
       - name: Set Actions Allow Unsecure Commands Windows
-        run: echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+        if: matrix.os == 'windows-latest'
+          run: ECHO "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -63,11 +65,11 @@ jobs:
 
       - name: Determine composer cache directory on Linux
         if: matrix.os == 'ubuntu-latest'
-        run: echo "::set-env name=COMPOSER_CACHE_DIR::$(composer config cache-dir)"
+          run: echo "::set-env name=COMPOSER_CACHE_DIR::$(composer config cache-dir)"
 
       - name: Determine composer cache directory on Windows
         if: matrix.os == 'windows-latest'
-        run: ECHO "::set-env name=COMPOSER_CACHE_DIR::~\AppData\Local\Composer"        
+          run: ECHO "::set-env name=COMPOSER_CACHE_DIR::~\AppData\Local\Composer"
 
       - name: Cache dependencies installed with composer
         uses: actions/cache@v1
