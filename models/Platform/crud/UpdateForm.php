@@ -31,7 +31,7 @@ class UpdateForm extends Model
     {
         return [
             // id and url are required
-            [['id', 'issuer', 'client_id', 'auth_login_url', 'auth_token_url', 'key_set_url', 'deployment'], 'required'],
+            [['id', 'issuer', 'client_id', 'auth_login_url', 'auth_token_url', 'key_set_url', 'private_key_file', 'kid', 'deployment', 'auth_server'], 'required'],
             // id has to be a valid ID hexadecimal 24 character address
 //            ['id', 'filter', 'filter'=>'length', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
 //            ['id', 'in', 'is' => 24, 'tooLong' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965', 'tooShort' => 'Has to be a valid ObjectId hexadecimal 24 character address like this 5fc3860a81740b0ef098a965'],
