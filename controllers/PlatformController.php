@@ -143,10 +143,10 @@ class PlatformController extends Controller
                                 'auth_login_url' => Yii::$app->request->post('CreateForm')['auth_login_url'],
                                 'auth_token_url' => Yii::$app->request->post('CreateForm')['auth_token_url'],
                                 'key_set_url' => Yii::$app->request->post('CreateForm')['key_set_url'],
-                                //'private_key_file' => '/keys/tool/private.key', // TODO Configurable
-                                //'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
+                                //'private_key_file' => '/keys/tool/private.key', // TODO Configurable en SERVICIOS
+                                //'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable en SERVICIOS
                                 'deployment' => [Yii::$app->request->post('CreateForm')['deployment']],
-                                //'auth_server' => '/platform/login.php' // TODO Configurable
+                                //'auth_server' => '/platform/login.php' // TODO Configurable en SERVICIOS
                             ],
                             "user" => [
                                 'email' => Yii::$app->user->identity->username . '@lti.server',
@@ -525,10 +525,10 @@ class PlatformController extends Controller
                                     'auth_login_url' => Yii::$app->request->post('UpdateForm')['auth_login_url'],
                                     'auth_token_url' => Yii::$app->request->post('UpdateForm')['auth_token_url'],
                                     'key_set_url' => Yii::$app->request->post('UpdateForm')['key_set_url'],
-                                    //'private_key_file' => '/keys/tool/private.key', // TODO Configurable
-                                    //'kid' => '58f36e10-c1c1-4df0-af8b-85c857d1634f', // TODO Configurable
+                                    'private_key_file' => Yii::$app->request->post('UpdateForm')['private_key_file'],
+                                    'kid' => Yii::$app->request->post('UpdateForm')['kid'],
                                     'deployment' => [Yii::$app->request->post('UpdateForm')['deployment']],
-                                    //'auth_server' => '/platform/login.php' // TODO Configurable
+                                    'auth_server' => Yii::$app->request->post('UpdateForm')['auth_server']
                                 ],
                                 "user" => [
                                     'email' => Yii::$app->user->identity->username . '@lti.server',
