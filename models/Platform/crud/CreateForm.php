@@ -18,7 +18,7 @@ class CreateForm extends Model
     public $key_set_url;        // The platform's JWKS endpoint (https://tools.ietf.org/html/rfc7519)
     public $private_key_file;   // Relative path to the tool's private key
     public $kid;                // Key Identification (optional) Header Parameter with an unspecified structure.
-                                // MUST be a case-sensitive string. https://stackoverflow.com/questions/43867440/whats-the-meaning-of-the-kid-claim-in-a-jwt-token
+    // MUST be a case-sensitive string. https://stackoverflow.com/questions/43867440/whats-the-meaning-of-the-kid-claim-in-a-jwt-token
     public $deployment;         // The deployment_id passed by the platform during launch
     public $auth_server;        // 3rd part authorization endpoint (OAuth)
     public $verifyCode;

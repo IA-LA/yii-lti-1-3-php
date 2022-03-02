@@ -669,6 +669,7 @@ class PlatformController extends Controller
                 'auth_login_url'=> isset($params['auth_login_url'])? $params['auth_login_url'] :' ',
                 'auth_token_url'=> isset($params['auth_token_url'])? $params['auth_token_url'] :' ',
                 'key_set_url'=> isset($params['key_set_url'])? $params['key_set_url'] :' ',
+                'private_key_file'=> isset($params['private_key_file'])? $params['private_key_file'] :' ',
                 'kid'=> isset($params['kid'])? $params['kid'] :' ',
                 'deployment'=> isset($params['deployment'])? $params['deployment'] :' ',
                 'auth_server'=> isset($params['auth_server'])? $params['auth_server'] :' ',

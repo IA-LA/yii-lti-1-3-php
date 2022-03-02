@@ -53,9 +53,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'auth_token_url')->textInput(['value' => isset($auth_token_url)? $auth_token_url : ' ']) ?>
                     <?= $form->field($model, 'key_set_url')->textInput(['value' => isset($key_set_url)? $key_set_url : ' ']) ?>
                     <?= $form->field($model, 'private_key_file')->hiddenInput(['value' => isset($private_key_file)? $private_key_file : ' ']) ?>
-                    <?= $form->field($model, 'kid')->textInput(['value' => isset($kid)? $kid : ' ']) ?>
+                    <?= $form->field($model, 'kid')->hiddenInput(['value' => isset($kid)? $kid : ' ']) ?>
                     <?= $form->field($model, 'deployment')->textInput(['value' => isset($deployment)? $deployment : ' ']) ?>
-                    <?= $form->field($model, 'auth_server')->textInput(['value' => isset($auth_server)? $auth_server : ' ']) ?>
+                    <?= $form->field($model, 'auth_server')->hiddenInput(['value' => isset($auth_server)? $auth_server : ' ']) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
