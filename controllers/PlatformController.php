@@ -1157,6 +1157,7 @@ class PlatformController extends Controller
                                                     <input type="hidden" name="auth_login_url" value="' . $value['credentials']['auth_login_url'] . '">
                                                     <input type="hidden" name="auth_token_url" value="' . $value['credentials']['auth_token_url'] . '">
                                                     <input type="hidden" name="key_set_url" value="' . $value['credentials']['key_set_url'] . '">
+                                                    <input type="hidden" name="private_key_file" value="' . $value['credentials']['private_key_file'] . '">
                                                     <input type="hidden" name="kid" value="' . $value['credentials']['kid'] . '">
                                                     <input type="hidden" name="deployment" value="' . $value['credentials']['deployment'][0] . '">
                                                     <input type="hidden" name="auth_server" value="' . $value['credentials']['auth_server'] . '">
