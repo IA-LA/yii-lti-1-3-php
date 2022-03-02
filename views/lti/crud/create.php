@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Create Lti';
+$this->title = 'Create LTI Activity';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lti-crud-create">

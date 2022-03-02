@@ -9,7 +9,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Update Lti';
+$this->title = 'Update LTI Activity';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lti-crud-update">

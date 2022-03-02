@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
-$this->title = 'Delete Lti';
+$this->title = 'Delete Lti Activity';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lti-crud-delete">
