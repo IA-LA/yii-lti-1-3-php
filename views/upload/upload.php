@@ -319,29 +319,31 @@ Url::remember();
             <div class="col-lg-5">
                 <div class="form-group">
                     <?php
-                    // Modal UPLOAD
-                    //$modelU = new UpladForm();
-                    Modal::begin([
-                        'headerOptions' => ['id' => 'modalHeader'],
-                        'header' => '<h2>' . Html::encode($this->title) . '</h2>',
-                        //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-                        'id' => 'modal-u',
-                        //'size' => 'modal-lg',
-                        //keeps from closing modal with esc key or by clicking out of the modal.
-                        // user must click cancel or X to close
-                        //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-                    ]);
-                    ?>
-                    <?php
-                    $form = ActiveForm::begin(["id" => "upload-form"]);
-                    echo $form->field($model, "zipFile")->fileInput();
-                    echo Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']);
-                    ?>
-                    <?php
-                    ActiveForm::end();
+                        // Modal UPLOAD
+                        //$modelU = new UpladForm();
+                        Modal::begin([
+                            'headerOptions' => ['id' => 'modalHeader'],
+                            'header' => '<h2>' . Html::encode($this->title) . '</h2>',
+                            //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
+                            'id' => 'modal-u',
+                            //'size' => 'modal-lg',
+                            //keeps from closing modal with esc key or by clicking out of the modal.
+                            // user must click cancel or X to close
+                            //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                        ]);
+                            // Formulario activo
+                            //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
+                            $form = ActiveForm::begin(["id" => "upload-form"]);
+                                echo $form->field($model, "zipFile")->fileInput();
+                                echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
+                                echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
+                                      <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                                      <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
+                                echo Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']);
+                            ActiveForm::end();
 
-                    //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
-                    Modal::end();
+                        Modal::end();
                     ?>
 
                     <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
