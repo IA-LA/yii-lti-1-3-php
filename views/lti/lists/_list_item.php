@@ -27,7 +27,7 @@ Url::remember();
             //'size' => 'modal-lg',
             //keeps from closing modal with esc key or by clicking out of the modal.
             // user must click cancel or X to close
-            'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+            //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
         ]);
         echo    '<div id="modalContent"></div>
                     <p>
