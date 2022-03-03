@@ -24,30 +24,7 @@ Url::remember();
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('uploadingFormSubmitted')):
-
-        // Modal UPLOAD
-        //$modelU = new UpladForm();
-        Modal::begin([
-            'headerOptions' => ['id' => 'modalHeader'],
-            'header' => '<h2>' . Html::encode($this->title) . '</h2>',
-            'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-            'id' => 'modal-u',
-            //'size' => 'modal-lg',
-            //keeps from closing modal with esc key or by clicking out of the modal.
-            // user must click cancel or X to close
-            'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-        ]);
-        echo '<div id="modalContent"></div>
-                    <p>
-                        Subiendo el fichero ...
-                        Espere por favor ...
-                        Thank you.
-                    </p>
-                    <pre>';
-        echo '</pre>';
-        //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
-        Modal::end();?>
+    <?php if (Yii::$app->session->hasFlash('uploadingFormSubmitted')):?>
         <div>
             UPLOADIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIING
             // file is uploaded
@@ -384,7 +361,31 @@ Url::remember();
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
+                        <?php
+                        // Modal UPLOAD
+                        //$modelU = new UpladForm();
+                        Modal::begin([
+                            'headerOptions' => ['id' => 'modalHeader'],
+                            'header' => '<h2>' . Html::encode($this->title) . '</h2>',
+                            //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
+                            'id' => 'modal-u',
+                            //'size' => 'modal-lg',
+                            //keeps from closing modal with esc key or by clicking out of the modal.
+                            // user must click cancel or X to close
+                            //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                        ]);
+                        echo '<div id="modalContent"></div>
+                        <p>
+                            Subiendo el fichero ...
+                            Espere por favor ...
+                            Thank you.
+                        </p>
+                        <pre>';
+                        echo '</pre>';
+                        //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
+                        Modal::end();
+                        ?>
+                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
                     </div>
 
                 <?php ActiveForm::end() ?>
