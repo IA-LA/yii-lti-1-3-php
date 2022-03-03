@@ -21,7 +21,8 @@ class UploadForm extends Model
             [['zipFile', 'required',
                 'whenClient' => "function (attribute, value) { return $('#upload-button').prop('display','block'); }"], 'file', 'skipOnEmpty' => false, 'extensions' => 'zip'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha',
+                'whenClient' => "function (attribute, value) { return $('#upload-button').prop('display','block'); }"],
         ];
     }
 
