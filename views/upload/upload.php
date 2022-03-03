@@ -332,6 +332,30 @@ Url::remember();
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
+                        <?php
+                        // Modal UPLOAD
+                        //$modelU = new UpladForm();
+                        Modal::begin([
+                            'headerOptions' => ['id' => 'modalHeader'],
+                            'header' => '<h2>' . Html::encode($this->title) . '</h2>',
+                            //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
+                            'id' => 'modal-u',
+                            //'size' => 'modal-lg',
+                            //keeps from closing modal with esc key or by clicking out of the modal.
+                            // user must click cancel or X to close
+                            //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                        ]);
+                        echo '<div id="modalContent"></div>
+                        <p>
+                            Subiendo el fichero ...
+                        </p>
+                        <pre>                        
+                            Espere por favor ...
+                            Thank you.
+                        </pre>';
+                        //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
+                        Modal::end();
+                        ?>
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
                     </div>
 
@@ -340,31 +364,6 @@ Url::remember();
             </div>
         </div>
 
-    <?php
-
-        // Modal UPLOAD
-        //$modelU = new UpladForm();
-        Modal::begin([
-            'headerOptions' => ['id' => 'modalHeader'],
-            'header' => '<h2>' . Html::encode($this->title) . '</h2>',
-            //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-            'id' => 'modal-u',
-            //'size' => 'modal-lg',
-            //keeps from closing modal with esc key or by clicking out of the modal.
-            // user must click cancel or X to close
-            //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-        ]);
-        echo '<div id="modalContent"></div>
-                        <p>
-                            Subiendo el fichero ...
-                        </p>
-                        <pre>                        
-                            Espere por favor ...
-                            Thank you.
-                        </pre>';
-        //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
-        Modal::end();
-
-    endif; ?>
+    <?php endif; ?>
 
 </div>
