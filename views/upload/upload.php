@@ -342,7 +342,7 @@ Url::remember();
                                       <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
                                       <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
                                 echo $model->verifyCode;
-                                echo Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'style' => 'display:block;']);
+                                echo Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'style' => 'display:block;']);
                             ActiveForm::end();
 
                         Modal::end();
