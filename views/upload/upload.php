@@ -359,7 +359,7 @@ Url::remember();
                         ?>
                         <?php if(isset($model->zipFile)):?>
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
-                        <?php endif;  print_r($model);?>
+                        <?php endif;  print_r($model[zipFile]);?>
                     </div>
 
                 <?php ActiveForm::end() ?>
