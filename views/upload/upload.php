@@ -45,7 +45,6 @@ Url::remember();
                         Thank you.
                     </p>
                     <pre>';
-        print_r($model['data']);
         echo '</pre>';
         //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
         Modal::end();?>
