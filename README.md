@@ -64,7 +64,6 @@ FOLDER STRUCTURE
       web/              contains the entry script and Web resources
             index...            application launcher
             uploads/            .zip files uploaded
-
       widgets/          contains diferent external modules
       
 MAIN URLs

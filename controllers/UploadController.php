@@ -1302,7 +1302,7 @@ class UploadController extends Controller
 
             if (Yii::$app->request->isPost) {
                 // file is uploading
-                Yii::$app->session->setFlash('uploadingFormSubmitted');
+                Yii::$app->session->setFlash('uploadingFormSubmitted', "Cargando fichero...");
                 //$this->renderContent('<div><p>CARGANDO</p></div>');
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $upload = $model->upload();

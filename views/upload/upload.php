@@ -24,7 +24,6 @@ Url::remember();
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-
     <?php if (Yii::$app->session->hasFlash('uploadingFormSubmitted')):
 
         // Modal UPLOAD
@@ -33,7 +32,7 @@ Url::remember();
             'headerOptions' => ['id' => 'modalHeader'],
             'header' => '<h2>' . Html::encode($this->title) . '</h2>',
             'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-            'id' => 'modal-u' . $model['data']['_id'],
+            'id' => 'modal-u',
             //'size' => 'modal-lg',
             //keeps from closing modal with esc key or by clicking out of the modal.
             // user must click cancel or X to close
@@ -41,7 +40,8 @@ Url::remember();
         ]);
         echo '<div id="modalContent"></div>
                     <p>
-                        Subiendo el fichero' .$file . ' ...
+                        Subiendo el fichero ...
+                        Espere por favor ...
                         Thank you.
                     </p>
                     <pre>';
@@ -385,7 +385,7 @@ Url::remember();
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button']) ?>
+                        <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
                     </div>
 
                 <?php ActiveForm::end() ?>
