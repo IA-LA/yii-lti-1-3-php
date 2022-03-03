@@ -321,6 +321,7 @@ Url::remember();
                     <?php
                         // Modal UPLOAD
                         //$modelU = new UpladForm();
+                        // https://devreadwrite.com/posts/yii2-basic-advanced-authorization-form-in-modal-window
                         Modal::begin([
                             'headerOptions' => ['id' => 'modalHeader'],
                             'header' => '<h2>' . Html::encode($this->title) . '</h2>',
