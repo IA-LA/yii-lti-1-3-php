@@ -60,7 +60,6 @@ Url::remember();
             <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
 
             <?php
-
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
                     // Carpeta de publicaciones
@@ -288,7 +287,7 @@ Url::remember();
                 </ol>
             </div>
 
-        <?php
+            <?php
 
                         echo '<div class="row alert alert-success"><div class="col-lg-6">La acción de `<b>Upload</b>` se realizó correctamente.</div></div>';
 
@@ -305,7 +304,7 @@ Url::remember();
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
                         '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                 }
-        ?>
+            ?>
 
         </div>
 
@@ -335,30 +334,6 @@ Url::remember();
 
                     <!-- <button class="btn btn-lg btn-success">Submit</button> -->
                     <div class="form-group">
-                        <?php
-                        // Modal UPLOAD
-                        //$modelU = new UpladForm();
-                        Modal::begin([
-                            'headerOptions' => ['id' => 'modalHeader'],
-                            'header' => '<h2>' . Html::encode($this->title) . '</h2>',
-                            //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-                            'id' => 'modal-u',
-                            //'size' => 'modal-lg',
-                            //keeps from closing modal with esc key or by clicking out of the modal.
-                            // user must click cancel or X to close
-                            //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-                        ]);
-                        echo '<div id="modalContent"></div>
-                        <p>
-                            Subiendo el fichero ...
-                            Espere por favor ...
-                            Thank you.
-                        </p>
-                        <pre>';
-                        echo '</pre>';
-                        //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
-                        Modal::end();
-                        ?>
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
                     </div>
 
