@@ -341,13 +341,13 @@ Url::remember();
                                 echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                                       <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
                                       <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
-                                echo Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']);
+                                echo Html::submitButton('Enviar', ['class' => 'btn btn-primary', 'name' => 'upload-button']);
                             ActiveForm::end();
 
                         Modal::end();
                     ?>
 
-                    <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
+                    <?= Html::Button('Upload', ['class' => 'btn btn-primary', 'name' => 'modal-upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u']) ?>
 
                 </div>
             </div>
