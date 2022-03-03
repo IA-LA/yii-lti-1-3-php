@@ -348,9 +348,9 @@ Url::remember();
                         ]);
                         ?>
                         <?php
-                        $form1 = ActiveForm::begin(["id" => "modal-upload-form"]);
-                        echo $form1->field($model, "zipFile")->fileInput();
-                        echo Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'modal-upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']);
+                        $form = ActiveForm::begin(["id" => "upload-form"]);
+                        echo $form->field($model, "zipFile")->fileInput();
+                        echo Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']);
                         ?>
                         <?php
                         ActiveForm::end();
