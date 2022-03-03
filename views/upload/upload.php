@@ -24,32 +24,6 @@ Url::remember();
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php if (Yii::$app->session->hasFlash('uploadingFormSubmitted')):?>
-        <div>
-            UPLOADIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIING
-            // file is uploaded
-            //Yii::$app->session->setFlash('uploadingFormSubmitted');
-            //$this->renderContent('<div><p>CARGANDO</p></div>');
-        </div>
-        <div>
-            UPLOADEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-            // file is uploaded
-            //Yii::$app->session->setFlash('uploadingFormSubmitted');
-            //$this->renderContent('<div><p>CARGANDO</p></div>');
-        </div>
-
-    <?php endif; ?>
-
-    <?php if (Yii::$app->session->hasFlash('uploadedFormSubmitted')): ?>
-        <div>
-            UPLOADEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-            // file is uploaded
-            //Yii::$app->session->setFlash('uploadingFormSubmitted');
-            //$this->renderContent('<div><p>CARGANDO</p></div>');
-        </div>
-
-    <?php endif; ?>
-
     <?php if (Yii::$app->session->hasFlash('uploadFormSubmitted')): ?>
 
         <div>
