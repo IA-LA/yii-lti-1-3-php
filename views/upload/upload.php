@@ -357,7 +357,7 @@ Url::remember();
                         //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
                         Modal::end();
                         ?>
-                        <?php if(isset($model->zipFile)): ?>
+                        <?php if(isset($model->zipFile)): echo $model->zipFile;?>
                         <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
                         <?php endif; ?>
                     </div>
