@@ -348,7 +348,7 @@ Url::remember();
                         Modal::end();
                     ?>
 
-                    <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
+                    <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'name' => 'modal-upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u', 'onclick' => 'Yii::$app->session->setFlash("uploadingFormSubmitted")']) ?>
 
                 </div>
             </div>
