@@ -23,6 +23,14 @@ Url::remember();
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+
+    <?php if (Yii::$app->session->hasFlash('uploadingFormSubmitted')): ?>
+    // file is uploading
+    //Yii::$app->session->setFlash('uploadingFormSubmitted');
+    //$this->renderContent('<div><p>CARGANDO</p></div>');
+
+    <?php endif; ?>
+
     <?php if (Yii::$app->session->hasFlash('uploadFormSubmitted')): ?>
 
         <div>
@@ -59,6 +67,29 @@ Url::remember();
             <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
 
             <?php
+                    // Modal UPLOAD
+                    //$modelU = new UpladForm();
+                    Modal::begin([
+                        'headerOptions' => ['id' => 'modalHeader'],
+                        'header' => '<h2>' . Html::encode($this->title) . '</h2>',
+                        'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
+                        'id' => 'modal-u' . $model['data']['_id'],
+                        //'size' => 'modal-lg',
+                        //keeps from closing modal with esc key or by clicking out of the modal.
+                        // user must click cancel or X to close
+                        'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                    ]);
+                    echo '<div id="modalContent"></div>
+                    <p>
+                        Subiendo el fichero' .$file . ' ...
+                        Thank you.
+                    </p>
+                    <pre>';
+                    print_r($model['data']);
+                    echo '</pre>';
+                    //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
+                    Modal::end();
+
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
                     // Carpeta de publicaciones
