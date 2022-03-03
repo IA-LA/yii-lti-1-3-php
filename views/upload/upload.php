@@ -354,13 +354,12 @@ Url::remember();
                             Espere por favor ...
                             Thank you.
                         </pre>';
-                        echo '
-                        <?php $form1 = ActiveForm::begin(["id" => "modal-upload-form"]); ?>
-                        <?= $form1->field($model, "zipFile")->fileInput(); ?>
-                        <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
+                        $form1 = ActiveForm::begin(["id" => "modal-upload-form"]);
+                        $form1->field($model, "zipFile")->fileInput();
+                        echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
                         <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>"/>
-                        <!-- <button class="btn btn-lg btn-success">Submit</button> -->
-                        <?php ActiveForm::end(); ?>';
+                        <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
+                        ActiveForm::end();
 
                         //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
                         Modal::end();
