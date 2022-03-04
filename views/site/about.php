@@ -164,6 +164,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<hr/>
 <div>
     <var>
         <h2><a href="#todo">TODO & DONE</a></h2>
