@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4">
                 <h2>Main Menu</h2>
                 <hr/>
-                <h3>Upload LTI Activity (Upload Menu)</h3>
+                <h3>Upload Activity (Upload Menu)</h3>
 
                 <p>Permite subir y registrar contenidos complejos (eContent), en un único archivo .zip sin espacios en blanco, eñes o tildes en
                     el nombre que se utilizará como plantilla para publicarlo en una URL, registrarlo en el Servidor
