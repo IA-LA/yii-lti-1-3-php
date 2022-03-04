@@ -163,7 +163,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <p><a class="btn btn-default" href="index.php?r=upload%2Fdelete">Borrado &raquo;</a></p>
         </div>
     </div>
-    <div>
+</div>
+<div>
+    <kbd>
         <h2><a href="#todo">TODO & DONE</a></h2>
         <ol>
             <b>CLIENTE SERVIDOR LTI</b>
@@ -188,6 +190,5 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>TODO</code> Paso mensajes LTI Advantage (AGS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
             <li><code>TODO</code> Paso mensajes LTI Advantage (NPRS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
         </ol>
-    </div>
-
+    </kbd>
 </div>
