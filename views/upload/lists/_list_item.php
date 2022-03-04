@@ -40,7 +40,7 @@ Url::remember();
             //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
             Modal::end();
         ?>
-        <?= $model['buttonU'] ?> <?= $model['buttonD'] ?>
+        <?= $model['buttonU'] ?> <?= $model['buttonD'] ?> <?= $model['buttonP'] ?>
     </h5>
 </article>
 
