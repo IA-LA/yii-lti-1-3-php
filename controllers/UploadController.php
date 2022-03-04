@@ -1201,7 +1201,7 @@ class UploadController extends Controller
             $model = new PublishForm();
 
             // form is send successfully
-            if (Yii::$app->request->isPost) {
+            if ($model->load(Yii::$app->request->isPost) && $model->login()) {
                 Yii::$app->session->setFlash('publishFormSubmitted');
 
                 $publish = $model->publish(Yii::$app->request->post('PublishForm')['id']);
