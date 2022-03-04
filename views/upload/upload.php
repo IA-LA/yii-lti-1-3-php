@@ -332,6 +332,7 @@ Url::remember();
                             // user must click cancel or X to close
                             //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
                         ]);
+
                             // Formulario activo
                             //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
                             $form = ActiveForm::begin(["id" => "upload-form"]);
@@ -345,6 +346,7 @@ Url::remember();
                             ActiveForm::end();
 
                         Modal::end();
+
                         echo Html::Button('Upload', ['class' => 'btn btn-primary', 'name' => 'modal-upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u'])
                     ?>
                 </div>

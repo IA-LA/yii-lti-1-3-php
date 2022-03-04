@@ -331,57 +331,36 @@ Url::remember();
         <div class="row">
             <div class="col-lg-5">
                 <?php
-                // Modal UPLOAD
-                //$modelU = new UpladForm();
-                // https://devreadwrite.com/posts/yii2-basic-advanced-authorization-form-in-modal-window
-                Modal::begin([
-                    'headerOptions' => ['id' => 'modalHeader'],
-                    'header' => '<h2>' . Html::encode($this->title) . '</h2>',
-                    //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-                    'id' => 'modal-ur',
-                    //'size' => 'modal-lg',
-                    //keeps from closing modal with esc key or by clicking out of the modal.
-                    // user must click cancel or X to close
-                    //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-                ]);
-                // Formulario activo
-                //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
-                $form = ActiveForm::begin(["id" => "uploadregister-form"]);
-                echo $form->field($model, "zipFile")->fileInput();
-                echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
-                echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                                      <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                                      <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
-                echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-primary', 'name' => 'uploadregister-button']);
-                ActiveForm::end();
+                    // Modal UPLOAD
+                    //$modelU = new UpladForm();
+                    // https://devreadwrite.com/posts/yii2-basic-advanced-authorization-form-in-modal-window
+                    Modal::begin([
+                        'headerOptions' => ['id' => 'modalHeader'],
+                        'header' => '<h2>' . Html::encode($this->title) . '</h2>',
+                        //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
+                        'id' => 'modal-ur',
+                        //'size' => 'modal-lg',
+                        //keeps from closing modal with esc key or by clicking out of the modal.
+                        // user must click cancel or X to close
+                        //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
+                    ]);
 
-                Modal::end();
+                        // Formulario activo
+                        //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
+                        $form = ActiveForm::begin(["id" => "uploadregister-form"]);
+                            echo $form->field($model, "zipFile")->fileInput();
+                            echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
+                            echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
+                                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
+                            echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-primary', 'name' => 'uploadregister-button']);
+                        ActiveForm::end();
+
+                    Modal::end();
+
+                    echo Html::Button('Upload & Register', ['class' => 'btn btn-primary', 'name' => 'modal-uploadregister-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
                 ?>
-
-                <?= Html::Button('Upload & Register', ['class' => 'btn btn-primary', 'name' => 'modal-uploadregister-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur']) ?>
-
-                <?php $form = ActiveForm::begin(['id' => 'uploadregister-form']); ?>
-
-                    <!-- Modal de Upload -->
-                    <?= $form->field($model, 'zipFile')->fileInput() ?>
-
-                    <!--
-                    <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                    ]) ?>
-                    -->
-
-                    <!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-
-                    <!-- <button class="btn btn-lg btn-success">Submit</button> -->
-                    <div class="form-group">
-                        <?= Html::submitButton('Upload & Register', ['class' => 'btn btn-primary', 'name' => 'uploadregister-button']) ?>
-                    </div>
-
-                <?php ActiveForm::end() ?>
-
             </div>
         </div>
 
