@@ -345,7 +345,7 @@ Url::remember();
                             ActiveForm::end();
 
                         Modal::end();
-                        Html::Button('Upload', ['class' => 'btn btn-primary', 'name' => 'modal-upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u'])
+                        echo Html::Button('Upload', ['class' => 'btn btn-primary', 'name' => 'modal-upload-button',  'data-toggle' => 'modal', 'data-target' => '#modal-u'])
                     ?>
                 </div>
             </div>
