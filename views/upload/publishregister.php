@@ -156,20 +156,22 @@ Url::remember();
                             <li>Repositorio ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ sin cambios.</li>
                             <li>Web de publicación: <b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank">´<?= Html::encode($namedir); ?>´</a></i></b> sin modificaciones.</li>
                             <!--
-                                        <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
-                                        <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
-                                        -->
+                                <li>Fichero de la Actividad ´<b><i><?= $namedir//$file ?></i></b>´ descomprimido correctamente.<br/></li>
+                                <li>Web URL de la Actividad ´<b><i><a href="uploads/publicacion/<?= Html::encode($namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                            -->
                         </ol>
                     </div>
             <?php
                         // TODO Registra ID=$namedir y URL='uploads/publicacion/$namedir/'
                         // REGISTRO
                         ////////////////////////////////
-                        echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                        echo '<div class="row alert alert-success">
+                                <div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="'. $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.
+                              </div>' .
                             '<form action="index.php?r=lti%2Fcreate" method="post" style="display: inline; white-space: nowrap">
                                 <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                 <input type="hidden" name="id" value="'  . $namedir . '">
-                                <input type="hidden" name="url" value="uploads/publicacion/' . $namedir . '">
+                                <input type="hidden" name="url" value="'. $serverPub . '/' . $namedir . '">
                                 <button type="submit" class="btn btn-lg btn-primary">Create</button>
                               </form>'.
                             '</div>';
