@@ -1205,6 +1205,8 @@ class UploadController extends Controller
             if (Yii::$app->request->isPost) {
                 Yii::$app->session->setFlash('publishFormSubmitted');
 
+                // Parámetros llamada a la Vista delete desde los listados Lists
+                $params = Yii::$app->request->post();
                 $publish = $model->publish(isset(Yii::$app->request->post('PublishForm')['id'])?Yii::$app->request->post('PublishForm')['id']:$params['id']);
                 // publish does successfully
                 if ($publish['result']) {
