@@ -166,7 +166,13 @@ Url::remember();
                         // REGISTRO
                         ////////////////////////////////
                         echo '<div class="row alert alert-success"><div class="col-lg-6">La actividad LTI puede ser registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="uploads/publicacion/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                            '<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=lti%2Fcreate">Registrar</a></div></div>';
+                            '<form action="index.php?r=lti%2Fcreate" method="post" style="display: inline; white-space: nowrap">
+                                <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                <input type="hidden" name="id" value="'  . $namedir . '">
+                                <input type="hidden" name="url" value="uploads/publicacion/' . $namedir . '">
+                                <button type="submit" class="btn btn-lg btn-primary">Create</button>
+                              </form>'.
+                            '</div>';
                         //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
