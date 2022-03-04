@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-4">
                 <h2>Main Menu</h2>
                 <hr/>
-                <h3>Upload Activity</h3>
+                <h3>Upload Activity (Upload Menu)</h3>
 
                 <p>Permite subir y registrar contenidos complejos, en un único archivo .zip sin espacios en blanco, eñes o tildes en
                     el nombre que se utilizará como plantilla para publicarlo en una URL, registrarlo en el Servidor
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p><a class="btn btn-default" href="index.php?r=upload%2Fuploadregister">Upload & Register &raquo;</a></p>
 
                 <hr/>
-                <h3>Publish Project</h3>
+                <h3>Publish Project (Git Menu)</h3>
 
                 <p>Permite publicar y registrar el proyecto Git de contenidos complejos, con un id sin espacios en blanco, eñes o tildes en
                     el nombre, para trabajar en él de forma distribuida.</p>
