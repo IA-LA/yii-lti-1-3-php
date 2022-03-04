@@ -10,7 +10,7 @@ use yii\captcha\Captcha;
 
 use yii\helpers\Url;
 
-$this->title = 'Publish & Register Git as LTI Activity';
+$this->title = 'Publish Git & Register as LTI Activity';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');

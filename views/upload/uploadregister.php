@@ -11,7 +11,7 @@ use yii\bootstrap\Modal;
 
 use yii\helpers\Url;
 
-$this->title = 'Upload & Register Zip as LTI Activity';
+$this->title = 'Upload Zip & Register as LTI Activity';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
