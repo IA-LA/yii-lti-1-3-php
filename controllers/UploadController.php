@@ -1121,7 +1121,7 @@ class UploadController extends Controller
                                     'buttonP' => '<form action="index.php?r=upload%2Fpublish" method="post" style="display: inline; white-space: nowrap">
                                                     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
-                                                    <button type="submit" class="btn btn-lg btn-primary">Publish</button>
+                                                    <button type="submit" class="btn btn-lg btn-success">Publish</button>
                                                   </form>',
                                 ];
                                 $responseModels[] = $responseItem;
