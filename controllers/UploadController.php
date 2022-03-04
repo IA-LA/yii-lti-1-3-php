@@ -1117,6 +1117,12 @@ class UploadController extends Controller
                                                     <input type="hidden" name="id" value="' . $value['_id'] . '">
                                                     <button type="submit" class="btn btn-lg btn-xs btn-danger">Delete</button>
                                                   </form>',
+                                    //'buttonP' => '<a href="index.php?r=upload%2Fdelete" class="btn btn-xs btn-danger">Delete</a> '
+                                    'buttonP' => '<form action="index.php?r=upload%2Fpublish" method="post" style="display: inline; white-space: nowrap">
+                                                    <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>">
+                                                    <input type="hidden" name="id" value="' . $value['_id'] . '">
+                                                    <button type="submit" class="btn btn-lg btn-primary">Publish</button>
+                                                  </form>',
                                 ];
                                 $responseModels[] = $responseItem;
                                 //}
@@ -1213,7 +1219,13 @@ class UploadController extends Controller
                 }
             }
 
-            return $this->render('publish', ['model' => $model]);
+            // Parámetros llamada a la Vista delete desde los listados Lists
+            $params = Yii::$app->request->post();
+
+            return $this->render('publish', [
+                'model' => $model,
+                'id' => isset($params['id'])? $params['id'] :' ',
+            ]);
         }
     }
 

@@ -189,7 +189,7 @@ Url::remember();
             <div class="col-lg-5">
                 <?php $form = ActiveForm::begin(['id' => 'publish-form']); ?>
 
-                    <?= $form->field($model, 'id')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' ']) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
