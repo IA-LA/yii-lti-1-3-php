@@ -165,7 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div>
         <pre>
-        <h2>TODO & DONE</h2>
+            <h2><a href="#todo">TODO & DONE</a></h2>
             <ol>
                 <b>CLIENTE SERVIDOR LTI</b>
                 <li><del><samp>DONE</samp></del> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
