@@ -164,32 +164,30 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div>
-        <pre>
-            <h2><a href="#todo">TODO & DONE</a></h2>
-            <ol>
-                <b>CLIENTE SERVIDOR LTI</b>
-                <li><del><samp>DONE</samp></del> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
-                <li><del><samp>DONE</samp></del> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
-                <li><del><samp>DONE</samp></del> Almcenar los Uploads de .zip, publicación y proyecto Git en la colección `Uploads`de la BBDD.</li>
-                <li><del><samp>DONE</samp></del> Almcenar las Actividades publicadas en la colección `Ltis`de la BBDD.</li>
-                <li><del><samp>DONE</samp></del> Registrar automáticamente ID + URL de la Actividad LTI y mo LTI (eContent) publicada en el Servidor LTI</li>
-                <li><del><samp>DONE</samp></del> Registrar automáticamente ZIP + URL y Proyecto Git de un Upload en el lServidor LTI</li>
-                <li><del><samp>DONE</samp></del> Platform Menu</li>
-                <li><del><samp>DONE</samp></del> Update Form (Git, Lti y Platform)</li>
-                <li><del><samp>DONE</samp></del> List con opciones CRUD</li>
-                <li><code>TODO</code> List de Upload con opciones de Publish</li>
+        <h2><a href="#todo">TODO & DONE</a></h2>
+        <ol>
+            <b>CLIENTE SERVIDOR LTI</b>
+            <li><del><samp>DONE</samp></del> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
+            <li><del><samp>DONE</samp></del> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
+            <li><del><samp>DONE</samp></del> Almcenar los Uploads de .zip, publicación y proyecto Git en la colección `Uploads`de la BBDD.</li>
+            <li><del><samp>DONE</samp></del> Almcenar las Actividades publicadas en la colección `Ltis`de la BBDD.</li>
+            <li><del><samp>DONE</samp></del> Registrar automáticamente ID + URL de la Actividad LTI y mo LTI (eContent) publicada en el Servidor LTI</li>
+            <li><del><samp>DONE</samp></del> Registrar automáticamente ZIP + URL y Proyecto Git de un Upload en el lServidor LTI</li>
+            <li><del><samp>DONE</samp></del> Platform Menu</li>
+            <li><del><samp>DONE</samp></del> Update Form (Git, Lti y Platform)</li>
+            <li><del><samp>DONE</samp></del> List con opciones CRUD</li>
+            <li><del><samp>DONE</samp></del> List de Upload con opciones de Publish</li>
 
-                <b>PLATAFORMAS LMS</b>
-                <li><del><samp>DONE</samp></del> Proveer <a href="http://ailanto-dev.intecca.uned.es:9002/login.php?iss=10120210421153903000000a&login_hint=123456&target_link_uri=https://ailanto-dev.intecca.uned.es/lti/publicacion/10120210421153903000000a&lti_message_hint=123456" target="_blank">una Actividad <b>HTTP</b> no LTI</a> (<a href="https://ailanto-dev.intecca.uned.es/lti/publicacion/10120210421153903000000a" target="_blank">eContent</a>) en entornos LMS (<a href="http://ailanto-dev.intecca.uned.es:8080/courses/course-v1:edX+DemoX+Demo_Course/courseware/17dbb7a0acaa453e9811b67028973ca0/48f40f1eda24409384eb6a1415536c01/1?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40vertical%2Bblock%407a2650b00f89411792c3ab18fa631aa5" target="_blank">EdX</a>, <a href="https://ailanto-dev.intecca.uned.es/eTrivial/course/view.php?id=52#section-0" target="_blank">Moodle</a>, etc)</li>
-                <li><code>TODO</code> Proveer una Actividad <b>HTTPS</b> no LTI (eContent) en entornos LMS (<a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a>, <a href="https://ailanto-dev.intecca.uned.es/eTrivial/" target="_blank">Moodle</a>, etc)</li>
-                <li><del><samp>DONE</samp></del> Proveer un <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041" target="_blank">Recurso LTI 1.3 (LtiResourceLinkRequest)</a> <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041/rosters" target="_blank">vía OIDC</a> en plataformas <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> simuladas</li>
-                <li><code>TODO</code> Proveer un Recurso LTI 1.3 (LtiResourceLinkRequest) <a href="">vía OIDC</a> en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a>, etc reales</li>
-                <li><code>TODO</code> Paso mensajes LTI Advantage (DeepLinkingRequest DL) en plataformas <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> simuladas</li>
-                <li><code>TODO</code> Paso mensajes LTI Advantage (DeepLinkingRequest DL) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
-                <li><code>TODO</code> Paso mensajes LTI Advantage (AGS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
-                <li><code>TODO</code> Paso mensajes LTI Advantage (NPRS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
-            </ol>
-        </pre>
-    </p>
+            <b>PLATAFORMAS LMS</b>
+            <li><del><samp>DONE</samp></del> Proveer <a href="http://ailanto-dev.intecca.uned.es:9002/login.php?iss=10120210421153903000000a&login_hint=123456&target_link_uri=https://ailanto-dev.intecca.uned.es/lti/publicacion/10120210421153903000000a&lti_message_hint=123456" target="_blank">una Actividad <b>HTTP</b> no LTI</a> (<a href="https://ailanto-dev.intecca.uned.es/lti/publicacion/10120210421153903000000a" target="_blank">eContent</a>) en entornos LMS (<a href="http://ailanto-dev.intecca.uned.es:8080/courses/course-v1:edX+DemoX+Demo_Course/courseware/17dbb7a0acaa453e9811b67028973ca0/48f40f1eda24409384eb6a1415536c01/1?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40vertical%2Bblock%407a2650b00f89411792c3ab18fa631aa5" target="_blank">EdX</a>, <a href="https://ailanto-dev.intecca.uned.es/eTrivial/course/view.php?id=52#section-0" target="_blank">Moodle</a>, etc)</li>
+            <li><code>TODO</code> Proveer una Actividad <b>HTTPS</b> no LTI (eContent) en entornos LMS (<a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a>, <a href="https://ailanto-dev.intecca.uned.es/eTrivial/" target="_blank">Moodle</a>, etc)</li>
+            <li><del><samp>DONE</samp></del> Proveer un <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041" target="_blank">Recurso LTI 1.3 (LtiResourceLinkRequest)</a> <a href="https://lti-ri.imsglobal.org/platforms/2630/resource_links/62041/rosters" target="_blank">vía OIDC</a> en plataformas <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> simuladas</li>
+            <li><code>TODO</code> Proveer un Recurso LTI 1.3 (LtiResourceLinkRequest) <a href="">vía OIDC</a> en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EDX</a>, etc reales</li>
+            <li><code>TODO</code> Paso mensajes LTI Advantage (DeepLinkingRequest DL) en plataformas <a href="https://lti-ri.imsglobal.org/platforms/2630" target="_blank">IMS Global</a> simuladas</li>
+            <li><code>TODO</code> Paso mensajes LTI Advantage (DeepLinkingRequest DL) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
+            <li><code>TODO</code> Paso mensajes LTI Advantage (AGS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
+            <li><code>TODO</code> Paso mensajes LTI Advantage (NPRS) en plataformas <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc reales</li>
+        </ol>
+    </div>
 
 </div>
