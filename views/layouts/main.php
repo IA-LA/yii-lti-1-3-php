@@ -45,7 +45,7 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => Yii::$app->user->isGuest ? ('Tools') : ('Tools (' . Yii::$app->user->identity->username . ')'),
+            ['label' => Yii::$app->user->isGuest ? ('LTI Tools') : ('LTI Tools (' . Yii::$app->user->identity->username . ')'),
                 'items' => Yii::$app->user->isGuest ? ([]) : ([
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Main Menu</li>',
