@@ -336,7 +336,7 @@ Url::remember();
                             // Formulario activo
                             //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
                             $form = ActiveForm::begin(["id" => "upload-form"]);
-                                echo $form->field($model, "zipFile")->fileInput();
+                                echo $form->field($model, 'zipFile')->fileInput();
                                 echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
                                 echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
