@@ -47,7 +47,6 @@ AppAsset::register($this);
             ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => Yii::$app->user->isGuest ? ('LTI Tools') : ('LTI Tools (' . Yii::$app->user->identity->username . ')'),
                 'items' => Yii::$app->user->isGuest ? ([]) : ([
-                    '<li class="divider"></li>',
                     '<li class="dropdown-header">Main Menu</li>',
                     '<ul style="list-style-type:none">',
                     '<li class="dropdown-header">Upload Menu</li>',
