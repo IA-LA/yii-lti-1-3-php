@@ -180,7 +180,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><del><samp>DONE</samp></del> Update Form (Git, Lti y Platform)</li>
             <li><del><samp>DONE</samp></del> List con opciones CRUD</li>
             <li><del><samp>DONE</samp></del> List de Upload con opciones de Publish</li>
-            <li><code>TODO</code>Yii ActiveForm fileInput bootstrap style</li>
+            <li><code>TODO</code>Yii ActiveForm fileInput <a href="https://yiigist.com/package/kartik-v/yii2-widget-fileinput">bootstrap style</a></li>
 
             <b>PLATAFORMAS LMS</b>
             <li><del><samp>DONE</samp></del> Proveer <a href="http://ailanto-dev.intecca.uned.es:9002/login.php?iss=10120210421153903000000a&login_hint=123456&target_link_uri=https://ailanto-dev.intecca.uned.es/lti/publicacion/10120210421153903000000a&lti_message_hint=123456" target="_blank">una Actividad <b>HTTP</b> no LTI</a> (<a href="https://ailanto-dev.intecca.uned.es/lti/publicacion/10120210421153903000000a" target="_blank">eContent</a>) en entornos LMS (<a href="http://ailanto-dev.intecca.uned.es:8080/courses/course-v1:edX+DemoX+Demo_Course/courseware/17dbb7a0acaa453e9811b67028973ca0/48f40f1eda24409384eb6a1415536c01/1?activate_block_id=block-v1%3AedX%2BDemoX%2BDemo_Course%2Btype%40vertical%2Bblock%407a2650b00f89411792c3ab18fa631aa5" target="_blank">EdX</a>, <a href="https://ailanto-dev.intecca.uned.es/eTrivial/course/view.php?id=52#section-0" target="_blank">Moodle</a>, etc)</li>
