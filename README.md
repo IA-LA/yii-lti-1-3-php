@@ -63,8 +63,9 @@ FOLDER STRUCTURE
             site/               Base site
       web/              contains the entry script and Web resources
             index...            application launcher
-            uploads/            .zip files uploaded
+            uploads/            uploaded .zip files
       widgets/          contains diferent external modules
+
       
 MAIN URLs
 ------------
@@ -79,6 +80,7 @@ Local:
 ~~~
 http://10.201.54.31:8000/
 ~~~
+
 
 ## Repository:
 Global:
@@ -123,7 +125,6 @@ DIRECTORY STRUCTURE
       vendor/             contains dependent 3rd-party packages
       views/              contains view files for the Web application
       web/                contains the entry script and Web resources
-
 
 
 REQUIREMENTS
