@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * ReadQueryForm is the model behind the read form.
+ * ReadForm is the model behind the read form.
  */
 class ReadForm extends Model
 {
@@ -65,7 +65,7 @@ class ReadForm extends Model
                 ->setTo('query@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject('Query ' . $url)
+                ->setSubject('Read ' . $url)
                 ->setTextBody('Consulta de información de una Plataforma')
                 ->send();
 
