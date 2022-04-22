@@ -34,9 +34,9 @@ Url::remember();
                         Consulta la información de una Actividad LTI registrada.
                         Thank you.
                     </p>
-                    <code>';
-        print_r($model['data']);
-        echo '</code>';
+                    <pre>' .
+                        print_r($model['data'], true) .
+                    '</pre>';
         //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
         Modal::end();
         ?>
