@@ -30,7 +30,7 @@ Url::remember();
             //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
         ]);
         // Reemplaza & y evita que el parámetro `&lti=` sea transformado en `<i=`
-        $model['data']['launch_url'] = str_replace('&', '%266', $model['data']['launch_url']);
+        $model['data']['launch_url'] = str_replace('&', '%26', $model['data']['launch_url']);
         echo    '<div id="modalContent"></div>
                     <p>
                         Consulta la información de una Actividad LTI registrada.
