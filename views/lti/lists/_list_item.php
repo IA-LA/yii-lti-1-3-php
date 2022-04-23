@@ -29,12 +29,14 @@ Url::remember();
             // user must click cancel or X to close
             //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
         ]);
+        // Reemplaza & y evita que el parámetro `&lti=` sea transformado en `<i=`
+        $model['data']['launch_url'] = str_replace('&', '%266', $model['data']['launch_url']);
         echo    '<div id="modalContent"></div>
                     <p>
                         Consulta la información de una Actividad LTI registrada.
                         Thank you.
                     </p>
-                    <pre>' . str_replace('&', '%26', $model['data']['launch_url']) .
+                    <pre>' .
                         print_r($model['data'], true) .
                     '</pre>';
         //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
