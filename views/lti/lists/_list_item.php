@@ -34,7 +34,7 @@ Url::remember();
                         Consulta la información de una Actividad LTI registrada.
                         Thank you.
                     </p>
-                    <pre>' .
+                    <pre>' . str_replace('&', '%26', $model['data']['launch_url']) .
                         print_r($model['data'], true) .
                     '</pre>';
         //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
