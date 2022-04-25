@@ -29,15 +29,17 @@ Url::remember();
                 // user must click cancel or X to close
                 //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
             ]);
-            echo    '<div id="modalContent"></div>
-                    <p>
-                        Consulta la información de un Upload ya registrado.
-                        Thank you.
-                    </p>
-                    <pre>';
-            print_r($model['data']);
-            echo '</pre>';
-            //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
+                echo '<div id="modalContent">
+                        <p>
+                            Consulta la información de una Actividad LTI registrada.
+                            Thank you.
+                        </p>
+                        <pre>' .
+                            // Evita que el parámetro `&lti=` sea transformado en `<i=`
+                            Html::encode(print_r($model['data'], true)) .
+                        '</pre>
+                    </div>';
+                //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
             Modal::end();
         ?>
         <?= $model['buttonU'] ?> <?= $model['buttonD'] ?> <?= $model['buttonP'] ?>
