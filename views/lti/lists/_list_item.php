@@ -37,6 +37,7 @@ Url::remember();
                         Thank you.
                     </p>
                     <pre>' .
+                    // Evita que el parámetro `&lti=` sea transformado en `<i=`
                     Html::encode(print_r($model['data'], true)) .
                     '</pre>';
         //$this->render('//upload/crud/read',['model' => $modelR, 'id' => '*']);
