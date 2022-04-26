@@ -61,7 +61,7 @@ class CreateForm extends Model
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo('register@a.a')
+                ->setTo('create@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Create ' . $url)

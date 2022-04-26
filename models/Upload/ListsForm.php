@@ -66,7 +66,7 @@ class ListsForm extends Model
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo('query@a.a')
+                ->setTo('lists@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Lists ' . $url)

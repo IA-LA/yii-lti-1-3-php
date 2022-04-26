@@ -62,7 +62,7 @@ class ReadForm extends Model
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
-                ->setTo('query@a.a')
+                ->setTo('read@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
                 ->setReplyTo(['a@a.a' => $this->id])
                 ->setSubject('Read ' . $url)
