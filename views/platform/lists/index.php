@@ -17,7 +17,7 @@ Url::remember();
 </div>
 <div class="row">
     <h4><pre>Iss/Audience (ID cliente)</pre></h4>
-    <h5><pre>User-Fecha                 Login       OAuth       JWKS (URLs)                            Acción</pre></h5>
+    <h5><pre>User-Fecha                 Login       OAuth       JWKS (URLs)                 Acción</pre></h5>
     <?= ListView::widget([
         'options' => [
             'tag' => 'div',
