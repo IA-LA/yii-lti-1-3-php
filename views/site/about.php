@@ -169,7 +169,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <var>
         <h2><a href="#todo">TODO & DONE</a></h2>
         <ol>
-            <b>CLIENTE SERVIDOR LTI</b>
+
+            <b>CLIENTE LTI</b>
             <li><del><samp>DONE</samp></del> Subir a `uploads/` y publicar .zip eContent URL `publicacion/IdDateTimea/`</li>
             <li><del><samp>DONE</samp></del> Crear Proyecto Git la Actividad (eContrent) como `git/IdDateTimea.git`</li>
             <li><del><samp>DONE</samp></del> Almcenar los Uploads de .zip, publicación y proyecto Git en la colección `Uploads`de la BBDD.</li>
@@ -194,6 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><code>TODO</code> Paso mensajes LTI Advantage (DeepLinkingRequest DL) en plataformas reales: <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc.</li>
             <li><code>TODO</code> Paso mensajes LTI Advantage (AGS) en plataformas reales: <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc.</li>
             <li><code>TODO</code> Paso mensajes LTI Advantage (NPRS) en plataformas reales: <a href="http://ailanto-dev.intecca.uned.es:8080" target="_blank">EdX</a>, etc.</li>
+
         </ol>
     </var>
 </div>

@@ -15,12 +15,12 @@ use app\models\Upload\UploadForm;
 use yii\web\UploadedFile;
 
 /*REGISTER*/
-use app\models\RegisterForm;
+use app\models\crud\RegisterForm;
 use yii\helpers\ArrayHelper;
 use yii\httpclient\Client;
 
 /*QUERY*/
-use app\models\QueryForm;
+use app\models\crud\QueryForm;
 use yii\helpers\Html;
 
 /* LISTS */
@@ -34,7 +34,7 @@ use app\models\crud\DeleteForm;
 use app\models\Upload\PublishForm;
 use app\models\Upload\PublishRegisterForm;
 
-class UploadController extends Controller
+class CrudController extends Controller
 {
 
     /**
@@ -233,7 +233,7 @@ class UploadController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new CreateForm();
+            $model2 = new RegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('upload/register', [
@@ -248,7 +248,7 @@ class UploadController extends Controller
 
         }
         else {
-            $model = new CreateForm();
+            $model = new RegisterForm();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
@@ -417,7 +417,7 @@ class UploadController extends Controller
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new CreateForm();
+            $model2 = new QueryForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
                 return $this->render('upload/query', [
@@ -432,7 +432,7 @@ class UploadController extends Controller
 
         }
         else {
-            $model = new ReadForm();
+            $model = new QueryForm();
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
