@@ -138,6 +138,7 @@ class PlatformController extends Controller
                         ->setUrl($url . $ruta) //$_POST['CreateForm']['id']) Parámetros de creación del registro
                         ->setData([
                             'id_actividad' => Yii::$app->request->post('CreateForm')['id'],
+                            'issuer' => Yii::$app->request->post('CreateForm')['issuer'],
                             "credentials" => [
                                 'client_id' => Yii::$app->request->post('CreateForm')['client_id'],
                                 'auth_login_url' => Yii::$app->request->post('CreateForm')['auth_login_url'],
@@ -518,8 +519,8 @@ class PlatformController extends Controller
                         ->setUrl($url . $ruta)
                         //$_POST['UpdateForm']['id']) Parámetros del registro
                         ->setData([
-                                'id_actividad' => Yii::$app->request->post('UpdateForm')['id'],
-                                'issuer' => Yii::$app->request->post('UpdateForm')['id'],
+                                'id_actividad' => Yii::$app->request->post('UpdateForm')['issuer'],
+                                'issuer' => Yii::$app->request->post('UpdateForm')['issuer'],
                                 "credentials" => [
                                     'client_id' => Yii::$app->request->post('UpdateForm')['client_id'],
                                     'auth_login_url' => Yii::$app->request->post('UpdateForm')['auth_login_url'],
