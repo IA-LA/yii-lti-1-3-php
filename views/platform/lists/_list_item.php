@@ -30,7 +30,7 @@ use yii\bootstrap\Modal;
             ]);
                 echo '<div id="modalContent">
                         <p>
-                            Consulta la información de una Actividad LTI registrada.
+                            Consulta la información de una Plataforma registrada.
                             Thank you.
                         </p>
                         <pre>' .

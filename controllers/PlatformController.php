@@ -1079,7 +1079,7 @@ class PlatformController extends Controller
                                 //if($index >= 0) {
                                 $responseItem = [
                                     //'list' => $index,//'Listado',
-                                    'id' => $value['_id'] . ' (' . $value['credentials']['client_id'] . ')',
+                                    'id' => $value['issuer'] . ' (' . $value['credentials']['client_id'] . ')',
                                     'title' => $value['user']['email'] . ' ' . substr($value['zf'], 0, 10),
                                     'link'  => '<a href="' . $value['credentials']['auth_login_url'] . '" target="_blank">Login</a>',
                                     'link1' => '<a href="' . $value['credentials']['auth_token_url'] . '" target="_blank">OAuth-Endpoint</a>',

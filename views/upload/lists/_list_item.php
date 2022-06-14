@@ -31,7 +31,7 @@ Url::remember();
             ]);
                 echo '<div id="modalContent">
                         <p>
-                            Consulta la información de una Actividad LTI registrada.
+                            Consulta la información de un Upload registrado.
                             Thank you.
                         </p>
                         <pre>' .
