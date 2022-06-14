@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'update-form']); ?>
 
-                    <!-- <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' ']) ?> -->
+                    <?= $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id)? $id : ' '/*, 'type' => "hidden"*/]) ?>
                     <?= $form->field($model, 'issuer')->textInput(['value' => isset($issuer)? $issuer : ' ']) ?>
 
                     <!-- Credentials -->

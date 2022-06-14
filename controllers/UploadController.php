@@ -460,7 +460,7 @@ class UploadController extends Controller
             if ($model->load($request = Yii::$app->request->post()) && $model->update(Yii::$app->params['adminEmail'])) {
                 Yii::$app->session->setFlash('updateFormSubmitted');
 
-                // POST UPDATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
+                // PUT UPDATE (https://stackoverflow.com/questions/19905118/how-to-call-rest-api-from-view-in-yii)
                 $client = new Client();
 
                 if (Yii::$app->request->post('UpdateForm')['id'] !== '') {
