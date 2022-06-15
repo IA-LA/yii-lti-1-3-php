@@ -63,7 +63,8 @@ AppAsset::register($this);
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">LTI Menu</li>',
                     '<ul style="list-style-type:none">',
-                    ['label' => 'Listados', 'url' => ['lists/index']],
+                    // TODO Listados directos
+                    //['label' => 'Listados', 'url' => ['lists/index']],
                     ['label' => 'List', 'url' => ['lti/lists']],
                     '<li class="dropdown-header">CRUD</li>',
                     '<ul style="list-style-type:none">',
