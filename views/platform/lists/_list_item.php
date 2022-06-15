@@ -30,7 +30,7 @@ use yii\bootstrap\Modal;
             ]);
                 echo '<div id="modalContent">
                         <p>
-                            Consulta la información de una Plataforma registrada.
+                            Consulta la información de una <b>Plataforma</b> registrada.
                             Thank you.
                         </p>
                         <pre>' .

@@ -33,7 +33,7 @@ Url::remember();
                 //$model['data']['launch_url'] = str_replace('&', '%26', $model['data']['launch_url']);
                 echo '<div id="modalContent">
                         <p>
-                            Consulta la información de una Actividad LTI registrada.
+                            Consulta la información de una <b>Actividad LTI</b> registrada.
                             Thank you.
                         </p>
                         <pre>' .

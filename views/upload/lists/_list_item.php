@@ -31,7 +31,7 @@ Url::remember();
             ]);
                 echo '<div id="modalContent">
                         <p>
-                            Consulta la información de un Upload registrado.
+                            Consulta la información de un <b>Upload</b> registrado.
                             Thank you.
                         </p>
                         <pre>' .
