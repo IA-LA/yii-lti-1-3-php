@@ -63,7 +63,7 @@ AppAsset::register($this);
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">LTI Menu</li>',
                     '<ul style="list-style-type:none">',
-                    ['label' => 'Listados', 'url' => ['index.php?r=lti/index&title=Listado&back=lists&controller=Lti&formulario=ListsForm&model[id]=*&model[url]=&model[verifyCode]=nusetuc&id=*&url=']],
+                    ['label' => 'Listados', 'url' => ['lti/index&title=Listado&back=lists&controller=Lti&formulario=ListsForm&model[id]=*&model[url]=&model[verifyCode]=nusetuc&id=*&url=']],
                     ['label' => 'List', 'url' => ['lti/lists']],
                     '<li class="dropdown-header">CRUD</li>',
                     '<ul style="list-style-type:none">',
