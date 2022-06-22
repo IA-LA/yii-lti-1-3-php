@@ -355,7 +355,7 @@ class UploadController extends Controller
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Consulta: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                         <h1>Consulta</h1>
-                        <p class="lead">Copia las URL de acceso al upload.</p>' .
+                        <p class="lead">Copia las URL de acceso al Upload.</p>' .
                         'ID: <code>' . $response->data['data']['id_actividad'] . '</code><br/>' .
                         'URL: <code>' . Html::encode($response->data['data']['upload']['publicacion_url']) . '</code><br/>' .
                         'GIT: <code>' . Html::encode($response->data['data']['upload']['git_url']) . '</code><br/>' .
@@ -544,7 +544,7 @@ class UploadController extends Controller
 
                     $content .= '<div class="jumbotron">
                         <h1>Actualización</h1>
-                        <p class="lead">de Upload realizado correctamente.</p>' .
+                        <p class="lead">de Upload realizada correctamente.</p>' .
                         'ID: <code>' .
                         Html::encode($response->data['data']['register']['id_actividad']) .
                         '</code><br/>' .
@@ -741,7 +741,7 @@ class UploadController extends Controller
                     $content = '<div><p/><p/><p/><p class="alert alert-success"> Borrado: ' . $response->data['result'] . '</p>';
                     $content .= '<div class="jumbotron">
                             <h1>Borrado</h1>
-                            <p class="lead">Borradas las credenciales de acceso a la actividad.</p>' .
+                            <p class="lead">Borradas las credenciales de acceso al Upload.</p>' .
                         'REGISTRO: ' . Yii::$app->request->post('DeleteForm')['id'] . ' <code>' . Html::encode($response->data['data']) . '</code><br/>' .
                         '<p/><p/><p/>' .
                         '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
@@ -1489,7 +1489,7 @@ class UploadController extends Controller
                         $content .= '<div class="jumbotron">
                             <h1>Creación de registro</h1>
                             <p class="lead">de Actividad LTI realizado correctamente.</p>
-                            <p class="lead">Copia las credenciales de acceso al actividad.</p>' .
+                            <p class="lead">Copia las credenciales de acceso a la Actividad LTI.</p>' .
                             'ID:  <code>' . $namefile . '</code><br/>' .
                             'URL: <code>' . $serverPub . '/' . $namefile . '</code><br/>' .
                             '<p/><p/><p/>' .
