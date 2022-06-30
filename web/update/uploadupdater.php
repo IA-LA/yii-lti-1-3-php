@@ -1,5 +1,5 @@
 <?php
-/* @var $this yii\web\Update */
+/* @var $this yii\web\Updater */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\Upload\UploadUpdaterForm */
 
@@ -11,8 +11,8 @@ use yii\bootstrap\Modal;
 
 use yii\helpers\Url;
 
-$this->title = 'Upload Zip Updater';
-$this->params['breadcrumbs'][] = $this->title;
+$title = 'Upload Zip Updater';
+$params['breadcrumbs'][] = $title;
 
 // ini_set('upload_max_filesize', '10M');
 
@@ -22,7 +22,7 @@ Url::remember();
 ?>
 <div class="upload-uploadupdater">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($title) ?></h1>
 
     <?php if (($_REQUEST['file'] !== null) && ($_REQUEST['namedir'] !== null)): ?>
 
@@ -337,7 +337,7 @@ Url::remember();
                     // https://devreadwrite.com/posts/yii2-basic-advanced-authorization-form-in-modal-window
                     Modal::begin([
                         'headerOptions' => ['id' => 'modalHeader'],
-                        'header' => '<h2>' . Html::encode($this->title) . '</h2>',
+                        'header' => '<h2>' . Html::encode($title) . '</h2>',
                         //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
                         'id' => 'modal-ur',
                         //'size' => 'modal-lg',
