@@ -3,13 +3,13 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\Upload\UploadUpdaterForm */
 
-use yii\helpers\Html;
+//use yii\helpers\Html;
 /* use yii\widgets\ActiveForm;*/
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
-use yii\bootstrap\Modal;
+//use yii\bootstrap\ActiveForm;
+//use yii\captcha\Captcha;
+//use yii\bootstrap\Modal;
 
-use yii\helpers\Url;
+//use yii\helpers\Url;
 
 $title = 'Upload Zip Updater';
 $params['breadcrumbs'][] = $title;
