@@ -17,7 +17,7 @@ $params['breadcrumbs'][] = $title;
 // ini_set('upload_max_filesize', '10M');
 
 // Remember current URL
-Url::remember();
+//Url::remember();
 
 ?>
 <div class="upload-uploadupdater">
