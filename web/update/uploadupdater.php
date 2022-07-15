@@ -1,15 +1,5 @@
 <?php
-/* @var $this yii\web\Updater */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\Upload\UploadUpdaterForm */
 
-//use yii\helpers\Html;
-/* use yii\widgets\ActiveForm;*/
-//use yii\bootstrap\ActiveForm;
-//use yii\captcha\Captcha;
-//use yii\bootstrap\Modal;
-
-//use yii\helpers\Url;
 
 $title = 'Upload Zip Updater';
 $params['breadcrumbs'][] = $title;
@@ -17,14 +7,21 @@ $params['breadcrumbs'][] = $title;
 // ini_set('upload_max_filesize', '10M');
 
 // Remember current URL
-//Url::remember();
+Url::remember();
 
 ?>
 <div class="upload-uploadupdater">
 
-    <h1><?= Html::encode($title) ?></h1>
+    <h1><?= $title ?></h1>
 
-    <?php if (($_REQUEST['file'] !== null) && ($_REQUEST['namedir'] !== null)): ?>
+    <!--
+    TODO
+        $_REQUEST Parámetros de descarga
+                  file Nombre del fichero y URL
+                  namedir URL de descarga del .ZIP
+        $_FILES Parámetros del fichero enviado por POST
+    -->
+    <?php if (($_REQUEST['file'] !== null) && ($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir']))): ?>
 
         <div>
             <p/>
@@ -34,7 +31,10 @@ $params['breadcrumbs'][] = $title;
             // VALOR DEL NOMBRE D FICHERO
             // enviado desde el Pararámetro .php
             -->
-            <?php $file=$_REQUEST['file']; ?>
+            <?php
+                $file=$_REQUEST['file'];
+                file_get_contents('namedir');
+            ?>
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente</p>
 
             <?php
@@ -284,9 +284,9 @@ $params['breadcrumbs'][] = $title;
             <p/>
             <div class="alert alert-success">
                 <ol>
-                    <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
+                    <li>Git URL de la Actividad ´<b><i><a href="<?= $serverGit . '/' . $namedir ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
                     <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
-                    <li>Web URL de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                    <li>Web URL de la Actividad ´<b><i><a href="<?= $serverPub . '/' . $namedir ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
                 </ol>
             </div>
 
@@ -302,20 +302,19 @@ $params['breadcrumbs'][] = $title;
                             '<div class="row alert alert-success">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
                             //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
                             '';
-                             //$this->render('_list_item',['model' => $model])
 
                         // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>';
+                        echo '<p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>';
                     }
                     else {
                         echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
-                            '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
+                            '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                     }
 
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                 }
         ?>
 
@@ -331,37 +330,6 @@ $params['breadcrumbs'][] = $title;
 
         <div class="row">
             <div class="col-lg-5">
-                <?php
-                    // Modal UPLOAD
-                    //$modelU = new UpladForm();
-                    // https://devreadwrite.com/posts/yii2-basic-advanced-authorization-form-in-modal-window
-                    Modal::begin([
-                        'headerOptions' => ['id' => 'modalHeader'],
-                        'header' => '<h2>' . Html::encode($title) . '</h2>',
-                        //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-                        'id' => 'modal-ur',
-                        //'size' => 'modal-lg',
-                        //keeps from closing modal with esc key or by clicking out of the modal.
-                        // user must click cancel or X to close
-                        //'clientOptions' => ['backdrop' => 'static', 'keyboard' => FALSE]
-                    ]);
-
-                        // Formulario activo
-                        //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
-                        $form = ActiveForm::begin(["id" => "uploadupdater-form"]);
-                            echo $form->field($model, 'zipFile')->fileInput();
-                            echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
-                            echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
-                            echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-success btn-block', 'name' => 'uploadupdater-button']);
-                        ActiveForm::end();
-
-                    Modal::end();
-
-                    echo Html::Button('Upload & Register', ['class' => 'btn btn-primary', 'name' => 'modal-uploadupdater-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
-                ?>
             </div>
         </div>
 
