@@ -33,39 +33,42 @@ $url=$_SERVER;
             -->
             <?php
                 $file=$_REQUEST['file'];
-                file_get_contents('namedir');
+                if ((preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))){
+                    file_get_contents('namedir');
+                }
+                else{
+                    // Carpeta de publicación Actividad
+                    umask(0000);
+                    $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
+                    //echo "<pre>$output</pre>";
+die("Fin");
+                    // Carpeta de Actividad cargada y publicada
+                    // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
+                    /////////////////////////////////
+                    // outputs the username that owns the running php/httpd process
+                    // (on a system with the "mkdir" executable in the path)
+                    $output=null;
+                    $retval=null;
+                    // VALOR DE LA CARPETA
+                    // desde el Controlador SiteContreoller.php
+                    //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
+                    //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+                    $namedir=$_REQUEST['namedir'];
+                    umask(0000);
+                    exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
+                }
             ?>
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente</p>
 
             <?php
-
-                // Carpeta de publicación Actividad
-                umask(0000);
-                $output = shell_exec(escapeshellcmd('mkdir uploads/publicacion'));
-                //echo "<pre>$output</pre>";
-
-                // Carpeta de Actividad cargada y publicada
-                // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
-                /////////////////////////////////
-                // outputs the username that owns the running php/httpd process
-                // (on a system with the "mkdir" executable in the path)
-                $output=null;
-                $retval=null;
-                // VALOR DE LA CARPETA
-                // desde el Controlador SiteContreoller.php
-                //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
-                //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-                $namedir=$_REQUEST['namedir'];
-                umask(0000);
-                exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
                 // MKDIR sin errores
                 if($retval === 0) {
             ?>
 
-            <p/>
-            <p/>
-            <p/>
-            <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
+                    <p/>
+                    <p/>
+                    <p/>
+                    <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
 
             <?php
                     //echo "Returned with status $retval and output:\n";
