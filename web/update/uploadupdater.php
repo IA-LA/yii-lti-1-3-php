@@ -41,7 +41,7 @@ $url=$_SERVER;
                     umask(0000);
                     $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
                     //echo "<pre>$output</pre>";
-die("Fin");
+
                     // Carpeta de Actividad cargada y publicada
                     // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
                     /////////////////////////////////
@@ -55,7 +55,7 @@ die("Fin");
                     //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                     $namedir=$_REQUEST['namedir'];
                     umask(0000);
-                    exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
                 }
             ?>
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente</p>
@@ -63,6 +63,7 @@ die("Fin");
             <?php
                 // MKDIR sin errores
                 if($retval === 0) {
+                    die("Fin");
             ?>
 
                     <p/>
