@@ -21,7 +21,7 @@ $url=$_SERVER;
                   namedir URL de descarga del .ZIP
         $_FILES Parámetros del fichero enviado por POST
     -->
-    <?php if (($_REQUEST['file'] !== null) && ($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir']))): ?>
+    <?php if (($_REQUEST['file'] !== null) || ($_REQUEST['namedir'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])) || (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
 
         <div>
             <p/>
