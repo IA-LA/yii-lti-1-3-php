@@ -51,7 +51,7 @@ $url=$_SERVER;
                 ////////////////
                 if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
                     // URL de publicación Actividad
-                    file_get_contents('namedir');
+                    file_exists('namedir');
                 }
                 else{
                     // Carpeta de publicación Actividad
