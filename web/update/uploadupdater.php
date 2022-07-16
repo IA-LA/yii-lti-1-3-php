@@ -31,7 +31,20 @@ $url=$_SERVER;
             // enviado desde el Pararámetro .php
             -->
             <?php
+                $file='';
+                $naedir='';
+                $output=null;
+                $retval=null;
+
+                $carpetaGit = '';
+                $serverGit = '';
+                $carpetaPub = '';
+                $serverPub = '';
+                $serverLti = '';
+
+                // PARAMS
                 $file=$_REQUEST['file'];
+                $namedir=$_REQUEST['namedir'];
 
                 // URL o CARPETA
                 //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
