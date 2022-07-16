@@ -51,7 +51,7 @@ $url=$_SERVER;
                 ////////////////
                 if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
                     // URL de publicación Actividad
-                    file('namedir');
+                    $arrayFile=file('namedir');
                 }
                 else{
                     // Carpeta de publicación Actividad
@@ -75,7 +75,7 @@ $url=$_SERVER;
                     exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
                 }
             ?>
-            <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= file_exists('namedir'); ?></p>
+            <p class="alert alert-success">Archivo ´<b><i><?= $file . $arrayFile ?></i></b>´ recibido correctamente <?= file_exists('namedir') ?></p>
 
             <?php
                 // MKDIR sin errores
