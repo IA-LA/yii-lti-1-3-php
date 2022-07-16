@@ -36,7 +36,7 @@ $url=$_SERVER;
                 // URL o CARPETA
                 //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
                 ////////////////
-                if ((preg_match('/^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$/', $_REQUEST['namedir']))){
+                if ((preg_match("\/^((https?:\/\/)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(\/.*)?$\/", $_REQUEST['namedir']))){
                     // URL de publicación Actividad
                     file_get_contents('namedir');
                 }
