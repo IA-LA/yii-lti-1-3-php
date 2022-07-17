@@ -70,12 +70,13 @@ $url=$_SERVER;
                     // desde el Controlador SiteContreoller.php
                     //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
                     //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-                    $namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
+                    //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
+                    $namedir=$_REQUEST['namedir'] . "gcono" . date('YmdHisu') . 'd';
                     umask(0000);
                     exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
                 }
             ?>
-            <p class="alert alert-success">Archivo ´<b><i><?= $file . $arrayFile ?></i></b>´ recibido correctamente <?= file_exists('namedir') ?></p>
+            <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists('namedir') ? 'y existe' : 'pero no existe') ?></p>
 
             <?php
                 // MKDIR sin errores
@@ -100,24 +101,54 @@ $url=$_SERVER;
                     /// LOCAL puerto :9000
                     /// GLOBAL puerto:8000 o `.uned.es`
                     ///
+                    ///
+                    $params = [
+                        'yiiapp' => 'LTI Server Client',
+                        'yiiname' => 'Consorcio Público Universitario CAP-UNED',
+                        'adminEmail' => 'admin@server.lti',
+                        'senderEmail' => 'noreply@server.lti',
+                        'senderName' => 'Server.lti mailer',
+                        'serverLti_global' => 'https://ailanto-dev.intecca.uned.es/lti13', // 'http://ailanto-dev.intecca.uned.es:9002',// 'https://ailanto-dev.intecca.uned.es/lti/lti13', // 'http://10.201.54.31:9002/platform',
+                        'serverLti_local' => 'http://127.0.0.1:9002', //'http://192.168.43.130:9002', //'http://192.168.42.10:9002', // 'http://192.168.8.164:9002', // 'http://192.168.0.31:9002',
+                        'serverServiciosLti_global' => 'https://ailanto-dev.intecca.uned.es/servicios/lti/lti13', // 'http://10.201.54.31:49151/servicios/lti/lti13',
+                        'serverServiciosLti_local' => 'http://192.168.43.130:49151/servicios/lti/lti13', //'http://192.168.42.10:49151/servicios/lti/lti13', //'http://192.168.8.164:49151/servicios/lti/lti13', // 'http://192.168.0.31:49151/servicios/lti/lti13',
+                        'serverGit_global' => 'https://ailanto-dev.intecca.uned.es/git', //'http://ailanto-dev.intecca.uned.es/uploads/git', // 'http://10.201.54.31:8000/uploads/git',
+                        'serverGit_local' => 'http://127.0.0.1:8000/uploads/git', //'http://192.168.43.130:8000/uploads/git', //'http://192.168.42.10:8000/uploads/git', //'http://192.168.8.164:8000/uploads/git', // 'http://192.168.0.31:8000/uploads/git',
+                        'serverPublicacion_global' => 'https://ailanto-dev.intecca.uned.es/publicacion', //'https://ailanto-dev.intecca.uned.es/lti/publicacion', //'http://ailanto-dev.intecca.uned.es/uploads/publicacion', // 'http://10.201.54.31:8000/uploads/publicacion',
+                        'serverPublicacion_local' => 'http://127.0.0.1:8000/uploads/publicacion', //'http://192.168.43.130:8000/uploads/publicacion', //'http://192.168.42.10:8000/uploads/publicacion', //'http://192.168.8.164:8000/uploads/publicacion', // 'http://192.168.0.31:8000/uploads/publicacion',
+                        'carpetaGit_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/git', //'/var/www/html/webdav/lti/git',
+                        'carpetaGit_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/git',
+                        'carpetaPublicacion_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/publicacion', //'/var/www/html/webdav/lti/publicacion',
+                        'carpetaPublicacion_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/publicacion',
+                    ];
                     if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
-                        $carpetaGit = Yii::$app->params['carpetaGit_local'];
-                        $serverGit = Yii::$app->params['serverGit_local'];
-                        $carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
-                        $serverPub = Yii::$app->params['serverPublicacion_local'];
-                        $serverLti = Yii::$app->params['serverLti_local'];
-                    }
+                            //$carpetaGit = Yii::$app->params['carpetaGit_local'];
+                            //$serverGit = Yii::$app->params['serverGit_local'];
+                            //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
+                            //$serverPub = Yii::$app->params['serverPublicacion_local'];
+                            //$serverLti = Yii::$app->params['serverLti_local'];
+                        $carpetaGit = $params['carpetaGit_local'];
+                        $serverGit = $params['serverGit_local'];
+                        $carpetaPub = $params['carpetaPublicacion_local'];
+                        $serverPub = $params['serverPublicacion_local'];
+                        $serverLti = $params['serverLti_local'];
+                        }
                     else {
-                        $carpetaGit = Yii::$app->params['carpetaGit_global'];
-                        $serverGit = Yii::$app->params['serverGit_global'];
-                        $carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
-                        $serverPub = Yii::$app->params['serverPublicacion_global'];
-                        $serverLti = Yii::$app->params['serverLti_global'];
+                            //$carpetaGit = Yii::$app->params['carpetaGit_global'];
+                            //$serverGit = Yii::$app->params['serverGit_global'];
+                            //$carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+                            //$serverPub = Yii::$app->params['serverPublicacion_global'];
+                            //$serverLti = Yii::$app->params['serverLti_global'];
+                        $carpetaGit = $params['carpetaGit_global'];
+                        $serverGit = $params['serverGit_global'];
+                        $carpetaPub = $params['carpetaPublicacion_global'];
+                        $serverPub = $params['serverPublicacion_global'];
+                        $serverLti = $params['serverLti_global'];
                     }
 
 
-                    if (Yii::$app->session->hasFlash('uploadupdterExistting')):
-                        die("Cuando ya existe la Actividad en el Sistema LTI y sólo hay qye actualizarla");
+                    if (true/*Yii::$app->session->hasFlash('uploadupdterExistting')*/):
+                        die("Cuando ya existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
                     else:
                         // Crea proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
                         //  ID=$namedir
