@@ -21,7 +21,7 @@ $url=$_SERVER;
                   namedir URL de descarga del .ZIP
         $_FILES Parámetros del fichero enviado por POST
     -->
-    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('\.(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('\.(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
+    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
         <div>
             <p/>
             <p/>
@@ -146,7 +146,7 @@ $url=$_SERVER;
                     }
 
                     /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-                    if ((!(preg_match('\.(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
+                    if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
                         die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
                     else:
                         die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo");
