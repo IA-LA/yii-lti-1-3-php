@@ -57,7 +57,7 @@ $url=$_SERVER;
                 //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
                 //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                 //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
-                $namedir = explode('\.(zip/Zip/ZIP)', $_REQUEST['file'])[0] . "difusion" . date('YmdHisu') . 'd';
+                $namedir = explode('\.(zip|Zip|ZIP)', $file)[0] . "difusion" . date('YmdHisu') . 'd';
 
                 // Carpeta de publicación Actividad
                 umask(0000);
