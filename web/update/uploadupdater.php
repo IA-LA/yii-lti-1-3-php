@@ -82,6 +82,7 @@ $url=$_SERVER;
                     <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
                 <?php
+                    die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo");
                     // MKDIR sin errores
                     if($retval === 0) {
                 ?>
@@ -149,7 +150,6 @@ $url=$_SERVER;
                             $serverLti = $params['serverLti_global'];
                         }
 
-                        die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo");
                         // URL o CARPETA ACTIVIDAD
                         //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
                         ////////////////
