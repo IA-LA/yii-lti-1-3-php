@@ -43,40 +43,39 @@ $url=$_SERVER;
                 $serverLti = '';
 
                 // PARAMS
+                // NOMBRE DL FICHERO
                 $file=$_REQUEST['file'];
-                $namedir=$_REQUEST['namedir'];
+                // TODO VALOR DE
+                //  - LA URL
+                //      http...
+                //  - LA CARPETA
+                //      /ruta/fichero.zip
+                //  - LA ACTIVIDAD
+                //      00000000000000000000000a
+                //      5e0df19c0c2e74489066b43f
+                // desde el Controlador SiteContreoller.php
+                //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
+                //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+                //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
+                $namedir = explode('\.(zip/Zip/ZIP)', $_REQUEST['file'])[0] . "difusion" . date('YmdHisu') . 'd';
 
-                // URL o CARPETA
-                //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
-                ////////////////
-                if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
-                    // URL de publicación Actividad
-                    $arrayFile = file_get_contents($_REQUEST['namedir']);
-                }
-                else{
-                    // Carpeta de publicación Actividad
-                    umask(0000);
-                    $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
-                    //echo "<pre>$output</pre>";
+                // Carpeta de publicación Actividad
+                umask(0000);
+                $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
+                //echo "<pre>$output</pre>";
 
-                    // Carpeta de Actividad cargada y publicada
-                    // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
-                    /////////////////////////////////
-                    // outputs the username that owns the running php/httpd process
-                    // (on a system with the "mkdir" executable in the path)
-                    $output=null;
-                    $retval=null;
-                    // VALOR DE LA CARPETA
-                    // desde el Controlador SiteContreoller.php
-                    //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
-                    //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-                    //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
-                    $namedir=$_REQUEST['namedir'] . "gcono" . date('YmdHisu') . 'd';
-                    umask(0000);
-                    exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
-                }
+                // Carpeta de Actividad cargada y publicada
+                // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
+                /////////////////////////////////
+                // outputs the username that owns the running php/httpd process
+                // (on a system with the "mkdir" executable in the path)
+                $output=null;
+                $retval=null;
+                umask(0000);
+                exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
             ?>
-            <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists('namedir') ? 'y existe' : 'pero no existe') ?></p>
+
+            <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
             <?php
                 // MKDIR sin errores
@@ -132,7 +131,7 @@ $url=$_SERVER;
                         $carpetaPub = $params['carpetaPublicacion_local'];
                         $serverPub = $params['serverPublicacion_local'];
                         $serverLti = $params['serverLti_local'];
-                        }
+                    }
                     else {
                             //$carpetaGit = Yii::$app->params['carpetaGit_global'];
                             //$serverGit = Yii::$app->params['serverGit_global'];
@@ -146,14 +145,27 @@ $url=$_SERVER;
                         $serverLti = $params['serverLti_global'];
                     }
 
-
-                    if (true/*Yii::$app->session->hasFlash('uploadupdterExistting')*/):
-                        die("Cuando ya existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
+                    /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
+                    if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
+                        die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
                     else:
+                        die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo");
+                        // URL o CARPETA ACTIVIDAD
+                        //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
+                        ////////////////
+                        if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
+                            // URL de publicación Actividad
+                            $arrayFile = file_get_contents($_REQUEST['namedir']);
+                            file_put_contents('uploads/difusion/' . $namedir . '/' . $file, $arrayFile);
+                        }
+                        else{
+
+                        }
+
                         // Crea proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
                         //  ID=$namedir
                         ///////////////////////////////////////////////////////////////////////////////////
-                        ///
+
                         // Git
                         $output = shell_exec(escapeshellcmd('git --version'));
                         //echo "<pre>1. $output</pre>";
@@ -238,7 +250,6 @@ $url=$_SERVER;
                         $retval=null;
                         umask(0000);
                         exec(escapeshellcmd('unzip -o -X /mnt/nfs/gcono/difusion/' . $_REQUEST['file'] . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-                        die("Fin");
                         exec(escapeshellcmd('chmod 774 -R uploads/publicacion/' . $namedir), $output, $retval);
                         //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                         //echo "6.Returned with status $retval and output:\n";
@@ -307,7 +318,7 @@ $url=$_SERVER;
                         $output=null;
                         $retval=null;
                         //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
-                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Diffusion Commit Server LTI"'), $output, $retval);
+                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Difusion Commit Server LTI"'), $output, $retval);
                         //echo "9.Returned with status $retval and output:\n";
                         //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
                         //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
