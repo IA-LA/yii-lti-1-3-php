@@ -21,7 +21,7 @@ $url=$_SERVER;
                   namedir URL de descarga del .ZIP
         $_FILES Parámetros del fichero enviado por POST
     -->
-    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
+    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('\.(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('\.(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
         <div>
             <p/>
             <p/>
@@ -57,7 +57,7 @@ $url=$_SERVER;
                 //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
                 //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
                 //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
-                $namedir = explode('(zip|Zip|ZIP)', $file)[0] . "difusion" . date('YmdHisu') . 'd';
+                $namedir = explode('.zip', strtolower($file))[0] . "difusion" . date('YmdHisu') . 'd';
 
                 // Carpeta de publicación Actividad
                 umask(0000);
@@ -146,7 +146,7 @@ $url=$_SERVER;
                     }
 
                     /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-                    if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
+                    if ((!(preg_match('\.(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
                         die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
                     else:
                         die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo");
