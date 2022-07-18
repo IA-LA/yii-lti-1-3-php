@@ -62,7 +62,7 @@ $url=$_SERVER;
                 // Carpeta de publicación Actividad
                 umask(0000);
                 $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
-                //echo "<pre>$output</pre>";
+                echo "<pre>$output</pre>";
 
                 // Carpeta de Actividad cargada y publicada
                 // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
@@ -75,7 +75,7 @@ $url=$_SERVER;
                 exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
             ?>
 
-                <p class="alert alert-success">Archivo ´<b><i><?= print_r($output) ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
+                <p class="alert alert-success">Archivo ´<b><i><?= print_r($output[0]) ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
             <?php
                 // MKDIR sin errores
