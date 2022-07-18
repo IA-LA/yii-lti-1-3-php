@@ -59,46 +59,50 @@ $url=$_SERVER;
                 //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
                 $namedir = explode('.zip', strtolower($file))[0] . "difusion" . date('YmdHisu') . 'd';
 
-                //  - LA ACTIVIDAD
-                //      00000000000000000000000a
-                //      5e0df19c0c2e74489066b43f
-                /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-                if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
-                    die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
-                //  - LA URL
-                //      http...
-                //  - LA CARPETA
-                //      /ruta/fichero.zip
-                else:
-                    // Carpeta de publicación Actividad
-                    umask(0000);
-                    $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
-                    //echo "<pre>$output</pre>";
+                // Carpeta de publicación Actividad
+                umask(0000);
+                $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
+                //echo "<pre>$output</pre>";
 
-                    // Carpeta de Actividad cargada y publicada
-                    // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
-                    /////////////////////////////////
-                    // outputs the username that owns the running php/httpd process
-                    // (on a system with the "mkdir" executable in the path)
-                    $output=null;
-                    $retval=null;
-                    umask(0000);
-                    exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
-                ?>
+                // Carpeta de Actividad cargada y publicada
+                // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
+                /////////////////////////////////
+                // outputs the username that owns the running php/httpd process
+                // (on a system with the "mkdir" executable in the path)
+                $output=null;
+                $retval=null;
+                umask(0000);
+                exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
+            ?>
 
-                    <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
+                <p class="alert alert-success">Archivo ´<b><i><?= $output ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
-                <?php
-                    // MKDIR sin errores
-                    if($retval === 0) {
-                ?>
+            <?php
+                // MKDIR sin errores
+                if($retval === 0) {
+            ?>
 
-                        <p/>
-                        <p/>
-                        <p/>
-                        <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
+                    <p/>
+                    <p/>
+                    <p/>
+                    <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
 
                 <?php
+
+                    //  - LA ACTIVIDAD
+                    //      00000000000000000000000a
+                    //      5e0df19c0c2e74489066b43f
+                    /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
+                    if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
+                        // TODO recuperar Credenciales de Actividad LTI por ID
+                        die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+                    //  - LA URL
+                    //      http...
+                    //  - LA CARPETA
+                    //      /ruta/fichero.zip
+                    else:
+                        // TODO crear Actividad LTI
+
                         //echo "Returned with status $retval and output:\n";
                         //print_r($output);
                         // Carpeta de publicaciones
@@ -163,7 +167,7 @@ $url=$_SERVER;
                         // URL
                         //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
                         // o
-                        // CARPETA ACTIVIDAD
+                        // CARPETA
                         //  else
                         ////////////////////
                         if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
@@ -172,7 +176,7 @@ $url=$_SERVER;
                             file_put_contents('difusion/' . $namedir . '/' . $file, $arrayFile);
                             die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una URL (.zip)");
                         }
-                        else{
+                        else {
                             die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
                         }
 
@@ -356,57 +360,54 @@ $url=$_SERVER;
                         //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
                         //echo "<pre>10.b. $output</pre>";
 
-                    // Git, UNZIP y Publicacion sin errores
-                    if($retval === 0) {
-            ?>
+                        // Git, UNZIP y Publicacion sin errores
+                        if($retval === 0) {
+                ?>
 
-            <p/>
-            <p/>
-            <p/>
-            <div class="alert alert-success">
-                <ol>
-                    <li>Git URL de la Actividad ´<b><i><a href="<?= $serverGit . '/' . $namedir ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
-                    <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
-                    <li>Web URL de la Actividad ´<b><i><a href="<?= $serverPub . '/' . $namedir ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
-                </ol>
-            </div>
+                            <p/>
+                            <p/>
+                            <p/>
+                            <div class="alert alert-success">
+                                <ol>
+                                    <li>Git URL de la Actividad ´<b><i><a href="<?= $serverGit . '/' . $namedir ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
+                                    <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
+                                    <li>Web URL de la Actividad ´<b><i><a href="<?= $serverPub . '/' . $namedir ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                                </ol>
+                            </div>
 
-        <?php
+            <?php
+                            /**
+                            // Registra ID=$namedir ... y URL='uploads/publicacion/$namedir/' en Colección BBDD Ltis y Uploads
+                            // REGISTRO
+                            ////////////////////////////////
+                            */
+                            echo '<p><div class="row alert alert-success">La actividad LTI ha quedado registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                                //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
+                                '<div class="row alert alert-success">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
+                                //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
+                                '';
 
-                        /**
-                        // Registra ID=$namedir ... y URL='uploads/publicacion/$namedir/' en Colección BBDD Ltis y Uploads
-                        // REGISTRO
-                        ////////////////////////////////
-                        */
-                        echo '<p><div class="row alert alert-success">La actividad LTI ha quedado registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
-                            //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
-                            '<div class="row alert alert-success">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
-                            //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
-                            '';
-
-                        // Boton Atras
-                        echo '<p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>';
-                    }
-                    else {
-                        echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
-                            '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
-                    }
-
+                            // Boton Atras
+                            echo '<p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>';
+                        }
+                        else {
+                            echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
+                                '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                        }
+                    endif;
                 }
                 else {
                     echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                         '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                 }
-
-            endif;
-        ?>
+            ?>
 
         </div>
 
     <?php else: ?>
 
         <p>
-            Formulario de subida de Econtent complejos desde el CTU.
+            Formulario de subida de Econtent complejos desde el GICCU.
             Puede subirse un fichero comprimido .zip, de cada vez,
             sin contener espacios en blanco, tildes o eñes en el nombre.
         </p>
