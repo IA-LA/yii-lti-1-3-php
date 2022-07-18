@@ -43,9 +43,9 @@ $url=$_SERVER;
                 $serverLti = '';
 
                 // PARAMS
-                // NOMBRE DL FICHERO
+                // NOMBRE DL FICHERO file
                 $file=$_REQUEST['file'];
-                // TODO VALOR DE
+                // VALOR DE namedir
                 //  - LA URL
                 //      http...
                 //  - LA CARPETA
@@ -59,13 +59,20 @@ $url=$_SERVER;
                 //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
                 $namedir = explode('.zip', strtolower($file))[0] . "difusion" . date('YmdHisu') . 'd';
 
+                //  - LA ACTIVIDAD
+                //      00000000000000000000000a
+                //      5e0df19c0c2e74489066b43f
                 /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
                 if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
                     die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye actualizar el git");
+                //  - LA URL
+                //      http...
+                //  - LA CARPETA
+                //      /ruta/fichero.zip
                 else:
                     // Carpeta de publicación Actividad
                     umask(0000);
-                    $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
+                    $output = shell_exec(escapeshellcmd('mkdir difusion'));
                     //echo "<pre>$output</pre>";
 
                     // Carpeta de Actividad cargada y publicada
@@ -76,7 +83,7 @@ $url=$_SERVER;
                     $output=null;
                     $retval=null;
                     umask(0000);
-                    exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('mkdir difusion/' . $namedir), $output, $retval);
                 ?>
 
                     <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
@@ -150,13 +157,20 @@ $url=$_SERVER;
                             $serverLti = $params['serverLti_global'];
                         }
 
-                        // URL o CARPETA ACTIVIDAD
+                        //  - LA URL
+                        //      http...
+                        //  - LA CARPETA
+                        //      /ruta/fichero.zip
+                        // URL
                         //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
-                        ////////////////
+                        // o
+                        // CARPETA ACTIVIDAD
+                        //  else
+                        ////////////////////
                         if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
                             // URL de publicación Actividad
                             $arrayFile = file_get_contents($_REQUEST['namedir']);
-                            file_put_contents('uploads/difusion/' . $namedir . '/' . $file, $arrayFile);
+                            file_put_contents('difusion/' . $namedir . '/' . $file, $arrayFile);
                         }
                         else{
 
