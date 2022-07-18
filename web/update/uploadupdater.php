@@ -89,7 +89,6 @@ $url=$_SERVER;
                     <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
                 <?php
-                    die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo");
                     // MKDIR sin errores
                     if($retval === 0) {
                 ?>
@@ -171,9 +170,10 @@ $url=$_SERVER;
                             // URL de publicación Actividad
                             $arrayFile = file_get_contents($_REQUEST['namedir']);
                             file_put_contents('difusion/' . $namedir . '/' . $file, $arrayFile);
+                            die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una URL (.zip)");
                         }
                         else{
-
+                            die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
                         }
 
                         // Crea proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
