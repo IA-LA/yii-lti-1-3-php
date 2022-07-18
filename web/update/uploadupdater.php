@@ -75,7 +75,7 @@ $url=$_SERVER;
                 exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
             ?>
 
-                <p class="alert alert-success">Archivo ´<b><i><?= $retval ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
+                <p class="alert alert-success">Archivo ´<b><i><?= print_r($output) ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
             <?php
                 // MKDIR sin errores
