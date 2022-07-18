@@ -14,9 +14,9 @@ This code contains the basic features that would let you to manage an LTI Tool S
 [![Total Downloads](https://img.shields.io/packagist/dt/IA-LA/yii-lti-1-3-php.svg)](https://packagist.org/packages/IA-LA/yii-lti-1-3-php)
 [![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/IA-LA/yii-lti-1-3-php/actions?query=workflow%3Abuild)
 
+
 Deploy with Docker
 ----------------------
-
   
 Start the container
 
@@ -70,8 +70,7 @@ FOLDER STRUCTURE
 MAIN URLs
 ------------
 
-
-## Client:
+### Client:
 Global:
 ~~~
 http://ailanto-dev.intecca.uned.es/
@@ -81,8 +80,7 @@ Local:
 http://10.201.54.31:8000/
 ~~~
 
-
-## Repository:
+### Repository:
 Global:
 
 Local:
@@ -91,7 +89,8 @@ http://10.201.54.232/vanesa/clienteLTI.git
 ~~~
 
 
-## Framework:
+Framework:
+---------
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
@@ -110,6 +109,7 @@ features to your application.
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![build](https://github.com/yiisoft/yii2-app-basic/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-basic/actions?query=workflow%3Abuild)
+
 
 DIRECTORY STRUCTURE
 -------------------
@@ -173,7 +173,6 @@ You can then access the application through the following URL:
 ~~~
 http://localhost/basic/web/
 ~~~
-
 
 ### Install with Docker
 
