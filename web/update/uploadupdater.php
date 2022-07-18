@@ -72,7 +72,7 @@ $url=$_SERVER;
                 $output=null;
                 $retval=null;
                 umask(0000);
-                exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
+                exec(escapeshellcmd('mkdir uploads/difusion/carpeta'), $output, $retval);
             ?>
 
                 <p class="alert alert-success">Archivo ´<b><i><?= print_r($output[0]) ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
