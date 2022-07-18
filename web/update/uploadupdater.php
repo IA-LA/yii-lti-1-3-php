@@ -72,7 +72,7 @@ $url=$_SERVER;
                 else:
                     // Carpeta de publicación Actividad
                     umask(0000);
-                    $output = shell_exec(escapeshellcmd('mkdir difusion'));
+                    $output = shell_exec(escapeshellcmd('mkdir uploads/difusion'));
                     //echo "<pre>$output</pre>";
 
                     // Carpeta de Actividad cargada y publicada
@@ -83,7 +83,7 @@ $url=$_SERVER;
                     $output=null;
                     $retval=null;
                     umask(0000);
-                    exec(escapeshellcmd('mkdir difusion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('mkdir uploads/difusion/' . $namedir), $output, $retval);
                 ?>
 
                     <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
