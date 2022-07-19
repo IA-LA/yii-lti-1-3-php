@@ -12,7 +12,6 @@ $url=$_SERVER;
 ?>
 <div class="upload-uploadupdater">
 
-    <h1><?= $title ?></h1>
 
     <!--
     TODO
@@ -75,17 +74,11 @@ $url=$_SERVER;
                 exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
             ?>
 
-                <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente <?= (file_exists($_REQUEST['namedir']) ? 'y existe' : 'pero no existe') ?></p>
 
             <?php
                 // MKDIR difusion sin errores
                 if($retval === 0) {
             ?>
-
-                    <p/>
-                    <p/>
-                    <p/>
-                    <p class="alert alert-success">Carpeta difusión ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
 
                 <?php
 
