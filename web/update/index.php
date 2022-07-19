@@ -368,6 +368,17 @@ $url=$_SERVER;
 
                             // Git, UNZIP y Publicacion sin errores
                             if($retval === 0) {
+                                $data = '{
+                                            "result": "ok",
+                                            "id": "' . $namedir . '",
+                                            "git": "' . $serverGit . '/' . $namedir . '.git",
+                                            "fichero": "' . $file . '",
+                                            "publicacion": "' . $serverPub . '/' . $namedir . '",
+                                            "date": "' . date('YmdHisu')  . '",
+                                        }';
+                                header('Content-Type: application/json');
+                                echo json_encode($data);
+                                die();
                 ?>
 
                                 <p/>
@@ -409,6 +420,8 @@ $url=$_SERVER;
                                 else {
                                     die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
                                 }
+                                // TODO MULTIPROCESO/MULTITAREA
+                                //  https://medium.com/async-php/multi-process-php-94a4e5a4be05
 
                             }
                             else {
