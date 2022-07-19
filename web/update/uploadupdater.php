@@ -286,20 +286,6 @@ $url=$_SERVER;
                             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> ../uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                             //echo "<pre>6.d. $output</pre>";
 
-                            // URL
-                            //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
-                            // o
-                            // CARPETA
-                            //  else
-                            ////////////////////
-                            if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
-                                // URL de publicación Actividad
-                                die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una URL (.zip)");
-                            }
-                            else {
-                                die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
-                            }
-
                             // Add, Commit y Push clonado
                             // Add
                             // outputs the username that owns the running php/httpd process
@@ -324,7 +310,8 @@ $url=$_SERVER;
                             $retval=null;
                             //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
                             //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '@lti.server"'), $output, $retval);
+                            //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '@lti.server"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
                             //echo "8.Returned with status $retval and output:\n";
                             //echo "<p><pre>8.a.<br/>";
                             //echo "8.a.PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
@@ -336,7 +323,9 @@ $url=$_SERVER;
                             $retval=null;
                             //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
                             //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . Yii::$app->user->identity->id . '"'), $output, $retval);
+                            //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . Yii::$app->user->identity->id . '"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . '000' . '"'), $output, $retval);
+
                             //echo "8.Returned with status $retval and output:\n";
                             //echo "<p><pre>8.b.<br/>";
                             //echo "8.b.PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
@@ -406,6 +395,20 @@ $url=$_SERVER;
 
                                 // Boton Atras
                                 echo '<p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>';
+
+                                // URL
+                                //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
+                                // o
+                                // CARPETA
+                                //  else
+                                ////////////////////
+                                if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
+                                    // URL de publicación Actividad
+                                    die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una URL (.zip)");
+                                }
+                                else {
+                                    die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
+                                }
 
                             }
                             else {
