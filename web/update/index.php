@@ -10,7 +10,6 @@ $params['breadcrumbs'][] = $title;
 $url=$_SERVER;
 
 ?>
-<div class="upload-uploadupdater">
 
 
     <!--
@@ -21,10 +20,7 @@ $url=$_SERVER;
         $_FILES Parámetros del fichero enviado por POST
     -->
     <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
-        <div>
-            <p/>
-            <p/>
-            <p/>
+
             <!--
             // VALOR DEL NOMBRE D FICHERO
             // enviado desde el Pararámetro .php
