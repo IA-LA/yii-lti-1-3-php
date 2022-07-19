@@ -9,7 +9,7 @@ $params['breadcrumbs'][] = $title;
 $url=$_SERVER;
 
 ?>
-    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
+    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))){ ?>
 
             <?php
                 $file='';
@@ -418,7 +418,7 @@ $url=$_SERVER;
 
         </div>
 
-    <?php else: ?>
+    <?php }else{ ?>
 
         <p>
             Formulario de subida de Econtent complejos desde el GICCU.
@@ -431,6 +431,6 @@ $url=$_SERVER;
             </div>
         </div>
 
-    <?php endif; ?>
+    <?php } ?>
 
 </div>
