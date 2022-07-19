@@ -334,14 +334,14 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
 
                 // Git, UNZIP y Publicacion sin errores
                 if($retval === 0) {
-                    $data = '{
-                                "result": "ok",
-                                "id": "' . $namedir . '",
-                                "git": "' . $serverGit . '/' . $namedir . '.git",
-                                "fichero": "' . $file . '",
-                                "publicacion": "' . $serverPub . '/' . $namedir . '",
-                                "date": "' . date('YmdHisu')  . '",
-                            }';
+                    $data = [
+                                "result"=> "ok",
+                                "id"=> "' . $namedir . '",
+                                "git"=> "' . $serverGit . '/' . $namedir . '.git",
+                                "fichero"=> "' . $file . '",
+                                "publicacion"=> "' . $serverPub . '/' . $namedir . '",
+                                "date"=> "' . date('YmdHisu')  . '",
+                            ];
                     header('Content-Type: application/json');
                     echo json_encode($data);
                     die();
