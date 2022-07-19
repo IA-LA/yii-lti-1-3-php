@@ -286,6 +286,20 @@ $url=$_SERVER;
                             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> ../uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                             //echo "<pre>6.d. $output</pre>";
 
+                            // URL
+                            //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
+                            // o
+                            // CARPETA
+                            //  else
+                            ////////////////////
+                            if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
+                                // URL de publicación Actividad
+                                die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una URL (.zip)");
+                            }
+                            else {
+                                die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
+                            }
+
                             // Add, Commit y Push clonado
                             // Add
                             // outputs the username that owns the running php/httpd process
@@ -393,19 +407,6 @@ $url=$_SERVER;
                                 // Boton Atras
                                 echo '<p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>';
 
-                                // URL
-                                //  (preg_match('(http|Http|HTTP)', $_REQUEST['namedir']))
-                                // o
-                                // CARPETA
-                                //  else
-                                ////////////////////
-                                if ((preg_match("%^((https?://)|(www\.))([a-z0-9-].?)+(:[0-9]+)?(/.*)?$%i", $_REQUEST['namedir']))){
-                                    // URL de publicación Actividad
-                                    die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una URL (.zip)");
-                                }
-                                else {
-                                    die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla de cerodo desde una carpeta NFS (.zip)");
-                                }
                             }
                             else {
                                 echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
