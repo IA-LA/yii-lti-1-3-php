@@ -10,21 +10,8 @@ $params['breadcrumbs'][] = $title;
 $url=$_SERVER;
 
 ?>
-
-
-    <!--
-    TODO
-        $_REQUEST Parámetros de descarga
-                  file Nombre del fichero y URL
-                  namedir URL de descarga del .ZIP
-        $_FILES Parámetros del fichero enviado por POST
-    -->
     <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))): ?>
 
-            <!--
-            // VALOR DEL NOMBRE D FICHERO
-            // enviado desde el Pararámetro .php
-            -->
             <?php
                 $file='';
                 $naedir='';
