@@ -1,6 +1,5 @@
 <?php
 
-
 $title = 'Upload Zip Updater';
 $params['breadcrumbs'][] = $title;
 
@@ -44,7 +43,7 @@ $url=$_SERVER;
                 // Carpeta de difusión Actividad
                 umask(0000);
                 $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion'));
-                echo "<pre>$output</pre>";
+                //echo "<pre>$output</pre>";
 
                 // Carpeta de Actividad cargada y publicada
                 // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
