@@ -8,52 +8,49 @@ $params['breadcrumbs'][] = $title;
 // Remember current URL
 $url=$_SERVER;
 
-?>
-    <?php if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))){ ?>
+        if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))){
+            $file='';
+            $naedir='';
+            $output=null;
+            $retval=null;
 
-            <?php
-                $file='';
-                $naedir='';
-                $output=null;
-                $retval=null;
+            $carpetaGit = '';
+            $serverGit = '';
+            $carpetaPub = '';
+            $serverPub = '';
+            $serverLti = '';
 
-                $carpetaGit = '';
-                $serverGit = '';
-                $carpetaPub = '';
-                $serverPub = '';
-                $serverLti = '';
+            // PARAMS
+            // NOMBRE DL FICHERO file
+            $file=$_REQUEST['file'];
+            // VALOR DE namedir
+            //  - LA URL
+            //      http...
+            //  - LA CARPETA
+            //      /ruta/fichero.zip
+            //  - LA ACTIVIDAD
+            //      00000000000000000000000a
+            //      5e0df19c0c2e74489066b43f
+            // desde el Controlador SiteContreoller.php
+            //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
+            //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
+            //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
+            $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
 
-                // PARAMS
-                // NOMBRE DL FICHERO file
-                $file=$_REQUEST['file'];
-                // VALOR DE namedir
-                //  - LA URL
-                //      http...
-                //  - LA CARPETA
-                //      /ruta/fichero.zip
-                //  - LA ACTIVIDAD
-                //      00000000000000000000000a
-                //      5e0df19c0c2e74489066b43f
-                // desde el Controlador SiteContreoller.php
-                //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
-                //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-                //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
-                $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
+            // Carpeta de difusión Actividad
+            umask(0000);
+            $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion'));
+            //echo "<pre>$output</pre>";
 
-                // Carpeta de difusión Actividad
-                umask(0000);
-                $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion'));
-                //echo "<pre>$output</pre>";
-
-                // Carpeta de Actividad cargada y publicada
-                // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
-                /////////////////////////////////
-                // outputs the username that owns the running php/httpd process
-                // (on a system with the "mkdir" executable in the path)
-                $output=null;
-                $retval=null;
-                umask(0000);
-                exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
+            // Carpeta de Actividad cargada y publicada
+            // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
+            /////////////////////////////////
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "mkdir" executable in the path)
+            $output=null;
+            $retval=null;
+            umask(0000);
+            exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
             ?>
 
 
