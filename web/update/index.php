@@ -23,8 +23,6 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
     // PARAMS
     // SERVIDORES
     $params = require __DIR__ . '/../../config/params.php';
-    print_r($params);
-    die();
 
     // REQUEST[]
     // NOMBRE DL FICHERO file
