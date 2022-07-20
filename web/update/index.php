@@ -22,7 +22,7 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
 
     // PARAMS
     // SERVIDORES
-    $params = file_get_contents('../../config/params.php');
+    $params = require __DIR__ . '../../' . '/params.php';
     print_r($params);
     die();
 
