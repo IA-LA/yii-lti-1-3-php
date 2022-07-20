@@ -67,7 +67,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         //      00000000000000000000000a
         //      5e0df19c0c2e74489066b43f
         /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-        if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['actividad'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['actividad'])))):
+        if ((!(preg_match('(zip|Zip|ZIP)', $actividad)) && (preg_match('([a-f,0-9]{24})', $actividad)))):
             // TODO recuperar Credenciales de Actividad LTI por ID
             $_REQUEST['actividad'];
 
