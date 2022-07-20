@@ -21,6 +21,12 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
     $serverLti = '';
 
     // PARAMS
+    // SERVIDORES
+    $params = file_get_contents('../../config/params.php');
+    print_r($params);
+    die();
+
+    // REQUEST[]
     // NOMBRE DL FICHERO file
     $file=$_REQUEST['file'];
     // VALOR DE namedir
@@ -36,6 +42,7 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
     //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
     //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
     $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
+    $actividad = $_REQUEST['actividad'];
 
     // Carpeta de difusión Actividad
     umask(0000);
@@ -55,38 +62,71 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
     // MKDIR difusion sin errores
     if($retval === 0) {
 
-        // Carpeta de publicación Actividad
-        umask(0000);
-        $output = shell_exec(escapeshellcmd('mkdir ../uploads/publicacion'));
-        //echo "<pre>$output</pre>";
+        //  - LA ACTIVIDAD
+        //      00000000000000000000000a
+        //      5e0df19c0c2e74489066b43f
+        /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
+        if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['actividad'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['actividad'])))):
+            // TODO recuperar Credenciales de Actividad LTI por ID
+            $_REQUEST['actividad'];
 
-        // Carpeta de Actividad cargada y publicada
-        // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
-        /////////////////////////////////
-        // outputs the username that owns the running php/httpd process
-        // (on a system with the "mkdir" executable in the path)
-        $output=null;
-        $retval=null;
-        umask(0000);
-        exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $namedir), $output, $retval);
+            // Información servidor
+            //  https://www.php.net/manual/es/function.header.php
+            ///////////////////////
+            if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                $url = "https://";
+            else
+                $url = "http://";
+            // Append the host(domain name, ip) to the URL.
+            $url .= $_SERVER['HTTP_HOST'];
 
-        // MKDIR publicacion sin errores
-        if($retval === 0) {
-            //  - LA ACTIVIDAD
-            //      00000000000000000000000a
-            //      5e0df19c0c2e74489066b43f
-            /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-            if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
-                // TODO recuperar Credenciales de Actividad LTI por ID
-                $_REQUEST['actividad'];
-                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
-            //  - LA URL
-            //      http...
-            //  - LA CARPETA
-            //      /ruta/fichero.zip
-            else:
-                // TODO crear Actividad LTI
-                //die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
+            // Append the requested resource location to the URL
+            //$url.= $_SERVER['REQUEST_URI'];
+            //echo $_REQUEST['target_link_uri'];
+
+            // Llamadas REST
+            //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
+            //  https://www.php.net/manual/en/context.http.php
+            // Obtiene la configuración de las actividades con una llamada de lectura `GET`
+            // al servidor de SERVICIOS
+            ///////////////////
+            /// LOCAL puerto :9000
+            /// GLOBAL puerto:8000 o `.uned.es`
+            ///
+            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
+                $url = $params['serverServiciosLti_local'];
+            else
+                $url = $params['serverServiciosLti_global'];
+
+            die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+            // COPIA el archivo .zip en la carpeta de difusion
+            /////////////////////////////////////////////////
+            $arrayFile = file_get_contents($_REQUEST['actividad']);
+
+        //  - LA URL
+        //      http...
+        //  - LA CARPETA
+        //      /ruta/fichero.zip
+        else:
+            // TODO crear Actividad LTI
+            //die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
+            // Carpeta de publicación Actividad
+            umask(0000);
+            $output = shell_exec(escapeshellcmd('mkdir ../uploads/publicacion'));
+            //echo "<pre>$output</pre>";
+
+            // Carpeta de Actividad cargada y publicada
+            // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'a'
+            /////////////////////////////////
+            // outputs the username that owns the running php/httpd process
+            // (on a system with the "mkdir" executable in the path)
+            $output=null;
+            $retval=null;
+            umask(0000);
+            exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $namedir), $output, $retval);
+
+            // MKDIR publicacion sin errores
+            if($retval === 0) {
 
                 //echo "Returned with status $retval and output:\n";
                 //print_r($output);
@@ -100,26 +140,6 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
                 /// LOCAL puerto :9000
                 /// GLOBAL puerto:8000 o `.uned.es`
                 ///
-                ///
-                $params = [
-                    'yiiapp' => 'LTI Server Client',
-                    'yiiname' => 'Consorcio Público Universitario CAP-UNED',
-                    'adminEmail' => 'admin@server.lti',
-                    'senderEmail' => 'noreply@server.lti',
-                    'senderName' => 'Server.lti mailer',
-                    'serverLti_global' => 'https://ailanto-dev.intecca.uned.es/lti13', // 'http://ailanto-dev.intecca.uned.es:9002',// 'https://ailanto-dev.intecca.uned.es/lti/lti13', // 'http://10.201.54.31:9002/platform',
-                    'serverLti_local' => 'http://127.0.0.1:9002', //'http://192.168.43.130:9002', //'http://192.168.42.10:9002', // 'http://192.168.8.164:9002', // 'http://192.168.0.31:9002',
-                    'serverServiciosLti_global' => 'https://ailanto-dev.intecca.uned.es/servicios/lti/lti13', // 'http://10.201.54.31:49151/servicios/lti/lti13',
-                    'serverServiciosLti_local' => 'http://192.168.43.130:49151/servicios/lti/lti13', //'http://192.168.42.10:49151/servicios/lti/lti13', //'http://192.168.8.164:49151/servicios/lti/lti13', // 'http://192.168.0.31:49151/servicios/lti/lti13',
-                    'serverGit_global' => 'https://ailanto-dev.intecca.uned.es/git', //'http://ailanto-dev.intecca.uned.es/uploads/git', // 'http://10.201.54.31:8000/uploads/git',
-                    'serverGit_local' => 'http://127.0.0.1:8000/uploads/git', //'http://192.168.43.130:8000/uploads/git', //'http://192.168.42.10:8000/uploads/git', //'http://192.168.8.164:8000/uploads/git', // 'http://192.168.0.31:8000/uploads/git',
-                    'serverPublicacion_global' => 'https://ailanto-dev.intecca.uned.es/publicacion', //'https://ailanto-dev.intecca.uned.es/lti/publicacion', //'http://ailanto-dev.intecca.uned.es/uploads/publicacion', // 'http://10.201.54.31:8000/uploads/publicacion',
-                    'serverPublicacion_local' => 'http://127.0.0.1:8000/uploads/publicacion', //'http://192.168.43.130:8000/uploads/publicacion', //'http://192.168.42.10:8000/uploads/publicacion', //'http://192.168.8.164:8000/uploads/publicacion', // 'http://192.168.0.31:8000/uploads/publicacion',
-                    'carpetaGit_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/git', //'/var/www/html/webdav/lti/git',
-                    'carpetaGit_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/git',
-                    'carpetaPublicacion_global' => '/root/LTI/yii-lti-1-3-php/web/uploads/publicacion', //'/var/www/html/webdav/lti/publicacion',
-                    'carpetaPublicacion_local' => '/home/francisco/LTI/yii-lti-1-3-php/web/uploads/publicacion',
-                ];
                 if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
                         //$carpetaGit = Yii::$app->params['carpetaGit_local'];
                         //$serverGit = Yii::$app->params['serverGit_local'];
@@ -398,12 +418,13 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
                     echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
                         '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                 }
-            endif;
-        }
-        else {
-            echo '<p class="alert error-summary"><i>Error al crear carpeta difusion <i>`' . $namedir . '`</i></p>' .
-                 '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
-        }
+
+            }
+            else {
+                echo '<p class="alert error-summary"><i>Error al crear carpeta difusion <i>`' . $namedir . '`</i></p>' .
+                     '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+            }
+        endif;
     }
     else {
         echo '<p class="alert error-summary"><i>Error al crear carpeta publicacion <i>`' . $namedir . '`</i></p>' .
