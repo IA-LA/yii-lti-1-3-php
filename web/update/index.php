@@ -42,6 +42,8 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
     if (isset($_REQUEST['actividad']))
         $actividad = $_REQUEST['actividad'];
+    else
+        $actividad = 'zip';
 
     // Carpeta de difusión Actividad
     umask(0000);
