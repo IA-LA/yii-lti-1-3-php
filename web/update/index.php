@@ -8,7 +8,7 @@ $params['breadcrumbs'][] = $title;
 // Remember current URL
 $url=$_SERVER;
 
-if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))){
+if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir']))))){
     $file='';
     $naedir='';
     $output=null;
@@ -40,7 +40,8 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
     //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
     //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
     $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
-    $actividad = $_REQUEST['actividad'];
+    if (isset($_REQUEST['actividad']))
+        $actividad = $_REQUEST['actividad'];
 
     // Carpeta de difusión Actividad
     umask(0000);
