@@ -1,5 +1,7 @@
 <?php
 
+use yii\httpclient\Client;
+
 $title = 'Upload Zip Updater';
 $params['breadcrumbs'][] = $title;
 
