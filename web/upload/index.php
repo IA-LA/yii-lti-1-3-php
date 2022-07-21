@@ -361,11 +361,21 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                     //////////
                     $data = [
                                 "result"=> "ok",
-                                "id"=> $namedir,
-                                "git"=> $serverGit . '/' . $namedir . '.git',
-                                "fichero"=> $file,
-                                "publicacion"=> $serverPub . '/' . $namedir,
-                                "date"=> date('YmdHisu'),
+                                'id_actividad' => $namedir,
+                                'url_actividad' => $serverPub . '/' . $namedir,
+                                "upload" => [
+                                    'fichero' => $file,
+                                    'carpeta' => $namedir,
+                                    'publicacion_url' => $serverPub . '/' . $namedir,
+                                    'git_url' => $serverGit . '/' . $namedir . '.git',
+                                    'actualizado' => 0
+                                ],
+                                "user" => [
+                                    'email' => 'gcono@lti.server',
+                                    'nombre' => 'gcono',
+                                    'rol' => '000'
+                                ],
+                                "date"=> date('YmdHisu')
                             ];
                     header('Content-Type: application/json');
                     echo json_encode($data);
