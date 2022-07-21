@@ -8,7 +8,8 @@ $params['breadcrumbs'][] = $title;
 // Remember current URL
 $url=$_SERVER;
 
-if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir']))))){
+if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))))
+{
     $file='';
     $naedir='';
     $output=null;
@@ -69,7 +70,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
         if ((!(preg_match('(zip|Zip|ZIP)', $actividad)) && (preg_match('([a-f,0-9]{24})', $actividad)))):
             // TODO recuperar Credenciales de Actividad LTI por ID
-            $_REQUEST['actividad'];
+            //$_REQUEST['actividad'];
 
             // Información servidor
             //  https://www.php.net/manual/es/function.header.php
@@ -99,11 +100,20 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             else
                 $url = $params['serverServiciosLti_global'];
 
-            die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
             // COPIA el archivo .zip en la carpeta de difusion
             /////////////////////////////////////////////////
-            $arrayFile = file_get_contents($_REQUEST['actividad']);
 
+            if (!(preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])) && !preg_match('(publicacion)', $_REQUEST['actividad']) && preg_match('([a-f,0-9]{24})', $_REQUEST['actividad'])) {
+                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                $ruta = '/read/coleccion/Upload/id_actividad/' . $_REQUEST['actividad'];
+            } else {
+                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
+            }
+            $arrayFile = file_get_contents($url . $ruta);
+            print_r($arrayFile);
+
+            die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
         //  - LA URL
         //      http...
         //  - LA CARPETA
@@ -442,7 +452,9 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
     }
  }
-else{?>
+else
+    {
+        ?>
 
     <div class="upload-uploadupdater">
 
@@ -470,4 +482,6 @@ else{?>
 
     </div>
 
-    <?php } ?>
+<?php
+    }
+?>
