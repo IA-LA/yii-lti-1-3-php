@@ -163,21 +163,6 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 // Copiar ZIP en publicacion
 
                 // Unzip Actividad .zip
-                // outputs the username that owns the running php/httpd process
-                // (on a system with the "unzip" executable in the path)
-                $output=null;
-                $retval=null;
-                umask(0000);
-                exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $namedir . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
-
-                // Actualizar Git
-
-                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
-
-                // DEVUELVE DATA
-                //////////
-                header('Content-Type: application/json');
-                echo json_encode($arrayFile['data']);
 
             }
             // ACTIVIDAD ID/URL NO EXISTE
