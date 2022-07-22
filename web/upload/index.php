@@ -143,7 +143,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                 $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
             }
-            $arrayFile = json_decode(file_get_contents($url . $ruta));
+            $arrayFile = json_decode(file_get_contents($url . $ruta), true);
             print_r($arrayFile);
 
             if($arrayFile['result'] === 'ok'){
