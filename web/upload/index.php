@@ -46,6 +46,37 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     else
         $actividad = 'zip';
 
+    // Dirección de alojamiento
+    // del servidor de Git
+    //////////////////////
+    /// LOCAL puerto :9000
+    /// GLOBAL puerto:8000 o `.uned.es`
+    ///
+    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+        //$carpetaGit = Yii::$app->params['carpetaGit_local'];
+        //$serverGit = Yii::$app->params['serverGit_local'];
+        //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
+        //$serverPub = Yii::$app->params['serverPublicacion_local'];
+        //$serverLti = Yii::$app->params['serverLti_local'];
+        $carpetaGit = $params['carpetaGit_local'];
+        $serverGit = $params['serverGit_local'];
+        $carpetaPub = $params['carpetaPublicacion_local'];
+        $serverPub = $params['serverPublicacion_local'];
+        $serverLti = $params['serverLti_local'];
+    }
+    else {
+        //$carpetaGit = Yii::$app->params['carpetaGit_global'];
+        //$serverGit = Yii::$app->params['serverGit_global'];
+        //$carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+        //$serverPub = Yii::$app->params['serverPublicacion_global'];
+        //$serverLti = Yii::$app->params['serverLti_global'];
+        $carpetaGit = $params['carpetaGit_global'];
+        $serverGit = $params['serverGit_global'];
+        $carpetaPub = $params['carpetaPublicacion_global'];
+        $serverPub = $params['serverPublicacion_global'];
+        $serverLti = $params['serverLti_global'];
+    }
+
     // Carpeta de difusión Actividad
     umask(0000);
     $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion'));
@@ -61,12 +92,13 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     umask(0000);
     exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
 
-    // MKDIR difusion sin errores
+    // MKDIR difusion Actividad sin errores
     if($retval === 0) {
 
         //  - LA ACTIVIDAD
-        //      00000000000000000000000a
-        //      5e0df19c0c2e74489066b43f
+        //      ID: 00000000000000000000000a
+        //      ID: 5e0df19c0c2e74489066b43f
+        //      URL https://ailanto-dev.intecca.uned.es/publicacion/00020220721114124000000d
         /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
         if ((!(preg_match('(zip|Zip|ZIP)', $actividad)) && (preg_match('([a-f,0-9]{24})', $actividad)))):
             // TODO recuperar Credenciales de Actividad LTI por ID
@@ -104,7 +136,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             // COPIA el archivo .zip en la carpeta de difusion
             /////////////////////////////////////////////////
 
-            if (!(preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])) && !preg_match('(publicacion)', $_REQUEST['actividad']) && preg_match('([a-f,0-9]{24})', $_REQUEST['actividad'])) {
+            if (!(preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
                 // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
                 $ruta = '/read/coleccion/Upload/id_actividad/' . $_REQUEST['actividad'];
             } else {
@@ -112,9 +144,23 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
             }
             $arrayFile = file_get_contents($url . $ruta);
-            print_r($arrayFile);
+            print_r($arrayFile['data']);
 
-            die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+            if($arrayFile['result'] === 'ok'){
+
+                // DEVUELVE DATA
+                //////////
+                header('Content-Type: application/json');
+                echo json_encode($arrayFile['data']);
+                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+            }
+            else{
+                // DEVUELVE DATA
+                //////////
+                header('Content-Type: application/json');
+                echo json_encode($arrayFile['data']);
+                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+            }
         //  - LA URL
         //      http...
         //  - LA CARPETA
@@ -145,37 +191,6 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 // Carpeta de publicaciones
                 //$output = shell_exec(escapeshellcmd('ls -lart ../uploads/publicacion/'));
                 //echo "<pre>$output</pre>";
-
-                // Dirección de alojamiento
-                // del servidor de Git
-                //////////////////////
-                /// LOCAL puerto :9000
-                /// GLOBAL puerto:8000 o `.uned.es`
-                ///
-                if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
-                        //$carpetaGit = Yii::$app->params['carpetaGit_local'];
-                        //$serverGit = Yii::$app->params['serverGit_local'];
-                        //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
-                        //$serverPub = Yii::$app->params['serverPublicacion_local'];
-                        //$serverLti = Yii::$app->params['serverLti_local'];
-                    $carpetaGit = $params['carpetaGit_local'];
-                    $serverGit = $params['serverGit_local'];
-                    $carpetaPub = $params['carpetaPublicacion_local'];
-                    $serverPub = $params['serverPublicacion_local'];
-                    $serverLti = $params['serverLti_local'];
-                }
-                else {
-                        //$carpetaGit = Yii::$app->params['carpetaGit_global'];
-                        //$serverGit = Yii::$app->params['serverGit_global'];
-                        //$carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
-                        //$serverPub = Yii::$app->params['serverPublicacion_global'];
-                        //$serverLti = Yii::$app->params['serverLti_global'];
-                    $carpetaGit = $params['carpetaGit_global'];
-                    $serverGit = $params['serverGit_global'];
-                    $carpetaPub = $params['carpetaPublicacion_global'];
-                    $serverPub = $params['serverPublicacion_global'];
-                    $serverLti = $params['serverLti_global'];
-                }
 
                 // COPIA el archivo .zip en la carpeta de difusion
                 /////////////////////////////////////////////////
@@ -368,23 +383,23 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 // Git, UNZIP y Publicacion sin errores
                 if($retval === 0) {
 
-                    // DEVUELVE
+                    // DEVUELVE DATA
                     //////////
                     $data = [
                                 "result"=> "ok",
                                 'id_actividad' => $namedir,
                                 'url_actividad' => $serverPub . '/' . $namedir,
+                                "user" => [
+                                    'email' => 'gcono@lti.server',
+                                    'nombre' => 'gcono',
+                                    'rol' => '000'
+                                ],
                                 "upload" => [
                                     'fichero' => $file,
                                     'carpeta' => $namedir,
                                     'publicacion_url' => $serverPub . '/' . $namedir,
                                     'git_url' => $serverGit . '/' . $namedir . '.git',
                                     'actualizado' => 0
-                                ],
-                                "user" => [
-                                    'email' => 'gcono@lti.server',
-                                    'nombre' => 'gcono',
-                                    'rol' => '000'
                                 ],
                                 "date"=> date('YmdHisu')
                             ];
@@ -467,7 +482,7 @@ else
                       file      Nombre del fichero
                       namedir   URL de descarga del .ZIP
                                 carpeta de descarga del .ZIP
-                      actividad URL de difusión de la Actividad (sin .ZIP)
+                      actividad ID/URL de la Actividad LTI (actualiza .ZIP)
             $_FILES Parámetros del fichero enviado por POST
         -->
         <p>
