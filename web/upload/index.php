@@ -77,6 +77,10 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         $serverLti = $params['serverLti_global'];
     }
 
+
+    // COPIA el archivo .zip en la carpeta de difusion
+    /////////////////////////////////////////////////
+    ///
     // Carpeta de difusión Actividad
     umask(0000);
     $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion'));
@@ -92,6 +96,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     umask(0000);
     exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
 
+    // Fichero ZIP subido
     // MKDIR difusion Actividad sin errores
     if($retval === 0) {
 
@@ -133,9 +138,6 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 //$url = $params['serverServiciosLti_global'];
                 $url = $params['serverServiciosLti_local'];
 
-            // COPIA el archivo .zip en la carpeta de difusion
-            /////////////////////////////////////////////////
-
             if (!(preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
                 // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
                 $ruta = '/read/coleccion/Upload/id_actividad/' . $_REQUEST['actividad'];
@@ -149,11 +151,29 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             // ACTIVIDAD ID/URL EXISTE
             if($arrayFile['result'] === 'ok'){
 
+                $namedir = $arrayFile['data']['upload']['carpeta'];
+
+                // Fichero ZIP ya subido!
+
+                // Copiar ZIP en publicacion
+
+                // Unzip Actividad .zip
+                // outputs the username that owns the running php/httpd process
+                // (on a system with the "unzip" executable in the path)
+                $output=null;
+                $retval=null;
+                umask(0000);
+                exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $namedir . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
+
+                // Actualizar Git
+
+                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+
                 // DEVUELVE DATA
                 //////////
                 header('Content-Type: application/json');
                 echo json_encode($arrayFile['data']);
-                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+
             }
             // ACTIVIDAD ID/URL NO EXISTE
             else{
@@ -461,13 +481,14 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
 
             }
             else {
-                echo '<p class="alert error-summary"><i>Error al crear carpeta difusion <i>`' . $namedir . '`</i></p>' .
+                echo '<p class="alert error-summary"><i>Error al crear carpeta publicacion <i>`' . $namedir . '`</i></p>' .
                      '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
             }
         endif;
     }
+    // Fichero ZIP NO subido
     else {
-        echo '<p class="alert error-summary"><i>Error al crear carpeta publicacion <i>`' . $namedir . '`</i></p>' .
+        echo '<p class="alert error-summary"><i>Error al crear carpeta difusion <i>`' . $namedir . '`</i></p>' .
             '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
     }
  }
