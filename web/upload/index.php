@@ -144,7 +144,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
             }
             $arrayFile = json_decode(file_get_contents($url . $ruta), true);
-            print_r($arrayFile);
+            //print_r($arrayFile);
 
             // ACTIVIDAD ID/URL EXISTE
             if($arrayFile['result'] === 'ok'){
