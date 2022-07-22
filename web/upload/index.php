@@ -144,7 +144,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
             }
             $arrayFile = file_get_contents($url . $ruta);
-            print_r($arrayFile['data']);
+            print_r($arrayFile);
 
             if($arrayFile['result'] === 'ok'){
 
