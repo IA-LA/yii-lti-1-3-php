@@ -163,6 +163,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 // Copiar ZIP en publicacion
 
                 // Unzip Actividad .zip
+echo('AAAAAAAAAAAAAAAAAAAAAAAAAAAAaa' . $namedir);
 
             }
             // ACTIVIDAD ID/URL NO EXISTE
