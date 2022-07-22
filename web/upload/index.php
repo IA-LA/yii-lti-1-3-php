@@ -146,6 +146,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             $arrayFile = json_decode(file_get_contents($url . $ruta), true);
             print_r($arrayFile);
 
+            // ACTIVIDAD ID/URL EXISTE
             if($arrayFile['result'] === 'ok'){
 
                 // DEVUELVE DATA
@@ -154,11 +155,13 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 echo json_encode($arrayFile['data']);
                 die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
             }
+            // ACTIVIDAD ID/URL NO EXISTE
             else{
                 // DEVUELVE DATA
                 //////////
                 header('Content-Type: application/json');
-                echo json_encode($arrayFile['data']);
+                echo json_encode($arrayFile);
+                die();
                 die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
             }
         //  - LA URL
