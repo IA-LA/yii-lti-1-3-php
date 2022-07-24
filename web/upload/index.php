@@ -163,7 +163,6 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 // Copiar ZIP en publicacion
 
                 // Unzip Actividad .zip
-echo('AAAAAAAAAAAAAAAAAAAAAAAAAAAAaa' . $namedir);
 
             }
             // ACTIVIDAD ID/URL NO EXISTE
@@ -206,11 +205,6 @@ echo('AAAAAAAAAAAAAAAAAAAAAAAAAAAAaa' . $namedir);
                 // Carpeta de publicaciones
                 //$output = shell_exec(escapeshellcmd('ls -lart ../uploads/publicacion/'));
                 //echo "<pre>$output</pre>";
-
-                // COPIA el archivo .zip en la carpeta de difusion
-                /////////////////////////////////////////////////
-                $arrayFile = file_get_contents($_REQUEST['namedir']);
-                file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFile);
 
                 // Crea proyecto Git '../uploads/git/$namedir.git' y URL='../uploads/publicacion/$namedir/'
                 //  ID=$namedir
@@ -289,6 +283,16 @@ echo('AAAAAAAAAAAAAAAAAAAAAAAAAAAAaa' . $namedir);
                      '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
             }
         endif;
+
+        ///
+        // Descomprime archivo Zip 'unzip -o -X ../uploads/difusion/'
+        //  ID=$namedir
+        ///////////////////////////////////////////////////////////////////////////////////
+
+        // COPIA el archivo .zip en la carpeta de difusion
+        /////////////////////////////////////////////////
+        $arrayFile = file_get_contents($_REQUEST['namedir']);
+        file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFile);
 
         // Descomprime .zip
         // outputs the username that owns the running php/httpd process
