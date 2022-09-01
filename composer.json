@@ -33,6 +33,9 @@
         "codeception/module-asserts": "^1.0.0"
     },
     "config": {
+        "allow-plugins": {
+            "ext-json": true
+        },
         "process-timeout": 1800,
         "fxp-asset": {
             "enabled": false
