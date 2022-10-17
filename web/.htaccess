@@ -3,6 +3,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 RewriteEngine On
-RewriteCond %{HTTP_X_FORWARDED_FOR} !^http://([0-9]+\.)*/
+RewriteCond %{HTTP_X_FORWARDED_FOR} !^([0-9]+\.)*/
 RewriteCond %{REQUEST_URI} (assets|difusion|publicacion) [NC]
 RewriteRule .* - [F,L]
