@@ -3,5 +3,5 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 RewriteEngine On
-RewriteCond %{REQUEST_URI} (assets|difusion|publicacion) [NC]
+RewriteCond %{REQUEST_URI} (assets|difusion) [NC]
 RewriteRule .* - [F,L]
