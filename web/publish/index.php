@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Upload Zip Publisher';
+$title = 'LTI Publisher';
 $params['breadcrumbs'][] = $title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -532,22 +532,25 @@ else
     {
 ?>
 
-    <div class="upload-uploadupdater">
+    <div class="publish-publishlti">
 
         <h1><?= $title ?></h1>
 
         <!--
         TODO
+            Presenta  redirección a la Actividad LTI id o actividad en la Plataforma iss
             $_REQUEST Parámetros de carga
-                      file      Nombre del fichero
-                      namedir   URL de descarga del .ZIP
-                                carpeta de descarga del .ZIP
-                      actividad ID/URL de la Actividad LTI (actualiza .ZIP)
-            $_FILES Parámetros del fichero enviado por POST
+                      id       : identificador de la publicación de la Actividad (00020220724095827000000d)
+                      iss      : URI Plataforma
+                                    https://ailanto-dev.intecca.uned.es/Moolde
+                                    http://10.201.54.31:9002
+                      actividad: ID o URL de la Actividad LTI a visualizar
+                                    00020220724094336000000d
+                                    https://ailanto-dev.intecca.uned.es/publicacion/00020220724095827000000d
         -->
         <p>
-            Formulario de subida de Econtent complejos desde el GICCU.
-            Puede subirse un fichero comprimido .zip, de cada vez,
+            Formulario de redireccion de Econtent complejos desde el GICCU.
+            Puede redireccionarse una Actividad de cada vez,
             sin contener espacios en blanco, tildes o eñes en el nombre.
         </p>
 
