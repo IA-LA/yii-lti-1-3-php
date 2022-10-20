@@ -123,7 +123,6 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
         //      URL https://ailanto-dev.intecca.uned.es/publicacion/00020220721114124000000d
         /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
         if (preg_match('([a-f,0-9]{24})', $actividad)):
-            // TODO recuperar Credenciales de Actividad LTI por ID
             //$_REQUEST['actividad'];
 
             // Información servidor
@@ -168,18 +167,30 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
             $arrayFile = json_decode(file_get_contents($url . $ruta), true);
             //print_r($arrayFile);
 
+            // DONE recuperar Credenciales de Actividad LTI por ID o URL
             // ACTIVIDAD ID/URL EXISTE
             if($arrayFile['result'] === 'ok'){
+                //echo ('carpeta exixte!!!!!!!!');
+                //echo ('id exixte!!!!!!!!');
+                //print_r($arrayFile);
 
-                $namedir = $arrayFile['data']['upload']['carpeta'];
+                $namedir = $arrayFile['data']['url_actividad'];
+                $file=$arrayFile['data']['launch_parameters']['target_link_uri'];
 
-                // Fichero ZIP ya subido!
+                // REDIRECTION HEADER
+                //header('Location: ' . TOOL_PARAMS_TARGET, true, 302);
+                //die;
 
-                // Copiar ZIP en publicacion
+                // Carpeta existe!
 
-                // Unzip Actividad .zip
+                // Actividad exisste!
 
-                //Redirecciona a la URL
+                //Redireccionar a la URL Actividad
+
+                // REDIRECTION HEADER
+                header('Location: ' . $namedir, true, 302);
+                die;
+
 
                 // DEVUELVE DATA
                 //////////
