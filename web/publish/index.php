@@ -99,7 +99,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     /////////////////////////////////////////////////
     ///
     // Carpeta de difusión Actividad
-    umask(0333);
+    umask(0111);
     $output = shell_exec(escapeshellcmd('mkdir ../uploads/publicacion'));
     //echo "<pre>$output</pre>";
 
@@ -110,7 +110,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     // (on a system with the "mkdir" executable in the path)
     $output=null;
     $retval=null;
-    umask(333);
+    umask(0111);
     exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $id), $output, $retval);
 
     // TODO confirmar que la carpeta id o actividad existe
@@ -514,17 +514,27 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     // Fichero ZIP NO subido
     else {
 
+        // Borra Carpeta de Actividad inexistente
+        // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
+        /////////////////////////////////
+        // outputs the username that owns the running php/httpd process
+        // (on a system with the "mkdir" executable in the path)
+        $output=null;
+        $retval=null;
+        umask(0111);
+        exec(escapeshellcmd('rmdir ../uploads/publicacion/' . $id), $output, $retval);
+
         // DEVUELVE DATA
         //////////
         $data = [
             "result"=> "error",
-            "data" => "Error al crear carpeta difusion " . $id
+            "data" => "Error al acceder a carpeta difusion " . $id
         ];
         header('Content-Type: application/json');
         echo json_encode($data);
         die();
 
-        echo '<p class="alert error-summary"><i>Error al crear carpeta difusion <i>`' . $id . '`</i></p>' .
+        echo '<p class="alert error-summary"><i>Error al acceder a carpeta difusion <i>`' . $id . '`</i></p>' .
             '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
     }
  }
