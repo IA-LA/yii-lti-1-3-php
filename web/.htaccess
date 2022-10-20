@@ -3,7 +3,9 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
+## https://techexpert.tips/apache/apache-blocking-url-query/
 RewriteEngine On
-RewriteCond %{HTTP_X_FORWARDED_FOR} !^10\.201\.54\.141/
+RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
+RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/
 RewriteCond %{REQUEST_URI} (assets|difusion|publicacion) [NC]
 RewriteRule .* - [F,L]
