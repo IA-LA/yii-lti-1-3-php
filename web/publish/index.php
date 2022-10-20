@@ -99,7 +99,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     /////////////////////////////////////////////////
     ///
     // Carpeta de difusión Actividad
-    umask(0666);
+    umask(0333);
     $output = shell_exec(escapeshellcmd('mkdir ../uploads/publicacion'));
     //echo "<pre>$output</pre>";
 
@@ -110,7 +110,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     // (on a system with the "mkdir" executable in the path)
     $output=null;
     $retval=null;
-    umask(0666);
+    umask(333);
     exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $id), $output, $retval);
 
     // TODO confirmar que la carpeta id o actividad existe
