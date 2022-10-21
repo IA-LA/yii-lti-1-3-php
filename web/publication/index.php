@@ -188,8 +188,11 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //Redireccionar a la URL Actividad
 
                 // REDIRECTION HEADER
-                header('Location: ' . $namedir, false, 302);
-                die;
+                //header('Location: ' . $namedir, false, 302);
+
+
+                // Inyección de publicación HTML
+                echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
 
 
                 // DEVUELVE DATA
