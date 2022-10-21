@@ -188,7 +188,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //Redireccionar a la URL Actividad
 
                 // REDIRECTION HEADER
-                header('Location: ' . $namedir, true, 302);
+                header('Location: ' . $namedir, false, 302);
                 die;
 
 
