@@ -194,6 +194,10 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //http://stackoverflow.com/questions/17371785/ddg#17371860
                 //<base href="http://www.example.com/news/index.html">
 
+                // CORS HEADER
+                header('Access-Control-Allow-Headers: *', true, 200);
+                header('Access-Control-Allow-Origin: https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a', true, 200);
+
                 // Inyección de publicación HTML
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/xml/');
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
