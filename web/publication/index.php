@@ -189,11 +189,17 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
 
                 // REDIRECTION HEADER
                 //header('Location: ' . $namedir, false, 302);
+                //header('Location: ' . $namedir, false, 302);
                 //die;
+                //http://stackoverflow.com/questions/17371785/ddg#17371860
+                //<base href="http://www.example.com/news/index.html">
 
                 // Inyección de publicación HTML
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/xml/');
-                echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
+                //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
+                $html = file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
+                substr_replace($html, '<base href="http://www.example.com/news/index.html">',134, null);
+                echo $html;
                 die;
 
                 // DEVUELVE DATA
