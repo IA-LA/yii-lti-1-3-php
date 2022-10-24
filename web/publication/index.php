@@ -114,8 +114,9 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     umask(0111);
     exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $id), $output, $retval);
 
+    // Actividad SI publicada
     // Caarpeta publicacion de id existe
-    // TOUCH publicacion Actividad con errores
+    // mkdir publicacion Actividad con errores
     if($retval !== 0) {
         //  - LA ACTIVIDAD
         //      ID: 00000000000000000000000a
@@ -195,14 +196,14 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //<base href="http://www.example.com/news/index.html">
 
                 // CORS HEADER
-                header('Access-Control-Allow-Headers: *', true, 200);
-                header('Access-Control-Allow-Origin: https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a', true, 200);
+                //header('Access-Control-Allow-Headers: *', true, 200);
+                //header('Access-Control-Allow-Origin: https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a', true, 200);
 
                 // Inyección de publicación HTML
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/xml/');
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
-                $html = file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
-                $html= substr_replace($html, '        <base href="https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/"/>',136, null);
+                $html = file_get_contents($namedir . '/index.html');
+                $html= substr_replace($html, '        <base href="' . $namedir . '"/>',136, null);
                 echo $html;
                 die;
 
@@ -240,7 +241,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //////////
                 header('Content-Type: application/json');
                 echo json_encode($arrayFile);
-                die();
+                die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
             }
         //  - LA URL
         //      http...
@@ -258,12 +259,12 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
             ];
             header('Content-Type: application/json');
             echo json_encode($data);
-            die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
+            die();
         endif;
     }
     // Actividad NO publicada
     else {
-
+        // Actividad inexistente
         // Borra Carpeta de Actividad inexistente
         // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
         /////////////////////////////////
