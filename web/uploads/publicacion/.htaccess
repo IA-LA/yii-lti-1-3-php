@@ -1,5 +1,5 @@
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
-Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es";
-Header set Access-Control-Allow-Origin "https://ailanto-dev.intecca.uned.es";
-Header set Access-Control-Allow-Origin "https://acacia.uned.es";
-Header set Access-Control-Allow-Origin "https://agora.uned.es";
+Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
+Header add Access-Control-Allow-Origin "https://ailanto-dev.intecca.uned.es"
+Header add Access-Control-Allow-Origin "https://acacia.uned.es"
+Header add Access-Control-Allow-Origin "https://agora.uned.es"
