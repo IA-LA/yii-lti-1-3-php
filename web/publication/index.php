@@ -203,8 +203,8 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/xml/');
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
                 $html = file_get_contents($namedir . '/index.html');
-                $pos = strspn($html, '<head>');
-                $html= substr_replace($html, '        <base href="' . $namedir . '/"/>',$pos+6, null);
+                $pos = strpos($html, '<head>');
+                $html= substr_replace($html, '        <base href="' . $namedir . '/"/>',136, null);
                 echo $html;
                 die;
 
