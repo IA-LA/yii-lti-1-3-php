@@ -196,6 +196,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //<base href="http://www.example.com/news/index.html">
 
                 // CORS HEADER
+                // https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
                 //header('Access-Control-Allow-Headers: *', true, 200);
                 //header('Access-Control-Allow-Origin: https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a', true, 200);
 
@@ -203,8 +204,8 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/xml/');
                 //echo file_get_contents('https://ailanto-dev.intecca.uned.es/lti/publicacion/10220210903095251000000a/index.html');
                 $html = file_get_contents($namedir . '/index.html');
-                $pos = strpos($html, '<head>');
-                $html= substr_replace($html, '        <base href="' . $namedir . '/"/>',$pos+6, null);
+                $pos = strpos($html, '</head>');
+                $html= substr_replace($html, '        <base href="' . $namedir . '/"/>',$pos, null);
                 echo $html;
                 die;
 
