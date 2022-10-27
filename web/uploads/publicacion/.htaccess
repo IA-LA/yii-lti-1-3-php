@@ -1,6 +1,6 @@
 ## https://help.liquidweb.com/s/article/Allowing-and-Denying-Website-Access-Using-htaccess
 Require all granted
-Require host intecca.uned.es
+Require host .*intecca\.uned\.es.*
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
 #Header add Access-Control-Allow-Origin "https://ailanto-dev.intecca.uned.es"
