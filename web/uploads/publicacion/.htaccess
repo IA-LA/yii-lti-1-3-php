@@ -4,7 +4,13 @@
 
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteEngine On
-RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/.*
+# [HTTP_X_FORWARDED_FOR] => 10.201.54.141
+# [HTTP_X_FORWARDED_HOST] => ailanto-dev.intecca.uned.es
+# [HTTP_X_FORWARDED_SERVER] => ailanto-dev.intecca.uned.es
+## http://tltech.com/info/referrer-htaccess/
+#RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
+RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
+#RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/.*
 RewriteRule .* - [F,L]
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
