@@ -11,6 +11,9 @@ RewriteEngine On
 #RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
 RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es.*
+RewriteCond %{HTTP_REFERER} !^https://ailanto-dev.intecca.uned.es.*
+RewriteCond %{HTTP_REFERER} !^http://acacia.intecca.uned.es.*
+RewriteCond %{HTTP_REFERER} !^http://agora.intecca.uned.es.* [NC]
 RewriteRule .* - [F,L]
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
