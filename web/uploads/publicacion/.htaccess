@@ -11,10 +11,7 @@ RewriteEngine On
 #RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
-RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es.*
-RewriteCond %{HTTP_REFERER} !^https://ailanto-dev.intecca.uned.es.*
-RewriteCond %{HTTP_REFERER} !^https://acacia.intecca.uned.es.*
-RewriteCond %{HTTP_REFERER} !^https://agora.intecca.uned.es.* [NC]
+RewriteCond %{HTTP_REFERER} !^https://agora.intecca.uned.es/
 RewriteRule .* - [F,L]
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
