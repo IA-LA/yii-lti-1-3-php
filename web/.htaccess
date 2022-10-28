@@ -12,8 +12,8 @@ RewriteRule . index.php [L]
 RewriteEngine On
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
-RewriteCond %{HTTP_REFERER} !^https://ailanto-dev.intecca.uned.es/
-RewriteCond %{REQUEST_URI} (assets|difusion|publicacion) [NC]
+RewriteCond %{HTTP_REFERER} !^https://ailanto-dev.intecca.uned.es/ [NC]
+RewriteCond %{REQUEST_URI} (assets|difusion) [NC]
 RewriteRule .* - [F,L]
 # https://stackoverflow.com/questions/7059619/htaccess-deny-all-by-ip-address-except-those-in-united-states
 ## https://help.liquidweb.com/s/article/Allowing-and-Denying-Website-Access-Using-htaccess
