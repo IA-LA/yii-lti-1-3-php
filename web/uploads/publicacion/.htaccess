@@ -3,7 +3,7 @@
 #Require host intecca.uned.es
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteEngine On
-RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/ [NC]
+RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/.*
 RewriteRule .* - [F,L]
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
