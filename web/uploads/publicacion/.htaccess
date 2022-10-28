@@ -10,7 +10,7 @@ RewriteEngine On
 ## http://tltech.com/info/referrer-htaccess/
 #RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
-RewriteCond %{HTTP_REFERER} ^http://ailanto-dev.intecca.uned.es/.*
+RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es.*
 RewriteRule .* - [F,L]
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
