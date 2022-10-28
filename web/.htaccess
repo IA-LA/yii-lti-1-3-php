@@ -9,7 +9,12 @@ RewriteRule . index.php [L]
 ## https://techexpert.tips/apache/apache-blocking-url-query/
 # https://stackoverflow.com/questions/4751688/rewritecond-on-htaccess
 # https://stackoverflow.com/questions/28376037/htaccess-allow-from-domain-name-instead-of-ip-subnet
-
+RewriteEngine On
+## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
+RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
+RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/.*
+RewriteCond %{REQUEST_URI} (assets|difusion) [NC]
+RewriteRule .* - [F,L]
 # https://stackoverflow.com/questions/7059619/htaccess-deny-all-by-ip-address-except-those-in-united-states
 ## https://help.liquidweb.com/s/article/Allowing-and-Denying-Website-Access-Using-htaccess
 # Require not host uned.es
