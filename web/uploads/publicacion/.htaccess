@@ -10,6 +10,7 @@ RewriteEngine On
 ## http://tltech.com/info/referrer-htaccess/
 #RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
+RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
 RewriteCond %{HTTP_REFERER} ^https://agora.intecca.uned.es/
 RewriteRule .* - [F]
