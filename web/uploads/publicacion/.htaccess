@@ -12,7 +12,7 @@ RewriteEngine On
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
 RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
-RewriteCond %{HTTP_REFERER} https://agora.uned.es/
+RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/$
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 RewriteRule .* - [F,L]
 
