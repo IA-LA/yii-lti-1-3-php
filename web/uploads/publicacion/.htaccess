@@ -15,7 +15,8 @@ RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
 #RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/$
 RewriteCond %{HTTP_HOST} !^agora.uned.es
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
-RewriteRule .* - [F,L]
+#RewriteRule .* - [F,L]
+RewriteRule .* - [L,R=%{HTTP_REFERER}]
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
