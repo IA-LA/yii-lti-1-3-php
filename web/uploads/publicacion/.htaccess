@@ -20,8 +20,8 @@ RewriteCond %{HTTP_REFERER} !^https://ailanto-dev.intecca.uned.es/lti13/(publish
 RewriteRule .* - [R=405,L]
 
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
-#ErrorDocument 405 %{HTTP_REFERER}
-ErrorDocument 405 "Access Not Allowed"
+ErrorDocument 405 %{HTTP_REFERER}
+#ErrorDocument 405 "Access Not Allowed"
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
