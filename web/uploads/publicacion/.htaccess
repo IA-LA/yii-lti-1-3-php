@@ -20,7 +20,7 @@ RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es
 RewriteRule .* - [R=408,L]
 
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
-ErrorDocument 408 %{HTTP_HOST}
+ErrorDocument 408 %{HTTP_ORIGIN}
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
