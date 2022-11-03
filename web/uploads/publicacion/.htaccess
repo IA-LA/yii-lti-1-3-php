@@ -14,7 +14,7 @@ RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
 # https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
 RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(|lti13/|publicacion/)(|lms/|lms/giccu/)(publish|launch|dl|diffusion)(|.php).* [OR]
-RewriteCond %{HTTP_HOST} !^https://agora.uned.es.*
+RewriteCond %{HTTP_HOST} !^agora.uned.es
 #RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/
 #RewriteCond %{HTTP_HOST} !^agora.uned.es
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
