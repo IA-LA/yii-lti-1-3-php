@@ -24,7 +24,7 @@ RewriteRule .* - [R=408,L]
 
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
 #ErrorDocument 408 %{HTTP_REFERER}
-ErrorDocument 408 "%{HTTP_HOST}"
+ErrorDocument 408 %%{HTTP_HOST}
 #ErrorDocument 405 "Access Not Allowed"
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
