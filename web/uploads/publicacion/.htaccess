@@ -14,6 +14,7 @@ RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
 # https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
 RewriteCond %{HTTP_REFERER} !^http[|s]://agora.uned.es/(.*) [OR]
+RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(publicacion/|lti/publicacion/)(.*) [OR]
 RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(|lti13/|publicacion/)(|lms/|lms/giccu/)(publish|launch|dl|diffusion)(|.php)(.*)
 #RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/
 #RewriteCond %{HTTP_HOST} !^agora.uned.es
@@ -25,7 +26,7 @@ RewriteRule .* - [R=405,L]
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
 #ErrorDocument 408 %{HTTP_REFERER}
 #ErrorDocument 405 "Access Not Allowed"
-ErrorDocument 405 %{HTTP_REFERER}
+ErrorDocument 405 %{HTTP_BASE}
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
