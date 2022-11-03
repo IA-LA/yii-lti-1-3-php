@@ -27,7 +27,7 @@ RewriteRule .* - [R=405,L]
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
 #ErrorDocument 408 %{HTTP_REFERER}
 #ErrorDocument 405 "Access Not Allowed"
-ErrorDocument 405 %{ENV:AH_Client_IP}
+ErrorDocument 405 %{HTTP_X_FORWARDED_FOR}
 
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
