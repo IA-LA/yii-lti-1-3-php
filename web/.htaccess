@@ -6,7 +6,7 @@ Options -Indexes
 php_value post_max_size 100M
 php_value upload_max_filesize 100M
 ## https://stackoverflow.com/questions/45498037/apache-web-server-timeout-after-60-seconds
-php_value memory_limit = 1000M
+php_value memory_limit = 258M
 php_value max_input_time = 300
 php_value max_execution_time = 300
 
