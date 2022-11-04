@@ -53,7 +53,6 @@ AppAsset::register($this);
                     '<ul style="list-style-type:none">',
                     ['label' => 'Upload Zip', 'url' => ['upload/upload']],
                     ['label' => 'Upload Zip & Register', 'url' => ['upload/uploadregister']],
-                    ['label' => 'Upload Zip Updater', 'url' => ['upload/uploadupdater']],
                     '</ul>',
                     '<li class="dropdown-header">Git Menu</li>',
                     '<ul style="list-style-type:none">',
