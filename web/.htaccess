@@ -3,12 +3,12 @@ Options -Indexes
 # https://linuxconfig.org/how-to-restrict-access-to-a-resource-using-apache-on-linux
 
 ## https://stackoverflow.com/questions/13051626/yii-cuploadedfile-post-content-length-of-x-bytes-exceeds-the-limit-of-y-byte
-php_value post_max_size 1000M
-php_value upload_max_filesize 1000M
+php_value post_max_size 2048M
+php_value upload_max_filesize 2048M
 ## https://stackoverflow.com/questions/45498037/apache-web-server-timeout-after-60-seconds
-php_value memory_limit 1000M
-php_value max_input_time 300
-php_value max_execution_time 300
+php_value memory_limit 2048M
+php_value max_input_time 600
+php_value max_execution_time 600
 
 ## YII default
 RewriteEngine on
