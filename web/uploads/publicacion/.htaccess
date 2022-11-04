@@ -2,6 +2,30 @@
 #Require all granted
 #Require host intecca.uned.es
 
+## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
+RewriteEngine On
+# [HTTP_X_FORWARDED_FOR] => 10.201.54.141
+# [HTTP_X_FORWARDED_HOST] => ailanto-dev.intecca.uned.es
+# [HTTP_X_FORWARDED_SERVER] => ailanto-dev.intecca.uned.es
+## http://tltech.com/info/referrer-htaccess/
+#RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
+#RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
+RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
+## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
+# https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
+#RewriteCond %{HTTP_HOST} !^ailanto-dev.intecca.uned.es [OR]
+#RewriteCond %{HTTP_HOST} !^agora.uned.es [OR]
+RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/
+#RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(uploads/publicacion/|publicacion/|lti/publicacion/)(.*) [OR]
+#RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(lti/|)(lti13|publicacion/|lti/publicacion/|)(lms/|lms/giccu/|[a-f,0-9]{24}/|)(publish|launch|dl|diffusion|)(.php|.*|)
+RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(:9002|)/(lti13/|lti/lti13/|)(lms/|lms/giccu/|)(publish|login|launch|dl|diffusion|)(.php|)
+#RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/
+#RewriteCond %{HTTP_HOST} !^agora.uned.es
+#RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
+#RewriteRule .* - [F,L]
+#RewriteRule .* - [R=408,L]
+RewriteRule .* - [R=405,L]
+
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
 #ErrorDocument 408 %{HTTP_REFERER}
 #ErrorDocument 405 "Access Not Allowed"
