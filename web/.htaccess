@@ -2,20 +2,27 @@
 Options -Indexes
 # https://linuxconfig.org/how-to-restrict-access-to-a-resource-using-apache-on-linux
 
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule . index.php [L]
+# https://stackoverflow.com/questions/13051626/yii-cuploadedfile-post-content-length-of-x-bytes-exceeds-the-limit-of-y-byte
+php_value post_max_size 10M
+php_value upload_max_filesize 10M
 
-RewriteEngine On
+## YII default
+RewriteEngine on
+
 # https://stackoverflow.com/questions/4751688/rewritecond-on-htaccess
 # https://stackoverflow.com/questions/28376037/htaccess-allow-from-domain-name-instead-of-ip-subnet
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
 RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/.*
 ## https://techexpert.tips/apache/apache-blocking-url-query/
-RewriteCond %{REQUEST_URI} (assets|difusion) [NC]
+RewriteCond %{REQUEST_URI} (assets|difusion|git) [NC]
 RewriteRule .* - [F,L]
+
+## YII default
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.php [L]
+
 
 # https://stackoverflow.com/questions/7059619/htaccess-deny-all-by-ip-address-except-those-in-united-states
 ## https://help.liquidweb.com/s/article/Allowing-and-Denying-Website-Access-Using-htaccess
