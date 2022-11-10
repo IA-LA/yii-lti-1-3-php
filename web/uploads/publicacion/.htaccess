@@ -3,7 +3,8 @@
 #Require host intecca.uned.es
 
 ## https://stackoverflow.com/questions/913869/how-to-change-the-default-encoding-to-utf-8-for-apache
-IndexOptions +Charset=UTF-8
+#IndexOptions +Charset=UTF-8
+AddCharset utf-8 .html .css .php .txt .js
 
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteEngine On
