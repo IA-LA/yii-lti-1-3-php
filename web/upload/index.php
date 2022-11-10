@@ -10,10 +10,20 @@ $url=$_SERVER;
 
 // TODO MULTIPROCESO/MULTITAREA
 //  https://medium.com/async-php/multi-process-php-94a4e5a4be05
+// Carga, sube y crea o actualiza el contenido de una actividad con el fichero .zip namedir y lo guarda con nombre file
+// PARAMETROS
+//  file        :   nombre con el que guardar el fichero
+//  namedir     :   dirección física o URL donde se localiza el fichero.zip que se va a subir
+//                      ../uploads/60378839cafc7625e8333d04_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4f.zip
+//                      http://10.201.54.31:8000/uploads/60378839cafc7625e8333d04_5e46670337ebc61534f37c4a_5e46673e37ebc61534f37c4f.zip
+//  actividad   :   ID o URL de la actividad a actualizar
+//                      00020220724094336000000d
+//                      https://ailanto-dev.intecca.uned.es/publicacion/00020220724095827000000d
+//
 if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['file'])))) || (($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])))))
 {
     $file='';
-    $naedir='';
+    $namedir='';
     $output=null;
     $retval=null;
 
@@ -153,7 +163,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             $arrayFile = json_decode(file_get_contents($url . $ruta), true);
             //print_r($arrayFile);
 
-            // ACTIVIDAD ID/URL EXISTE
+            // UPLOAD ID/URL EXISTE
             if($arrayFile['result'] === 'ok'){
 
                 $namedir = $arrayFile['data']['upload']['carpeta'];
@@ -413,21 +423,24 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             //////////
             $data = [
                 "result"=> "ok",
-                'id_actividad' => $namedir,
-                'url_actividad' => $serverPub . '/' . $namedir,
-                "user" => [
-                    'email' => 'gcono@lti.server',
-                    'nombre' => 'gcono',
-                    'rol' => '000'
-                ],
-                "upload" => [
-                    'fichero' => $file,
-                    'carpeta' => $namedir,
-                    'publicacion_url' => $serverPub . '/' . $namedir,
-                    'git_url' => $serverGit . '/' . $namedir . '.git',
-                    'actualizado' => 0
-                ],
-                "date"=> date('YmdHisu')
+                "data" =>
+                    [
+                        'id_actividad' => $namedir,
+                        'url_actividad' => $serverPub . '/' . $namedir,
+                        "user" => [
+                            'email' => 'gcono@lti.server',
+                            'nombre' => 'gcono',
+                            'rol' => '000'
+                        ],
+                        "upload" => [
+                            'fichero' => $file,
+                            'carpeta' => $namedir,
+                            'publicacion_url' => $serverPub . '/' . $namedir,
+                            'git_url' => $serverGit . '/' . $namedir . '.git',
+                            'actualizado' => 0
+                        ],
+                        "date"=> date('YmdHisu')
+                    ]
             ];
             header('Content-Type: application/json');
             echo json_encode($data);
@@ -475,12 +488,34 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             }
         }
         else {
+
+            // DEVUELVE DATA
+            //////////
+            $data = [
+                "result"=> "error",
+                "data" => "Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero " . $file
+            ];
+            header('Content-Type: application/json');
+            echo json_encode($data);
+            die();
+
             echo '<p class="alert error-summary">Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
                 '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
         }
     }
     // Fichero ZIP NO subido
     else {
+
+        // DEVUELVE DATA
+        //////////
+        $data = [
+            "result"=> "error",
+            "data" => "Error al crear carpeta difusion " . $namedir
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        die();
+
         echo '<p class="alert error-summary"><i>Error al crear carpeta difusion <i>`' . $namedir . '`</i></p>' .
             '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
     }
@@ -494,7 +529,8 @@ else
         <h1><?= $title ?></h1>
 
         <!--
-        TODO
+        DONE
+            Carga, sube y crea o actualiza el contenido de una actividad con el fichero .zip namedir y lo guarda con nombre file
             $_REQUEST Parámetros de carga
                       file      Nombre del fichero
                       namedir   URL de descarga del .ZIP
