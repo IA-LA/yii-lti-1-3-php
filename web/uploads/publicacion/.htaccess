@@ -2,6 +2,9 @@
 #Require all granted
 #Require host intecca.uned.es
 
+## https://stackoverflow.com/questions/913869/how-to-change-the-default-encoding-to-utf-8-for-apache
+IndexOptions +Charset=UTF-8
+
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteEngine On
 # [HTTP_X_FORWARDED_FOR] => 10.201.54.141
