@@ -2,10 +2,12 @@
 #Require all granted
 #Require host intecca.uned.es
 
+## TODO+NE Incidencia Servidor `Encoding Charset UTF-8`
 ## https://stackoverflow.com/questions/913869/how-to-change-the-default-encoding-to-utf-8-for-apache
 #IndexOptions +Charset=UTF-8
 AddCharset utf-8 .html .css .php .txt .js
 
+## TODO+NE Posibilidad 3: limitar acceso vía GET a las carpetas publicación/ mediante: URL redirección Servidor LTI (HTTP_REFERER==launch/login/publish/diffusion.php)
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteEngine On
 # [HTTP_X_FORWARDED_FOR] => 10.201.54.141
@@ -14,27 +16,34 @@ RewriteEngine On
 ## http://tltech.com/info/referrer-htaccess/
 #RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
-RewriteRule ^/publicacion/1(.*)$ /lti/publicacion/9$1 [L,R]
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
 # https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
 #RewriteCond %{HTTP_HOST} !^ailanto-dev.intecca.uned.es [OR]
 #RewriteCond %{HTTP_HOST} !^agora.uned.es [OR]
+#RewriteCond %{HTTP_HOST} !^agora.uned.es
 RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/
 #RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(uploads/publicacion/|publicacion/|lti/publicacion/)(.*) [OR]
 #RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(lti/|)(lti13|publicacion/|lti/publicacion/|)(lms/|lms/giccu/|[a-f,0-9]{24}/|)(publish|launch|dl|diffusion|)(.php|.*|)
 RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(:9002|)/(lti13/|lti/lti13/|)(lms/|lms/giccu/|)(publish|login|launch|dl|diffusion|)(.php|)
-#RewriteCond %{HTTP_REFERER} !^https://agora.uned.es/
-#RewriteCond %{HTTP_HOST} !^agora.uned.es
+RewriteCond %{HTTP_REFERER} !^http[s|]://https://10.201.54.31/
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 #RewriteRule .* - [F,L]
 #RewriteRule .* - [R=408,L]
 RewriteRule .* - [R=405,L]
+
+## https://stackoverflow.com/questions/57356938/apache-is-adding-javascript-in-html-file
+## https://serverfault.com/questions/46449/how-to-inject-html-code-into-every-delivered-html-page
+RewriteCond ^/publicacion/1(.*)$
+#RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
+#RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
+RewriteRule ^/publicacion/1(.*)$ /lti13/publicacion/9$1 [L,R]
 
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
 #ErrorDocument 408 %{HTTP_REFERER}
 #ErrorDocument 405 "Access Not Allowed"
 ErrorDocument 405 https://ailanto-dev.intecca.uned.es/lti13/lms/giccu/error.php
 
+## TODO+NE Incidencia `blocked by CORS policy`
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
 #Header add Access-Control-Allow-Origin "https://ailanto-dev.intecca.uned.es"
