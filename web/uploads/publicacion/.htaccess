@@ -10,7 +10,7 @@ AddCharset utf-8 .html .css .php .txt .js
 RewriteEngine On
 
 ## TODO Posibilidad 6: redireccionar el contenido publicado en el Sistema LTI
-RewriteRule ^(.*)$ /lti13/jwks.php?path=$1 [L,R]
+RewriteRule ^(.*)/$ /lti13/jwks.php?path=$1 [L,R]
 
 ## TODO+NE Posibilidad 3: limitar acceso vía GET a las carpetas publicación/ mediante: URL redirección Servidor LTI (HTTP_REFERER==launch/login/publish/diffusion.php)
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
