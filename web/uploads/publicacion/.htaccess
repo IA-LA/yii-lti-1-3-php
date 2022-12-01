@@ -16,7 +16,7 @@ RewriteCond %{QUERY_STRING} ^id_token=([0-9a-zA-Z.]*)
 ##RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 ##RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
 ##RewriteRule ^/publicacion/1(.*)$ /lti13/publicacion/9$1 [L,R]
-RewriteRule ^(.*)/$ /lti13/lms/giccu/diffusion.php?path=$1 [QSA,L,R]
+RewriteRule ^(.*)/$ /lti13/lms/publish.php?path=$1 [QSA,L,R]
 
 ## TODO+NE Posibilidad 3: limitar acceso vía GET a las carpetas publicación/ mediante: URL redirección Servidor LTI (HTTP_REFERER==launch/login/publish/diffusion.php)
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
