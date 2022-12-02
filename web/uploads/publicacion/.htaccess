@@ -12,7 +12,7 @@ RewriteEngine On
 ## TODO Posibilidad 6: redireccionar el contenido publicado en el Sistema LTI
 ## https://stackoverflow.com/questions/57356938/apache-is-adding-javascript-in-html-file
 ## https://serverfault.com/questions/46449/how-to-inject-html-code-into-every-delivered-html-page
-RewriteCond %{REQUEST_URI} ^id_token=([0-9a-zA-Z.]*) [OR]
+RewriteCond %{REQUEST_URI} !^id_token=([0-9a-zA-Z.]*) [OR]
 RewriteCond %{QUERY_STRING} ^id_token=([0-9a-zA-Z.]*)
 ##RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 ##RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
