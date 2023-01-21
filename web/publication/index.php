@@ -152,8 +152,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
             if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
                 $url = $params['serverServiciosLti_local'];
             else
-                //$url = $params['serverServiciosLti_global'];
-                $url = $params['serverServiciosLti_local'];
+                $url = $params['serverServiciosLti_global'];
 
             // ID o URL
             if (!(preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
