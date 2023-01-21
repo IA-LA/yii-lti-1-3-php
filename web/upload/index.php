@@ -144,7 +144,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             /// LOCAL puerto :9000
             /// GLOBAL puerto:8000 o `.uned.es`
             ///
-            if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
+            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
                 $url = $params['serverServiciosLti_local'];
             else
                 $url = $params['serverServiciosLti_global'];
