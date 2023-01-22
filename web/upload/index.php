@@ -62,10 +62,10 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     // Dirección de alojamiento
     // del servidor de Git
     //////////////////////
-    /// LOCAL  resto: ej. 'localhost', '127.0.0.1' o puerto :9000 :8000
-    /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
+    /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
+    /// GLOBAL `.uned.es` o '10.201.54.31'
     ///
-    echo($_SERVER['HTTP_HOST']);
+    echo($_SERVER['HTTP_HOST'] + strpos($_SERVER['HTTP_HOST'], '10.201.54.31'));
     die();
     if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es'))) {
         $local = true;
