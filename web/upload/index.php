@@ -64,7 +64,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     /// LOCAL  resto: ej. puerto :9000 :8000
     /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
     ///
-    if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80')) {
+    if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es'))) {
         //$carpetaGit = Yii::$app->params['carpetaGit_local'];
         //$serverGit = Yii::$app->params['serverGit_local'];
         //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
@@ -141,10 +141,10 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            /// LOCAL  resto: ej. puerto :9000 :8000
+            /// LOCAL  resto: ej. 'localhost', '127.0.0.1' o puerto :9000 :8000
             /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
             ///
-            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80'))
+            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')))
                 $url = $params['serverServiciosLti_local'];
             else
                 $url = $params['serverServiciosLti_global'];

@@ -69,7 +69,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     /// LOCAL  resto: ej. puerto :9000 :8000
     /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
     ///
-    if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80')) {
+    if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es'))) {
         //$carpetaGit = Yii::$app->params['carpetaGit_local'];
         //$serverGit = Yii::$app->params['serverGit_local'];
         //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
@@ -149,7 +149,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
             /// LOCAL puerto resto: ej. :9000 :8000
             /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
             ///
-            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80'))
+            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')))
                 $url = $params['serverServiciosLti_local'];
             else
                 $url = $params['serverServiciosLti_global'];
