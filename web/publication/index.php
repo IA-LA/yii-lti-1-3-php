@@ -66,10 +66,10 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     // Dirección de alojamiento
     // del servidor de Git
     //////////////////////
-    /// LOCAL puerto :9000
-    /// GLOBAL puerto:8000 o `.uned.es`
+    /// LOCAL  resto: ej. puerto :9000 :8000
+    /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
     ///
-    if ((! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000')) {
+    if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80')) {
         //$carpetaGit = Yii::$app->params['carpetaGit_local'];
         //$serverGit = Yii::$app->params['serverGit_local'];
         //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
