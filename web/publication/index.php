@@ -66,7 +66,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
     // Dirección de alojamiento
     // del servidor de Git
     //////////////////////
-    /// LOCAL  resto: ej. puerto :9000 :8000
+    /// LOCAL  resto: ej. 'localhost', '127.0.0.1' o puerto :9000 :8000
     /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
     ///
     if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es'))) {
@@ -146,7 +146,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            /// LOCAL puerto resto: ej. :9000 :8000
+            /// LOCAL  resto: ej. 'localhost', '127.0.0.1' o puerto :9000 :8000
             /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
             ///
             if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')))
