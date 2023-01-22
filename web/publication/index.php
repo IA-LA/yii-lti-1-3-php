@@ -146,10 +146,10 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            /// LOCAL puerto :9000
-            /// GLOBAL puerto:8000 o `.uned.es`
+            /// LOCAL puerto resto: ej. :9000 :8000
+            /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
             ///
-            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80') && ($_SERVER['REMOTE_PORT'] !== '8000'))
+            if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es')) && ($_SERVER['REMOTE_PORT'] !== '80'))
                 $url = $params['serverServiciosLti_local'];
             else
                 $url = $params['serverServiciosLti_global'];
