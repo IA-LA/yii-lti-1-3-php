@@ -65,9 +65,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
     /// GLOBAL `.uned.es` o '10.201.54.31'
     ///
-    echo($_SERVER['HTTP_HOST'] . strpos($_SERVER['HTTP_HOST'], '10.201.54.31'));
-    die();
-    if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es'))) {
+    if ((strpos($_SERVER['HTTP_HOST'], '10.201.54.31')!==false) && (strpos($_SERVER['HTTP_HOST'], '.uned.es'))!==false) {
         $local = true;
         //$carpetaGit = Yii::$app->params['carpetaGit_local'];
         //$serverGit = Yii::$app->params['serverGit_local'];
