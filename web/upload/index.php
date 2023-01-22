@@ -119,8 +119,8 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         //      ID: 5e0df19c0c2e74489066b43f
         //      URL https://ailanto-dev.intecca.uned.es/publicacion/00020220721114124000000d
         /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-        if ((!(preg_match('(zip|Zip|ZIP)', $actividad)) && (preg_match('([a-f,0-9]{24})', $actividad)))):
-            // TODO recuperar Credenciales de Actividad LTI por ID
+        if (((preg_match('(zip|Zip|ZIP)', $actividad)!==false) && (preg_match('([a-f,0-9]{24})', $actividad)))):
+            // TODO-NE recuperar Credenciales de Actividad LTI por ID
             //$_REQUEST['actividad'];
 
             // Información servidor
@@ -152,7 +152,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $url = $params['serverServiciosLti_global'];
 
             // ID o URL
-            if (!(preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
+            if ((preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])!==false) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
                 // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
                 $ruta = '/read/coleccion/Upload/id_actividad/' . $_REQUEST['actividad'];
             } else {
@@ -175,6 +175,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
 
                 // Unzip Actividad .zip
 
+                //die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
             }
             // ACTIVIDAD ID/URL NO EXISTE
             else{
@@ -182,8 +183,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 //////////
                 header('Content-Type: application/json');
                 echo json_encode($arrayFile);
-                die();
-                die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+                die("Cuando NO existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
             }
         //  - LA URL
         //      http...
@@ -191,7 +191,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         //      /ruta/fichero.zip
         /**/
         else:
-            // TODO crear Actividad LTI
+            // TODO-NE crear Actividad LTI
             //die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
             // Carpeta de publicación Actividad
             umask(0000);
@@ -299,6 +299,12 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         // Descomprime archivo Zip 'unzip -o -X ../uploads/difusion/'
         //  ID=$namedir
         ///////////////////////////////////////////////////////////////////////////////////
+
+        // TODO-NE crear Carpeta Difusion
+        // CCREA la carpeta de publicación Actividad
+        umask(0000);
+        $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir));
+        //echo "<pre>$output</pre>";
 
         // COPIA el archivo .zip en la carpeta de difusion
         /////////////////////////////////////////////////

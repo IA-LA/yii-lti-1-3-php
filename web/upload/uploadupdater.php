@@ -110,7 +110,7 @@ $url=$_SERVER;
                     //      00000000000000000000000a
                     //      5e0df19c0c2e74489066b43f
                     /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-                    if ((!(preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
+                    if (((preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])!==false) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
                         // TODO recuperar Credenciales de Actividad LTI por ID
                         die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
                     //  - LA URL
