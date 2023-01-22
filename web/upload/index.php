@@ -35,8 +35,8 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
 
     // PARAMS
     // SERVIDORES
-    $params = require __DIR__ . '/../../config/params.php';
     $local = false;
+    $params = require __DIR__ . '/../../config/params.php';
 
     // REQUEST[]
     // NOMBRE DL FICHERO file
@@ -143,8 +143,8 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             // Obtiene la configuración de las actividades con una llamada de lectura `GET`
             // al servidor de SERVICIOS
             ///////////////////
-            /// LOCAL  resto: ej. 'localhost', '127.0.0.1' o puerto :9000 :8000
-            /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
+            /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
+            /// GLOBAL `.uned.es` o '10.201.54.31'
             ///
             if ($local)
                 $url = $params['serverServiciosLti_local'];
