@@ -66,7 +66,6 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     /// GLOBAL puerto :80 o `.uned.es` o '10.201.54.31'
     ///
     if ((! strpos($_SERVER['HTTP_HOST'], '10.201.54.31')) && (! strpos($_SERVER['HTTP_HOST'], '.uned.es'))) {
-        $local = true;
         //$carpetaGit = Yii::$app->params['carpetaGit_local'];
         //$serverGit = Yii::$app->params['serverGit_local'];
         //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
@@ -79,6 +78,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         $serverLti = $params['serverLti_local'];
     }
     else {
+        $local = true;
         //$carpetaGit = Yii::$app->params['carpetaGit_global'];
         //$serverGit = Yii::$app->params['serverGit_global'];
         //$carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
