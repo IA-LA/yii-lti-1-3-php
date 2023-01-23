@@ -224,11 +224,11 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
 
             // ID o URL
             if ((preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])!==false) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
-                // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/Lti/id_actividad/5e0df19c0c2e74489066b43g
-                $ruta = '/create/register/coleccion/Lti/id_actividad/' . $_REQUEST['actividad'];
+                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                $ruta = '/create/coleccion/Lti/id_actividad/' . $_REQUEST['actividad'];
             } else {
-                // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/Lti/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                $ruta = '/create/register/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
+                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
             }
 
             // CREATE servicio POST Lti
