@@ -289,7 +289,7 @@ if (isset($_REQUEST['id']) || (isset($_REQUEST['id']) && isset($_REQUEST['iss'])
         echo json_encode($data);
         die();
 
-        echo '<p class="alert error-summary"><i>Error al acceder a carpeta difusion <i>`' . $id . '`</i></p>' .
+        echo '<p class="alert error-summary">Error al acceder a carpeta difusion <i>`' . $id . '`</i></p>' .
             '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
     }
  }
