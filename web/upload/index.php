@@ -239,7 +239,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 'ignore_errors' => true,
                 'method'  => 'POST',
                 'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                'content' =>
+                'content' => http_build_query(
                     [
                         'id_actividad' => $namedir,
                         'url_actividad' => $serverPub . '/' . $namedir,
@@ -256,6 +256,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                         ],
                         "launch_url"=> $serverLti . '/login.php?iss=00000000000000000000000a&login_hint=123456&target_link_uri=' . $serverPub . '/' . $namedir . '&lti_message_hint=123456'
                     ]
+                )
                 ]
             ]);
 
