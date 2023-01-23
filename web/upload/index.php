@@ -309,7 +309,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         $retval=null;
         umask(0000);
         exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
-        echo "<pre>" . print_r($output) . "</pre>";
+        echo "<pre>" . $retval .  ' ' . print_r($output) . "</pre>";
 
         // MKDIR difusion sin errores
         if($retval === 0) {
