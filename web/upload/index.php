@@ -314,7 +314,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         echo "<pre>" . $retval .  ' ' . print_r($output) . $output . "</pre>";
 
         // MKDIR difusion sin errores
-        if($retval === 0) {
+        if($output === null) {
 
             // COPIA el archivo .zip en la carpeta de difusion
             /////////////////////////////////////////////////
