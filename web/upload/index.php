@@ -258,7 +258,9 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                     ]
                 ]
             ]);
-            $arrayFile = json_decode(file_get_contents($url . $ruta, false, $context), false);
+
+            // LLAMADA SERVICIO
+            $arrayFile = /*json_decode(*/file_get_contents($url . $ruta, false, $context)/*, false)*/;
             //print_r($arrayFile);
 
             // ACTIVIDAD LTI ID/URL CREADA
