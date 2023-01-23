@@ -164,7 +164,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             $arrayFile = json_decode(file_get_contents($url . $ruta), true);
             //print_r($arrayFile);
 
-            // UPLOAD ID/URL EXISTE
+            // ACTIVIDAD ID/URL EXISTE
             if($arrayFile['result'] === 'ok'){
 
                 $namedir = $arrayFile['data']['upload']['carpeta'];
@@ -192,7 +192,84 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         /**/
         else:
             // TODO dar de Alta Actividad LTI
-            // die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
+            //$_REQUEST['actividad'];
+
+            // Información servidor
+            //  https://www.php.net/manual/es/function.header.php
+            ///////////////////////
+            if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                $url = "https://";
+            else
+                $url = "http://";
+            // Append the host(domain name, ip) to the URL.
+            $url .= $_SERVER['HTTP_HOST'];
+
+            // Append the requested resource location to the URL
+            //$url.= $_SERVER['REQUEST_URI'];
+            //echo $_REQUEST['target_link_uri'];
+
+            // Llamadas REST
+            //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
+            //  https://www.php.net/manual/en/context.http.php
+            // Obtiene la configuración de las actividades con una llamada de lectura `GET`
+            // al servidor de SERVICIOS
+            ///////////////////
+            /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
+            /// GLOBAL `.uned.es` o '10.201.54.31'
+            ///
+            if ($local)
+                $url = $params['serverServiciosLti_local'];
+            else
+                $url = $params['serverServiciosLti_global'];
+
+            // ID o URL
+            if ((preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])!==false) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
+                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                $ruta = '/create/coleccion/Lti/id_actividad/' . $_REQUEST['actividad'];
+            } else {
+                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
+            }
+
+            // CREATE servicio POST Lti
+            $context = stream_context_create(['http' =>
+                [
+                'ignore_errors' => true,
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' =>
+                    [
+                        'id_actividad' => $namedir,
+                        'url_actividad' => $serverPub . '/' . $namedir,
+                        "user" => [
+                            'email' => 'gcono@lti.server',
+                            'nombre' => 'gcono',
+                            'rol' => '000'
+                        ],
+                        "launch_parameters" => [
+                            'iss' => '00000000000000000000000a',
+                            'login_hint' => '123456',
+                            'target_link_uri' => $serverPub . '/' . $namedir,
+                            'lti_message_hint' => '123456'
+                        ],
+                        "launch_url"=> $serverLti . '/login.php?iss=00000000000000000000000a&login_hint=123456&target_link_uri=' . $serverPub . '/' . $namedir . '&lti_message_hint=123456'
+                    ]
+                ]
+            ]);
+            $arrayFile = json_decode(file_get_contents($url . $ruta), false, $context);
+            //print_r($arrayFile);
+
+            // ACTIVIDAD LTI ID/URL CREADA
+            if($arrayFile['result'] === 'ok'){
+                // die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
+            }
+            // ACTIVIDAD LTI ID/URL FALLO
+            else {
+                echo '<p class="alert error-summary"><i>Error al dar de Alta la Actividad Lti <i>`' . $namedir . '`</i></p>' .
+                     '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
+            }
+
             // Carpeta de publicación Actividad
             umask(0000);
             $output = shell_exec(escapeshellcmd('mkdir ../uploads/publicacion'));
@@ -292,6 +369,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             else {
                 echo '<p class="alert error-summary"><i>Error al crear carpeta publicacion <i>`' . $namedir . '`</i></p>' .
                      '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                die();
             }
         endif;
 
@@ -311,7 +389,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
         umask(0000);
         $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir));
-        echo "<pre>" . $retval .  ' ' . print_r($output) . $output . "</pre>";
+        //echo "<pre>" . $retval .  ' ' . print_r($output) . $output . "</pre>";
 
         // MKDIR difusion sin errores
         if($output === null) {
