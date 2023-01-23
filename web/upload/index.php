@@ -100,7 +100,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
     $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion'));
     //echo "<pre>$output</pre>";
 
-    // Carpeta de Actividad cargada y publicada
+    // Carpeta de difusion cargada y publicada
     // Convenio de nombre actividades (24 hex) y carpeta = id user + fecha y hora + 'd'
     /////////////////////////////////
     // outputs the username that owns the running php/httpd process
@@ -309,12 +309,10 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         $retval=null;
         umask(0000);
         exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
+        echo "<pre>$output</pre>";
 
         // MKDIR difusion sin errores
         if($retval === 0) {
-            umask(0000);
-            $output = shell_exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir));
-            //echo "<pre>$output</pre>";
 
             // COPIA el archivo .zip en la carpeta de difusion
             /////////////////////////////////////////////////
@@ -526,7 +524,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             //////////
             $data = [
                 "result"=> "error",
-                "data" => "Error al descomprimir, publicar e iniciar y clonar  el proyecto desde el fichero " . $file
+                "data" => "Error al descomprimir, publicar e iniciar y clonar el proyecto desde el fichero " . $file
             ];
             header('Content-Type: application/json');
             echo json_encode($data);
