@@ -189,6 +189,8 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
         //      http...
         //  - LA CARPETA
         //      /ruta/fichero.zip
+        //  - LA ACTIVIDAD
+        //      No existe o es un .zip y hay que crearla de cero
         /**/
         else:
             // TODO dar de Alta Actividad LTI
@@ -223,12 +225,12 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $url = $params['serverServiciosLti_global'];
 
             // ID o URL
-            if ((preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])!==false) && !preg_match('(publicacion)', $_REQUEST['actividad'])) {
-                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
-                $ruta = '/create/coleccion/Lti/id_actividad/' . $_REQUEST['actividad'];
+            if ((preg_match('(http|Http|HTTP)', $namedir)!==false) && !preg_match('(publicacion)', $namedir)) {
+                // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                $ruta = '/create/coleccion/Lti/id_actividad/' . $namedir;
             } else {
-                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($_REQUEST['actividad']));
+                // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                $ruta = '/create/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode($namedir));
             }
 
             // CREATE servicio POST Lti
