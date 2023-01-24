@@ -508,7 +508,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 //print_r($output);
                 //echo "</pre></p>";
                 $output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ pull origin master 2>&1'));
-                //echo "<pre>10.b. $output</pre>";
+                echo "<pre>10.b. $output</pre>";
 
                 // Git, UNZIP y Publicacion sin errores
                 if($retval === 0) {
