@@ -261,12 +261,12 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
             ]);
 
             // LLAMADA SERVICIO
-            $arrayFile = json_decode(file_get_contents($url . $ruta, false, $context), false);
+            $arrayFilePost = json_decode(file_get_contents($url . $ruta, false, $context), true);
             //print_r($arrayFile);
             //die();
 
             // ACTIVIDAD LTI ID/URL CREADA
-            if($arrayFile['result'] === 'ok'){
+            if($arrayFilePost['result'] === 'ok'){
                 // die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
             }
             // ACTIVIDAD LTI ID/URL FALLO
