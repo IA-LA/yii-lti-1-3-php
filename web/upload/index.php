@@ -413,9 +413,9 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $retval=null;
                 umask(0000);
                 //exec(escapeshellcmd('rm * -r ../uploads/publicacion/' . $namedir . '/.'), $output, $retval);
-                exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $namedir), $output, $retval);
+                //exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $namedir), $output, $retval);
                 exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $namedir . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
-                exec(escapeshellcmd('chmod 774 -R ../uploads/difusion/' . $namedir), $output, $retval);
+                //exec(escapeshellcmd('chmod 774 -R ../uploads/difusion/' . $namedir), $output, $retval);
                 //exec(escapeshellcmd('unzip ../uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d ../uploads/publicacion/' . $namedir), $output, $retval);
                 echo "6.Returned with status $retval and output:\n";
                 //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
