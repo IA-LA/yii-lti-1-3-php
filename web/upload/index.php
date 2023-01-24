@@ -412,7 +412,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $output=null;
                 $retval=null;
                 umask(0000);
-                exec(escapeshellcmd('rm * -r ../uploads/publicacion/' . $namedir . '/.'), $output, $retval);
+                exec(escapeshellcmd('rm * -r ../uploads/publicacion/' . $namedir . '/'), $output, $retval);
                 exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $namedir), $output, $retval);
                 //exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $namedir . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
                 //exec(escapeshellcmd('chmod 774 -R ../uploads/difusion/' . $namedir), $output, $retval);
