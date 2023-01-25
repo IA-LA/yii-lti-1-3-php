@@ -437,7 +437,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $output=null;
                 $retval=null;
                 exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
-                exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
+                //exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                 echo "7.Returned with status $retval and output:\n";
                 //echo "<p><pre>7.a. PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
                 print_r($output);
