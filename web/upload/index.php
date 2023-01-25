@@ -507,7 +507,7 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 //echo "10.PassThru" . passthru('git -C ../uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
                 print_r($output);
                 //echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ pullorigin master 2>&1'));
+                $output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ pullorigin master 2>&1'));
                 //echo "<pre>10.b. $output</pre>";
 
                 // Git, UNZIP y Publicacion sin errores
