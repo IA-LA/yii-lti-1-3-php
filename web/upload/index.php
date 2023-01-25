@@ -501,13 +501,13 @@ if ((isset($_REQUEST['file']) && isset($_REQUEST['namedir'])) && ((($_REQUEST['f
                 $output=null;
                 $retval=null;
                 //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
-                exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ push origin master --force'), $output, $retval);
+                exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master --force'), $output, $retval);
                 echo "10.Returned with status $retval and output:\n";
                 //echo "<p><pre>10.a. git -C ../uploads/publicacion/$namedir/ push origin master<br/>";
                 //echo "10.PassThru" . passthru('git -C ../uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
                 print_r($output);
                 //echo "</pre></p>";
-                $output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ pullorigin master 2>&1'));
+                //$output = shell_exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ pullorigin master 2>&1'));
                 //echo "<pre>10.b. $output</pre>";
 
                 // Git, UNZIP y Publicacion sin errores
