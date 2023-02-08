@@ -19,7 +19,7 @@ RewriteEngine on
 RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
 RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es/.*
 ## https://techexpert.tips/apache/apache-blocking-url-query/
-RewriteCond %{REQUEST_URI} (difusion|git) [NC]
+RewriteCond %{REQUEST_URI} (difusion|upload) [NC]
 RewriteRule .* - [F,L]
 
 ## YII default
