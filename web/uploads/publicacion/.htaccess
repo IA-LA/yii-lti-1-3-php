@@ -36,19 +36,19 @@ RewriteRule ^(.*)$ /lti13/lms/embed.php?path=$1 [QSA,L,R]
 #RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(uploads/publicacion/|publicacion/|lti/publicacion/)(.*) [OR]
 #RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(lti/|)(lti13|publicacion/|lti/publicacion/|)(lms/|lms/giccu/|[a-f,0-9]{24}/|)(publish|launch|dl|diffusion|)(.php|.*|)
 #RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(:9002|)/(lti13/|lti/lti13/|)(lms/|lms/giccu/|)(publish|login|launch|dl|diffusion|)(.php|)
-RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es
-RewriteCond %{HTTP_REFERER} !^https://acacia.intecca.uned.es
-RewriteCond %{HTTP_REFERER} !^https://agora.uned.es
-RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31
+RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(.*)
+RewriteCond %{HTTP_REFERER} !^https://acacia.intecca.uned.es(.*)
+RewriteCond %{HTTP_REFERER} !^https://agora.uned.es(.*)
+RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31(.*)
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 #RewriteRule .* - [F,L]
-RewriteRule .* - [R=408,L]
-##RewriteRule .* - [R=405,L]
+#RewriteRule .* - [R=408,L]
+RewriteRule .* - [R=405,L]
 
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
-ErrorDocument 408 "%{HTTP_REFERER}"
+#ErrorDocument 408 %{HTTP_REFERER}
 #ErrorDocument 405 "Access Not Allowed"
-##ErrorDocument 405 https://ailanto-dev.intecca.uned.es/lti13/lms/giccu/error.php
+ErrorDocument 405 https://ailanto-dev.intecca.uned.es/lti13/lms/giccu/error.php
 
 ## TODO+NE Incidencia `blocked by CORS policy`
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
