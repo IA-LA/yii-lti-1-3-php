@@ -29,7 +29,7 @@ RewriteRule ^(.*)$ /lti13/lms/embed.php?path=$1 [QSA,L,R]
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
 # https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
-RewriteCond %{SERVER_NAME} !^ailanto-dev.intecca.uned.es
+# RewriteCond %{SERVER_NAME} !^ailanto-dev.intecca.uned.es
 #RewriteCond %{HTTP_HOST} !^ailanto-dev.intecca.uned.es [OR]
 #RewriteCond %{HTTP_HOST} !^agora.uned.es [OR]
 #RewriteCond %{HTTP_HOST} !^agora.uned.es
