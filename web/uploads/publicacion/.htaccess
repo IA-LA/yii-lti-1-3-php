@@ -40,9 +40,9 @@ RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(.*)
 RewriteCond %{HTTP_REFERER} !^https://acacia.intecca.uned.es(.*)
 RewriteCond %{HTTP_REFERER} !^https://agora.uned.es(.*)
 RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31(.*)
-RewriteCond %{REQUEST_URI} !(/launch.php|/lms/dl.php|/lms/publish.php|/lms/giccu/diffusion.php)
-RewriteCond %{SCRIPT_NAME} !(/launch.php|/lms/dl.php|/lms/publish.php|/lms/giccu/diffusion.php)
-RewriteCond %{PHP_SELF} !(/launch.php|/lms/dl.php|/lms/publish.php|/lms/giccu/diffusion.php)
+RewriteCond %{REQUEST_URI} !(/launch.php|/lms/dl.php|/lms/embed.php|/lms/publish.php|/lms/giccu/diffusion.php)
+RewriteCond %{SCRIPT_NAME} !(/launch.php|/lms/dl.php|/lms/embed.php|/lms/publish.php|/lms/giccu/diffusion.php)
+RewriteCond %{PHP_SELF} !(/launch.php|/lms/dl.php|/lms/embed.php|/lms/publish.php|/lms/giccu/diffusion.php)
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 #RewriteRule .* - [F,L]
 #RewriteRule .* - [R=408,L]
