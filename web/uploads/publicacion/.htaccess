@@ -38,7 +38,7 @@ RewriteRule ^(.*)$ /lti13/lms/embed.php?path=$1 [QSA,L,R]
 #RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(:9002|)/(lti13/|lti/lti13/|)(lms/|lms/giccu/|)(publish|login|launch|dl|diffusion|)(.php|)
 RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es/(lti/|lti/lti13/|)(publicacion/[a-f,0-9]{24}|/)(/xml/|/lms/|/lms/giccu/|/|)(publish|launch|dl|diffusion|index|launch|login|publish|)(.php|.html|) [OR]
 RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es [OR]
-RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31
+RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31 [OR]
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 #RewriteRule .* - [F,L]
 RewriteRule .* - [R=408,L]
