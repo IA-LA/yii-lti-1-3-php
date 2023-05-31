@@ -28,7 +28,6 @@ RewriteRule ^(.*)$ /lti13/lms/embed.php?path=$1 [QSA,L,R]
 #RewriteCond %{HTTP_REFERER} !^http://www.mysite.com/.*
 #RewriteCond %{HTTP_HOST}@@%{HTTP_REFERER} !^([^@]*)@@https?://\1/.*
 ## https://serverfault.com/questions/1011090/how-to-set-the-http-referrer-in-a-htaccess-redirect
-# https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
 # RewriteCond %{SERVER_NAME} !^ailanto-dev.intecca.uned.es
 #RewriteCond %{HTTP_HOST} !^ailanto-dev.intecca.uned.es [OR]
 #RewriteCond %{HTTP_HOST} !^agora.uned.es [OR]
@@ -37,8 +36,8 @@ RewriteRule ^(.*)$ /lti13/lms/embed.php?path=$1 [QSA,L,R]
 #RewriteCond %{HTTP_REFERER} !^http[|s]://ailanto-dev.intecca.uned.es/(lti/|)(lti13|publicacion/|lti/publicacion/|)(lms/|lms/giccu/|[a-f,0-9]{24}/|)(publish|launch|dl|diffusion|)(.php|.*|)
 #RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(:9002|)/(lti13/|lti/lti13/|)(lms/|lms/giccu/|)(publish|login|launch|dl|diffusion|)(.php|)
 RewriteCond %{HTTP_REFERER} !^//ailanto-dev.intecca.uned.es/(lti/|lti/lti13/|)(publicacion/[a-f,0-9]{24}|/)(/xml/|/lms/|/lms/giccu/|/|)(publish|launch|dl|diffusion|index|launch|login|publish|)(.php|.html|) [OR]
-RewriteCond %{HTTP_REFERER} !^ailanto-dev.intecca.uned.es [OR]
-RewriteCond %{HTTP_REFERER} !^10.201.54.31
+RewriteCond %{HTTP_REFERER} !^ailanto-dev.intecca.uned.es/.* [OR]
+RewriteCond %{HTTP_REFERER} !^10.201.54.31/.* [OR]
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 #RewriteRule .* - [F,L]
 #RewriteRule .* - [R=408,L]
@@ -51,6 +50,7 @@ ErrorDocument 405 https://ailanto-dev.intecca.uned.es/lti/lti13/lms/giccu/error.
 
 ## TODO+NE Incidencia `blocked by CORS policy`
 ## https://ubiq.co/tech-blog/set-access-control-allow-origin-cors-headers-apache/
+# https://stackoverflow.com/questions/41186475/show-message-when-framed-htaccess
 Header set Access-Control-Allow-Origin "http://ailanto-dev.intecca.uned.es"
 #Header add Access-Control-Allow-Origin "https://ailanto-dev.intecca.uned.es"
 #Header add Access-Control-Allow-Origin "https://acacia.uned.es"
