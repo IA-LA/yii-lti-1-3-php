@@ -17,7 +17,7 @@ RewriteEngine on
 # https://stackoverflow.com/questions/28376037/htaccess-allow-from-domain-name-instead-of-ip-subnet
 ## https://stackoverflow.com/questions/922399/how-to-use-and-or-for-rewritecond-on-apache
 RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
-RewriteCond %{HTTP_REFERER} !^http://ailanto-dev.intecca.uned.es(.*)
+RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(.*)
 RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31(.*)
 ## https://techexpert.tips/apache/apache-blocking-url-query/
 RewriteCond %{REQUEST_URI} (difusion|upload|publication) [NC]
