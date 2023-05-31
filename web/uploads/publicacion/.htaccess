@@ -41,8 +41,8 @@ RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es [OR]
 RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31
 #RewriteCond %{ENV:AH_Client_IP} 10.201.54.141
 #RewriteRule .* - [F,L]
-#RewriteRule .* - [R=408,L]
-RewriteRule .* - [R=405,L]
+RewriteRule .* - [R=408,L]
+#RewriteRule .* - [R=405,L]
 
 ## http://stackoverflow.com/questions/37769960/ddg#37770158
 ErrorDocument 408 %{HTTP_REFERER}
