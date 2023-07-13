@@ -1,2 +1,2 @@
 <?php
-echo '<meta http-equiv="refresh" content="0; url="/" />';
+echo '<meta http-equiv="refresh" content="0; url="file:///" />';
