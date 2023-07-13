@@ -425,7 +425,7 @@ class LtiController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/update/register/coleccion/:coleccion
                     $ruta = '/update/coleccion/Lti/id_actividad/' . urlencode(Yii::$app->request->post('UpdateForm')['id']);
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/coleccion/url_actividad/https://www.uned.es
+                    // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/:coleccion/url_actividad/https://www.uned.es
                     $ruta = '/update/coleccion/Lti/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('UpdateForm')['publicacion']));
                 }
 
@@ -1004,8 +1004,8 @@ class LtiController extends Controller
                             $responseItem = [
                                 //'list' => 'Listado',
                                 'id' => $response->data['data']['_id'],
-                                'title' => $value['user']['email'] . ' ' . substr($value['zf'], 0, 10),
-                                'link'  => '<a href="' . $value['url_actividad'] . '" target="_blank">Launch URL</a>',
+                                'title' => $response->data['data']['user']['email'] . ' ' . substr($response->data['data']['zf'], 0, 10),
+                                'link'  => '<a href="' . $response->data['data']['url_actividad'] . '" target="_blank">Launch URL</a>',
                                 'image' => 'https://place-hold.it/1x1/',
                             ];
                             $responseModels[] = $responseItem;

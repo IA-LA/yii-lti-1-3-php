@@ -289,7 +289,7 @@ class CrudController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
                     $ruta = '/create/register/coleccion/Upload';
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/:coleccion/url_actividad/https://www.uned.es
                     $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                 }
 

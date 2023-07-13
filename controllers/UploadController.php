@@ -117,7 +117,7 @@ class UploadController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
                     $ruta = '/create/register/coleccion/Upload';
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
+                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/:coleccion/url_actividad/https://www.uned.es
                     $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('CreateForm')['publicacion']));
                 }
 
@@ -467,7 +467,7 @@ class UploadController extends Controller
                     // http://10.201.54.31:49151/servicios/lti/lti13/update/register/coleccion/:coleccion
                     $ruta = '/update/coleccion/Upload/id_actividad/' . urlencode(Yii::$app->request->post('UpdateForm')['id']);
                 } else {
-                    // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/coleccion/url_actividad/https://www.uned.es
+                    // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/:coleccion/url_actividad/https://www.uned.es
                     $ruta = '/update/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('UpdateForm')['publicacion']));
                 }
 
@@ -1172,7 +1172,7 @@ class UploadController extends Controller
 
     /*PUBLISH*/
     /**
-     * Displays upload page.
+     * Displays publish page.
      *
      * @return string
      */
@@ -1529,7 +1529,7 @@ class UploadController extends Controller
                         // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
                         $ruta = '/create/register/coleccion/Upload';
                     } else {
-                        // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/coleccion/url_actividad/https://www.uned.es
+                        // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/:coleccion/url_actividad/https://www.uned.es
                         $ruta = '/create/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                     }
 
@@ -1659,21 +1659,21 @@ class UploadController extends Controller
         }
     }
 
-    /*UPLOADREGISTER_old*/
+    /*UPDATEREGISTER*/
     /**
-     * Displays uploadregister_old page.
+     * Displays updateregister page.
      *
      * @return string
      */
-    public function actionUploadregister_old()
+    public function actionUpdateregister()
     {
 
         if (Yii::$app->user->isGuest) {
             $model = new LoginForm();
-            $model2 = new UploadRegisterForm();
+            $model2 = new UpdateRegisterForm();
 
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->render('uploadregister', [
+                return $this->render('updateregister', [
                     'model' => $model2,
                 ]);
             }
@@ -1685,24 +1685,24 @@ class UploadController extends Controller
 
         }
         else {
-            $model = new UploadRegisterForm();
+            $model = new UpdateRegisterForm();
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $uploadregister = $model->uploadregister();
                 if ($uploadregister['result']) {
                     // file is uploaded successfully
-                    Yii::$app->session->setFlash('uploadregisterFormSubmitted');
+                    Yii::$app->session->setFlash('updateregisterFormSubmitted');
 
                     // Return file is uploaded successfully
-                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
-                    return $this->render('uploadregister', ['model' => $model, "file" => $uploadregister['file']]);
-                    //return $this->render('uploadregister', ['model' => $model]);
+                    //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $update['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupdateregister">Atrás</a></p>');
+                    return $this->render('updateregister', ['model' => $model, "file" => $uploadregister['file']]);
+                    //return $this->render('updateregister', ['model' => $model]);
                     //return;
                 }
             }
 
-            return $this->render('uploadregister', ['model' => $model]);
+            return $this->render('updateregister', ['model' => $model]);
         }
     }
 
