@@ -78,10 +78,10 @@ $url=$_SERVER;
 
             // ACTUALIZA ACTIVIDAD
             //////////////////////
-            if (((preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir'])!==false) && (preg_match('([a-f,0-9]{24})', $_REQUEST['namedir'])))):
+            if ((($_REQUEST['actividad'] !== null) && ($_REQUEST['actividad'] !== '')) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['actividad'])!==false) && (preg_match('([a-f,0-9]{24})', $_REQUEST['actividad'])))):
                 // TODO recuperar Credenciales de Actividad LTI por ID
                 // ESTO === Si existe la carpeta uploads/publicacion/namedir y uploads/git/namdir.git ???
-                $namedir = $_REQUEST['namedir'];
+                $namedir = $_REQUEST['actividad'];
 
                 // Carpeta de publicación Actividad
                 umask(0000);
@@ -100,14 +100,14 @@ $url=$_SERVER;
 
                 // MKDIR publicacion sin errores
                 if($retval === 0) {
-            ?>
-            <p/>
-            <p/>
-            <p/>
-            <p class="alert alert-success">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>NO</b> actualizable.</p>
+                    ?>
+                    <p/>
+                    <p/>
+                    <p/>
+                    <p class="alert alert-success">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>NO</b> actualizable.</p>
                     <p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>
 
-            <?php
+                    <?php
                 }
                 else {
                     echo '<p class="alert error-summary">Carpeta de publicación <i>`' . $namedir . '`</i> <b>SI</b> actualizable.</p>';
@@ -129,15 +129,15 @@ $url=$_SERVER;
 
                     // MKDIR Git sin errores
                     if($retval === 0) {
-                    ?>
+                        ?>
 
-                    <p/>
-                    <p/>
-                    <p/>
-                    <p class="alert alert-success">Carpeta proyecto Git ´<i><?= $namedir ?>.git</i>´ <b>NO</b> actualizable.</p>
-                    <p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>
+                        <p/>
+                        <p/>
+                        <p/>
+                        <p class="alert alert-success">Carpeta proyecto Git ´<i><?= $namedir ?>.git</i>´ <b>NO</b> actualizable.</p>
+                        <p><a class="btn btn-lg btn-success" href="window.history.back()">Atrás</a></p>
 
-                    <?php
+                        <?php
                     }
                     else {
                         echo '<p class="alert error-summary"><i>Carpeta proyecto Git <i>`' . $namedir . '.git</i>` <b>SI</b> actualizable.</p>';
@@ -217,14 +217,14 @@ $url=$_SERVER;
                         // Fichero ZIP subido
                         // MKDIR difusion Actividad sin errores
                         if($retval === 0) {
-                        ?>
+                            ?>
 
-                        <p/>
-                        <p/>
-                        <p/>
-                        <p class="alert alert-success">Carpeta difusión ´<i><?= $namedir ?></i>´ <b></b> creada.</p>
+                            <p/>
+                            <p/>
+                            <p/>
+                            <p class="alert alert-success">Carpeta difusión ´<i><?= $namedir ?></i>´ <b></b> creada.</p>
 
-                        <?php
+                            <?php
 
                             // COPIA el archivo .zip en la carpeta de difusion
                             /////////////////////////////////////////////////
@@ -484,7 +484,7 @@ $url=$_SERVER;
                         }
                         else {
                             echo '<p class="alert error-summary"><i>Carpeta difusión <i>`' . $namedir . '</i>` <b>NO</b> creable.</p>' .
-                                 '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                                '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                         }
                     }
                 }
@@ -521,14 +521,14 @@ $url=$_SERVER;
 
                 // MKDIR publicacion sin errores
                 if($retval === 0) {
-            ?>
+                    ?>
 
-            <p/>
-            <p/>
-            <p/>
-            <p class="alert alert-success">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>SI</b> creada.</p>
+                    <p/>
+                    <p/>
+                    <p/>
+                    <p class="alert alert-success">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>SI</b> creada.</p>
 
-            <?php
+                    <?php
 
                     // Carpeta de Git
                     umask(0000);
@@ -860,7 +860,7 @@ $url=$_SERVER;
                 }
                 else {
                     echo '<p class="alert error-summary">Carpeta de publicación <i>`' . $namedir . '`</i> <b>NO</b> creable.</p>' .
-                         '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                        '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                 }
 
             endif;
