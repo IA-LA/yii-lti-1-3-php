@@ -72,6 +72,7 @@ $url=$_SERVER;
             //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
             //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
             //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
+            /** USER: gcono === 000 + date + d */
             $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
 
             /*Yii::$app->session->hasFlash('uploadregisterExistting')*/
@@ -80,6 +81,7 @@ $url=$_SERVER;
             //////////////////////
             if ((($_REQUEST['actividad'] !== null) && ($_REQUEST['actividad'] !== '')) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['actividad'])!==false) && (preg_match('([a-f,0-9]{24})', $_REQUEST['actividad'])))):
                 // TODO recuperar Credenciales de Actividad LTI por ID
+                $difusion = $namedir;
                 // ESTO === Si existe la carpeta uploads/publicacion/namedir y uploads/git/namdir.git ???
                 $namedir = $_REQUEST['actividad'];
 
@@ -193,9 +195,6 @@ $url=$_SERVER;
                             $serverLti = $params['serverLti_global'];
                         }
 
-                        die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
-
-
                         // COPIA el archivo .zip en la carpeta de difusion
                         /////////////////////////////////////////////////
                         ///
@@ -212,7 +211,7 @@ $url=$_SERVER;
                         $output=null;
                         $retval=null;
                         umask(0000);
-                        exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
+                        exec(escapeshellcmd('mkdir ../uploads/difusion/' . $difusion), $output, $retval);
 
                         // Fichero ZIP subido
                         // MKDIR difusion Actividad sin errores
@@ -222,14 +221,14 @@ $url=$_SERVER;
                             <p/>
                             <p/>
                             <p/>
-                            <p class="alert alert-success">Carpeta difusión ´<i><?= $namedir ?></i>´ <b></b> creada.</p>
+                            <p class="alert alert-success">Carpeta difusión ´<i><?= $difusion ?></i>´ <b></b> creada.</p>
 
                             <?php
 
                             // COPIA el archivo .zip en la carpeta de difusion
                             /////////////////////////////////////////////////
                             $arrayFile = file_get_contents($_REQUEST['namedir']);
-                            file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFile);
+                            file_put_contents('../uploads/difusion/' . $difusion . '/' . $file, $arrayFile);
 
                             // Crea proyecto Git '../uploads/git/$namedir.git'
                             // y
@@ -237,6 +236,8 @@ $url=$_SERVER;
                             //  ID=$namedir
                             ///////////////////////////////////////////////////////////////////////////////////
                             /** NO ES NECESARIO CREAR PORQUE YA COMPRUEBA QUE EXISTEN */
+
+                            die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
 
                             // Git
                             $output = shell_exec(escapeshellcmd('git --version'));
@@ -483,7 +484,7 @@ $url=$_SERVER;
 
                         }
                         else {
-                            echo '<p class="alert error-summary"><i>Carpeta difusión <i>`' . $namedir . '</i>` <b>NO</b> creable.</p>' .
+                            echo '<p class="alert error-summary"><i>Carpeta difusión <i>`' . $difusion . '</i>` <b>NO</b> creable.</p>' .
                                 '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                         }
                     }
