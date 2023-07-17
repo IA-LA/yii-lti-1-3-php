@@ -273,7 +273,7 @@ $url=$_SERVER;
                             $retval=null;
                             umask(0000);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ rm -r -f -q *'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ rm -r -f *'), $output, $retval);
                             echo "2.Returned with status $retval and output:\n";
                             echo "<p><pre>2.a.";
                             print_r($output);
