@@ -237,8 +237,6 @@ $url=$_SERVER;
                             ///////////////////////////////////////////////////////////////////////////////////
                             /** NO ES NECESARIO CREAR PORQUE YA COMPRUEBA QUE EXISTEN */
 
-                            die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
-
                             // Git
                             $output = shell_exec(escapeshellcmd('git --version'));
                             //echo "<pre>1. $output</pre>";
@@ -286,6 +284,8 @@ $url=$_SERVER;
                             //echo "<pre>2.b.c.d.e.f.";
                             //print_r($output);
                             //echo "</pre>";
+
+                            die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
 
                             // Unzip Actividad .zip
                             // outputs the username that owns the running php/httpd process
