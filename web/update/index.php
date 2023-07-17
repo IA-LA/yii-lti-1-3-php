@@ -274,20 +274,18 @@ $url=$_SERVER;
                             umask(0000);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ rm -r *'), $output, $retval);
-                            //$output = shell_exec(escapeshellcmd('ls -lart ../uploads/publicacion/' . $namedir));
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -a -m "Commit Delete all the Activity stuff ' . date('YmdHisu') . '"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                             echo "2.Returned with status $retval and output:\n";
                             echo "<p><pre>2.a.";
                             print_r($output);
                             echo "</pre></p>";
-                            exec(escapeshellcmd("git -C ../uploads/publicacion/' . $namedir . '/ branch vacia "), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -a -m "Commit Delete all the activity stuff ' . date('YmdHisu') . '"'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                            //exec(escapeshellcmd("git -C ../uploads/publicacion/' . $namedir . '/ branch vacia "), $output, $retval);
+                            //$output = shell_exec(escapeshellcmd('ls -lart ../uploads/publicacion/' . $namedir));
                             //echo "<pre>2.b.c.d.e.f.";
                             //print_r($output);
                             //echo "</pre>";
-
-                            die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
 
                             // Unzip Actividad .zip
                             // outputs the username that owns the running php/httpd process
@@ -310,6 +308,75 @@ $url=$_SERVER;
                             //echo "<pre>6.c. touch HolaMundo.txt $output</pre>";
                             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> ../uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                             //echo "<pre>6.d. $output</pre>";
+
+                            // Commit -m "Init Commit Server LTI"
+                            // outputs the username that owns the running php/httpd process
+                            // (on a system with the "git add" executable in the path)
+                            $output=null;
+                            $retval=null;
+                            //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI"'), $output, $retval);
+                            //echo "9.Returned with status $retval and output:\n";
+                            //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Update Commit Server LTI' <br/>";
+                            //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI" 2>&1') . "<br/>";
+                            //print_r($output);
+                            //echo "</pre></p>";
+                            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI" 2>&1'));
+                            //echo "<pre>9.b. $output</pre>";
+
+                            // Push clonado
+                            // outputs the username that owns the running php/httpd process
+                            // (on a system with the "git add" executable in the path)
+                            $output=null;
+                            $retval=null;
+                            //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                            //echo "10.Returned with status $retval and output:\n";
+                            //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
+                            //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
+                            //print_r($output);
+                            //echo "</pre></p>";
+                            //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
+                            //echo "<pre>10.b. $output</pre>";
+
+                            // Git, UNZIP y Publicacion sin errores
+                            if($retval === 0) {
+                                ?>
+
+                                <p/>
+                                <p/>
+                                <p/>
+                                <div class="alert alert-success">
+                                    <ol>
+                                        <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
+                                        <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
+                                        <li>Web URL de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                                    </ol>
+                                </div>
+
+                                <?php
+
+                                /**
+                                // Registra ID=$namedir ... y URL='uploads/publicacion/$namedir/' en Colección BBDD Ltis y Uploads
+                                // REGISTRO
+                                ////////////////////////////////
+                                 */
+                                echo '<p><div class="row alert alert-success">La actividad LTI ha quedado registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                                    //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
+                                    '<div class="row alert alert-success">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
+                                    //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
+                                    '';
+                                //$this->render('_list_item',['model' => $model])
+
+                                // Boton Atras
+                                echo '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>';
+                            }
+                            else {
+                                echo '<p class="alert error-summary">Error al descomprimir, publicar y actualizar el proyecto desde el fichero <i>`' . $file . '`</i></p>' .
+                                    '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
+                            }
+
+                            die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
 
                             // Difundir la Actividad
                             // Descomprime archivo Zip 'unzip -o -X ../uploads/difusion/'
