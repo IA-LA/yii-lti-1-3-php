@@ -274,8 +274,6 @@ $url=$_SERVER;
                             umask(0000);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ rm -r -f -q *'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -a --alow-empty -m "Commit Delete all the Activity stuff ' . date('YmdHisu') . '"'), $output, $retval);
                             echo "2.Returned with status $retval and output:\n";
                             echo "<p><pre>2.a.";
                             print_r($output);
@@ -283,6 +281,8 @@ $url=$_SERVER;
 
                             die("Cuando SI existe la Actividad en el Sistema LTI y hay qye subir el fichero .ZIP, sustituir el Git y actualizar Publicación");
 
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -a --alow-empty -m "Commit Delete all the Activity stuff ' . date('YmdHisu') . '"'), $output, $retval);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                             //exec(escapeshellcmd("git -C ../uploads/publicacion/' . $namedir . '/ branch vacia "), $output, $retval);
                             //$output = shell_exec(escapeshellcmd('ls -lart ../uploads/publicacion/' . $namedir));
