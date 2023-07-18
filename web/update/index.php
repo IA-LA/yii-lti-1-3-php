@@ -271,9 +271,10 @@ $url=$_SERVER;
                             // (on a system with the "mkdir" executable in the path)
                             $output=null;
                             $retval=null;
-                            umask(0000);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset --hard'), $output, $retval);
+                            umask(0000);tval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ rm -r *'), $output, $retval);
+                            exec(escapeshellcmd('rm -rf ../uploads/publicacion/' . $namedir . '/* '), $output, $retval);
                             echo "2.Returned with status $retval and output:\n";
                             echo "<p><pre>2.a.";
                             print_r($output);
@@ -313,7 +314,7 @@ $url=$_SERVER;
                             // (on a system with the "git add" executable in the path)
                             $output=null;
                             $retval=null;
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset --hard'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                             //echo "7.Returned with status $retval and output:\n";
                             //echo "<p><pre>7.a. PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
