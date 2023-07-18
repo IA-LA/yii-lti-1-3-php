@@ -307,13 +307,63 @@ $url=$_SERVER;
                             //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> ../uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
                             //echo "<pre>6.d. $output</pre>";
 
+                            // Add, Commit y Push clonado
+                            // Add
+                            // outputs the username that owns the running php/httpd process
+                            // (on a system with the "git add" executable in the path)
+                            $output=null;
+                            $retval=null;
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset --hard'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
+                            //echo "7.Returned with status $retval and output:\n";
+                            //echo "<p><pre>7.a. PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
+                            //print_r($output);
+                            //echo "</pre></p>";
+                            //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ add .'));
+                            //echo "<pre>7.b. $output</pre>";
+                            //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
+                            //echo "<pre>7.c. $output</pre>";
+
+                            // Commit Config
+                            // outputs the username that owns the running php/httpd process
+                            // (on a system with the "git add" executable in the path)
+                            $output=null;
+                            $retval=null;
+                            //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
+                            //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
+                            //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '@lti.server"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
+                            //echo "8.Returned with status $retval and output:\n";
+                            //echo "<p><pre>8.a.<br/>";
+                            //echo "8.a.PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
+                            //print_r($output);
+                            //echo "</pre></p>";
+                            // outputs the username that owns the running php/httpd process
+                            // (on a system with the "git add" executable in the path)
+                            $output=null;
+                            $retval=null;
+                            //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
+                            //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
+                            //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . Yii::$app->user->identity->id . '"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . '000' . '"'), $output, $retval);
+
+                            //echo "8.Returned with status $retval and output:\n";
+                            //echo "<p><pre>8.b.<br/>";
+                            //echo "8.b.PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
+                            //print_r($output);
+                            //echo "</pre></p>";
+                            //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
+                            //echo "<pre>8.c. $output</pre>";
+                            //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
+                            //echo "<pre>8.d. $output</pre>";
+
                             // Commit -m "Init Commit Server LTI"
                             // outputs the username that owns the running php/httpd process
                             // (on a system with the "git add" executable in the path)
                             $output=null;
                             $retval=null;
                             //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI"'), $output, $retval);
-                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI"'), $output, $retval);
+                            exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI "' . $difusion ), $output, $retval);
                             //echo "9.Returned with status $retval and output:\n";
                             //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Update Commit Server LTI' <br/>";
                             //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Update Commit Server LTI" 2>&1') . "<br/>";
