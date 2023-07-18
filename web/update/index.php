@@ -292,7 +292,7 @@ $url=$_SERVER;
                             $output=null;
                             $retval=null;
                             umask(0000);
-                            exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $difusion . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
+                            exec(escapeshellcmd('unzip -u -o -X ../uploads/difusion/' . $difusion . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
                             exec(escapeshellcmd('chmod 774 -R ../uploads/publicacion/' . $namedir), $output, $retval);
                             //exec(escapeshellcmd('unzip ../uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d ../uploads/publicacion/' . $namedir), $output, $retval);
                             //echo "6.Returned with status $retval and output:\n";
