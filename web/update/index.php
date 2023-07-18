@@ -271,7 +271,7 @@ $url=$_SERVER;
                             // (on a system with the "mkdir" executable in the path)
                             $output=null;
                             $retval=null;
-                            umask(0000);tval);
+                            umask(0000);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
                             exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ rm -r *'), $output, $retval);
                             exec(escapeshellcmd('rm -rf ../uploads/publicacion/' . $namedir . '/* '), $output, $retval);
