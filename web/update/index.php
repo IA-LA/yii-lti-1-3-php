@@ -909,13 +909,14 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
             }
         }
 
+    // Actividad incorrecta
     else:
 
         // DEVUELVE DATA
         //////////
         $data = [
             "result"=> "error",
-            "data" => "NO es posiblte actualizar la Actividad " . $namedir . " en el Sistema LTI."
+            "data" => "NO es posiblte actualizar la Actividad " . $_REQUEST['actividad'] . " en el Sistema LTI."
         ];
         header('Content-Type: application/json');
         echo json_encode($data);
