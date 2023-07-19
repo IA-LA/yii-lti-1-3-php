@@ -545,6 +545,7 @@ if ((($_REQUEST['file'] !== null) && ((preg_match('(zip|Zip|ZIP)', $_REQUEST['fi
     //      URL http...zip
     else:
         // TODO Crear Actividad LTI + Git + Upload
+        die("ERROR de parámetros");
         die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
 
         // Carpeta de publicación Actividad
