@@ -20,7 +20,7 @@ RewriteCond %{HTTP_X_FORWARDED_FOR} !^10.201.54.141
 RewriteCond %{HTTP_REFERER} !^http[s|]://ailanto-dev.intecca.uned.es(.*)
 RewriteCond %{HTTP_REFERER} !^http[s|]://10.201.54.31(.*)
 ## https://techexpert.tips/apache/apache-blocking-url-query/
-RewriteCond %{REQUEST_URI} (assets|difusion|uploads) [NC]
+RewriteCond %{REQUEST_URI} (assets|difusion) [NC]
 RewriteRule .* - [F,L]
 
 ## YII default
