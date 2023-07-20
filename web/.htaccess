@@ -28,7 +28,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 
-
 # https://stackoverflow.com/questions/7059619/htaccess-deny-all-by-ip-address-except-those-in-united-states
 ## https://help.liquidweb.com/s/article/Allowing-and-Denying-Website-Access-Using-htaccess
 # Require not host uned.es
