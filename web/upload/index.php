@@ -375,211 +375,263 @@ try{
                         //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/ clone ../uploads/git/' . $namedir . '.git ' . $namedir));
                         //$output = shell_exec(escapeshellcmd('git clone ../uploads/git/' . $namedir . '.git ../uploads/publicacion/' . $namedir . ' 2>&1'));
                         //echo "<pre>5.b. $output</pre>";
+
+                        // TODO-NE unzip fichero .ZIP en Carpeta Difusion
+                        try{
+
+                            ///
+                            // Difundir la Actividad
+                            // Descomprime archivo Zip 'unzip -o -X ../uploads/difusion/'
+                            //  ID=$namedir
+                            ///////////////////////////////////////////////////////////////////////////////////
+
+                            // COPIA el archivo .zip en la carpeta de difusion
+                            /////////////////////////////////////////////////
+                            $arrayFileGet = file_get_contents($_REQUEST['namedir']);
+                            if(($arrayFileGet!==false) && ($arrayFileGet!=='')){
+                                $arrayFilePut=file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFileGet);
+                                if(($arrayFilePut!==false) && ($arrayFilePut!=='')){
+
+                                    // Descomprime .zip
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "unzip" executable in the path)
+                                    //$output=null;
+                                    //$retval=null;
+                                    //'unzip uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'
+                                    //exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
+                                    //exec(escapeshellcmd('unzip uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+                                    //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                                    // Unzip Actividad .zip
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "unzip" executable in the path)
+                                    $output=null;
+                                    $retval=null;
+                                    umask(0000);
+                                    exec(escapeshellcmd('unzip -o -X uploads/difusion/' . $namedir . '/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                                    exec(escapeshellcmd('chmod 774 -R uploads/publicacion/' . $namedir), $output, $retval);
+                                    //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
+                                    //echo "6.Returned with status $retval and output:\n";
+                                    //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
+                                    //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
+                                    //print_r($output);
+                                    //echo "</pre></p>";
+                                    //$output = shell_exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir));
+                                    //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+                                    //echo "<pre>6.b.$output</pre>";
+                                    //$output = shell_exec(escapeshellcmd('touch uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
+                                    //echo "<pre>6.c. touch HolaMundo.txt $output</pre>";
+                                    //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
+                                    //echo "<pre>6.d. $output</pre>";
+
+                                    // Add, Commit y Push clonado
+                                    // Add
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "git add" executable in the path)
+                                    $output=null;
+                                    $retval=null;
+                                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
+                                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
+                                    //echo "7.Returned with status $retval and output:\n";
+                                    //echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
+                                    //print_r($output);
+                                    //echo "</pre></p>";
+                                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add .'));
+                                    //echo "<pre>7.b. $output</pre>";
+                                    //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
+                                    //echo "<pre>7.c. $output</pre>";
+
+                                    // Commit Config
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "git add" executable in the path)
+                                    $output=null;
+                                    $retval=null;
+                                    //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
+                                    //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
+                                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "' . '000' . '@lti.server"'), $output, $retval);
+                                    //echo "8.Returned with status $retval and output:\n";
+                                    //echo "<p><pre>8.a.<br/>";
+                                    //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
+                                    //print_r($output);
+                                    //echo "</pre></p>";
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "git add" executable in the path)
+                                    $output=null;
+                                    $retval=null;
+                                    //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
+                                    //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
+                                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "' . 'gcono' . '"'), $output, $retval);
+                                    //echo "8.Returned with status $retval and output:\n";
+                                    //echo "<p><pre>8.b.<br/>";
+                                    //echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
+                                    //print_r($output);
+                                    //echo "</pre></p>";
+                                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
+                                    //echo "<pre>8.c. $output</pre>";
+                                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
+                                    //echo "<pre>8.d. $output</pre>";
+
+                                    // Commit -m "Init Commit Server LTI"
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "git add" executable in the path)
+                                    $output=null;
+                                    $retval=null;
+                                    //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
+                                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Upload Commit Server LTI"'), $output, $retval);
+                                    //echo "9.Returned with status $retval and output:\n";
+                                    //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
+                                    //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
+                                    //print_r($output);
+                                    //echo "</pre></p>";
+                                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
+                                    //echo "<pre>9.b. $output</pre>";
+
+                                    // Push clonado
+                                    // outputs the username that owns the running php/httpd process
+                                    // (on a system with the "git add" executable in the path)
+                                    $output=null;
+                                    $retval=null;
+                                    //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                                    exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                                    //echo "10.Returned with status $retval and output:\n";
+                                    //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
+                                    //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
+                                    //print_r($output);
+                                    //echo "</pre></p>";
+                                    //$output = shell_exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1'));
+                                    //echo "<pre>10.b. $output</pre>";
+
+                                    // Git, UNZIP y Publicacion sin errores
+                                    if($retval === 0) {
+
+                                        // DEVUELVE DATA
+                                        //////////
+                                        $data = [
+                                            "result"=> "ok",
+                                            "data" =>
+                                                [
+                                                    'id_actividad' => $namedir,
+                                                    'url_actividad' => $serverPub . '/' . $namedir,
+                                                    "user" => [
+                                                        'email' => 'gcono@lti.server',
+                                                        'nombre' => 'gcono',
+                                                        'rol' => '000'
+                                                    ],
+                                                    "upload" => [
+                                                        'fichero' => $file,
+                                                        'carpeta' => $namedir,
+                                                        'publicacion_url' => $serverPub . '/' . $namedir,
+                                                        'git_url' => $serverGit . '/' . $namedir . '.git',
+                                                        'actualizado' => 0
+                                                    ],
+                                                    "date"=> date('YmdHisu')
+                                                ]
+                                        ];
+                                        header('Content-Type: application/json');
+                                        echo json_encode($data);
+                                        die();
+
+                                    }
+                                    else {
+
+                                        // DEVUELVE DATA
+                                        //////////
+                                        $data = [
+                                            "result"=> "error",
+                                            "data" => "Error al actualizar la carpeta publicacion " . $namedir
+                                        ];
+                                        header('Content-Type: application/json');
+                                        echo json_encode($data);
+                                        die();
+
+                                        echo '<p class="alert error-summary">Error al actualizar la carpeta publicacion <i>`' . $namedir . '`</i> con el fichero ZIP <i>`' . $_REQUEST['namedir'] . '`</i></p>' .
+                                            '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                                        die();
+                                    }
+                                }
+                                else {
+
+                                    // DEVUELVE DATA
+                                    //////////
+                                    $data = [
+                                        "result"=> "error",
+                                        "data" => "Error al escribir el fichero ZIP " . $_REQUEST['$namedir']
+                                    ];
+                                    header('Content-Type: application/json');
+                                    echo json_encode($data);
+                                    die();
+
+                                    echo '<p class="alert error-summary">Error al escribir el fichero ZIP <i>`' . $_REQUEST['namedir'] . '`</i></p>' .
+                                        '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                                    die();
+                                }
+                            }
+                            else {
+
+                                // DEVUELVE DATA
+                                //////////
+                                $data = [
+                                    "result"=> "error",
+                                    "data" => "Error al leer el fichero ZIP " . $_REQUEST['$namedir']
+                                ];
+                                header('Content-Type: application/json');
+                                echo json_encode($data);
+                                die();
+
+                                echo '<p class="alert error-summary">Error al leer el fichero ZIP <i>`' . $_REQUEST['namedir'] . '`</i></p>' .
+                                    '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
+                                die();
+                            }
+                        }
+                        catch (Exception $e2){
+
+                            // DEVUELVE DATA
+                            //////////
+                            $data = [
+                                "result"=> "error",
+                                "data" => "Excepción E/S " . $e2->getMessage() . "\n"
+                            ];
+                            header('Content-Type: application/json');
+                            echo json_encode($data);
+                            die();
+
+                        }
+
                     }
                     // ACTIVIDAD LTI ID/URL FALLO
                     else {
+
+                        // DEVUELVE DATA
+                        //////////
+                        $data = [
+                            "result"=> "error",
+                            "data" => "Error al crear carpeta publicacion " . $namedir
+                        ];
+                        header('Content-Type: application/json');
+                        echo json_encode($data);
+                        die();
+
                         echo '<p class="alert error-summary">Error al crear carpeta publicacion <i>`' . $namedir . '`</i></p>' .
                             '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                         die("Cuando NO existe la Actividad en el Sistema LTI y hay qye crearla dese cerodo");
                     }
                 }
                 else {
-                    echo '<p class="alert error-summary">Error al dar el Alta a la Actividad Lti <i>`' . $namedir . '`</i></p>' .
+
+                    // DEVUELVE DATA
+                    //////////
+                    $data = [
+                        "result"=> "error",
+                        "data" => "Error al dar el Alta a la Actividad LTI " . $namedir
+                    ];
+                    header('Content-Type: application/json');
+                    echo json_encode($data);
+                    die();
+
+                    echo '<p class="alert error-summary">Error al dar el Alta a la Actividad LTI <i>`' . $namedir . '`</i></p>' .
                         '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
                     die();
                 }
             endif;
-
-            // TODO-NE unzip fichero .ZIP en Carpeta Difusion
-            try{
-
-                ///
-                // Difundir la Actividad
-                // Descomprime archivo Zip 'unzip -o -X ../uploads/difusion/'
-                //  ID=$namedir
-                ///////////////////////////////////////////////////////////////////////////////////
-
-                // COPIA el archivo .zip en la carpeta de difusion
-                /////////////////////////////////////////////////
-                $arrayFileGet = file_get_contents($_REQUEST['namedir']);
-                if(($arrayFileGet!==false) && ($arrayFileGet!=='')){
-                    $arrayFilePut=file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFileGet);
-                    if(($arrayFilePut!==false) && ($arrayFilePut!=='')){
-                        // Descomprime .zip
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "unzip" executable in the path)
-                        //$output=null;
-                        //$retval=null;
-                        //'unzip ../uploads/Plantilla\ ePub\ 1_5c4ad1844ffce90a5d17f666.zip -d ../uploads/publicacion/nombreTrabajoXXX00000000/'
-                        //exec(escapeshellcmd('unzip ../uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d ../uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
-                        //exec(escapeshellcmd('unzip ../uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip -d ../uploads/publicacion/' . $namedir), $output, $retval);
-                        //exec(escapeshellcmd('unzip ../uploads/' . $file . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
-
-                        // Unzip Actividad .zip
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "unzip" executable in the path)
-                        $output=null;
-                        $retval=null;
-                        umask(0000);
-                        exec(escapeshellcmd('rm -r ../uploads/publicacion/' . $namedir . '/!(.git)'), $output, $retval);
-                        //exec(escapeshellcmd('mkdir ../uploads/publicacion/' . $namedir), $output, $retval);
-                        exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $namedir . '/' . $_REQUEST['file'] . ' -d ../uploads/publicacion/' . $namedir), $output, $retval);
-                        exec(escapeshellcmd('chmod 774 -R ../uploads/difusion/' . $namedir), $output, $retval);
-                        //exec(escapeshellcmd('unzip ../uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d ../uploads/publicacion/' . $namedir), $output, $retval);
-                        echo "6.Returned with status $retval and output:\n";
-                        //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
-                        //echo "<p><pre> 6.a. Unzip PassThru " . passthru('unzip -o -X ../uploads/' . $file . ' -d ../uploads/publicacion/' . $namedir . ' 2>&1') . "<br/>";
-                        //print_r($output);
-                        //echo "</pre></p>";
-                        //$output = shell_exec(escapeshellcmd('unzip -o -X ../uploads/' . $file . ' -d ../uploads/publicacion/' . $namedir));
-                        //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> ../uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                        //echo "<pre>6.b.$output</pre>";
-                        //$output = shell_exec(escapeshellcmd('touch ../uploads/publicacion/' . $namedir . '/HolaMundo.txt 2>&1'));
-                        //echo "<pre>6.c. touch HolaMundo.txt $output</pre>";
-                        //$output = shell_exec(escapeshellcmd('echo "Hola Mundo Linux" >> ../uploads/publicacion/' . $namedir . '/HolaMundo.txt'));
-                        //echo "<pre>6.d. $output</pre>";
-
-                        // Add, Commit y Push clonado
-                        // Add
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "git add" executable in the path)
-                        $output=null;
-                        $retval=null;
-                        //exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
-                        //exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
-                        echo "7.Returned with status $retval and output:\n";
-                        //echo "<p><pre>7.a. PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
-                        print_r($output);
-                        //echo "</pre></p>";
-                        //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ add .'));
-                        //echo "<pre>7.b. $output</pre>";
-                        //$output = shell_exec(escapeshellcmd('sleep 0.5s'));
-                        //echo "<pre>7.c. $output</pre>";
-
-                        // Commit Config
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "git add" executable in the path)
-                        $output=null;
-                        $retval=null;
-                        //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
-                        //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
-                        //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . Yii::$app->user->identity->username . '@lti.server"'), $output, $retval);
-                        //exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . ' config --local user.email "' . 'gcono' . '@lti.server"'), $output, $retval);
-                        echo "8.Returned with status $retval and output:\n";
-                        //echo "<p><pre>8.a.<br/>";
-                        //echo "8.a.PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
-                        print_r($output);
-                        //echo "</pre></p>";
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "git add" executable in the path)
-                        //$output=null;
-                        //$retval=null;
-                        //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
-                        //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
-                        //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . Yii::$app->user->identity->id . '"'), $output, $retval);
-                        //exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . '000' . '"'), $output, $retval);
-
-                        //echo "8.Returned with status $retval and output:\n";
-                        //echo "<p><pre>8.b.<br/>";
-                        //echo "8.b.PassThru " . passthru('git -C ../uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
-                        //print_r($output);
-                        //echo "</pre></p>";
-                        //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config user.email "' . Yii::$app->user->identity->username . '@lti.server" 2>&1'));
-                        //echo "<pre>8.c. $output</pre>";
-                        //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config user.name "'. Yii::$app->user->identity->id .'" 2>&1'));
-                        //echo "<pre>8.d. $output</pre>";
-
-                        // Commit -m "Init Commit Server LTI"
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "git add" executable in the path)
-                        $output=null;
-                        $retval=null;
-                        //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
-                        //exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ commit -a -m "Difusion Commit Server LTI"'), $output, $retval);
-                        echo "9.Returned with status $retval and output:\n";
-                        //echo "<p><pre>9.a. git -C ../uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
-                        //echo "9.PassThru" . passthru('git -C ../uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
-                        print_r($output);
-                        //echo "</pre></p>";
-                        //$output = shell_exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1'));
-                        //echo "<pre>9.b. $output</pre>";
-
-                        // Push clonado
-                        // outputs the username that owns the running php/httpd process
-                        // (on a system with the "git add" executable in the path)
-                        $output=null;
-                        $retval=null;
-                        //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
-                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master --force'), $output, $retval);
-                        echo "10.Returned with status $retval and output:\n";
-                        //echo "<p><pre>10.a. git -C ../uploads/publicacion/$namedir/ push origin master<br/>";
-                        //echo "10.PassThru" . passthru('git -C ../uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
-                        print_r($output);
-                        //echo "</pre></p>";
-                        //$output = shell_exec(escapeshellcmd('git --exec-path=../uploads/publicacion/' . $namedir . '/ pullorigin master 2>&1'));
-                        //echo "<pre>10.b. $output</pre>";
-
-                        // Git, UNZIP y Publicacion sin errores
-                        if($retval === 0) {
-
-                            // DEVUELVE DATA
-                            //////////
-                            $data = [
-                                "result"=> "ok",
-                                "data" =>
-                                    [
-                                        'id_actividad' => $namedir,
-                                        'url_actividad' => $serverPub . '/' . $namedir,
-                                        "user" => [
-                                            'email' => 'gcono@lti.server',
-                                            'nombre' => 'gcono',
-                                            'rol' => '000'
-                                        ],
-                                        "upload" => [
-                                            'fichero' => $file,
-                                            'carpeta' => $namedir,
-                                            'publicacion_url' => $serverPub . '/' . $namedir,
-                                            'git_url' => $serverGit . '/' . $namedir . '.git',
-                                            'actualizado' => 0
-                                        ],
-                                        "date"=> date('YmdHisu')
-                                    ]
-                            ];
-                            header('Content-Type: application/json');
-                            echo json_encode($data);
-                            die();
-                        }
-                        else {
-                            echo '<p class="alert error-summary">Error al actualizar la carpeta publicacion <i>`' . $namedir . '`</i> con el fichero ZIP <i>`' . $_REQUEST['namedir'] . '`</i></p>' .
-                                '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
-                            die();
-                        }
-                    }
-                    else {
-                        echo '<p class="alert error-summary">Error al escribir el fichero ZIP <i>`' . $_REQUEST['namedir'] . '`</i></p>' .
-                            '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
-                        die();
-                    }
-                }
-                else {
-                    echo '<p class="alert error-summary">Error al leer el fichero ZIP <i>`' . $_REQUEST['namedir'] . '`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
-                    die();
-                }
-            }
-            catch (Exception $e2){
-
-                // DEVUELVE DATA
-                //////////
-                $data = [
-                    "result"=> "error",
-                    "data" => "Excepción E/S " . $e2->getMessage() . "\n"
-                ];
-                header('Content-Type: application/json');
-                echo json_encode($data);
-                die();
-
-            }
 
             ?>
 
@@ -625,6 +677,7 @@ try{
         }
         // MKDIR difusion Actividad con errores
         else {
+
             // DEVUELVE DATA
             //////////
             $data = [
@@ -642,6 +695,18 @@ try{
 // PARAMETROS LLAMADA SERVICIO INCORREXTOS
     else
     {
+        // DEVUELVE DATA
+        //////////
+        $data = [
+            "result"=> "ok",
+            "data" => "Formulario de subida o actualización de Econtent complejos desde el GICCU.
+               Puede subirse un fichero comprimido .zip, de cada vez,
+               sin contener espacios en blanco, tildes o eñes en el nombre."
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        die();
+
         ?>
 
         <div class="upload-uploadupdater">
