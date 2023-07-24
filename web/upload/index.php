@@ -666,7 +666,7 @@ try{
     }
 
 }
-catch (Exception $e1){
+catch (EngineException $e1){
 
     // DEVUELVE DATA
     //////////
