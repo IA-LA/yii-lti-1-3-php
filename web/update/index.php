@@ -44,6 +44,11 @@ try{
         // NOMBRE DL FICHERO file
         $file=$_REQUEST['file'];
 
+        // PARAMS
+        // SERVIDORES
+        $local = false;
+        $params = require __DIR__ . '/../../config/params.php';
+
         // VALOR DE {{namedir}}
         //  - LA URL
         //      http...fichero.zip
@@ -62,6 +67,38 @@ try{
         //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
         /** USER: gcono === 000 + date + d */
         $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
+
+        // Dirección de alojamiento
+        // del servidor de Git
+        //////////////////////
+        /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
+        /// GLOBAL `.uned.es` o '10.201.54.31'
+        ///
+        if ((strpos($_SERVER['HTTP_HOST'], '10.201.54.31')!==false) && (strpos($_SERVER['HTTP_HOST'], '.uned.es'))!==false) {
+            $local = true;
+            //$carpetaGit = Yii::$app->params['carpetaGit_local'];
+            //$serverGit = Yii::$app->params['serverGit_local'];
+            //$carpetaPub = Yii::$app->params['carpetaPublicacion_local'];
+            //$serverPub = Yii::$app->params['serverPublicacion_local'];
+            //$serverLti = Yii::$app->params['serverLti_local'];
+            $carpetaGit = $params['carpetaGit_local'];
+            $serverGit = $params['serverGit_local'];
+            $carpetaPub = $params['carpetaPublicacion_local'];
+            $serverPub = $params['serverPublicacion_local'];
+            $serverLti = $params['serverLti_local'];
+        }
+        else {
+            //$carpetaGit = Yii::$app->params['carpetaGit_global'];
+            //$serverGit = Yii::$app->params['serverGit_global'];
+            //$carpetaPub = Yii::$app->params['carpetaPublicacion_global'];
+            //$serverPub = Yii::$app->params['serverPublicacion_global'];
+            //$serverLti = Yii::$app->params['serverLti_global'];
+            $carpetaGit = $params['carpetaGit_global'];
+            $serverGit = $params['serverGit_global'];
+            $carpetaPub = $params['carpetaPublicacion_global'];
+            $serverPub = $params['serverPublicacion_global'];
+            $serverLti = $params['serverLti_global'];
+        }
 
         /*Yii::$app->session->hasFlash('uploadregisterExistting')*/
 
@@ -867,40 +904,78 @@ try{
 
                         // Git, UNZIP y Publicacion sin errores
                         if($retval === 0) {
+                            // TODO recuperar Credenciales del Upload LTI por ID
+                            //$_REQUEST['actividad'];
 
-                            // DEVUELVE DATA
-                            //////////
-                            $data = [
-                                "result"=> "ok",
-                                "data" =>
-                                    [
-                                        'id_actividad' => $namedir,
-                                        'url_actividad' => $serverPub . '/' . $namedir,
-                                        "trabajo_actividad" => $file,
-                                        "user" => [
-                                            'email' => 'gcono@lti.server',
-                                            'nombre' => 'gcono',
-                                            'rol' => '000'
-                                        ],
-                                        "upload" => [
-                                            'fichero' => $file,
-                                            'carpeta' => $namedir,
-                                            'publicacion_url' => $serverPub . '/' . $namedir,
-                                            'git_url' => $serverGit . '/' . $namedir . '.git',
-                                            'actualizado' => 1
-                                        ],
-                                        "date"=> date('YmdHisu')
-                                    ]
-                            ];
-                            header('Content-Type: application/json');
-                            echo json_encode($data);
-                            die();
+                            // Información servidor
+                            //  https://www.php.net/manual/es/function.header.php
+                            ///////////////////////
+                            if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                                $url = "https://";
+                            else
+                                $url = "http://";
+                            // Append the host(domain name, ip) to the URL.
+                            $url .= $_SERVER['HTTP_HOST'];
 
-                            /**
-                            // Registra ID=$namedir ... y URL='uploads/publicacion/$namedir/' en Colección BBDD Ltis y Uploads
-                            // REGISTRO
-                            ////////////////////////////////
-                             */
+                            // Append the requested resource location to the URL
+                            //$url.= $_SERVER['REQUEST_URI'];
+                            //echo $_REQUEST['target_link_uri'];
+
+                            // Llamadas REST
+                            //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
+                            //  https://www.php.net/manual/en/context.http.php
+                            // Obtiene la configuración de las actividades con una llamada de lectura `GET`
+                            // al servidor de SERVICIOS
+                            ///////////////////
+                            /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
+                            /// GLOBAL `.uned.es` o '10.201.54.31'
+                            ///
+                            if ($local)
+                                $url = $params['serverServiciosLti_local'];
+                            else
+                                $url = $params['serverServiciosLti_global'];
+
+                            // ID o URL
+                            if ((preg_match('(http|Http|HTTP)', $_REQUEST['actividad'])!==false) && !preg_match('(publicacion)', $namedir)) {
+                                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                                $ruta = '/read/coleccion/Upload/id_actividad/' . $_REQUEST['actividad'];
+                            } else {
+                                // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                                $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($namedir));
+                            }
+
+                            // READ servicio GET Upload
+                            $arrayFile = json_decode(file_get_contents($url . $ruta), true);
+                            //print_r($arrayFile);
+
+                            // ACTIVIDAD ID/URL EXISTE
+                            if($arrayFile['result'] === 'ok'){
+
+                                $namedir = $arrayFile['data']['upload']['carpeta'];
+
+                                // Fichero ZIP ya subido!
+
+                                // Copiar ZIP en publicacion
+
+                                // Unzip Actividad .zip
+
+                                //die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+
+                                // DEVUELVE DATA
+                                //////////
+                                header('Content-Type: application/json');
+                                echo json_encode($arrayFile);
+                                die("YA existe el Upload en el Sistema LTI y hay que actualizarlo");
+
+                            }
+                            // ACTIVIDAD ID/URL NO EXISTE
+                            else{
+                                // DEVUELVE DATA
+                                //////////
+                                header('Content-Type: application/json');
+                                echo json_encode($arrayFile);
+                                die("NO existe el Upload en el Sistema LTI y hay que crearlo");
+                            }
 
                             //$this->render('_list_item',['model' => $model])
                         }
