@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Upload Zip Updater';
+$title = 'Upload Zip Uploader';
 $params['breadcrumbs'][] = $title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -64,7 +64,7 @@ try{
         //$namedir=$_REQUEST['namedir'] . Yii::$app->user->identity->username . date('YmdHisu') . 'd';
         $namedir = /*explode('.zip', strtolower($file))[0] . "difusion"*/"000" . date('YmdHisu') . 'd';
         // LA ACTIVIDAD
-        if (isset($_REQUEST['actividad']))
+        if (isset($_REQUEST['actividad'])===true)
             $actividad = $_REQUEST['actividad'];
         else
             $actividad = 'zip';
@@ -698,7 +698,7 @@ try{
                 '<p><a class="btn btn-lg btn-warning" href="window.history.back()">Atrás</a></p>';
         }
     }
-// PARAMETROS LLAMADA SERVICIO INCORREXTOS
+    // PARAMETROS LLAMADA SERVICIO INCORREXTOS
     else
     {
         // DEVUELVE DATA
@@ -742,7 +742,6 @@ try{
         </div>
         <?php
     }
-
 }
 catch (Exception $e1){
 

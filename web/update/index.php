@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Upload Zip Updater';
+$title = 'Update Zip Updater';
 $params['breadcrumbs'][] = $title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -887,7 +887,7 @@ try{
                                             'carpeta' => $namedir,
                                             'publicacion_url' => $serverPub . '/' . $namedir,
                                             'git_url' => $serverGit . '/' . $namedir . '.git',
-                                            'actualizado' => 0
+                                            'actualizado' => 1
                                         ],
                                         "date"=> date('YmdHisu')
                                     ]

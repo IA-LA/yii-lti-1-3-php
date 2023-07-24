@@ -1,6 +1,6 @@
 <?php
 
-$title = 'LTI Publisher';
+$title = 'Publication HTML Publisher';
 $params['breadcrumbs'][] = $title;
 
 // ini_set('upload_max_filesize', '10M');
