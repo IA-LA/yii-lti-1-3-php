@@ -119,7 +119,6 @@ try{
         umask(0000);
         exec(escapeshellcmd('mkdir ../uploads/difusion/' . $namedir), $output, $retval);
 
-        // Fichero ZIP subido
         // MKDIR difusion Actividad sin errores
         if($retval === 0) {
 
@@ -186,6 +185,13 @@ try{
                     // Unzip Actividad .zip
 
                     //die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
+
+                    // DEVUELVE DATA
+                    //////////
+                    header('Content-Type: application/json');
+                    echo json_encode($arrayFile);
+                    die("YA existe la Actividad en el Sistema LTI para Actualizarla");
+
                 }
                 // ACTIVIDAD ID/URL NO EXISTE
                 else{
