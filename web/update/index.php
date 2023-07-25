@@ -9,12 +9,13 @@ $params['breadcrumbs'][] = $title;
 $url=$_SERVER;
 
 ## https://www.codehaven.co.uk/php/php-miscellaneous/how-to-catch-errors-and-warnings-in-php/
+/**
 set_error_handler(
     function ($err_severity, $err_msg, $err_file, $err_line, array $err_context)
     {
         throw new ErrorException( $err_msg, 0, $err_severity, $err_file, $err_line );
     }, E_ALL);
-
+*/
 try{
 // TODO MULTIPROCESO/MULTITAREA
 //  https://medium.com/async-php/multi-process-php-94a4e5a4be05
