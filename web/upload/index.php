@@ -128,7 +128,7 @@ try{
             //      URL https://ailanto-dev.intecca.uned.es/publicacion/00020220721114124000000d
             // Update Actividad
             /*Yii::$app->session->hasFlash('uploadupdterExistting')*/
-            if (((preg_match('(zip|Zip|ZIP)', $actividad)===false) && (preg_match('([a-f,0-9]{24})', $actividad)))):
+            if (((preg_match('(zip|Zip|ZIP)', $actividad)!==false) && (preg_match('([a-f,0-9]{24})', $actividad)))):
                 // TODO-NE recuperar Credenciales del Upload LTI por ID
                 //$_REQUEST['actividad'];
 
