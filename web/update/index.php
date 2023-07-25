@@ -945,13 +945,14 @@ try{
                             }
 
                             // READ servicio GET Upload
-                            $arrayFile = json_decode(file_get_contents($url . $ruta), true);
-                            //print_r($arrayFile);
+                            $arrayFileGet = json_decode(file_get_contents($url . $ruta), true);
+                            //print_r($arrayFileGet);
 
-                            // ACTIVIDAD ID/URL EXISTE
-                            if($arrayFile['result'] === 'ok'){
+                            // UPLOAD ID/URL EXISTE
+                            if($arrayFileGet['result'] === 'ok'){
 
-                                $namedir = $arrayFile['data']['upload']['carpeta'];
+                                $namedir = $arrayFileGet['data']['upload']['carpeta'];
+                                $actualizado = $arrayFileGet['data']['upload']['actualizado'];
 
                                 // Fichero ZIP ya subido!
 
@@ -961,6 +962,116 @@ try{
 
                                 //die("Cuando YA existe la Actividad en el Sistema LTI y sólo hay qye subir el fichero .ZIP y actualizar el git");
 
+                                // TODO-NE dar Update Upload LTI
+                                //$_REQUEST['actividad'];
+
+                                // Información servidor
+                                //  https://www.php.net/manual/es/function.header.php
+                                ///////////////////////
+                                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+                                    $url = "https://";
+                                else
+                                    $url = "http://";
+                                // Append the host(domain name, ip) to the URL.
+                                $url .= $_SERVER['HTTP_HOST'];
+
+                                // Append the requested resource location to the URL
+                                //$url.= $_SERVER['REQUEST_URI'];
+                                //echo $_REQUEST['target_link_uri'];
+
+                                // Llamadas REST
+                                //  https://stackoverflow.com/questions/2445276/how-to-post-data-in-php-using-file-get-contents
+                                //  https://www.php.net/manual/en/context.http.php
+                                // Obtiene la configuración de las actividades con una llamada de lectura `GET`
+                                // al servidor de SERVICIOS
+                                ///////////////////
+                                /// LOCAL  resto: ej. 'localhost', '127.0.0.1'
+                                /// GLOBAL `.uned.es` o '10.201.54.31'
+                                ///
+                                if ($local)
+                                    $url = $params['serverServiciosLti_local'];
+                                else
+                                    $url = $params['serverServiciosLti_global'];
+
+                                // ID o URL
+                                if ((preg_match('(http|Http|HTTP)', $namedir) !== false) && !preg_match('(publicacion)', $namedir)) {
+                                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                                    $ruta = '/update/coleccion/Upload/id_actividad/' . $namedir;
+                                } else {
+                                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                                    $ruta = '/update/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($namedir));
+                                }
+
+                                // CREATE servicio POST Lti
+                                $context = stream_context_create(['http' =>
+                                    [
+                                        'ignore_errors' => true,
+                                        'method' => 'POST',
+                                        'header' => 'Content-Type: application/x-www-form-urlencoded',
+                                        'content' => http_build_query(
+                                            [
+                                                'id_actividad' => $namedir,
+                                                'url_actividad' => $serverPub . '/' . $namedir,
+                                                "user" => [
+                                                    'email' => 'gcono@lti.server',
+                                                    'nombre' => 'gcono',
+                                                    'rol' => '000'
+                                                ],
+                                                "upload" => [
+                                                    'fichero' => $file,
+                                                    'carpeta' => $namedir,
+                                                    'publicacion_url' => $serverPub . '/' . $namedir,
+                                                    'git_url' => $serverGit . '/' . $namedir . '.git',
+                                                    'actualizado' => $actualizado + 1
+                                                ]
+                                            ]
+                                        )
+                                    ]
+                                ]);
+
+                                // LLAMADA SERVICIO
+                                $arrayFilePost = json_decode(file_get_contents($url . $ruta, false, $context), true);
+                                //print_r($arrayFile);
+                                //die();
+
+                                // UPLOAD LTI ID/URL CREADO
+                                if ($arrayFilePost['result'] === 'ok') {
+                                    // DEVUELVE DATA
+                                    //////////
+                                    $data = [
+                                        "result" => "ok",
+                                        "data" =>
+                                            [
+                                                'id_actividad' => $namedir,
+                                                'url_actividad' => $serverPub . '/' . $namedir,
+                                                "trabajo_actividad" => $file,
+                                                "user" => [
+                                                    'email' => 'gcono@lti.server',
+                                                    'nombre' => 'gcono',
+                                                    'rol' => '000'
+                                                ],
+                                                "upload" => [
+                                                    'fichero' => $file,
+                                                    'carpeta' => $namedir,
+                                                    'publicacion_url' => $serverPub . '/' . $namedir,
+                                                    'git_url' => $serverGit . '/' . $namedir . '.git',
+                                                    'actualizado' => 1
+                                                ],
+                                                "date" => date('YmdHisu')
+                                            ]
+                                    ];
+                                    header('Content-Type: application/json');
+                                    echo json_encode($data);
+                                    die();
+
+                                    /**
+                                     * // Registra ID=$namedir ... y URL='uploads/publicacion/$namedir/' en Colección BBDD Ltis y Uploads
+                                     * // REGISTRO
+                                     * ////////////////////////////////
+                                     */
+                                }
+
+
                                 // DEVUELVE DATA
                                 //////////
                                 header('Content-Type: application/json');
@@ -968,12 +1079,12 @@ try{
                                 die("YA existe el Upload en el Sistema LTI y hay que actualizarlo");
 
                             }
-                            // ACTIVIDAD ID/URL NO EXISTE
+                            // UPLOAD ID/URL NO EXISTE
                             else{
                                 // DEVUELVE DATA
                                 //////////
                                 header('Content-Type: application/json');
-                                echo json_encode($arrayFile);
+                                echo json_encode($arrayFileGet);
                                 die("NO existe el Upload en el Sistema LTI y hay que crearlo");
                             }
 
