@@ -470,7 +470,7 @@ try{
                                 /////////////////////////////////////////////////
                                 $arrayFileGet = file_get_contents($_REQUEST['namedir']);
                                 if (($arrayFileGet !== false) && ($arrayFileGet !== '')) {
-                                    $arrayFilePut = file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFileGet);
+                                    $arrayFilePut = file_put_contents('../uploads/difusion/' . $namedir . '/', $arrayFileGet);
                                     if (($arrayFilePut !== false) && ($arrayFilePut !== '')) {
 
                                         // Descomprime .zip
