@@ -470,7 +470,7 @@ try{
                                 /////////////////////////////////////////////////
                                 $arrayFileGet = file_get_contents($_REQUEST['namedir']);
                                 if (($arrayFileGet !== false) && ($arrayFileGet !== '')) {
-                                    $arrayFilePut = file_put_contents('../uploads/difusion/' . $namedir . '/', $arrayFileGet);
+                                    $arrayFilePut = file_put_contents('../uploads/difusion/' . $namedir . '/' . $file, $arrayFileGet);
                                     if (($arrayFilePut !== false) && ($arrayFilePut !== '')) {
 
                                         // Descomprime .zip
@@ -488,8 +488,8 @@ try{
                                         $output = null;
                                         $retval = null;
                                         umask(0000);
-                                        exec(escapeshellcmd('unzip -o -X uploads/difusion/' . $namedir . '/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-                                        exec(escapeshellcmd('chmod 774 -R uploads/publicacion/' . $namedir), $output, $retval);
+                                        exec(escapeshellcmd('unzip -o -X ../uploads/difusion/' . $namedir . '/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                                        exec(escapeshellcmd('chmod 774 -R ../uploads/publicacion/' . $namedir), $output, $retval);
                                         //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                                         //echo "6.Returned with status $retval and output:\n";
                                         //echo "<i> " . count($output) . " archivos descomprimidos. Status y resultado " . ($retval === 0 ? 'correctos' : 'erróneos') . ":\n</i>";
@@ -510,8 +510,8 @@ try{
                                         // (on a system with the "git add" executable in the path)
                                         $output = null;
                                         $retval = null;
-                                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
-                                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
+                                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ reset '), $output, $retval);
+                                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ add . '), $output, $retval);
                                         //echo "7.Returned with status $retval and output:\n";
                                         //echo "<p><pre>7.a. PassThru " . passthru('git -C uploads/publicacion/' . $namedir . '/ add . 2>&1') . "<br/>";
                                         //print_r($output);
@@ -528,7 +528,7 @@ try{
                                         $retval = null;
                                         //exec(escapeshellcmd('git config --global user.email "you@example.com"'), $output, $retval);
                                         //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "you@example.com"'), $output, $retval);
-                                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.email "' . '000' . '@lti.server"'), $output, $retval);
+                                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.email "' . '000' . '@lti.server"'), $output, $retval);
                                         //echo "8.Returned with status $retval and output:\n";
                                         //echo "<p><pre>8.a.<br/>";
                                         //echo "8.a.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.email "you@example.com" 2>&1') . "<br/>";
@@ -540,7 +540,7 @@ try{
                                         $retval = null;
                                         //exec(escapeshellcmd('git config --global user.name "Your Name"'), $output, $retval);
                                         //exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "Your Name"'), $output, $retval);
-                                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . ' config --local user.name "' . 'gcono' . '"'), $output, $retval);
+                                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . ' config --local user.name "' . 'gcono' . '"'), $output, $retval);
                                         //echo "8.Returned with status $retval and output:\n";
                                         //echo "<p><pre>8.b.<br/>";
                                         //echo "8.b.PassThru " . passthru('git -C uploads/publicacion/' . $namedir . ' config user.name "Your Name" 2>&1') . "<br/>";
@@ -557,7 +557,7 @@ try{
                                         $output = null;
                                         $retval = null;
                                         //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ commit -m "Init Commit Server LTI"'), $output, $retval);
-                                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Upload Commit Server LTI"'), $output, $retval);
+                                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ commit -m "Initial Upload Commit Server LTI"'), $output, $retval);
                                         //echo "9.Returned with status $retval and output:\n";
                                         //echo "<p><pre>9.a. git -C uploads/publicacion/$namedir/ commit -m 'Initial Commit Server LTI' <br/>";
                                         //echo "9.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ commit -m "Initial Commit Server LTI" 2>&1') . "<br/>";
@@ -572,7 +572,7 @@ try{
                                         $output = null;
                                         $retval = null;
                                         //exec(escapeshellcmd('git -C ' . $carpetaGit . '/uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
-                                        exec(escapeshellcmd('git -C uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
+                                        exec(escapeshellcmd('git -C ../uploads/publicacion/' . $namedir . '/ push origin master'), $output, $retval);
                                         //echo "10.Returned with status $retval and output:\n";
                                         //echo "<p><pre>10.a. git -C uploads/publicacion/$namedir/ push origin master<br/>";
                                         //echo "10.PassThru" . passthru('git -C uploads/publicacion/' . $namedir . '/ push origin master 2>&1') . "<br/>";
