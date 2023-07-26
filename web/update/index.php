@@ -901,16 +901,16 @@ try{
                                     $ruta = '/update/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($namedir));
                                 }
 
-                                // CREATE servicio POST Lti
+                                // UPDATE servicio PUT Upload
                                 $context = stream_context_create(['http' =>
                                     [
                                         'ignore_errors' => true,
-                                        'method' => 'POST',
+                                        'method' => 'PUT',
                                         'header' => 'Content-Type: application/x-www-form-urlencoded',
                                         'content' => http_build_query(
                                             [
-                                                'id_actividad' => $namedir,
-                                                'url_actividad' => $serverPub . '/' . $namedir,
+                                                "id_actividad" => $namedir,
+                                                "url_actividad" => $serverPub . '/' . $namedir,
                                                 "user" => [
                                                     'email' => 'gcono@lti.server',
                                                     'nombre' => 'gcono',
@@ -933,7 +933,7 @@ try{
                                 //print_r($arrayFile);
                                 //die();
 
-                                // UPLOAD LTI ID/URL CREADO
+                                // UPLOAD LTI ID/URL ACTUALIZADO
                                 if ($arrayFilePost['result'] === 'ok') {
                                     // DEVUELVE DATA
                                     //////////
@@ -978,7 +978,7 @@ try{
                                 die("YA existe el Upload en el Sistema LTI y hay que actualizarlo");
 
                             }
-                            // UPLOAD ID/URL NO EXISTE
+                            // UPLOAD ID/URL NO ACTUALIZADO
                             else{
                                 // DEVUELVE DATA
                                 //////////
