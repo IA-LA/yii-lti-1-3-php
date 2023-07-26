@@ -937,28 +937,7 @@ try{
                                 if ($arrayFilePost['result'] === 'ok') {
                                     // DEVUELVE DATA
                                     //////////
-                                    $data = [
-                                        "result" => "ok",
-                                        "data" =>
-                                            [
-                                                'id_actividad' => $namedir,
-                                                'url_actividad' => $serverPub . '/' . $namedir,
-                                                "trabajo_actividad" => $file,
-                                                "user" => [
-                                                    'email' => 'gcono@lti.server',
-                                                    'nombre' => 'gcono',
-                                                    'rol' => '000'
-                                                ],
-                                                "upload" => [
-                                                    'fichero' => $file,
-                                                    'carpeta' => $namedir,
-                                                    'publicacion_url' => $serverPub . '/' . $namedir,
-                                                    'git_url' => $serverGit . '/' . $namedir . '.git',
-                                                    'actualizado' => 1
-                                                ],
-                                                "date" => date('YmdHisu')
-                                            ]
-                                    ];
+                                    $data = $arrayFilePost['data'];
                                     header('Content-Type: application/json');
                                     echo json_encode($data);
                                     die();
