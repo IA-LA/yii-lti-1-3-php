@@ -937,7 +937,11 @@ try{
                                 if ($arrayFilePost['result'] === 'ok') {
                                     // DEVUELVE DATA
                                     //////////
-                                    $data = $arrayFilePost['data'];
+                                    $data = [
+                                        "result" => "ok",
+                                        "data" =>
+                                            $arrayFilePost['data']
+                                    ];
                                     header('Content-Type: application/json');
                                     echo json_encode($data);
                                     die();
