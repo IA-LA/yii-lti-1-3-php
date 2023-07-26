@@ -11,7 +11,7 @@ use yii\bootstrap\Modal;
 
 use yii\helpers\Url;
 
-$this->title = 'Update Zip Upload';
+$this->title = 'Update Zip';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -389,7 +389,7 @@ Url::remember();
 
                     Modal::end();
 
-                    echo Html::Button('Upload & Register', ['class' => 'btn btn-primary', 'name' => 'modal-uploadupdater-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
+                    echo Html::Button('Update', ['class' => 'btn btn-primary', 'name' => 'modal-uploadupdater-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
                 ?>
             </div>
         </div>
