@@ -46,7 +46,7 @@ use app\models\Upload\PublishForm;
 use app\models\Upload\PublishRegisterForm;
 
 /* UPDATE */
-use app\models\Upload\crud\UpdateRegisterForm;
+use app\models\Upload\UpdateRegisterForm;
 
 class UploadController extends Controller
 {

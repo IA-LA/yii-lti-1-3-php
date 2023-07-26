@@ -1,7 +1,7 @@
 <?php
-/* @var $this yii\web\Update */
+/* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\Update\UploadUpdater */
+/* @var $model app\models\Upload\UpdateRegisterForm */
 
 use yii\helpers\Html;
 /* use yii\widgets\ActiveForm;*/
@@ -11,7 +11,7 @@ use yii\bootstrap\Modal;
 
 use yii\helpers\Url;
 
-$this->title = 'Upload Zip Updater';
+$this->title = 'Update Zip Upload';
 $this->params['breadcrumbs'][] = $this->title;
 
 // ini_set('upload_max_filesize', '10M');
@@ -20,18 +20,17 @@ $this->params['breadcrumbs'][] = $this->title;
 Url::remember();
 
 ?>
-<div class="upload-uploadupdater">
+<div class="upload-updateregister">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php if ((Yii::$app->session->hasFlash('updateregisterFormSubmitted')) && (($file !== null) && ($id !== null) && (preg_match('(zip|Zip|ZIP)', $id)))): ?>
     <!--
     TODO
         $_REQUEST Parámetros de descarga
-                  file Nombre del fichero y URL
-                  namedir URL de descarga del .ZIP
+                  file Nombre del fichero
+                  namedir Carpeta o URL de descarga del .ZIP
         $_FILES Parámetros del fichero enviado por POST
     -->
-    <?php if (($_REQUEST['file'] !== null) && ($_REQUEST['namedir'] !== null) && (preg_match('(zip|Zip|ZIP)', $_REQUEST['namedir']))): ?>
 
         <div>
             <p/>
@@ -41,10 +40,6 @@ Url::remember();
             // VALOR DEL NOMBRE D FICHERO
             // enviado desde el Pararámetro .php
             -->
-            <?php
-                $file=$_REQUEST['file'];
-                file_get_contents('namedir');
-            ?>
             <p class="alert alert-success">Archivo ´<b><i><?= $file ?></i></b>´ recibido correctamente</p>
 
             <?php
@@ -65,7 +60,11 @@ Url::remember();
                 // desde el Controlador SiteContreoller.php
                 //$namedir= substr('nombreTrabajo',0, (strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) >=0 ? strlen('nombreTrabajo') - strlen(Yii::$app->user->identity->username) : 0)) . Yii::$app->user->identity->username . date('YmdHisu') . '00000003';
                 //$namedir= Yii::$app->user->identity->id . date('YmdHisu') . 'a';
-                $namedir=$_REQUEST['namedir'];
+                /**
+                 * TODO si recibe $url en vez de $id de la Actividad LTI
+                 */
+                $namedir=$id;
+                /**  entonces obtener $id vía llamada a un servicio */
                 umask(0000);
                 exec(escapeshellcmd('mkdir uploads/publicacion/' . $namedir), $output, $retval);
                 // MKDIR sin errores
@@ -75,9 +74,13 @@ Url::remember();
             <p/>
             <p/>
             <p/>
-            <p class="alert alert-success">Carpeta ´<b><i><?= $namedir ?></i></b>´ creada correctamente</p>
+            <p class="alert alert-success">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>NO</b> actualizable.</p>
 
             <?php
+                }
+                else {
+                    echo '<p class="alert error-summary">Carpeta de publicación <i>`' . $namedir . '`</i> <b>SI</b> actualizable.</p>';
+
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
                     // Carpeta de publicaciones
@@ -105,13 +108,13 @@ Url::remember();
                         $serverLti = Yii::$app->params['serverLti_global'];
                     }
 
-                    // Crea proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
-                    //  ID=$namedir
-                    ///////////////////////////////////////////////////////////////////////////////////
-                    ///
                     // Git
                     $output = shell_exec(escapeshellcmd('git --version'));
                     //echo "<pre>1. $output</pre>";
+
+                    // Crea proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
+                    //  ID=$namedir
+                    ///////////////////////////////////////////////////////////////////////////////////
 
                     // Carpeta de Git
                     // outputs the username that owns the running php/httpd process
@@ -126,6 +129,26 @@ Url::remember();
                     //echo "</pre></p>";
                     $output = shell_exec(escapeshellcmd('ls -lart uploads/ | mkdir uploads/git 2>&1'));
                     //echo "<pre>2.b. $output</pre>";
+
+                    // UPDATE GIT borrando todo su conenido y subiendo un nuevo ZIP
+                    ///////////////////////////////////////////////////////////////
+                    // https://stackoverflow.com/questions/9050914/how-can-i-remove-all-files-in-my-git-repo-and-update-push-from-my-local-git-repo
+                    // https://stackoverflow.com/questions/2047465/how-do-i-delete-a-file-from-a-git-repository
+                    // https://stackoverflow.com/questions/50675829/remove-node-modules-from-git-in-vscode
+                    /** @var  $output */
+                    // TODO git rm -r --cached '*' -f -q
+                    // TODO git commit -a -m 'Delete all the stuff'
+                    // TODO git push origin master
+                    // TODO unzip ZIP
+                    // TODO cp ZIP
+                    // TODO git add -A
+                    // TODO git commit -a -m 'Copy all the ZIP'
+                    // TODO git push origin master
+
+                    // Vacía proyecto Git 'uploads/git/$namedir.git' y URL='uploads/publicacion/$namedir/'
+                    //  ID=$namedir
+                    ///////////////////////////////////////////////////////////////////////////////////
+                    //
 
                     // Carpeta de Actividad Git
                     // Convenio de nombre proyecto (24 hex) y carpeta = 'repo_' + id user + fecha y hora + 'a' + '.git'
@@ -185,14 +208,13 @@ Url::remember();
                     //exec(escapeshellcmd('unzip uploads/CANVAS_QTI_IMPORT_UNIT_TEST.zip -d uploads/publicacion/nombreTrabajoXXX00000000/'), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetececontentv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
-
                     // Unzip Actividad .zip
                     // outputs the username that owns the running php/httpd process
                     // (on a system with the "unzip" executable in the path)
                     $output=null;
                     $retval=null;
                     umask(0000);
-                    exec(escapeshellcmd('unzip -o -X uploads/' . $_REQUEST['file'] . ' -d uploads/publicacion/' . $namedir), $output, $retval);
+                    exec(escapeshellcmd('unzip -o -X uploads/' . $file . ' -d uploads/publicacion/' . $namedir), $output, $retval);
                     exec(escapeshellcmd('chmod 774 -R uploads/publicacion/' . $namedir), $output, $retval);
                     //exec(escapeshellcmd('unzip uploads/cindetechtmlv1_5a5db903d3bd0d7623bc10c0.zip -d uploads/publicacion/' . $namedir), $output, $retval);
                     //echo "6.Returned with status $retval and output:\n";
@@ -294,9 +316,9 @@ Url::remember();
             <p/>
             <div class="alert alert-success">
                 <ol>
-                    <li>Git URL de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
-                    <li>Fichero de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
-                    <li>Web URL de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
+                    <li>Git URL actualizado de la Actividad ´<b><i><a href="<?= Html::encode($serverGit . '/' . $namedir); ?>.git" target="_blank"><?= $namedir ?>.git</a></i></b>´ generado correctamente.<br/></li>
+                    <li>Fichero actualizado de la Actividad ´<b><i><?= $file ?></i></b>´ descomprimido correctamente.<br/></li>
+                    <li>Web URL actualizado de la Actividad ´<b><i><a href="<?= Html::encode($serverPub . '/' . $namedir); ?>" target="_blank"><?= $namedir ?></a></i></b>´ publicada correctamente</li>
                 </ol>
             </div>
 
@@ -307,9 +329,9 @@ Url::remember();
                         // REGISTRO
                         ////////////////////////////////
                         */
-                        echo '<p><div class="row alert alert-success">La actividad LTI ha quedado registrada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
+                        echo '<p><div class="row alert alert-success">La actividad LTI ha quedado actualizada con el ID: <b><i>`' . $namedir . '`</i></b> y la dirección URL: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´.</div>' .
                             //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=site%2Fregister">Registrar LTI</a></div></div>'.
-                            '<div class="row alert alert-success">El Upload ha sido registrado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
+                            '<div class="row alert alert-success">El Upload ha sido actualizado con el ID: <b><i>`' . $namedir . '`</i></b>, el fichero: ´<b><i><a href="uploads/' . $file . '" target="_blank">' . $file . '</a></i>´</b>, la carpeta `<b>' . $namedir . '</b>`, la dirección de publicación: ´<b><i><a href="' . $serverPub . '/' . $namedir . '" target="_blank">' . $namedir . '</a></i></b>´ y el proyecto Git: ´<b><i><a href="' . $serverGit . '/' . $namedir . '.git" target="_blank">' . $namedir . '.git</a></i></b>´.</div></p>' .
                             //'<div class="col-lg-2"><a class="btn btn-lg btn-primary" href="index.php?r=crud%2Fregister">Registrar Upload</a></div></div>' .
                             '';
                              //$this->render('_list_item',['model' => $model])
@@ -322,10 +344,7 @@ Url::remember();
                             '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                     }
 
-                }
-                else {
-                    echo '<p class="alert error-summary"><i>Error al crear carpeta <i>`' . $namedir . '`</i></p>' .
-                        '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
+                    echo '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                 }
         ?>
 
