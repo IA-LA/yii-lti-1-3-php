@@ -378,6 +378,8 @@ Url::remember();
                         // Formulario activo
                         //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
                         $form = ActiveForm::begin(["id" => "uploadupdater-form"]);
+                            echo $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id) ? $id : ' ']);
+                            echo $form->field($model, 'url');
                             echo $form->field($model, 'zipFile')->fileInput();
                             echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                                 'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
