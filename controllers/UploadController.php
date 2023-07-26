@@ -329,7 +329,7 @@ class UploadController extends Controller
                         //->setMethod('POST')
                         ->setMethod('GET')
                         ->setUrl($url . $ruta) //$_POST['ListForm']['id'])
-                        ->setData(['name' => 'exception', 'email' => 'exception' . '@lti.server'])
+                        ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
                         ->setOptions([
                             //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                             'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
@@ -1025,8 +1025,8 @@ class UploadController extends Controller
                             ->setMethod('GET')
                             ->setUrl($url . $ruta) //$_POST['ListsForm']['id'])
                             //app\models\User Object( [id] => 100 [username] => admin [password] => ****** [authKey] => test100key [accessToken] => 100-token )
-                            //->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
-                            ->setData(['name' => 'exception', 'email' => 'exception' . '@lti.server'])
+                            ->setData(['name' => Yii::$app->user->identity->username, 'email' => Yii::$app->user->identity->username . '@lti.server'])
+                            //->setData(['name' => 'exception', 'email' => 'exception' . '@lti.server'])
                             ->setOptions([
                                 //'proxy' => 'tcp://proxy.example.com:5100', // use a Proxy
                                 'timeout' => 5, // set timeout to 5 seconds for the case server is not responding
