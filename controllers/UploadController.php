@@ -1704,9 +1704,9 @@ class UploadController extends Controller
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $updateregister = $model->updateregister();
 
-                // Usuario autorizado
+                // Usuario autorizado o administrador
                 // ID propia del usuario
-                if((strpos(Yii::$app->request->post('UpdateRegisterForm')['id'], Yii::$app->user->identity->id) || (Yii::$app->user->identity->username === 'admin'))) {
+                if ((Yii::$app->user->identity->username === 'admin') || (strpos(Yii::$app->request->post('UpdateRegisterForm')['id'], Yii::$app->user->identity->id))) {
                     // If file is uploaded successfully
                     ///////////////////////////////////
                     if ($updateregister['result']) {
@@ -1876,11 +1876,11 @@ class UploadController extends Controller
                             'url'=> isset($params['url'])? $params['url'] :' ',
                         ]);
                          */
-                        return $this->render('error2', ['exception' => null]);
+                        return $this->render('error2' . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id . '+' . $updateregister['result'], ['exception' => null]);
                     }
                 }
                 else {
-                    return $this->render('error1' . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id, ['exception' => null]);
+                    return $this->render('error1', ['exception' => null]);
                 }
             }
 
