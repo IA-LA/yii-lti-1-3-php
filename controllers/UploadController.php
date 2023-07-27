@@ -1877,11 +1877,11 @@ class UploadController extends Controller
                             'url'=> isset($params['url'])? $params['url'] :' ',
                         ]);
                          */
-                        return $this->render('error2' . ' ' . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id . '+' . $updateregister['result'], ['exception' => null]);
+                        return $this->render('/error', ['exception' => null]);
                     }
                 }
                 else {
-                    return $this->render('error1', ['exception' => null]);
+                    return $this->render('/error', ['exception' => null]);
                 }
             }
 
