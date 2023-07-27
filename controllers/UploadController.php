@@ -1709,7 +1709,7 @@ class UploadController extends Controller
                 if ((Yii::$app->user->identity->username === 'admin') || (strpos(Yii::$app->request->post('UpdateRegisterForm')['id'], Yii::$app->user->identity->id))) {
                     // If file is uploaded successfully
                     ///////////////////////////////////
-                    if ($updateregister['result']) {
+                    if ($updateregister['result'] === '') {
                         // file is uploaded successfully
                         Yii::$app->session->setFlash('updateregisterFormSubmitted');
 
@@ -1876,7 +1876,7 @@ class UploadController extends Controller
                             'url'=> isset($params['url'])? $params['url'] :' ',
                         ]);
                          */
-                        return $this->render('error2' . ' ' . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id . '+' . $updateregister, ['exception' => null]);
+                        return $this->render('error2' . ' ' . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id . '+' . $updateregister['result'], ['exception' => null]);
                     }
                 }
                 else {
