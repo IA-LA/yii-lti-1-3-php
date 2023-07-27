@@ -1881,7 +1881,7 @@ class UploadController extends Controller
                     }
                 }
                 else {
-                    return $this->render('error1', ['exception' => null]);
+                    return $this->render('error1' . $updateregister['id'] . Yii::$app->user->identity->id), ['exception' => null]);
                 }
             }
 
