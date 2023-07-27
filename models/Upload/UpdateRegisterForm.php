@@ -39,7 +39,7 @@ class UpdateRegisterForm extends Model
             //[['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
             [['zipFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'zip'],
             // verifyCode needs to be entered correctly
-            //['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
