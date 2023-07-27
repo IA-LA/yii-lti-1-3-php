@@ -1862,7 +1862,7 @@ class UploadController extends Controller
                                                 'id_actividad' => $responseGet->data['data']['id_actividad'],
                                                 'url_actividad' => $serverPub . '/' . $responseGet->data['data']['id_actividad'],
                                                 "upload" => [
-                                                    'fichero' => Yii::$app->request->post('UpdateRegisterForm')['file'],
+                                                    'fichero' => Yii::$app->request->post('UpdateRegisterForm')['zipFile']['baseName'] . '.' . Yii::$app->request->post('UpdateRegisterForm')['zipFile']['extension'],
                                                     'carpeta' => $responseGet->data['data']['id_actividad'],
                                                     'publicacion_url' => $serverPub . '/' . $responseGet->data['data']['id_actividad'], //['publicacion']
                                                     'git_url' => $serverGit . '/' . $responseGet->data['data']['id_actividad'] . '.git', //['git']
