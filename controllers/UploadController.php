@@ -1781,10 +1781,10 @@ class UploadController extends Controller
 
                             if (Yii::$app->request->post('UploadRegisterForm')['id'] !== '') {
                                 // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/id_actividad/5e0df19c0c2e74489066b43g
-                                $ruta = '/read/coleccion/Upload/id_actividad/' . Yii::$app->request->post('ReadForm')['id'];
+                                $ruta = '/read/coleccion/Upload/id_actividad/' . Yii::$app->request->post('UploadRegisterForm')['id'];
                             } else {
                                 // http://10.201.54.31:49151/servicios/lti/lti13/read/coleccion/Upload/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
-                                $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('ReadForm')['url']));
+                                $ruta = '/read/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('UploadRegisterForm')['url']));
                             }
                             // Exception GET UPLOAD1
                             try {
