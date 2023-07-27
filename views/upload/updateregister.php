@@ -353,7 +353,7 @@ Url::remember();
     <?php else: ?>
 
         <p>
-            Formulario de subida de Econtent complejos desde el CTU.
+            Formulario de actualización de Econtent complejos desde el CTU.
             Puede subirse un fichero comprimido .zip, de cada vez,
             sin contener espacios en blanco, tildes o eñes en el nombre.
         </p>
