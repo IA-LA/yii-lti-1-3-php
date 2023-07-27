@@ -1884,9 +1884,6 @@ class UploadController extends Controller
                     return $this->render('error', ['exception' => null]);
                 }
             }
-            else {
-                return $this->render('error', ['exception' => null]);
-            }
 
             return $this->render('updateregister', ['model' => $model]);
         }
