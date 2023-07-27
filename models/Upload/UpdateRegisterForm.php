@@ -9,7 +9,7 @@ use yii\web\UploadedFile;
 class UpdateRegisterForm extends Model
 {
     /**
-     * @var UpdatedFile
+     * @var UploadedFile
      */
     public $id;
     public $url;
