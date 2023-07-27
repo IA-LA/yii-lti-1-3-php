@@ -1706,8 +1706,7 @@ class UploadController extends Controller
 
                 // Usuario autorizado
                 // ID propia del usuario
-                if(strpos($updateregister['data']['id'], Yii::$app->user->identity->id)) {
-
+                if((strpos(Yii::$app->request->post('UpdateRegisterForm')['id'], Yii::$app->user->identity->id) || (Yii::$app->user->identity->username === 'admin'))) {
                     // If file is uploaded successfully
                     ///////////////////////////////////
                     if ($updateregister['result']) {
@@ -1881,7 +1880,7 @@ class UploadController extends Controller
                     }
                 }
                 else {
-                    return $this->render('error1' . $updateregister['data']['id'] . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id, ['exception' => null]);
+                    return $this->render('error1' . Yii::$app->request->post('UpdateRegisterForm')['id'] . '_' . Yii::$app->user->identity->id, ['exception' => null]);
                 }
             }
 
