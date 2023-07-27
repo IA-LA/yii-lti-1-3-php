@@ -1877,11 +1877,11 @@ class UploadController extends Controller
                             'url'=> isset($params['url'])? $params['url'] :' ',
                         ]);
                          */
-                        return $this->render('error', ['exception' => null]);
+                        return $this->render('error2', ['exception' => null]);
                     }
                 }
                 else {
-                    return $this->render('error', ['exception' => null]);
+                    return $this->render('error1', ['exception' => null]);
                 }
             }
 
