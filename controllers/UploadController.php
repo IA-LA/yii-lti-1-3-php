@@ -1877,11 +1877,17 @@ class UploadController extends Controller
                             'url'=> isset($params['url'])? $params['url'] :' ',
                         ]);
                          */
-                        return $this->render('/site/error', ['exception' => null]);
+                        return $this->render('/site/error', [
+                            'model' => $model,
+                            "name" => "Error updateregister 2",
+                            "message" => "if (updateregister['result'])"]);
                     }
                 }
                 else {
-                    return $this->render('/site/error', ['exception' => null]);
+                    return $this->render('/site/error', [
+                        'model' => $model,
+                        "name" => "Error updateregister 1",
+                        "message" => "if ((Yii::app->user->identity->username === 'admin') || (strpos(Yii::app->request->post('UpdateRegisterForm')['id'], Yii::app->user->identity->id)))"]);
                 }
             }
 
