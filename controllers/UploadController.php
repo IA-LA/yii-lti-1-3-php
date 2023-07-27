@@ -1877,6 +1877,7 @@ class UploadController extends Controller
                             'url'=> isset($params['url'])? $params['url'] :' ',
                         ]);
                          */
+                        return $this->render('if ($updateregister[');
                     }
                 }
             }
