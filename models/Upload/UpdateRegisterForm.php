@@ -61,6 +61,13 @@ class UpdateRegisterForm extends Model
     public function updateregister()
     {
         if ($this->validate()) {
+            Yii::$app->mailer->compose()
+                ->setTo('read@a.a')
+                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                ->setReplyTo(['a@a.a' => $this->id])
+                ->setSubject('Update ' . $this->url)
+                ->setTextBody('Actualización de información de una Upload')
+                ->send();
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
             //@return bool whether the model passes validation
             //return true;

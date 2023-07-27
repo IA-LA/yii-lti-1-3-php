@@ -1704,14 +1704,15 @@ class UploadController extends Controller
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
                 $updateregister = $model->updateregister();
 
-                // Usuario autorizado o administrador
-                // ID propia del usuario
-                if ((Yii::$app->user->identity->username === 'admin') || (strpos(Yii::$app->request->post('UpdateRegisterForm')['id'], Yii::$app->user->identity->id))) {
-                    // If file is uploaded successfully
-                    ///////////////////////////////////
-                    if ($updateregister['result']) {
-                        // file is uploaded successfully
-                        Yii::$app->session->setFlash('updateregisterFormSubmitted');
+                // If file is uploaded successfully
+                ///////////////////////////////////
+                if ($updateregister['result']) {
+                    // file is uploaded successfully
+                    Yii::$app->session->setFlash('updateregisterFormSubmitted');
+
+                    // Usuario autorizado o administrador
+                    // ID propia del usuario
+                    if ((Yii::$app->user->identity->username === 'admin') || (strpos(Yii::$app->request->post('UpdateRegisterForm')['id'], Yii::$app->user->identity->id))) {
 
                         // Define Nombre de carpeta, de la web de publicación y del git
                         $namefile = $updateregister['id'];
