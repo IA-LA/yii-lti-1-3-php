@@ -2004,8 +2004,8 @@ class UploadController extends Controller
                         return $this->render('updateregister', [
                             'model' => $model,
                             "file"  => $_FILES['UpdateRegisterForm']['name']['zipFile'],
-                            "id"    => $params['UpdateRegisterForm']['id'],
-                            "url"   => $params['UpdateRegisterForm']['url']]);
+                            "id"    => Yii::$app->request->post('UpdateRegisterForm')['id'],
+                            "url"   => Yii::$app->request->post('UpdateRegisterForm')['url']]);
                         //return $this->render('updateregister', ['model' => $model]);
                         //return;
                     }
