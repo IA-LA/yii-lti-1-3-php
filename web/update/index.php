@@ -894,10 +894,10 @@ try{
 
                                 // ID o URL
                                 if ((preg_match('(http|Http|HTTP)', $namedir) !== false) && !preg_match('(publicacion)', $namedir)) {
-                                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
+                                    // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/collection/id_actividad/5e0df19c0c2e74489066b43g
                                     $ruta = '/update/coleccion/Upload/id_actividad/' . $namedir;
                                 } else {
-                                    // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
+                                    // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/collection/url_actividad/http:%2f%2f10.201.54.31:9002%2fPlantilla%20Azul_5e0df19c0c2e74489066b43g%2findex_default.html
                                     $ruta = '/update/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode($namedir));
                                 }
 
