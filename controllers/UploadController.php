@@ -1936,6 +1936,7 @@ class UploadController extends Controller
                                     '</code><br/>' .
                                     'GIT: <code>' .
                                     Html::encode($responsePut->data['data']['register']['upload']['git_url']) .
+                                    '</code><br/>' .
                                     'UPDATE: <code>' .
                                     Html::encode($responsePut->data['data']['register']['upload']['actualizado']) .
                                     '</code><br/>' .
