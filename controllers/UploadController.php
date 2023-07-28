@@ -1987,7 +1987,6 @@ class UploadController extends Controller
                         // Return file is uploaded successfully
                         // RENDER content
                         /////////////////////////////////////////
-                        $content.=print_r($responseGet->data['data']) . print_r($responsePut->data['data']);
                         return $this->renderContent($content);
                         //return $this->refresh();
 
