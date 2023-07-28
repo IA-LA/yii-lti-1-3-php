@@ -1987,15 +1987,15 @@ class UploadController extends Controller
                         // Return file is uploaded successfully
                         // RENDER content
                         /////////////////////////////////////////
-                        /**
-                        return $this->renderContent($content);
-                         */
+                        return $this->renderContent($content . $responseGet->data['data'] . $responsePut->data['data']);
                         //return $this->refresh();
 
                         // Return file is uploaded successfully
                         ///////////////////////////////////////
                         //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
+                        /**
                         return $this->render('updateregister', ['model' => $model, "file" => $updateregister['file'], "namefile" => $namefile]);
+                         */
                         //return $this->render('uploadregister', ['model' => $model]);
                         //return;
 
