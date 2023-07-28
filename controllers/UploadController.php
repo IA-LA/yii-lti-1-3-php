@@ -1981,6 +1981,9 @@ class UploadController extends Controller
                         // Parámetros llamada a la Vista read desde los listados Lists
                         $params = Yii::$app->request->post();
 
+                        // file is updated successfully
+                        Yii::$app->session->setFlash('updateregisterFormSubmitted');
+
                         // Return file is uploaded successfully
                         // RENDER content
                         /////////////////////////////////////////
@@ -1992,20 +1995,20 @@ class UploadController extends Controller
                         // Return file is uploaded successfully
                         ///////////////////////////////////////
                         //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $upload['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fuploadregister">Atrás</a></p>');
-                        /**
                         return $this->render('updateregister', ['model' => $model, "file" => $updateregister['file'], "namefile" => $namefile]);
-                        */
                         //return $this->render('uploadregister', ['model' => $model]);
                         //return;
 
                         // Return file is uploaded successfully
                         ///////////////////////////////////////
                         //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success">Archivo "<i>' . $update['file'] .'</i>" subido correctamente</p></div>' . '<p><a class="btn btn-lg btn-success" href="index.php?r=site%2Fupdateregister">Atrás</a></p>');
+                        /**
                         return $this->render('updateregister', [
                             'model' => $model,
                             "file"  => $_FILES['UpdateRegisterForm']['name']['zipFile'],
                             "id"    => Yii::$app->request->post('UpdateRegisterForm')['id'],
                             "url"   => Yii::$app->request->post('UpdateRegisterForm')['url']]);
+                         */
                         //return $this->render('updateregister', ['model' => $model]);
                         //return;
                     }
