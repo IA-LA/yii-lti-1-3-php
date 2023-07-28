@@ -1823,17 +1823,17 @@ class UploadController extends Controller
                             //return $this->renderContent('<div><p/><p/><p/><p class="alert alert-success"> Registro finalizado: ' . ArrayHelper::isAssociative($request) . '<br/>REQUEST:<br/> . print_r($request) . <br/>RESPONSE:<br/> . print_r($response)' . print_r($request) . '</p></div><br/>');
                             // yii\httpclient\Response Object ( [client] => yii\httpclient\Client Object ( [baseUrl] => [formatters] => Array ( [urlencoded] => yii\httpclient\UrlEncodedFormatter Object ( [encodingType] => 1 [charset] => ) ) [parsers] => Array ( ) [requestConfig] => Array ( ) [responseConfig] => Array ( ) [contentLoggingMaxSize] => 2000 [_transport:yii\httpclient\Client:private] => yii\httpclient\StreamTransport Object ( [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => ) [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => Array ( ) ) [_headers:yii\httpclient\Message:private] => Array ( [0] => HTTP/1.1 200 OK [1] => X-Powered-By: Express [2] => Content-Type: application/json; charset=utf-8 [3] => Content-Length: 1180 [4] => ETag: W/"49c-2mm6tdE08PBK3Du9hRlhHVqbw2Y" [5] => Date: Thu, 25 Feb 2021 09:53:53 GMT [6] => Connection: close ) [_cookies:yii\httpclient\Message:private] => [_content:yii\httpclient\Message:private] => {"result":"ok","data":{"user":{"email":"nadie@uned.es","nombre":"Nadie","rol":"Administrador"},"launch_parameters":{"iss":"5fc3860a81740b0ef098a983","login_hint":"123456","target_link_uri":"http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html","lti_message_hint":"123456"},"credentials":{"deployment":["8c49a5fa-f955-405e-865f-3d7e959e809f"],"client_id":"d42df408-70f5-4b60-8274-6c98d3b9468d","auth_login_url":"http://10.201.54.31:9002/platform/login.php","auth_token_url":"http://10.201.54.31:9002/platform/token.php","key_set_url":"http://10.201.54.31:9002/platform/jwks.php","private_key_file":"/private.key","auth_server":"http://10.201.54.31:9002/platform/login.php","kid":"58f36e10-c1c1-4df0-af8b-85c857d1634f"},"_id":"5fc3860a81740b0ef098a983","id_actividad":"5fc3860a81740b0ef098a983","url_actividad":"http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html","launch_url":"http://10.201.54.31:9002/login.php?iss=5fc3860a81740b0ef098a983&login_hint=123456&target_link_uri=http://10.201.54.31:9002/Plantilla Azul_5e0df19c0c2e74489066b43g/index_default.html<i_message_hint=123456","zf":"2020-12-17T09:01:03.889Z"}} [_data:yii\httpclient\Message:private] => [_format:yii\httpclient\Message:private] => [_events:yii\base\Component:private] => Array ( ) [_eventWildcards:yii\base\Component:private] => Array ( ) [_behaviors:yii\base\Component:private] => )
                             if ($responseGet->isOk && $responseGet->data['result'] === 'ok') {
-                                $content = '<div><p/><p/><p/><p class="alert alert-success"> Consulta: ' . $responseGet->data['result'] . '</p>';
+                                $content = '<div><p/><p/><p/><p class="alert alert-success"> Read registro: ' . $responseGet->data['result'] . '</p>';
                                 $content .= '<div class="jumbotron">
-                        <h1>Consulta</h1>
-                        <p class="lead">Copia las URL de acceso al Upload.</p>' .
+                                    <h1>Consulta de registro</h1>
+                                    <p class="lead">Credenciales URL de acceso al Upload.</p>' .
                                     'ID: <code>' . $responseGet->data['data']['id_actividad'] . '</code><br/>' .
                                     'URL: <code>' . Html::encode($responseGet->data['data']['upload']['publicacion_url']) . '</code><br/>' .
                                     'GIT: <code>' . Html::encode($responseGet->data['data']['upload']['git_url']) . '</code><br/>' .
                                     'FICHERO: <code>' . $responseGet->data['data']['upload']['fichero'] . '</code><br/>' .
                                     '<p/><p/><p/>' .
                                     '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
-                    </div>';
+                                </div>';
                                 $content .= '</div>';
 
                             }
@@ -1845,13 +1845,13 @@ class UploadController extends Controller
                                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
                                 //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                                 $content .= '<div class="jumbotron">
-                        <h1>Error</h1>
-                        <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
+                                    <h1>Error</h1>
+                                    <p class="lead">Las credenciales de Consulta son erróneas.</p>' .
                                     'ID:  <code>' . Yii::$app->request->post('ReadForm')['id'] . '</code><br/>' .
                                     'URL: <code>' . Yii::$app->request->post('ReadForm')['url'] . '</code><br/>' .
                                     '<p/><p/><p/>' .
                                     '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
-                    </div>';
+                                </div>';
                                 $content .= '</div>';
                             }
 
@@ -1868,10 +1868,10 @@ class UploadController extends Controller
                         $client = new Client();
 
                         if (Yii::$app->request->post('UpdateRegisterForm')['id'] !== '') {
-                            // http://10.201.54.31:49151/servicios/lti/lti13/create/register/coleccion/:coleccion
+                            // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/:coleccion/id_actividad/5e0df19c0c2e74489066b43g
                             $ruta = '/update/coleccion/Upload/id_actividad/' . Yii::$app->request->post('UpdateRegisterForm')['id'];
                         } else {
-                            // http://10.201.54.31:49151/servicios/lti/lti13/create/coleccion/:coleccion/url_actividad/https://www.uned.es
+                            // http://10.201.54.31:49151/servicios/lti/lti13/update/coleccion/:coleccion/url_actividad/https://www.uned.es
                             $ruta = '/update/coleccion/Upload/url_actividad/' . str_replace('+', '%20', urlencode(Yii::$app->request->post('RegisterForm')['url']));
                         }
 
@@ -1917,8 +1917,8 @@ class UploadController extends Controller
                             if ($responsePut->isOk && $responsePut->data['result'] === 'ok' && $responsePut->data['data']['result'] === 'Existe') {
                                 $content .= '<div><p/><p/><p/><p class="alert alert-success"> Update Registro: ' . $responsePut->data['result'] . '</p>';
                                 $content .= '<div class="jumbotron">
-                            <h1>Creación de registro</h1>
-                            <p class="lead">de Upload realizado correctamente.</p>' .
+                                    <h1>Actualización de registro</h1>
+                                    <p class="lead">de Upload realizado correctamente.</p>' .
                                     'ID: <code>' .
                                     Html::encode($responsePut->data['data']['register']['id_actividad']) .
                                     '</code><br/>' .
@@ -1941,10 +1941,11 @@ class UploadController extends Controller
                                     '</code><br/>' .
                                     '<p/><p/><p/>' .
                                     '<p><a class="btn btn-lg btn-success" href="' . Url::previous() . '">Atrás</a></p>
-                        </div>';
+                                </div>';
                                 $content .= '</div>';
 
-                            } else {
+                            }
+                            else {
                                 $content .= '<div><p/><p/><p/>';
                                 $content .= '<p class="alert error-summary"> Update Registro: ' . Yii::$app->request->post('RegisterForm...', 'error') . '</p>';
                                 //$content = '<div><p/><p/><p/><p class="alert alert-success"> Registro: ' . ArrayHelper::isAssociative($request) . '</p></div><br/>';
@@ -1952,13 +1953,16 @@ class UploadController extends Controller
                                 //$content .= '<div><p/><p/><p/><p class="alert alert-success">RESPONSE: ' . print_r($response) . '</p></div><br/>';
                                 //$content.= '<button class="btn btn-info" onclick="history.go(-1);return false;">Atrás</button>';
                                 $content .= '<div class="jumbotron">
-                            <h1>Error</h1>
-                            <p class="lead">Las credenciales de Actualización del registro son erróneas.</p>' .
+                                    <h1>Error</h1>
+                                    <p class="lead">Las credenciales de Actualización del registro son erróneas.</p>' .
                                     'ID:  <code>' . $namefile . '</code><br/>' .
                                     'URL: <code>' . $serverPub . '/' . $namefile . '</code><br/>' .
+                                    'FILE: <code>' .
+                                    Html::encode($responsePut->data['data']['register']['upload']['fichero']) .
+                                    '</code><br/>' .
                                     '<p/><p/><p/>' .
                                     '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
-                        </div>';
+                                </div>';
                                 $content .= '</div>';
                             }
                         }
