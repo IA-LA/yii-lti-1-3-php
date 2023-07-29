@@ -357,7 +357,7 @@ Url::remember();
             Puede subirse un fichero comprimido .zip, de cada vez,
             sin contener espacios en blanco, tildes o eñes en el nombre.
         </p>
-        <p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
+    
         <div class="row">
             <div class="col-lg-5">
                 <?php
