@@ -23,8 +23,9 @@ Url::remember();
 <div class="upload-updateregister">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php if ((Yii::$app->session->hasFlash('updateregisterFormSubmitted')) && (($file !== null) && ($id !== null) && (preg_match('(zip|Zip|ZIP)', $id)))): ?>
+    <?php if ((Yii::$app->session->hasFlash('updateregisterFormSubmitted'))): ?>
     <!--
+     && (($file !== null) && ($id !== null) && (preg_match('(zip|Zip|ZIP)', $id))))
     TODO
         $_REQUEST Parámetros de descarga
                   file Nombre del fichero
