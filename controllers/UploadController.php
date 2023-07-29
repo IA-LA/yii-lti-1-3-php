@@ -1377,7 +1377,7 @@ class UploadController extends Controller
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
-                $uploadregister = $model->uploadregister();
+                $uploadregister = $model->uploadregister('00000000000000000000000000u');
 
                 // If file is uploaded successfully
                 ///////////////////////////////////

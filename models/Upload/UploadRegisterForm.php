@@ -39,14 +39,14 @@ class UploadRegisterForm extends Model
      *
      * @return array whether the model passes validation
      */
-    public function uploadregister()
+    public function uploadregister($id)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
                 ->setTo('read@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject('Update ' . $this->url)
+                ->setReplyTo(['upload@a.a' => $this->id])
+                ->setSubject('Upload ' . $this->zipFile->baseName . '.' . $this->zipFile->extension)
                 ->setTextBody('Subida de información de una Upload')
                 ->send();
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
