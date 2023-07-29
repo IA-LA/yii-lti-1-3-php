@@ -56,22 +56,24 @@ class UpdateRegisterForm extends Model
     /**
      * Sends a zip to the specified folder using the information collected by this model.
      *
+     * @param $id
+     * @param $url
      * @return array whether the model passes validation
      */
-    public function updateregister()
+    public function updateregister($id, $url)
     {
         if ($this->validate()) {
             Yii::$app->mailer->compose()
                 ->setTo('read@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo(['a@a.a' => $this->id])
-                ->setSubject('Update ' . $this->url)
+                ->setReplyTo(['a@a.a' => $id])
+                ->setSubject('Update ' . $this->zipFile->baseName . '.' . $this->zipFile->extension)
                 ->setTextBody('Actualización de información de una Upload')
                 ->send();
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
             //@return bool whether the model passes validation
             //return true;
-            return ['result' => true, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension, 'id' => $this->id, 'url' => $this->url];
+            return ['result' => true, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension, 'id' => $id, 'url' => $url];
         } else {
             //@return bool whether the model passes validation
             //return false;

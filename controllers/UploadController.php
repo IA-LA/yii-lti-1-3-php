@@ -1702,7 +1702,7 @@ class UploadController extends Controller
 
             if (Yii::$app->request->isPost) {
                 $model->zipFile = UploadedFile::getInstance($model, 'zipFile');
-                $updateregister = $model->updateregister();
+                $updateregister = $model->updateregister('00000000000000000000000000u', 'https://servidor.lti.es/00000000000000000000000000u');
 
                 // Usuario autorizado o administrador
                 // ID propia del usuario
