@@ -45,7 +45,7 @@ class UploadRegisterForm extends Model
             Yii::$app->mailer->compose()
                 ->setTo('read@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo(['upload@a.a' => $this->id])
+                ->setReplyTo(['upload@a.a' => $id])
                 ->setSubject('Upload ' . $this->zipFile->baseName . '.' . $this->zipFile->extension)
                 ->setTextBody('Subida de información de una Upload')
                 ->send();
