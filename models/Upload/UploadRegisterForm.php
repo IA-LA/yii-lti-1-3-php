@@ -20,7 +20,7 @@ class UploadRegisterForm extends Model
             //[['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 1024*1024],
             [['zipFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'zip'],
             // verifyCode needs to be entered correctly
-            //['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -42,6 +42,13 @@ class UploadRegisterForm extends Model
     public function uploadregister()
     {
         if ($this->validate()) {
+            Yii::$app->mailer->compose()
+                ->setTo('read@a.a')
+                ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                ->setReplyTo(['a@a.a' => $this->id])
+                ->setSubject('Update ' . $this->url)
+                ->setTextBody('Subida de información de una Upload')
+                ->send();
             $this->zipFile->saveAs('uploads/' . $this->zipFile->baseName . '.' . $this->zipFile->extension);
             //@return bool whether the model passes validation
             //return true;

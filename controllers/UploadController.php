@@ -1710,7 +1710,7 @@ class UploadController extends Controller
 
                     // If file is uploaded successfully
                     ///////////////////////////////////
-                    if (!$updateregister['result']) {
+                    if ($updateregister['result']) {
                         // file is uploaded successfully
                         Yii::$app->session->setFlash('updateregisterFormSubmitted');
 

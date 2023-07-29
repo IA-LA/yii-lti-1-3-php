@@ -75,12 +75,12 @@ Url::remember();
             <p/>
             <p/>
             <p/>
-            <p class="alert alert-success">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>NO</b> actualizable.</p>
+            <p class="alert error-summary">Carpeta de publicación ´<i><?= $namedir ?></i>´ <b>NO</b> actualizable.</p>
 
             <?php
                 }
                 else {
-                    echo '<p class="alert error-summary">Carpeta de publicación <i>`' . $namedir . '`</i> <b>SI</b> actualizable.</p>';
+                    echo '<p class="alert alert-success">Carpeta de publicación <i>`' . $namedir . '`</i> <b>SI</b> actualizable.</p>';
 
                     //echo "Returned with status $retval and output:\n";
                     //print_r($output);
@@ -345,7 +345,6 @@ Url::remember();
                             '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                     }
 
-                    echo '<p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>';
                 }
         ?>
 
@@ -358,7 +357,7 @@ Url::remember();
             Puede subirse un fichero comprimido .zip, de cada vez,
             sin contener espacios en blanco, tildes o eñes en el nombre.
         </p>
-
+        <p><a class="btn btn-lg btn-warning" href="' . Url::previous() . '">Atrás</a></p>
         <div class="row">
             <div class="col-lg-5">
                 <?php
@@ -382,11 +381,6 @@ Url::remember();
                             echo $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id) ? $id : ' ']);
                             echo $form->field($model, 'url');
                             echo $form->field($model, 'zipFile')->fileInput();
-                            echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
-                            echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
                             echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-success btn-block', 'name' => 'upload-updateregister-button']);
                         ActiveForm::end();
 
