@@ -9,7 +9,7 @@ use yii\web\UploadedFile;
 class UpdateRegisterForm extends Model
 {
     /**
-     * @var UpdatedFile
+     * @var UploadedFile
      */
     public $id;
     public $url;
@@ -66,7 +66,7 @@ class UpdateRegisterForm extends Model
             Yii::$app->mailer->compose()
                 ->setTo('read@a.a')
                 ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
-                ->setReplyTo(['a@a.a' => $id])
+                ->setReplyTo(['update@a.a' => $id])
                 ->setSubject('Update ' . $this->zipFile->baseName . '.' . $this->zipFile->extension)
                 ->setTextBody('Actualización de información de una Upload')
                 ->send();
@@ -77,7 +77,7 @@ class UpdateRegisterForm extends Model
         } else {
             //@return bool whether the model passes validation
             //return false;
-            return ['result' => false, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension, 'id' => $this->id, 'url' => $this->url];
+            return ['result' => false, 'file' => $this->zipFile->baseName . '.' . $this->zipFile->extension, 'id' => $id, 'url' => $url];
         }
     }
 }

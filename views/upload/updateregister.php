@@ -361,7 +361,7 @@ Url::remember();
         <div class="row">
             <div class="col-lg-5">
                 <?php
-                    // Modal UPLOAD
+                    // Modal UPDATE
                     //$modelU = new UpladForm();
                     // https://devreadwrite.com/posts/yii2-basic-advanced-authorization-form-in-modal-window
                     Modal::begin([
@@ -377,21 +377,19 @@ Url::remember();
 
                         // Formulario activo
                         //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
-                        $form = ActiveForm::begin(["id" => "uploadupdater-form"]);
-                            echo $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id) ? $id : ' ']);
-                            echo $form->field($model, 'url');
+                        $form = ActiveForm::begin(["id" => "updateregister-form"]);
                             echo $form->field($model, 'zipFile')->fileInput();
                             echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
+                                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
                             echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
-                            echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-success btn-block', 'name' => 'upload-updateregister-button']);
+                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
+                            echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-success btn-block', 'name' => 'updateregister-button']);
                         ActiveForm::end();
 
                     Modal::end();
 
-                    echo Html::Button('Update', ['class' => 'btn btn-primary', 'name' => 'modal-upload-updateregister-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
+                    echo Html::Button('Update & Register', ['class' => 'btn btn-primary', 'name' => 'modal-updateregister-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
                 ?>
             </div>
         </div>

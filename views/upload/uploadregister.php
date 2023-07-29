@@ -350,11 +350,11 @@ Url::remember();
                         $form = ActiveForm::begin(["id" => "uploadregister-form"]);
                             echo $form->field($model, 'zipFile')->fileInput();
                             echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
+                                    'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
                             echo '<!-- UPLOAD Bad Request (#400) Unable to verify your data submission.   -->
-                                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-                                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
-                            echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-success btn-block', 'name' => 'uploadregister-button']);
+                                  <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
+                                  <!-- <button class="btn btn-lg btn-success">Submit</button> -->';
+                            echo Html::submitButton('Enviar Fichero', ['class' => 'btn btn-success btn-block', 'name' => 'upadregister-button']);
                         ActiveForm::end();
 
                     Modal::end();
