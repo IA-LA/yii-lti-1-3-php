@@ -368,7 +368,7 @@ Url::remember();
                         'headerOptions' => ['id' => 'modalHeader'],
                         'header' => '<h2>' . Html::encode($this->title) . '</h2>',
                         //'toggleButton' => ['label' => 'Read&nbsp;&nbsp;', 'class' => 'btn btn-md btn-info'],
-                        'id' => 'modal-ur',
+                        'id' => 'modal-up',
                         //'size' => 'modal-lg',
                         //keeps from closing modal with esc key or by clicking out of the modal.
                         // user must click cancel or X to close
@@ -378,6 +378,8 @@ Url::remember();
                         // Formulario activo
                         //$this->render('//upload/upload',['model' => $modelU, 'id' => '*']);
                         $form = ActiveForm::begin(["id" => "updateregister-form"]);
+                            echo $form->field($model, 'id')->textInput(['autofocus' => true, 'value' => isset($id) ? $id : ' ']);
+                            echo $form->field($model, 'url');
                             echo $form->field($model, 'zipFile')->fileInput();
                             echo $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>']);
@@ -389,7 +391,7 @@ Url::remember();
 
                     Modal::end();
 
-                    echo Html::Button('Update & Register', ['class' => 'btn btn-primary', 'name' => 'modal-updateregister-button',  'data-toggle' => 'modal', 'data-target' => '#modal-ur'])
+                    echo Html::Button('Update & Register', ['class' => 'btn btn-primary', 'name' => 'modal-updateregister-button',  'data-toggle' => 'modal', 'data-target' => '#modal-up'])
                 ?>
             </div>
         </div>
